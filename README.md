@@ -1,4 +1,4 @@
-# Laravel 7 Simple CMS
+# Laravel 7 
 Basic boilerplate content management system for starters, supports Laravel 7.0.
 
 -----
