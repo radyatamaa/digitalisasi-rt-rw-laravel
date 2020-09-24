@@ -1,8 +1,5 @@
-@extends('layouts.app')
+@extends('errors::minimal')
 
-@section('title'){{ getTitle($t = __('http.404.title')) }}@endsection
-@section('description'){{ getDescription($d = __('http.404.description')) }}@endsection
-
-@section('content')
-    @include('partials.app.hero', ['title' => $t, 'description' => $d, 'class' => 'is-large'])
-@endsection
+@section('title', __('Not Found'))
+@section('code', '404')
+@section('message', __('Not Found'))

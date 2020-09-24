@@ -1,8 +1,5 @@
-@extends('layouts.app')
+@extends('errors::minimal')
 
-@section('title'){{ getTitle($t = __('http.403.title')) }}@endsection
-@section('description'){{ getDescription($d = __('http.403.description')) }}@endsection
-
-@section('content')
-    @include('partials.app.hero', ['title' => $t, 'description' => $d, 'class' => 'is-large'])
-@endsection
+@section('title', __('Forbidden'))
+@section('code', '403')
+@section('message', __($exception->getMessage() ?: 'Forbidden'))
