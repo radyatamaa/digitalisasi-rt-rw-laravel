@@ -28,4 +28,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('sdm_category/destroy', 'SdmCategoryController@massDestroy')->name('sdm_category.massDestroy');
 
     Route::resource('sdm_category', 'SdmCategoryController');
+
+    Route::delete('master_agama/destroy', 'MasterAgamaController@massDestroy')->name('master_agama.massDestroy');
+
+    Route::resource('master_agama', 'MasterAgamaController');
+
+    Route::delete('master_pekerjaan/destroy', 'MasterPekerjaanController@massDestroy')->name('master_pekerjaan.massDestroy');
+
+    Route::resource('master_pekerjaan', 'MasterPekerjaanController');
+
+    Route::delete('master_gaji/destroy', 'MasterGajiController@massDestroy')->name('master_gaji.massDestroy');
+
+    Route::resource('master_gaji', 'MasterGajiController');
 });
