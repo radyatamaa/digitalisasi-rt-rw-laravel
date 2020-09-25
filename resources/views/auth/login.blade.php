@@ -1,54 +1,64 @@
-@extends('layouts.admin')
-
+@extends('layouts.app')
 @section('content')
-    <section class="hero is-light is-fullheight">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey">{{ __('auth.login.submit') }}</h3>
-                    <div class="box">
-                        <figure class="avatar">
-                            <img alt="Avatar" src="{{ config('settings.login_image') }}">
-                        </figure>
-                        <form id="login" method="POST" action="{{ route('auth.login.post') }}">
-                            @include('partials.admin.errors')
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" value="{{ old('email') ?? '' }}" type="email" name="email" placeholder="{{ __('auth.login.email') }}" autofocus>
-                                </div>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card-group">
+            <div class="card p-4">
+                <div class="card-body">
+                    @if(\Session::has('message'))
+                        <p class="alert alert-info">
+                            {{ \Session::get('message') }}
+                        </p>
+                    @endif
+                    <form method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+                        <h1>
+                            <div class="login-logo">
+                                <a href="#">
+                                    {{ trans('global.site_title') }}
+                                </a>
                             </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" type="password" name="password" placeholder="{{ __('auth.login.password') }}">
-                                </div>
+                        </h1>
+                        <p class="text-muted">{{ trans('global.login') }}</p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
                             </div>
-                            @if ($hasCaptcha)
-                                <div class="field has-addons has-addons-centered">
-                                    <div class="control">
-                                        {!! NoCaptcha::display() !!}
-                                    </div>
-                                </div>
+                            <input name="email" type="text" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="{{ trans('global.login_email') }}">
+                            @if($errors->has('email'))
+                                <em class="invalid-feedback">
+                                    {{ $errors->first('email') }}
+                                </em>
                             @endif
-                            <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox" name="remember" value="1" checked> {{ __('auth.login.remember') }}
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input name="password" type="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="{{ trans('global.login_password') }}">
+                            @if($errors->has('password'))
+                                <em class="invalid-feedback">
+                                    {{ $errors->first('password') }}
+                                </em>
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="submit" class="btn btn-primary px-4" value='{{ trans('global.login') }}'>
+                                <label class="ml-2">
+                                    <input name="remember" type="checkbox" /> {{ trans('global.remember_me') }}
                                 </label>
                             </div>
-                            <div class="control">
-                                <input type="hidden" name="_token" id="csrf-token" value="{{ csrf_token() }}" />
-                                <button type="submit" class="button is-info is-fullwidth is-large">{{ __('auth.login.submit') }}</button>
+                            <div class="col-6 text-right">
+                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                                    {{ trans('global.forgot_password') }}
+                                </a>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 @endsection
-
-@if ($hasCaptcha)
-    @section('scripts')
-        {!! NoCaptcha::renderJs('en') !!}
-    @endsection
-@endif
-

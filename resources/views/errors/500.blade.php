@@ -1,8 +1,5 @@
-@extends('layouts.app')
+@extends('errors::minimal')
 
-@section('title'){{ getTitle($t = __('http.500.title')) }}@endsection
-@section('description'){{ getDescription($d = __('http.500.description')) }}@endsection
-
-@section('content')
-    @include('partials.app.hero', ['title' => $t, 'description' => $d, 'class' => 'is-large'])
-@endsection
+@section('title', __('Server Error'))
+@section('code', '500')
+@section('message', __('Server Error'))
