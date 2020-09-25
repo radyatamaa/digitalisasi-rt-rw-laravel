@@ -28,4 +28,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('sdm_category/destroy', 'SdmCategoryController@massDestroy')->name('sdm_category.massDestroy');
 
     Route::resource('sdm_category', 'SdmCategoryController');
+
+    
+    Route::resource('event_category', 'EventCategoryController');
+    Route::delete('event_category/destroy', 'EventCategoryController@massDestroy')->name('event_category.massDestroy');
+
+    Route::resource('insidental_category', 'InsidentalCategoryController');
+    Route::delete('insidental_category/destroy', 'InsidentalCategoryController@massDestroy')->name('insidental_category.massDestroy');
+
+    Route::resource('history_category', 'HistoryCategoryController');
+    Route::delete('history_category/destroy', 'HistoryCategoryController@massDestroy')->name('History_category.massDestroy');
+
+    
 });
