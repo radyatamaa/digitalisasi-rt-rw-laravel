@@ -179,6 +179,8 @@ return [
     'product_name'                         => 'Product name',
     'sdm_category'                             => 'SDM Category',
     'categoryt_name'                         => 'Category name',
+    'event_category'                             => 'Event Category',
+    'categoryt_name'                         => 'Category name',
     'price'                                => 'Price',
     'tags'                                 => 'Tags',
     'tag'                                  => 'Tag',
@@ -371,4 +373,56 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
+
+    'event_category'                              => [
+        'title'          => 'Event Category',
+        'title_singular' => 'Event Category',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',         
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
+    'insidental_category'                              => [
+        'title'          => 'Insidental Category',
+        'title_singular' => 'Insidental Category',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',         
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
+    'history_category'                              => [
+        'title'          => 'History Category',
+        'title_singular' => 'History Category',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',         
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
 ];
