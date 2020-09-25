@@ -147,7 +147,7 @@ return [
     'time_entries'                         => 'Time entries',
     'work_type'                            => 'Work type',
     'work_types'                           => 'Work types',
-    'project'                              => 'Project',
+    'project'                              => 'SIDAK ADMIN CMS',
     'start_time'                           => 'Start time',
     'end_time'                             => 'End time',
     'expense_category'                     => 'Expense Category',
@@ -315,7 +315,7 @@ return [
     'deselect_all'                         => 'Deselect all',
     'team-management'                      => 'Teams',
     'team-management-singular'             => 'Team',
-    'site_title'                           => 'Laravel + CoreUI',
+    'site_title'                           => 'SIDAK ADMIN CMS',
     'userManagement'                       => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',

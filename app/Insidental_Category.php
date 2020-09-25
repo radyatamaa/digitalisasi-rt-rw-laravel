@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Insidental_Category extends Model
 {
-    // use SoftDeletes;
+    use SoftDeletes;
     protected $table = "ins_category";
     protected $dates = [
         'created_at',

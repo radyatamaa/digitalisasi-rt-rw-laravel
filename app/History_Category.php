@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class History_Category extends Model
 {
-    // use SoftDeletes;
+    use SoftDeletes;
     protected $table = "history_category";
     protected $dates = [
         'created_at',
