@@ -29,15 +29,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('sdm_category', 'SdmCategoryController');
 
-    
-    Route::resource('event_category', 'EventCategoryController');
-    Route::delete('event_category/destroy', 'EventCategoryController@massDestroy')->name('event_category.massDestroy');
+    Route::delete('master_agama/destroy', 'MasterAgamaController@massDestroy')->name('master_agama.massDestroy');
 
-    Route::resource('insidental_category', 'InsidentalCategoryController');
-    Route::delete('insidental_category/destroy', 'InsidentalCategoryController@massDestroy')->name('insidental_category.massDestroy');
+    Route::resource('master_agama', 'MasterAgamaController');
 
-    Route::resource('history_category', 'HistoryCategoryController');
-    Route::delete('history_category/destroy', 'HistoryCategoryController@massDestroy')->name('History_category.massDestroy');
+    Route::delete('master_pekerjaan/destroy', 'MasterPekerjaanController@massDestroy')->name('master_pekerjaan.massDestroy');
 
-    
+    Route::resource('master_pekerjaan', 'MasterPekerjaanController');
+
+    Route::delete('master_gaji/destroy', 'MasterGajiController@massDestroy')->name('master_gaji.massDestroy');
+
+    Route::resource('master_gaji', 'MasterGajiController');
 });

@@ -10,4 +10,8 @@ Route::group(['prefix' => 'v1', 'as' => 'admin.', 'namespace' => 'Api\V1\Admin']
     Route::apiResource('products', 'ProductsApiController');
 
     Route::apiResource('sdm_category', 'SdmCategoryApiController');
+
+    Route::apiResource('master_agama', 'MasterAgamaApiController');
+
+    Route::apiResource('master_pekerjaan', 'MasterPekerjaanApiController');
 });
