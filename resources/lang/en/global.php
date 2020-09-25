@@ -179,6 +179,8 @@ return [
     'product_name'                         => 'Product name',
     'sdm_category'                             => 'SDM Category',
     'categoryt_name'                         => 'Category name',
+    'event_category'                             => 'Event Category',
+    'categoryt_name'                         => 'Category name',
     'price'                                => 'Price',
     'tags'                                 => 'Tags',
     'tag'                                  => 'Tag',
@@ -355,7 +357,6 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
-
     'sdm_category'                              => [
         'title'          => 'SDM Category',
         'title_singular' => 'SDM Category',
@@ -363,7 +364,7 @@ return [
             'id'                 => 'ID',
             'id_helper'          => '',
             'category_name'               => 'Category Name',
-            'category_name_helper'        => '',
+            'category_name_helper'        => '',         
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
@@ -373,14 +374,14 @@ return [
         ],
     ],
 
-    'master_agama'                              => [
-        'title'          => 'Master Agama',
-        'title_singular' => 'Master Agama',
+    'event_category'                              => [
+        'title'          => 'Event Category',
+        'title_singular' => 'Event Category',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
-            'religion_name'               => 'Religion Name',
-            'religion_name_helper'        => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',         
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
@@ -390,14 +391,14 @@ return [
         ],
     ],
 
-    'master_pekerjaan'                              => [
-        'title'          => 'Master Pekerjaan',
-        'title_singular' => 'Master Pekerjaan',
+    'insidental_category'                              => [
+        'title'          => 'Insidental Category',
+        'title_singular' => 'Insidental Category',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
-            'job_name'               => 'Job Name',
-            'job_name_helper'        => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',         
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
@@ -407,16 +408,14 @@ return [
         ],
     ],
 
-    'master_gaji'                              => [
-        'title'          => 'Master Gaji',
-        'title_singular' => 'Master Gaji',
+    'history_category'                              => [
+        'title'          => 'History Category',
+        'title_singular' => 'History Category',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
-            'salary_start'               => 'Salary Start',
-            'salary_start_helper'        => '',
-            'salary_end'               => 'Salary End',
-            'salary_end_helper'        => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',         
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
@@ -425,4 +424,5 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
+
 ];
