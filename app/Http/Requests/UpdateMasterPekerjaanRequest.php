@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Sdm_Category;
+use App\Master_Pekerjaan;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateMasterPekerjaanRequest extends FormRequest

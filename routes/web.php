@@ -47,4 +47,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('master_pekerjaan', 'MasterPekerjaanController');
     Route::delete('master_pekerjaan/destroy', 'MasterPekerjaanController@massDestroy')->name('master_pekerjaan.massDestroy');
+
+    Route::resource('master_alamat', 'MasterAlamatController');
+    Route::delete('master_alamat/destroy', 'MasterAlamatController@massDestroy')->name('master_alamat.massDestroy');
 });

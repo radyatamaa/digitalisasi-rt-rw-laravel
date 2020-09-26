@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Sdm_Category;
+use App\Master_Agama;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMasterAgamaRequest extends FormRequest
