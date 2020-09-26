@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sdm_Category extends Model
 {
-    // use SoftDeletes;
+    use SoftDeletes;
     protected $table = "sdm_category";
     protected $dates = [
         'created_at',

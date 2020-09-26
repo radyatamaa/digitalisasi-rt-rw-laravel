@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class History_Category extends Model
+class Master_Alamat extends Model
 {
-    use SoftDeletes;
-    protected $table = "history_category";
+    // use SoftDeletes;
+    protected $table = "address_code";
     protected $dates = [
         'created_at',
         'updated_at',
@@ -16,7 +16,8 @@ class History_Category extends Model
     ];
 
     protected $fillable = [
-        'category_name',
+        'address_code_name',
+        'address_code_rt',
         'created_at',
         'updated_at',
         'deleted_at',

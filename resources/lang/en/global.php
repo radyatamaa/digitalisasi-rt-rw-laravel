@@ -147,7 +147,7 @@ return [
     'time_entries'                         => 'Time entries',
     'work_type'                            => 'Work type',
     'work_types'                           => 'Work types',
-    'project'                              => 'Project',
+    'project'                              => 'SIDAK ADMIN CMS',
     'start_time'                           => 'Start time',
     'end_time'                             => 'End time',
     'expense_category'                     => 'Expense Category',
@@ -178,6 +178,8 @@ return [
     'products'                             => 'Products',
     'product_name'                         => 'Product name',
     'sdm_category'                             => 'SDM Category',
+    'categoryt_name'                         => 'Category name',
+    'event_category'                             => 'Event Category',
     'categoryt_name'                         => 'Category name',
     'price'                                => 'Price',
     'tags'                                 => 'Tags',
@@ -313,7 +315,7 @@ return [
     'deselect_all'                         => 'Deselect all',
     'team-management'                      => 'Teams',
     'team-management-singular'             => 'Team',
-    'site_title'                           => 'Laravel + CoreUI',
+    'site_title'                           => 'SIDAK ADMIN CMS',
     'userManagement'                       => [
         'title'          => 'User Management',
         'title_singular' => 'User Management',
@@ -355,7 +357,6 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
-
     'sdm_category'                              => [
         'title'          => 'SDM Category',
         'title_singular' => 'SDM Category',
@@ -373,9 +374,60 @@ return [
         ],
     ],
 
+    'event_category'                              => [
+        'title'          => 'Event Category',
+        'title_singular' => 'Event Category',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
+    'insidental_category'                              => [
+        'title'          => 'Insidental Category',
+        'title_singular' => 'Insidental Category',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
+    'history_category'                              => [
+        'title'          => 'History Category',
+        'title_singular' => 'History Category',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
     'master_agama'                              => [
-        'title'          => 'Master Agama',
-        'title_singular' => 'Master Agama',
+        'title'          => 'Master Data Agama',
+        'title_singular' => 'Master Data Agama',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
@@ -389,10 +441,28 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
+    'master_gaji'                              => [
+        'title'          => 'Master Data Gaji',
+        'title_singular' => 'Master Data Gaji',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'salary_start'               => 'Salary Start',
+            'salary_start_helper'        => '',
+            'salary_end'               => 'Salary End',
+            'salary_end_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
 
     'master_pekerjaan'                              => [
-        'title'          => 'Master Pekerjaan',
-        'title_singular' => 'Master Pekerjaan',
+        'title'          => 'Master Data Pekerjaan',
+        'title_singular' => 'Master Data Pekerjaan',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
@@ -407,16 +477,16 @@ return [
         ],
     ],
 
-    'master_gaji'                              => [
-        'title'          => 'Master Gaji',
-        'title_singular' => 'Master Gaji',
+    'master_alamat'                              => [
+        'title'          => 'Master Data Alamat',
+        'title_singular' => 'Master Data Alamat',
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
-            'salary_start'               => 'Salary Start',
-            'salary_start_helper'        => '',
-            'salary_end'               => 'Salary End',
-            'salary_end_helper'        => '',
+            'address_code_name'               => 'Address Code Name',
+            'address_code_name_helper'        => '',
+            'address_code_rt'               => 'Address Code rt',
+            'address_code_rt_helper'        => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',

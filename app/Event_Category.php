@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event_Category extends Model
 {
-    // use SoftDeletes;
+    use SoftDeletes;
     protected $table = "event_category";
     protected $dates = [
         'created_at',
