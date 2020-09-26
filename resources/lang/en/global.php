@@ -459,6 +459,7 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
+
     'master_pekerjaan'                              => [
         'title'          => 'Master Data Pekerjaan',
         'title_singular' => 'Master Data Pekerjaan',
@@ -467,6 +468,25 @@ return [
             'id_helper'          => '',
             'job_name'               => 'Job Name',
             'job_name_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
+    'master_alamat'                              => [
+        'title'          => 'Master Data Alamat',
+        'title_singular' => 'Master Data Alamat',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'address_code_name'               => 'Address Code Name',
+            'address_code_name_helper'        => '',
+            'address_code_rt'               => 'Address Code rt',
+            'address_code_rt_helper'        => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',

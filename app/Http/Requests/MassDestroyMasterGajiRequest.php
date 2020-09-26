@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Sdm_Category;
+use App\Master_Gaji;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
