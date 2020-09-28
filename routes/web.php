@@ -50,4 +50,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('master_alamat', 'MasterAlamatController');
     Route::delete('master_alamat/destroy', 'MasterAlamatController@massDestroy')->name('master_alamat.massDestroy');
+
+    Route::resource('insidental', 'InsidentalController');
+    Route::delete('insidental/destroy', 'InsidentalController@massDestroy')->name('insidental.massDestroy');
+
+    
+    Route::resource('keuangan_category', 'KeuanganCategoryController');
+    Route::delete('keuangan_category/destroy', 'KeuanganCategoryController@massDestroy')->name('Keuangan_category.massDestroy');
+
 });

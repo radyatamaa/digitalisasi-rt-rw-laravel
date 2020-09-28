@@ -495,4 +495,45 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
+
+    'insidental'                              => [
+        'title'          => 'Insidental',
+        'title_singular' => 'Insidental',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'ins_name'               => 'Insidental Name',
+            'ins_name_helper'        => '',
+            'ins_category'               => 'Insidental Category',
+            'ins_category_helper'        => '',
+            'ins_detail'               => 'Insidental Detail',
+            'ins_detail_helper'        => '',
+            'ins_date'               => 'Insidental Date',
+            'ins_date_helper'        => '',
+            
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
+    'keuangan_category'                              => [
+        'title'          => 'Keuangan Category',
+        'title_singular' => 'Keuangan Category',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'category_name'               => 'Category Name',
+            'category_name_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
 ];
