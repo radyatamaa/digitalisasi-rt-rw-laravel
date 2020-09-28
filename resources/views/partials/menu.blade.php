@@ -139,6 +139,23 @@
             </li>
 
             <li class="nav-item">
+                <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga/*') ? 'active' : '' }}">
+                    <i class="fas fa-cogs nav-icon">
+
+                    </i>
+                    {{ trans('global.history_warga.title') }}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
+                    <i class="fas fa-cogs nav-icon">
+
+                    </i>
+                    {{ trans('global.rt.title') }}
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-sign-out-alt">
 

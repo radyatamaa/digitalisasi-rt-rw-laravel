@@ -425,6 +425,29 @@ return [
         ],
     ],
 
+    'rt'                              => [
+        'title'          => 'RT',
+        'title_singular' => 'RT',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'rt_name'               => 'Rt Name',
+            'rt_name_helper'        => '',
+            'rt_code'               => 'Rt Code',
+            'rt_code_helper'        => '',
+            'rt_rw_id'               => 'RW ID',
+            'rt_rw_id_helper'        => '',
+            'rt_status'               => 'Rt Status',
+            'rt_status_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
     'master_agama'                              => [
         'title'          => 'Master Data Agama',
         'title_singular' => 'Master Data Agama',
@@ -496,7 +519,7 @@ return [
         ],
     ],
 
-    'insidental'                              => [
+    'insidental'        =>       [
         'title'          => 'Insidental',
         'title_singular' => 'Insidental',
         'fields'         => [
@@ -510,7 +533,6 @@ return [
             'ins_detail_helper'        => '',
             'ins_date'               => 'Insidental Date',
             'ins_date_helper'        => '',
-            
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
@@ -528,6 +550,26 @@ return [
             'id_helper'          => '',
             'category_name'               => 'Category Name',
             'category_name_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+    'history_warga'                              => [
+        'title'          => 'History Warga',
+        'title_singular' => 'History Warga',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'history_desc'               => 'History Desc',
+            'history_desc_helper'        => '',
+            'history_date'               => 'History Date',
+            'history_date_helper'        => '',
+            'history_category'               => 'History Category',
+            'history_category_helper'        => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',

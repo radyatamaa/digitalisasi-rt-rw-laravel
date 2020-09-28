@@ -54,8 +54,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('insidental', 'InsidentalController');
     Route::delete('insidental/destroy', 'InsidentalController@massDestroy')->name('insidental.massDestroy');
 
-    
+
     Route::resource('keuangan_category', 'KeuanganCategoryController');
     Route::delete('keuangan_category/destroy', 'KeuanganCategoryController@massDestroy')->name('Keuangan_category.massDestroy');
 
+
+    Route::resource('history_warga', 'HistoryWargaController');
+    Route::delete('history_warga/destroy', 'HistoryWargaController@massDestroy')->name('history_warga.massDestroy');
+
+    Route::resource('rt', 'RtController');
+    Route::delete('rt/destroy', 'RtController@massDestroy')->name('rt.massDestroy');
 });
