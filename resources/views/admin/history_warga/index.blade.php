@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-@can('master_alamat_create')
+@can('history_warga_create')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.master_alamat.create") }}">
-            {{ trans('global.add') }} {{ trans('global.master_alamat.title_singular') }}
+        <a class="btn btn-success" href="{{ route("admin.history_warga.create") }}">
+            {{ trans('global.add') }} {{ trans('global.history_warga.title_singular') }}
         </a>
     </div>
 </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('global.master_alamat.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.history_warga.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
@@ -23,10 +23,13 @@
 
                         </th>
                         <th>
-                            {{ trans('global.master_alamat.fields.address_code_name') }}
+                            {{ trans('global.history_warga.fields.history_desc') }}
                         </th>
                         <th>
-                            {{ trans('global.master_alamat.fields.address_code_rt') }}
+                            {{ trans('global.history_warga.fields.history_date') }}
+                        </th>
+                        <th>
+                            {{ trans('global.history_warga.fields.history_category') }}
                         </th>
                         <!-- <th>
                             {{ trans('global.product.fields.description') }}
@@ -40,16 +43,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($master_alamat as $key => $master_alamats)
-                    <tr data-entry-id="{{ $master_alamats->id }}">
+                    @foreach($history_warga as $key => $history_wargas)
+                    <tr data-entry-id="{{ $history_wargas->id }}">
                         <td>
 
                         </td>
                         <td>
-                            {{ $master_alamats->address_code_name ?? '' }}
+                            {{ $history_wargas->history_desc ?? '' }}
                         </td>
                         <td>
-                            {{ $master_alamats->address_code_rt ?? '' }}
+                            {{ $history_wargas->history_date ?? '' }}
+                        </td>
+                        <td>
+                            {{ $history_wargas->history_category ?? '' }}
                         </td>
                         <!-- <td>
                                 {{ $product->description ?? '' }}
@@ -58,18 +64,18 @@
                                 {{ $product->price ?? '' }}
                             </td> -->
                         <td>
-                            @can('master_alamat_show')
-                            <a class="btn btn-xs btn-primary" href="{{ route('admin.master_alamat.show', $master_alamats->id) }}">
+                            @can('history_warga_show')
+                            <a class="btn btn-xs btn-primary" href="{{ route('admin.history_warga.show', $history_wargas->id) }}">
                                 {{ trans('global.view') }}
                             </a>
                             @endcan
-                            @can('master_alamat_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('admin.master_alamat.edit', $master_alamats->id) }}">
+                            @can('history_warga_edit')
+                            <a class="btn btn-xs btn-info" href="{{ route('admin.history_warga.edit', $history_wargas->id) }}">
                                 {{ trans('global.edit') }}
                             </a>
                             @endcan
-                            @can('master_alamat_delete')
-                            <form action="{{ route('admin.master_alamat.destroy', $master_alamats->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                            @can('history_warga_delete')
+                            <form action="{{ route('admin.history_warga.destroy', $history_wargas->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
