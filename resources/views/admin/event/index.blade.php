@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-@can('insidental_create')
+@can('event_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.insidental.create") }}">
-                {{ trans('global.add') }} {{ trans('global.insidental.title_singular') }}
+            <a class="btn btn-success" href="{{ route("admin.event.create") }}">
+                {{ trans('global.add') }} {{ trans('global.event.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('global.insidental.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.event.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
@@ -23,16 +23,16 @@
 
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_name') }}
+                            {{ trans('global.event.fields.event_name') }}
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_category') }}
+                            {{ trans('global.event.fields.event_rt') }}
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_detail') }}
+                            {{ trans('global.event.fields.event_category') }}
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_date') }}
+                            {{ trans('global.event.fields.event_date') }}
                         </th>
 
                         <th>
@@ -41,37 +41,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($insidental as $key => $insidentals)
-                        <tr data-entry-id="{{ $insidentals->id }}">
+                    @foreach($event as $key => $events)
+                        <tr data-entry-id="{{ $events->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $insidentals->ins_name ?? '' }}
+                                {{ $events->event_name ?? '' }}
                             </td>
                             <td>
-                                {{ $insidentals->ins_category ?? '' }}
+                                {{ $events->event_rt ?? '' }}
                             </td>
                             <td>
-                                {{ $insidentals->ins_detail ?? '' }}
+                                {{ $events->event_category ?? '' }}
                             </td>
                             <td>
-                                {{ $insidentals->ins_date ?? '' }}
+                                {{ $events->event_date ?? '' }}
                             </td>
                             
                             <td>
-                                @can('insidental_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.insidental.show', $insidentals->id) }}">
+                                @can('event_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.event.show', $events->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
-                                @can('insidental_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.insidental.edit', $insidentals->id) }}">
+                                @can('event_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.event.edit', $events->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
-                                @can('insidental_delete')
-                                    <form action="{{ route('admin.insidental.destroy', $insidentals->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('event_delete')
+                                    <form action="{{ route('admin.event.destroy', $events->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">

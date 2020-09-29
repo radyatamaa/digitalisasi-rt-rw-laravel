@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-@can('insidental_create')
+@can('keuangan_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.insidental.create") }}">
-                {{ trans('global.add') }} {{ trans('global.insidental.title_singular') }}
+            <a class="btn btn-success" href="{{ route("admin.keuangan.create") }}">
+                {{ trans('global.add') }} {{ trans('global.keuangan.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('global.insidental.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.keuangan.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
@@ -23,16 +23,22 @@
 
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_name') }}
+                            {{ trans('global.keuangan.fields.keuangan_tipe') }}
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_category') }}
+                            {{ trans('global.keuangan.fields.keuangan_category') }}
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_detail') }}
+                            {{ trans('global.keuangan.fields.keuangan_periode') }}
                         </th>
                         <th>
-                            {{ trans('global.insidental.fields.ins_date') }}
+                            {{ trans('global.keuangan.fields.keuangan_value') }}
+                        </th>
+                        <th>
+                            {{ trans('global.keuangan.fields.keuangan_warga_id') }}
+                        </th>
+                        <th>
+                            {{ trans('global.keuangan.fields.keuangan_rt') }}
                         </th>
 
                         <th>
@@ -41,37 +47,43 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($insidental as $key => $insidentals)
-                        <tr data-entry-id="{{ $insidentals->id }}">
+                    @foreach($keuangan as $key => $keuangans)
+                        <tr data-entry-id="{{ $keuangans->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $insidentals->ins_name ?? '' }}
+                                {{ $keuangans->keuangan_tipe ?? '' }}
                             </td>
                             <td>
-                                {{ $insidentals->ins_category ?? '' }}
+                                {{ $keuangans->keuangan_category ?? '' }}
                             </td>
                             <td>
-                                {{ $insidentals->ins_detail ?? '' }}
+                                {{ $keuangans->keuangan_periode ?? '' }}
                             </td>
                             <td>
-                                {{ $insidentals->ins_date ?? '' }}
+                                {{ $keuangans->keuangan_value ?? '' }}
+                            </td>
+                            <td>
+                                {{ $keuangans->keuangan_warga_id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $keuangans->keuangan_rt ?? '' }}
                             </td>
                             
                             <td>
-                                @can('insidental_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.insidental.show', $insidentals->id) }}">
+                                @can('keuangan_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.keuangan.show', $keuangans->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
-                                @can('insidental_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.insidental.edit', $insidentals->id) }}">
+                                @can('keuangan_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.keuangan.edit', $keuangans->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
-                                @can('insidental_delete')
-                                    <form action="{{ route('admin.insidental.destroy', $insidentals->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('keuangan_delete')
+                                    <form action="{{ route('admin.keuangan.destroy', $keuangans->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
