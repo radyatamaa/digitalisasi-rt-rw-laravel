@@ -651,4 +651,27 @@ return [
         ],
     ],
 
+    'kelurahan'        =>       [
+        'title'          => 'Kelurahan',
+        'title_singular' => 'Kelurahan',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'kel_name'               => 'kel name',
+            'kel_name_helper'        => '',
+            'kel_code'               => 'kel code',
+            'kel_code_helper'        => '',
+            'kel_kec_id'               => 'Kecamatan id',
+            'kel_kec_id_helper'        => '',
+            'kel_status'               => 'Kelurahan Status',
+            'kel_status_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
 ];
