@@ -578,4 +578,28 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
+
+    'event'        =>       [
+        'title'          => 'Event',
+        'title_singular' => 'Event',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'event_name'               => 'Event Name',
+            'event_name_helper'        => '',
+            'event_rt'               => 'Event RT',
+            'event_rt_helper'        => '',
+            'event_category'               => 'Event Category',
+            'event_category_helper'        => '',
+            'event_date'               => 'Event Date',
+            'event_date_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+    
 ];
