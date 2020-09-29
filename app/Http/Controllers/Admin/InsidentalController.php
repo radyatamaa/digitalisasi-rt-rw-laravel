@@ -8,11 +8,12 @@ use App\Http\Requests\StoreInsidentalRequest;
 use App\Http\Requests\UpdateInsidentalRequest;
 use App\Insidental;
 use App\Insidental_Category;
+
 class InsidentalController extends Controller
 {
     public function index()
     {
-       
+
         abort_unless(\Gate::allows('insidental_access'), 403);
         $insidental = Insidental::all();
 
@@ -25,7 +26,7 @@ class InsidentalController extends Controller
 
         $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
 
-        return view('admin.insidental.create',compact('ins_category'));
+        return view('admin.insidental.create', compact('ins_category'));
     }
 
     public function store(StoreInsidentalRequest $request)
@@ -43,16 +44,16 @@ class InsidentalController extends Controller
 
         $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
 
-        return view('admin.insidental.edit', compact('insidental','ins_category'));
+        return view('admin.insidental.edit', compact('insidental', 'ins_category'));
     }
 
     public function update(UpdateInsidentalRequest $request, Insidental $insidental)
     {
-        
+
         abort_unless(\Gate::allows('insidental_edit'), 403);
 
         $insidental->update($request->all());
-        
+
         return redirect()->route('admin.insidental.index');
     }
 

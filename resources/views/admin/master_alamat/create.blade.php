@@ -34,6 +34,18 @@
                     {{ trans('global.master_alamat.fields.address_code_rt_helper') }}
                 </p>
             </div>
+
+            <div class="form-group">
+                <select class="browser-default custom-select">
+                    <option selected>RT Name</option>
+                    <option value="1">001</option>
+                    <option value="2">002</option>
+                    <option value="3">003</option>
+                </select>
+            </div>
+
+
+
             <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="description">{{ trans('global.master_alamat.fields.description') }}</label>
                 <textarea id="description" name="description" class="form-control ">{{ old('description', isset($master_alamat) ? $master_alamat->description : '') }}</textarea>

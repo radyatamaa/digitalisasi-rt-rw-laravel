@@ -13,9 +13,9 @@
                 <label for="category_name">{{ trans('global.history_category.fields.category_name') }}*</label>
                 <input type="text" id="category_name" name="category_name" class="form-control" value="{{ old('category_name', isset($history_category) ? $history_category->category_name : '') }}">
                 @if($errors->has('category_name'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('category_name') }}
-                    </em>
+                <em class="invalid-feedback">
+                    {{ $errors->first('category_name') }}
+                </em>
                 @endif
                 <p class="helper-block">
                     {{ trans('global.history_category.fields.category_name_helper') }}
