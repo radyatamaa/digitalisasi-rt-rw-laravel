@@ -67,4 +67,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('event', 'EventController');
     Route::delete('event/destroy', 'EventController@massDestroy')->name('event.massDestroy');
+
+    Route::resource('keuangan', 'KeuanganController');
+    Route::delete('keuangan/destroy', 'KeuanganController@massDestroy')->name('keuangan.massDestroy');
 });
