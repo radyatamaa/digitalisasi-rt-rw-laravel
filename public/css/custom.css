@@ -6,7 +6,9 @@ textarea {
 .datatable {
     width: 100% !important;
 }
-
+#wgtmsr{
+    width:150px;   
+   }
 .dataTables_length,
 .dataTables_filter,
 .dt-buttons {
