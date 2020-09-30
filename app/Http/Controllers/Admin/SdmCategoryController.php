@@ -44,7 +44,6 @@ class SdmCategoryController extends Controller
 
     public function update(UpdateSdmCategoryRequest $request, Sdm_Category $sdm_category)
     {
-        echo "kontol";
         abort_unless(\Gate::allows('sdm_category_edit'), 403);
 
         $sdm_category->update($request->all());

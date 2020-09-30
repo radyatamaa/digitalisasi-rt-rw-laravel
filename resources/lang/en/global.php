@@ -627,5 +627,51 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
-    
+
+    'rw'        =>       [
+        'title'          => 'RW',
+        'title_singular' => 'RW',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'rw_name'               => 'rw name',
+            'rw_name_helper'        => '',
+            'rw_code'               => 'rw code',
+            'rw_code_helper'        => '',
+            'rw_kel_id'               => 'Kel id',
+            'rw_kel_id_helper'        => '',
+            'rw_status'               => 'Rw Status',
+            'rw_status_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
+    'kelurahan'        =>       [
+        'title'          => 'Kelurahan',
+        'title_singular' => 'Kelurahan',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'kel_name'               => 'kel name',
+            'kel_name_helper'        => '',
+            'kel_code'               => 'kel code',
+            'kel_code_helper'        => '',
+            'kel_kec_id'               => 'Kecamatan id',
+            'kel_kec_id_helper'        => '',
+            'kel_status'               => 'Kelurahan Status',
+            'kel_status_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
 ];

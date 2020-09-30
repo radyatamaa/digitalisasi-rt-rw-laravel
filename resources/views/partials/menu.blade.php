@@ -44,6 +44,28 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link  nav-dropdown-toggle">
+                    <i class="fas fa-users nav-icon">
+
+                    </i>
+                    Report
+                    <!-- {{ trans('global.userManagement.title') }} -->
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="{{ route("admin.report_data_masyarakat_km.index") }}" class="nav-link {{ request()->is('admin/report_data_masyarakat_km') || request()->is('admin/report_data_masyarakat_km/*') ? 'active' : '' }}">
+                            <i class="fas fa-unlock-alt nav-icon">
+
+                            </i>
+                            Report DMKM
+                            <!-- {{ trans('global.permission.title') }} -->
+                        </a>
+                    </li>
+                    
+                   
+                </ul>
+            </li>
             <li class="nav-item">
                 <a href="{{ route("admin.products.index") }}" class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
@@ -170,6 +192,22 @@
 
                     </i>
                     {{ trans('global.keuangan.title') }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
+                    <i class="fas fa-cogs nav-icon">
+
+                    </i>
+                    {{ trans('global.rw.title') }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
+                    <i class="fas fa-cogs nav-icon">
+
+                    </i>
+                    {{ trans('global.kelurahan.title') }}
                 </a>
             </li>
             <li class="nav-item">
