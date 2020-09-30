@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Kelurahan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyRwRequest;
 use App\Http\Requests\StoreRwRequest;
@@ -23,8 +24,11 @@ class RwController extends Controller
     {
         abort_unless(\Gate::allows('rw_create'), 403);
 
-        return view('admin.rw.create');
+        $rw_kel_id = Kelurahan::all()->pluck('kel_name', 'id');
+
+        return view('admin.rw.create', compact('rw', 'rw_kel_id'));
     }
+
 
     public function store(StoreRwRequest $request)
     {
@@ -39,8 +43,11 @@ class RwController extends Controller
     {
         abort_unless(\Gate::allows('rw_edit'), 403);
 
-        return view('admin.rw.edit', compact('rw'));
+        $rw_kel_id = Kelurahan::all()->pluck('kel_name', 'id');
+
+        return view('admin.rw.edit', compact('rw', 'rw_kel_id'));
     }
+
 
     public function update(UpdateRwRequest $request, rw $rw)
     {
