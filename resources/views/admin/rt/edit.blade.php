@@ -37,16 +37,24 @@
             </div>
 
             <div class="form-group {{ $errors->has('rt_rw_id') ? 'has-error' : '' }}">
-                <label for="rt_rw_id">{{ trans('global.rt.fields.rt_rw_id') }}*</label>
-                <input type="text" id="rt_rw_id" name="rt_rw_id" class="form-control" value="{{ old('rt_rw_id', isset($rt) ? $rt->rt_rw_id : '') }}">
-                @if($errors->has('rt_rw_id'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('rt_rw_id') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.rt.fields.rt_rw_id_helper') }}
-                </p>
+                <label for="rt_rw_id">{{ trans('global.rt.fields.rt_rw_id') }}*
+                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                    <select name="rt_rw_id" id="rt_rw_id" class="form-control select2">
+                        @foreach($rt_rw_id as $id => $rt_rw_id)
+                        <option value="{{ $id }}" {{ (in_array($id, old('rt_rw_id', [])) || isset($rt) && $rt->rt_rw_id) ? 'selected' : '' }}>
+                            {{ $rt_rw_id }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('rt_rw_id'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('rt_rw_id') }}
+                    </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.rt.fields.rt_rw_id_helper') }}
+                    </p>
             </div>
 
             <div class="form-group {{ $errors->has('rt_status') ? 'has-error' : '' }}">
