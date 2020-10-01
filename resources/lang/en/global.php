@@ -674,4 +674,21 @@ return [
         ],
     ],
 
+    'wilayah'                              => [
+        'title'          => 'Wilayah',
+        'title_singular' => 'Wilayah',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'wilayah_name'               => 'Wilayah Name',
+            'wilayah_name_helper'        => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
+
 ];
