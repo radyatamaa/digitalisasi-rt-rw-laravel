@@ -50,4 +50,32 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('master_alamat', 'MasterAlamatController');
     Route::delete('master_alamat/destroy', 'MasterAlamatController@massDestroy')->name('master_alamat.massDestroy');
+
+    Route::resource('insidental', 'InsidentalController');
+    Route::delete('insidental/destroy', 'InsidentalController@massDestroy')->name('insidental.massDestroy');
+
+
+    Route::resource('keuangan_category', 'KeuanganCategoryController');
+    Route::delete('keuangan_category/destroy', 'KeuanganCategoryController@massDestroy')->name('Keuangan_category.massDestroy');
+
+
+    Route::resource('history_warga', 'HistoryWargaController');
+    Route::delete('history_warga/destroy', 'HistoryWargaController@massDestroy')->name('history_warga.massDestroy');
+
+    Route::resource('rt', 'RtController');
+    Route::delete('rt/destroy', 'RtController@massDestroy')->name('rt.massDestroy');
+
+    Route::resource('event', 'EventController');
+    Route::delete('event/destroy', 'EventController@massDestroy')->name('event.massDestroy');
+
+    Route::resource('keuangan', 'KeuanganController');
+    Route::delete('keuangan/destroy', 'KeuanganController@massDestroy')->name('keuangan.massDestroy');
+    
+    Route::resource('report_data_masyarakat_km', 'ReportController');
+
+    Route::resource('rw', 'RwController');
+    Route::delete('rw/destroy', 'RwController@massDestroy')->name('rw.massDestroy');
+
+    Route::resource('kelurahan', 'KelurahanController');
+    Route::delete('kelurahan/destroy', 'KelurahanController@massDestroy')->name('kelurahan.massDestroy');
 });

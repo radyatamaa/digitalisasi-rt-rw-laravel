@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-@can('master_alamat_create')
+@can('rw_create')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.master_alamat.create") }}">
-            {{ trans('global.add') }} {{ trans('global.master_alamat.title_singular') }}
+        <a class="btn btn-success" href="{{ route("admin.rw.create") }}">
+            {{ trans('global.add') }} {{ trans('global.rw.title_singular') }}
         </a>
     </div>
 </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('global.master_alamat.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.rw.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
@@ -23,53 +23,55 @@
 
                         </th>
                         <th>
-                            {{ trans('global.master_alamat.fields.address_code_name') }}
+                            {{ trans('global.rw.fields.rw_name') }}
                         </th>
                         <th>
-                            {{ trans('global.master_alamat.fields.address_code_rt') }}
-                        </th>
-                        <!-- <th>
-                            {{ trans('global.product.fields.description') }}
+                            {{ trans('global.rw.fields.rw_code') }}
                         </th>
                         <th>
-                            {{ trans('global.product.fields.price') }}
-                        </th> -->
+                            {{ trans('global.rw.fields.rw_kel_id') }}
+                        </th>
+                        <th>
+                            {{ trans('global.rw.fields.rw_status') }}
+                        </th>
+
                         <th>
                             &nbsp;
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($master_alamat as $key => $master_alamats)
-                    <tr data-entry-id="{{ $master_alamats->id }}">
+                    @foreach($rw as $key => $rws)
+                    <tr data-entry-id="{{ $rws->id }}">
                         <td>
 
                         </td>
                         <td>
-                            {{ $master_alamats->address_code_name ?? '' }}
+                            {{ $rws->rw_name ?? '' }}
                         </td>
                         <td>
-                            {{ $master_alamats->address_code_rt ?? '' }}
+                            {{ $rws->rw_code ?? '' }}
                         </td>
-                        <!-- <td>
-                                {{ $product->description ?? '' }}
-                            </td>
-                            <td>
-                                {{ $product->price ?? '' }}
-                            </td> -->
                         <td>
-                            @can('master_alamat_show')
-                            <a class="btn btn-xs btn-primary" href="{{ route('admin.master_alamat.show', $master_alamats->id) }}">
+                            {{ $rws->rw_kel_id ?? '' }}
+                        </td>
+                        <td>
+                            {{ $rws->irw_status ?? '' }}
+                        </td>
+
+                        <td>
+                            @can('rw_show')
+                            <a class="btn btn-xs btn-primary" href="{{ route('admin.rw.show', $rws->id) }}">
                                 {{ trans('global.view') }}
                             </a>
                             @endcan
-                            @can('master_alamat_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('admin.master_alamat.edit', $master_alamats->id) }}">
+                            @can('rw_edit')
+                            <a class="btn btn-xs btn-info" href="{{ route('admin.rw.edit', $rws->id) }}">
                                 {{ trans('global.edit') }}
                             </a>
                             @endcan
-                            @can('master_alamat_delete')
-                            <form action="{{ route('admin.master_alamat.destroy', $master_alamats->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                            @can('rw_delete')
+                            <form action="{{ route('admin.rw.destroy', $rws->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
