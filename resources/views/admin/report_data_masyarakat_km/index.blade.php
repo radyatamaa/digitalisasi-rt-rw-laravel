@@ -18,38 +18,7 @@
 
     <div class="card-body">
         <div class="table-responsive">   
-        <tr>
-                <td>
-                    <select name="wgtmsr" id="wgtmsr" >
-                    <option value="1" >
-                            <--Pilih-Kota-->
-                        </option>
-                        <option value="1" >
-                            Bekasi
-                        </option>
-                </select>
-            </td>
-            <td>
-                    <select name="wgtmsr" id="wgtmsr" >
-                    <option value="1" >
-                    <--Pilih-Kecamatan-->
-                        </option>
-                        <option value="1" >
-                            Pondok Gede
-                        </option>
-                </select>
-            </td>
-            <td>
-                    <select name="wgtmsr" id="wgtmsr" >
-                    <option value="1" >
-                    <--Pilih-Kelurahan-->
-                        </option>
-                        <option value="1" >
-                            JatiCempaka
-                        </option>
-                </select>
-            </td>
-        </tr>  
+ 
             <table class=" table table-bordered table-striped table-hover datatable">
            
                 <thead>
@@ -60,64 +29,49 @@
 
                         </th> -->
                         <th>
+                            
+                            <!-- {{ trans('global.report_data_masyarakat_km.fields.category_name') }} -->
+                        </th>
+                        <th>
                             No
                             <!-- {{ trans('global.report_data_masyarakat_km.fields.category_name') }} -->
                         </th>
                         <th>
                             <!-- {{ trans('global.product.fields.description') }} -->
-                            Nama Kepala Keluarga
+                            Nama Warga
                         </th>
                         <th>
-                            Nama Anggota Kelauarga
+                            Warga Address
                             <!-- {{ trans('global.product.fields.price') }} -->
                         </th>
                         <th>
-                            Alamat
+                            Salary
                             <!-- {{ trans('global.product.fields.price') }} -->
                         </th>
-                        <th>
-                        Jenis Jaminan Sosial Yang Dimiliki
-                            <!-- {{ trans('global.product.fields.price') }} -->
-                        </th>
-                        <th>
-                            Keterangan
-                            <!-- {{ trans('global.product.fields.price') }} -->
-                        </th>
+                        
                         <!-- <th>
                             &nbsp;
                         </th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($listReportDMKM as $key => $reportDMKM)
-                        <tr data-entry-id="{{ $reportDMKM->id }}">
+                    @foreach($viewWargaSalary as $key => $hargasalary)
+                        <tr>
                             <td>
                             
                             </td>
                             <td>
-                                {{ $reportDMKM->nama_kepala_keluarga ?? '' }}
+                            {{ $key + 1 ?? '' }}
                             </td>
-                          
-                            <!-- <td>
-                                @can('sdm_category_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.sdm_category.show', $sdm_categorys->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
-                                @can('sdm_category_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.sdm_category.edit', $sdm_categorys->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-                                @can('sdm_category_delete')
-                                    <form action="{{ route('admin.sdm_category.destroy', $sdm_categorys->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-                            </td> -->
-
+                            <td>
+                                {{ $hargasalary->nama_warga ?? '' }}
+                            </td>      
+                            <td>
+                                {{ $hargasalary->warga_address ?? '' }}
+                            </td>   
+                            <td>
+                                {{ $hargasalary->salary_range ?? '' }}
+                            </td>                       
                         </tr>
                     @endforeach
                 </tbody>
