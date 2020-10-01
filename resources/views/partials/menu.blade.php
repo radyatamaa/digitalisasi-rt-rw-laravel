@@ -130,6 +130,14 @@
                             {{ trans('global.kelurahan.title') }}
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.wilayah.title') }}
+                        </a>
+                    </li>
 
                 </ul>
             </li>
