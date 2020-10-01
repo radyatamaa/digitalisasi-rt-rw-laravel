@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('keuangan', 'KeuanganController');
     Route::delete('keuangan/destroy', 'KeuanganController@massDestroy')->name('keuangan.massDestroy');
-    
+
     Route::resource('report_data_masyarakat_km', 'ReportController');
 
     Route::resource('rw', 'RwController');
@@ -78,4 +78,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('kelurahan', 'KelurahanController');
     Route::delete('kelurahan/destroy', 'KelurahanController@massDestroy')->name('kelurahan.massDestroy');
+
+    Route::resource('wilayah', 'WilayahController');
+    Route::delete('wilayah/destroy', 'WilayahController@massDestroy')->name('wilayah.massDestroy');
 });
