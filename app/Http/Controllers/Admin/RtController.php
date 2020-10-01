@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Rw;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyRtRequest;
 use App\Http\Requests\StoreRtRequest;
@@ -23,8 +24,11 @@ class RtController extends Controller
     {
         abort_unless(\Gate::allows('rt_create'), 403);
 
-        return view('admin.rt.create');
+        $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
+
+        return view('admin.rt.create', compact('rt', 'rt_rw_id'));
     }
+
 
     public function store(StoreRtRequest $request)
     {
@@ -39,7 +43,9 @@ class RtController extends Controller
     {
         abort_unless(\Gate::allows('rt_edit'), 403);
 
-        return view('admin.rt.edit', compact('rt'));
+        $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
+
+        return view('admin.rt.edit', compact('rt', 'rt_rw_id'));
     }
 
     public function update(UpdateRtRequest $request, rt $rt)

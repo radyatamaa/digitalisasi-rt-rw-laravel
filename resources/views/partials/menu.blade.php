@@ -47,7 +47,6 @@
             <li class="nav-item nav-dropdown">
                 <a class="nav-link  nav-dropdown-toggle">
                     <i class="fas fa-users nav-icon">
-
                     </i>
                     Report
                     <!-- {{ trans('global.userManagement.title') }} -->
@@ -62,8 +61,132 @@
                             <!-- {{ trans('global.permission.title') }} -->
                         </a>
                     </li>
-                    
-                   
+
+
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link  nav-dropdown-toggle">
+                    <i class="fas fa-users nav-icon">
+
+                    </i>
+                    Master Data
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.master_agama.title') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.master_gaji.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.master_pekerjaan.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.master_alamat.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.rt.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.rw.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.kelurahan.title') }}
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link  nav-dropdown-toggle">
+                    <i class="fas fa-users nav-icon">
+
+                    </i>
+                    Category
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.sdm_category.title') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.event_category.title') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.insidental_category.title') }}
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.history_category.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.keuangan_category.title') }}
+                        </a>
+                    </li>
+
+
                 </ul>
             </li>
             <li class="nav-item">
@@ -74,89 +197,14 @@
                     {{ trans('global.product.title') }}
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
 
-                    </i>
-                    {{ trans('global.sdm_category.title') }}
-                </a>
-            </li>
 
-            <li class="nav-item">
-                <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.event_category.title') }}
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.insidental_category.title') }}
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.history_category.title') }}
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.master_agama.title') }}
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.master_gaji.title') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.master_pekerjaan.title') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.master_alamat.title') }}
-                </a>
-            </li>
             <li class="nav-item">
                 <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
 
                     </i>
                     {{ trans('global.insidental.title') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.keuangan_category.title') }}
                 </a>
             </li>
 
@@ -169,14 +217,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
 
-                    </i>
-                    {{ trans('global.rt.title') }}
-                </a>
-            </li>
             <li class="nav-item">
                 <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                     <i class="fas fa-cogs nav-icon">
@@ -192,22 +233,6 @@
 
                     </i>
                     {{ trans('global.keuangan.title') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.rw.title') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs nav-icon">
-
-                    </i>
-                    {{ trans('global.kelurahan.title') }}
                 </a>
             </li>
             <li class="nav-item">

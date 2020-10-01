@@ -37,18 +37,25 @@
             </div>
 
             <div class="form-group {{ $errors->has('rw_kel_id') ? 'has-error' : '' }}">
-                <label for="rw_kel_id">{{ trans('global.rw.fields.rw_kel_id') }}*</label>
-                <input type="text" id="rw_kel_id" name="rw_kel_id" class="form-control" value="{{ old('rw_kel_id', isset($rw) ? $rw->rw_kel_id : '') }}">
-                @if($errors->has('rw_kel_id'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('rw_kel_id') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.rw.fields.rw_kel_id_helper') }}
-                </p>
+                <label for="rw_kel_id">{{ trans('global.rw.fields.rw_kel_id') }}*
+                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                    <select name="rw_kel_id" id="rw_kel_id" class="form-control select2">
+                        @foreach($rw_kel_id as $id => $rw_kel_id)
+                        <option value="{{ $id }}" {{ (in_array($id, old('rw_kel_id', [])) || isset($rw) && $rw->rw_kel_id) ? 'selected' : '' }}>
+                            {{ $rw_kel_id }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('rw_kel_id'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('rw_kel_id') }}
+                    </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.rw.fields.rw_kel_id_helper') }}
+                    </p>
             </div>
-
             <div class="form-group {{ $errors->has('rw_status') ? 'has-error' : '' }}">
                 <label for="rw_status">{{ trans('global.rw.fields.rw_status') }}*</label>
                 <input type="text" id="rw_status" name="rw_status" class="form-control" value="{{ old('rw_status', isset($rw) ? $rw->rw_status : '') }}">

@@ -426,7 +426,7 @@ return [
     ],
 
     'rt'                              => [
-        'title'          => 'RT',
+        'title'          => 'Master Data RT',
         'title_singular' => 'RT',
         'fields'         => [
             'id'                 => 'ID',
@@ -629,7 +629,7 @@ return [
     ],
 
     'rw'        =>       [
-        'title'          => 'RW',
+        'title'          => 'Master Data RW',
         'title_singular' => 'RW',
         'fields'         => [
             'id'                 => 'ID',
@@ -652,7 +652,7 @@ return [
     ],
 
     'kelurahan'        =>       [
-        'title'          => 'Kelurahan',
+        'title'          => 'Master Data Kelurahan',
         'title_singular' => 'Kelurahan',
         'fields'         => [
             'id'                 => 'ID',
