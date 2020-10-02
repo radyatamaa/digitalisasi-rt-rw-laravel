@@ -8,7 +8,7 @@ use App\Http\Requests\MassDestroyHistoryWargaRequest;
 use App\Http\Requests\StoreHistoryWargaRequest;
 use App\Http\Requests\UpdateHistoryWargaRequest;
 use App\History_Warga;
-
+use App\Warga;
 
 class HistoryWargaController extends Controller
 {
@@ -26,8 +26,9 @@ class HistoryWargaController extends Controller
         abort_unless(\Gate::allows('history_warga_create'), 403);
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-
-        return view('admin.history_warga.create', compact('history_warga', 'history_category'));
+        $warga_ids = Warga::all();
+        
+        return view('admin.history_warga.create', compact('history_warga', 'history_category', 'warga_ids'));
     }
 
     public function store(StoreHistoryWargaRequest $request)
@@ -44,8 +45,8 @@ class HistoryWargaController extends Controller
         abort_unless(\Gate::allows('history_warga_edit'), 403);
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-
-        return view('admin.history_warga.edit', compact('history_warga', 'history_category'));
+        $warga_ids = Warga::all();
+        return view('admin.history_warga.edit', compact('history_warga', 'history_category','warga_ids'));
     }
 
     public function update(UpdateHistoryWargaRequest $request, History_Warga $history_warga)

@@ -67,9 +67,18 @@
                     {{ trans('global.keuangan.fields.keuangan_value_helper') }}
                 </p>
             </div>
+            
             <div class="form-group {{ $errors->has('keuangan_warga_id') ? 'has-error' : '' }}">
-                <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}</label>
-                <input type="text" id="keuangan_warga_id" name="keuangan_warga_id" class="form-control" value="{{ old('keuangan_warga_id', isset($keuangan) ? $keuangan->keuangan_warga_id : '') }}" step="0.01">
+                <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}*
+                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
+                    @foreach($keuangan_warga_ids as $id => $keuangan_warga_id)
+                        <option value="{{ $keuangan_warga_id->id }}" {{ (in_array($id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($id)) ? 'selected' : '' }}>
+                            {{ $keuangan_warga_id->warga_first_name . " " . $keuangan_warga_id->warga_last_name}}
+                        </option>
+                    @endforeach
+                </select>
                 @if($errors->has('keuangan_warga_id'))
                     <em class="invalid-feedback">
                         {{ $errors->first('keuangan_warga_id') }}
@@ -78,7 +87,7 @@
                 <p class="helper-block">
                     {{ trans('global.keuangan.fields.keuangan_warga_id_helper') }}
                 </p>
-            </div>
+</div>
 
             <div class="form-group {{ $errors->has('keuangan_rt') ? 'has-error' : '' }}">
                 <label for="keuangan_rt">{{ trans('global.keuangan.fields.keuangan_rt') }}*

@@ -24,6 +24,9 @@ class UpdateHistoryWargaRequest extends FormRequest
             'history_category' => [
                 'required',
             ],
+            'warga_id' => [
+                'required',
+            ],
         ];
     }
 }

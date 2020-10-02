@@ -19,6 +19,9 @@
                     <th>
                         {{ trans('global.history_warga.fields.history_category') }}
                     </th>
+                    <th>
+                        {{ trans('global.history_warga.fields.warga_id') }}
+                    </th>
                     <td>
                         {{ $history_warga->history_desc }}
                     </td>
@@ -27,6 +30,9 @@
                     </td>
                     <td>
                         {{ $history_warga->history_category }}
+                    </td>
+                    <td>
+                        {{ $history_warga->warga_id }}
                     </td>
                 </tr>
 
