@@ -225,6 +225,15 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                    <i class="fas fa-cogs nav-icon">
+
+                    </i>
+                    {{ trans('global.warga.title') }}
+                </a>
+            </li>
+
 
             <li class="nav-item">
                 <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">

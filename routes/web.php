@@ -81,4 +81,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('wilayah', 'WilayahController');
     Route::delete('wilayah/destroy', 'WilayahController@massDestroy')->name('wilayah.massDestroy');
+
+    Route::resource('warga', 'WargaController');
+    Route::delete('warga/destroy', 'WargaController@massDestroy')->name('warga.massDestroy');
+
 });
