@@ -31,6 +31,9 @@
                         <th>
                             {{ trans('global.history_warga.fields.history_category') }}
                         </th>
+                        <th>
+                            {{ trans('global.history_warga.fields.warga_id') }}
+                        </th>
                         <!-- <th>
                             {{ trans('global.product.fields.description') }}
                         </th>
@@ -56,6 +59,9 @@
                         </td>
                         <td>
                             {{ $history_wargas->history_category ?? '' }}
+                        </td>
+                        <td>
+                            {{ $history_wargas->warga_id ?? '' }}
                         </td>
                         <!-- <td>
                                 {{ $product->description ?? '' }}

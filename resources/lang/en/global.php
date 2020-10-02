@@ -570,6 +570,8 @@ return [
             'history_date_helper'        => '',
             'history_category'               => 'History Category',
             'history_category_helper'        => '',
+            'warga_id'               => 'Warga ID',
+            'warga_id_helper'        => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',

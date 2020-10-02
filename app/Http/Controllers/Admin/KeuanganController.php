@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateKeuanganRequest;
 use App\Keuangan;
 use App\Keuangan_Category;
 use App\Rt;
-
+use App\Warga;
 class KeuanganController extends Controller
 {
     public function index()
@@ -26,8 +26,9 @@ class KeuanganController extends Controller
         abort_unless(\Gate::allows('keuangan_create'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
         $keuangan_category = Keuangan_Category::all()->pluck('category_name', 'id');
+        $keuangan_warga_ids = Warga::all();
 
-        return view('admin.keuangan.create', compact('keuangan_rt','keuangan_category'));
+        return view('admin.keuangan.create', compact('keuangan_rt','keuangan_category', 'keuangan_warga_ids'));
     }
 
     public function store(StoreKeuanganRequest $request)
@@ -44,8 +45,8 @@ class KeuanganController extends Controller
         abort_unless(\Gate::allows('keuangan_edit'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
         $keuangan_category = Keuangan_Category::all()->pluck('category_name', 'id');
-
-        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt','keuangan_category'));
+        $keuangan_warga_ids = Warga::all();
+        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt','keuangan_category','keuangan_warga_ids'));
     }
 
     public function update(UpdateKeuanganRequest $request, Keuangan $keuangan)

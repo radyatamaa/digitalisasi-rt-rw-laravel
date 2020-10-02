@@ -19,6 +19,7 @@ class History_Warga extends Model
         'history_desc',
         'history_date',
         'history_category',
+        'warga_id',
         'created_at',
         'updated_at',
         'deleted_at',
