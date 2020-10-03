@@ -5,26 +5,26 @@ namespace App\Http\Requests;
 use App\History_Warga;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateHistoryWargaRequest extends FormRequest
+class UpdateWargaRequest extends FormRequest
 {
     public function authorize()
     {
-        return \Gate::allows('history_warga_edit');
+        return \Gate::allows('warga_edit');
     }
 
     public function rules()
     {
         return [
-            'history_desc' => [
+            'warga_no_ktp' => [
                 'required',
             ],
-            'history_date' => [
+            'warga_no_kk' => [
                 'required',
             ],
-            'history_category' => [
+            'warga_first_name' => [
                 'required',
             ],
-            'warga_id' => [
+            'warga_last_name' => [
                 'required',
             ],
         ];
