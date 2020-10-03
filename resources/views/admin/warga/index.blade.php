@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
 @can('warga_create')
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.warga.create") }}">
-            {{ trans('global.add') }} {{ trans('global.warga.title_singular') }}
-        </a>
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route("admin.warga.create") }}">
+                {{ trans('global.add') }} {{ trans('global.warga.title_singular') }}
+            </a>
+        </div>
     </div>
-</div>
 @endcan
 <div class="card">
     <div class="card-header">
@@ -16,7 +16,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable">
+        <table class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
                         <th width="10">
@@ -172,55 +172,41 @@
 @section('scripts')
 @parent
 <script>
-    $(function() {
-        let deleteButtonTrans = '{{ trans('
-        global.datatables.delete ') }}'
-        let deleteButton = {
-            text: deleteButtonTrans,
-            url: "{{ route('admin.products.massDestroy') }}",
-            className: 'btn-danger',
-            action: function(e, dt, node, config) {
-                var ids = $.map(dt.rows({
-                    selected: true
-                }).nodes(), function(entry) {
-                    return $(entry).data('entry-id')
-                });
+    $(function () {
+  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+  let deleteButton = {
+    text: deleteButtonTrans,
+    url: "{{ route('admin.products.massDestroy') }}",
+    className: 'btn-danger',
+    action: function (e, dt, node, config) {
+      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
+          return $(entry).data('entry-id')
+      });
 
-                if (ids.length === 0) {
-                    alert('{{ trans('
-                        global.datatables.zero_selected ') }}')
+      if (ids.length === 0) {
+        alert('{{ trans('global.datatables.zero_selected') }}')
 
-                    return
-                }
+        return
+      }
 
-                if (confirm('{{ trans('
-                        global.areYouSure ') }}')) {
-                    $.ajax({
-                            headers: {
-                                'x-csrf-token': _token
-                            },
-                            method: 'POST',
-                            url: config.url,
-                            data: {
-                                ids: ids,
-                                _method: 'DELETE'
-                            }
-                        })
-                        .done(function() {
-                            location.reload()
-                        })
-                }
-            }
-        }
-        let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-        @can('product_delete')
-        dtButtons.push(deleteButton)
-        @endcan
+      if (confirm('{{ trans('global.areYouSure') }}')) {
+        $.ajax({
+          headers: {'x-csrf-token': _token},
+          method: 'POST',
+          url: config.url,
+          data: { ids: ids, _method: 'DELETE' }})
+          .done(function () { location.reload() })
+      }
+    }
+  }
+  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+@can('product_delete')
+  dtButtons.push(deleteButton)
+@endcan
 
-        $('.datatable:not(.ajaxTable)').DataTable({
-            buttons: dtButtons
-        })
-    })
+  $('.datatable:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+})
+
 </script>
 @endsection
 @endsection

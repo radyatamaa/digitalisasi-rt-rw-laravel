@@ -26,7 +26,7 @@ class RtController extends Controller
 
         $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
 
-        return view('admin.rt.create', compact('rt', 'rt_rw_id'));
+        return view('admin.rt.create', compact('rt_rw_id'));
     }
 
 
