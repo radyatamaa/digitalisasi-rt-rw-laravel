@@ -26,7 +26,7 @@ class RwController extends Controller
 
         $rw_kel_id = Kelurahan::all()->pluck('kel_name', 'id');
 
-        return view('admin.rw.create', compact('rw', 'rw_kel_id'));
+        return view('admin.rw.create', compact('rw_kel_id'));
     }
 
 
