@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.rw.update", [$rw->id]) }}" method="POST" enctype="multiparw/form-data">
+        <form action="{{ route("admin.rw.update", [$rw->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group {{ $errors->has('rw_name') ? 'has-error' : '' }}">

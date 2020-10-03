@@ -193,6 +193,22 @@
                             {{ trans('global.keuangan_category.title') }}
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.pendidikan.title') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
+                            <i class="fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('global.sekolah.title') }}
+                        </a>
+                    </li>
 
 
                 </ul>
