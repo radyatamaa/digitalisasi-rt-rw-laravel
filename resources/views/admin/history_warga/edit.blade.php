@@ -56,6 +56,27 @@
                     </p>
             </div>
 
+            <div class="form-group {{ $errors->has('warga_id') ? 'has-error' : '' }}">
+                <label for="warga_id">{{ trans('global.history_warga.fields.warga_id') }}*
+                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                    <select name="warga_id" id="warga_id" class="form-control select2">
+                        @foreach($warga_ids as $id => $warga_id)
+                        <option value="{{ $id }}" {{ (in_array($id, old('warga_id', [])) || isset($warga_id) && $warga_id->warga_id) ? 'selected' : '' }}>
+                        {{ $warga_id->warga_first_name . " " . $warga_id->warga_last_name}}
+                        </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('warga_id'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('warga_id') }}
+                    </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.history_warga.fields.warga_id_helper') }}
+                    </p>
+            </div>
+
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

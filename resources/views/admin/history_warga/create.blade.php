@@ -55,18 +55,27 @@
                         {{ trans('global.history_warga.fields.history_category_helper') }}
                     </p>
             </div>
-            <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                <label for="description">{{ trans('global.sdm_category.fields.description') }}</label>
-                <textarea id="description" name="description" class="form-control ">{{ old('description', isset($sdm_category) ? $sdm_category->description : '') }}</textarea>
-                @if($errors->has('description'))
+
+            <div class="form-group {{ $errors->has('warga_id') ? 'has-error' : '' }}">
+                <label for="warga_id">{{ trans('global.history_warga.fields.warga_id') }}*
+                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                <select name="warga_id" id="warga_id" class="form-control select2">
+                    @foreach($warga_ids as $id => $warga_id)
+                        <option value="{{ $warga_id->id }}" {{ (in_array($id, old('warga_id', [])) || isset($history_warga) && $history_warga->warga_id->contains($id)) ? 'selected' : '' }}>
+                            {{ $warga_id->warga_first_name . " " . $warga_id->warga_last_name}}
+                        </option>
+                    @endforeach
+                </select>
+                @if($errors->has('warga_id'))
                     <em class="invalid-feedback">
-                        {{ $errors->first('description') }}
+                        {{ $errors->first('warga_id') }}
                     </em>
                 @endif
                 <p class="helper-block">
-                    {{ trans('global.sdm_category.fields.description_helper') }}
+                    {{ trans('global.history_warga.fields.warga_id_helper') }}
                 </p>
-            </div> -->
+        </div>
             <!-- <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                 <label for="price">{{ trans('global.sdm_category.fields.price') }}</label>
                 <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($sdm_category) ? $sdm_category->price : '') }}" step="0.01">
