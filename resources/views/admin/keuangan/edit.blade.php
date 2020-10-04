@@ -5,22 +5,30 @@
     <div class="card-header">
         {{ trans('global.edit') }} {{ trans('global.keuangan.title_singular') }}
     </div>
-
     <div class="card-body">
         <form action="{{ route("admin.keuangan.update", [$keuangan->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="form-group {{ $errors->has('keuangan_tipe') ? 'has-error' : '' }}">
-                <label for="keuangan_tipe">{{ trans('global.keuangan.fields.keuangan_tipe') }}*</label>
-                <input type="text" id="keuangan_tipe" name="keuangan_tipe" class="form-control" value="{{ old('keuangan_tipe', isset($keuangan) ? $keuangan->keuangan_tipe : '') }}">
-                @if($errors->has('keuangan_tipe'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('keuangan_tipe') }}
-                </em>
+    <div class="form-group {{ $errors->has('keuangan_tipe') ? 'has-error' : '' }}">
+                <label for="keuangan_tipe">{{ trans('global.keuangan.fields.keuangan_tipe') }}</label><br>
+                @if($keuangan->keuangan_tipe == 1)
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="1" checked>
+                <label for="uang_masuk">Uang Masuk</label><br>
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="2">
+                <label for="uang_keluar">Uang Keluar</label><br>
+                @elseif($keuangan->keuangan_tipe == 2)
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="1">
+                <label for="uang_masuk">Uang Masuk</label><br>
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="2" checked>
+                <label for="uang_keluar">Uang Keluar</label><br>
+                @else
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="1">
+                <label for="uang_masuk">Uang Masuk</label><br>
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="2">
+                <label for="uang_keluar">Uang Keluar</label><br>
                 @endif
-                <p class="helper-block">
-                    {{ trans('global.keuangan.fields.keuangan_tipe_helper') }}
-                </p>
+                
+         
             </div>
 
             <div class="form-group {{ $errors->has('keuangan_category') ? 'has-error' : '' }}">
