@@ -28,7 +28,7 @@ class HistoryWargaController extends Controller
         $history_category = History_Category::all()->pluck('category_name', 'id');
         $warga_ids = Warga::all();
         
-        return view('admin.history_warga.create', compact('history_warga', 'history_category', 'warga_ids'));
+        return view('admin.history_warga.create', compact('history_category', 'warga_ids'));
     }
 
     public function store(StoreHistoryWargaRequest $request)
