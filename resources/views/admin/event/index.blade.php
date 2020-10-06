@@ -50,10 +50,10 @@
                                 {{ $events->event_name ?? '' }}
                             </td>
                             <td>
-                                {{ $events->event_rt ?? '' }}
+                                {{ $events->rt_name ?? '' }}
                             </td>
                             <td>
-                                {{ $events->event_category ?? '' }}
+                                {{ $events->category_name ?? '' }}
                             </td>
                             <td>
                                 {{ $events->event_date ?? '' }}
