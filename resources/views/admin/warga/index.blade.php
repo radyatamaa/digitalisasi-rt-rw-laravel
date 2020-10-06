@@ -99,9 +99,19 @@
                         <td>
                             {{ $wargas->warga_last_name ?? '' }}
                         </td>
+                        @if($wargas->warga_sex == 1)
                         <td>
-                            {{ $wargas->warga_sex ?? '' }}
+                           Male
                         </td>
+                        @elseif($wargas->warga_sex == 2)
+                        <td>
+                            Female
+                        </td>
+                        @else
+                        <td>
+                           
+                        </td>
+                        @endif
                         <td>
                             {{ $wargas->religion_name ?? '' }}
                         </td>
@@ -126,9 +136,20 @@
                         <td>
                             {{ $wargas->warga_birth_date ?? '' }}
                         </td>
+                        @if($wargas->warga_is_ktp_sama_domisili == 1)
                         <td>
-                            {{ $wargas->warga_is_ktp_sama_domisili ?? '' }}
+                           Ya
                         </td>
+                        @elseif($wargas->warga_is_ktp_sama_domisili == 2)
+                        <td>
+                            Tidak
+                        </td>
+                        @else
+                        <td>
+                           
+                        </td>
+                        @endif
+                        
                         <td>
                             {{ $wargas->warga_join_date ?? '' }}
                         </td>
