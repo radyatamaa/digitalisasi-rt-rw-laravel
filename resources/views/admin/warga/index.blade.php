@@ -103,16 +103,16 @@
                             {{ $wargas->warga_sex ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_religion ?? '' }}
+                            {{ $wargas->religion_name ?? '' }}
                         </td>
                         <td>
                             {{ $wargas->warga_address ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_address_code ?? '' }}
+                            {{ $wargas->address_code_name ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_job ?? '' }}
+                            {{ $wargas->job_name ?? '' }}
                         </td>
                         <td>
                             {{ $wargas->warga_salary_range ?? '' }}
@@ -133,10 +133,10 @@
                             {{ $wargas->warga_join_date ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_pendidikan ?? '' }}
+                            {{ $wargas->pendidikan_name ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_rt ?? '' }}
+                            {{ $wargas->rt_name ?? '' }}
                         </td>
                         <td>
                             {{ $wargas->warga_status ?? '' }}
