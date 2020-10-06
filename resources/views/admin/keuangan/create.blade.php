@@ -10,18 +10,13 @@
         <form action="{{ route("admin.keuangan.store") }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group {{ $errors->has('keuangan_tipe') ? 'has-error' : '' }}">
-                <label for="keuangan_tipe">{{ trans('global.keuangan.fields.keuangan_tipe') }}*</label>
-                <input type="number" id="keuangan_tipe" name="keuangan_tipe" class="form-control" value="{{ old('keuangan_tipe', isset($keuangan) ? $keuangan->keuangan_tipe : '') }}">
-                @if($errors->has('keuangan_tipe'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('keuangan_tipe') }}
-                    </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.keuangan.fields.keuangan_tipe_helper') }}
-                </p>
+                <label for="keuangan_tipe">{{ trans('global.keuangan.fields.keuangan_tipe') }}</label><br>
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="1">
+                <label for="uang_masuk">Uang Masuk</label><br>
+                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="2">
+                <label for="uang_keluar">Uang Keluar</label><br>
+         
             </div>
-
             <div class="form-group {{ $errors->has('keuangan_category') ? 'has-error' : '' }}">
                 <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}*
                     <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
