@@ -16,7 +16,14 @@ class KeuanganController extends Controller
     {
 
         abort_unless(\Gate::allows('keuangan_access'), 403);
-        $keuangan = Keuangan::all();
+        $keuangan = Keuangan::select('keuangan.*',
+        'rt.rt_name',
+        'keuangan_category.category_name',       
+        'warga.warga_first_name',
+        'warga.warga_last_name')
+        ->join('rt', 'rt.id', '=', 'keuangan.keuangan_rt')
+        ->join('warga', 'warga.id', '=', 'keuangan.keuangan_warga_id')
+        ->join('keuangan_category', 'keuangan_category.id', '=', 'keuangan.keuangan_category')->get();;
 
         return view('admin.keuangan.index', compact('keuangan'));
     }

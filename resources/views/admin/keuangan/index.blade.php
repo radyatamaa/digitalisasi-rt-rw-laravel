@@ -56,7 +56,7 @@
                                 {{ $keuangans->keuangan_tipe ?? '' }}
                             </td>
                             <td>
-                                {{ $keuangans->keuangan_category ?? '' }}
+                                {{ $keuangans->category_name ?? '' }}
                             </td>
                             <td>
                                 {{ $keuangans->keuangan_periode ?? '' }}
@@ -65,10 +65,10 @@
                                 {{ $keuangans->keuangan_value ?? '' }}
                             </td>
                             <td>
-                                {{ $keuangans->keuangan_warga_id ?? '' }}
+                                {{ $keuangans->warga_first_name . ' ' . $keuangans->warga_last_name ?? '' }}
                             </td>
                             <td>
-                                {{ $keuangans->keuangan_rt ?? '' }}
+                                {{ $keuangans->rt_name ?? '' }}
                             </td>
                             
                             <td>
