@@ -21,8 +21,20 @@ class WargaController extends Controller
     {
 
         abort_unless(\Gate::allows('warga_access'), 403);
-        $warga = Warga::all();
+        
+        $warga = Warga::select('warga.*',
+        'religion.religion_name',
+        'rt.rt_name',
+        'pendidikan.pendidikan_name',
+        'address_code.address_code_name',
+        'job.job_name')
+        ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+        ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+        ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+        ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+        ->join('job', 'job.id', '=', 'warga.warga_job')->get();
 
+        // $warga = Warga::all();
         return view('admin.warga.index', compact('warga'));
     }
 

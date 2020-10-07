@@ -16,7 +16,12 @@ class EventController extends Controller
     {
 
         abort_unless(\Gate::allows('event_access'), 403);
-        $event = Event::all();
+        $event = Event::select('event.*',
+        'rt.rt_name',
+        'event_category.category_name')
+        ->join('rt', 'rt.id', '=', 'event.event_rt')
+        ->join('event_category', 'event_category.id', '=', 'event.event_category')->get();
+
 
         return view('admin.event.index', compact('event'));
     }
