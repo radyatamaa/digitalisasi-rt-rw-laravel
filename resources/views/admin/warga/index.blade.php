@@ -99,20 +99,30 @@
                         <td>
                             {{ $wargas->warga_last_name ?? '' }}
                         </td>
+                        @if($wargas->warga_sex == 1)
                         <td>
-                            {{ $wargas->warga_sex ?? '' }}
+                           Male
                         </td>
+                        @elseif($wargas->warga_sex == 2)
                         <td>
-                            {{ $wargas->warga_religion ?? '' }}
+                            Female
+                        </td>
+                        @else
+                        <td>
+                           
+                        </td>
+                        @endif
+                        <td>
+                            {{ $wargas->religion_name ?? '' }}
                         </td>
                         <td>
                             {{ $wargas->warga_address ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_address_code ?? '' }}
+                            {{ $wargas->address_code_name ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_job ?? '' }}
+                            {{ $wargas->job_name ?? '' }}
                         </td>
                         <td>
                             {{ $wargas->warga_salary_range ?? '' }}
@@ -126,17 +136,28 @@
                         <td>
                             {{ $wargas->warga_birth_date ?? '' }}
                         </td>
+                        @if($wargas->warga_is_ktp_sama_domisili == 1)
                         <td>
-                            {{ $wargas->warga_is_ktp_sama_domisili ?? '' }}
+                           Ya
                         </td>
+                        @elseif($wargas->warga_is_ktp_sama_domisili == 2)
+                        <td>
+                            Tidak
+                        </td>
+                        @else
+                        <td>
+                           
+                        </td>
+                        @endif
+                        
                         <td>
                             {{ $wargas->warga_join_date ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_pendidikan ?? '' }}
+                            {{ $wargas->pendidikan_name ?? '' }}
                         </td>
                         <td>
-                            {{ $wargas->warga_rt ?? '' }}
+                            {{ $wargas->rt_name ?? '' }}
                         </td>
                         <td>
                             {{ $wargas->warga_status ?? '' }}
