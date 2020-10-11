@@ -308,15 +308,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Sekolah</p>
+                    <p>Pendidikan</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
+                <li class="nav-item active">
+                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Wilayah</p>
+                    <p>Sekolah</p>
                   </a>
                 </li>
                 <li class="nav-item">
