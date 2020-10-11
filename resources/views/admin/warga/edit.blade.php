@@ -508,27 +508,25 @@
                 <input type="radio" id="warga_sex" name="warga_sex" value="2">
                 <label for="female">Female</label><br>
                 @endif
-                
-         
             </div>
 
             <div class="form-group {{ $errors->has('warga_religion') ? 'has-error' : '' }}">
                 <label for="warga_religion">{{ trans('global.warga.fields.warga_religion') }}*
-                <select name="warga_religion" id="warga_religion" class="form-control select2">
-                    @foreach($warga_religion as $id => $warga_religion)
+                    <select name="warga_religion" id="warga_religion" class="form-control select2">
+                        @foreach($warga_religion as $id => $warga_religion)
                         <option value="{{ $id }}" {{ (in_array($id, old('warga_religion', [])) || isset($warga) && $warga->warga_religion) ? 'selected' : '' }}>
                             {{ $warga_religion }}
                         </option>
-                    @endforeach
-                </select>
-                @if($errors->has('warga_religion'))
+                        @endforeach
+                    </select>
+                    @if($errors->has('warga_religion'))
                     <em class="invalid-feedback">
                         {{ $errors->first('warga_religion') }}
                     </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_religion_helper') }}
-                </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.warga.fields.warga_religion_helper') }}
+                    </p>
             </div>
 
             <div class="form-group {{ $errors->has('warga_address') ? 'has-error' : '' }}">
@@ -544,44 +542,44 @@
                 </p>
             </div>
 
-    
+
 
             <div class="form-group {{ $errors->has('warga_address_code') ? 'has-error' : '' }}">
                 <label for="warga_address_code">{{ trans('global.warga.fields.warga_address_code') }}*
-                <select name="warga_address_code" id="warga_address_code" class="form-control select2">
-                    @foreach($warga_address_code as $id => $warga_address_code)
+                    <select name="warga_address_code" id="warga_address_code" class="form-control select2">
+                        @foreach($warga_address_code as $id => $warga_address_code)
                         <option value="{{ $id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code) ? 'selected' : '' }}>
                             {{ $warga_address_code }}
                         </option>
-                    @endforeach
-                </select>
-                @if($errors->has('warga_address_code'))
+                        @endforeach
+                    </select>
+                    @if($errors->has('warga_address_code'))
                     <em class="invalid-feedback">
                         {{ $errors->first('warga_address_code') }}
                     </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_address_code_helper') }}
-                </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.warga.fields.warga_address_code_helper') }}
+                    </p>
             </div>
 
             <div class="form-group {{ $errors->has('warga_job') ? 'has-error' : '' }}">
                 <label for="warga_job">{{ trans('global.warga.fields.warga_job') }}*
-                <select name="warga_job" id="warga_job" class="form-control select2">
-                    @foreach($warga_job as $id => $warga_job)
+                    <select name="warga_job" id="warga_job" class="form-control select2">
+                        @foreach($warga_job as $id => $warga_job)
                         <option value="{{ $id }}" {{ (in_array($id, old('warga_job', [])) || isset($warga) && $warga->warga_job) ? 'selected' : '' }}>
                             {{ $warga_job }}
                         </option>
-                    @endforeach
-                </select>
-                @if($errors->has('warga_job'))
+                        @endforeach
+                    </select>
+                    @if($errors->has('warga_job'))
                     <em class="invalid-feedback">
                         {{ $errors->first('warga_job') }}
                     </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_job_helper') }}
-                </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.warga.fields.warga_job_helper') }}
+                    </p>
             </div>
 
 
@@ -636,8 +634,8 @@
                     {{ trans('global.warga.fields.warga_birth_date_helper') }}
                 </p>
             </div>
-                        
-       
+
+
 
             <div class="form-group {{ $errors->has('warga_is_ktp_sama_domisili') ? 'has-error' : '' }}">
                 <label for="warga_is_ktp_sama_domisili">{{ trans('global.warga.fields.warga_is_ktp_sama_domisili') }}*</label><br>
@@ -657,8 +655,8 @@
                 <input type="radio" id="warga_is_ktp_sama_domisili" name="warga_is_ktp_sama_domisili" value="2">
                 <label for="tidak">Tidak</label><br>
                 @endif
-                
-         
+
+
             </div>
 
             <div class="form-group {{ $errors->has('warga_join_date') ? 'has-error' : '' }}">
@@ -674,45 +672,45 @@
                 </p>
             </div>
 
-            
+
 
             <div class="form-group {{ $errors->has('warga_pendidikan') ? 'has-error' : '' }}">
                 <label for="warga_pendidikan">{{ trans('global.warga.fields.warga_pendidikan') }}*
-                <select name="warga_pendidikan" id="warga_pendidikan" class="form-control select2">
-                    @foreach($warga_pendidikan as $id => $warga_pendidikan)
+                    <select name="warga_pendidikan" id="warga_pendidikan" class="form-control select2">
+                        @foreach($warga_pendidikan as $id => $warga_pendidikan)
                         <option value="{{ $id }}" {{ (in_array($id, old('warga_pendidikan', [])) || isset($warga) && $warga->warga_pendidikan) ? 'selected' : '' }}>
                             {{ $warga_pendidikan }}
                         </option>
-                    @endforeach
-                </select>
-                @if($errors->has('warga_pendidikan'))
+                        @endforeach
+                    </select>
+                    @if($errors->has('warga_pendidikan'))
                     <em class="invalid-feedback">
                         {{ $errors->first('warga_pendidikan') }}
                     </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_pendidikan_helper') }}
-                </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.warga.fields.warga_pendidikan_helper') }}
+                    </p>
             </div>
 
 
             <div class="form-group {{ $errors->has('warga_rt') ? 'has-error' : '' }}">
                 <label for="warga_rt">{{ trans('global.warga.fields.warga_rt') }}*
-                <select name="warga_rt" id="warga_rt" class="form-control select2">
-                    @foreach($warga_rt as $id => $warga_rt)
+                    <select name="warga_rt" id="warga_rt" class="form-control select2">
+                        @foreach($warga_rt as $id => $warga_rt)
                         <option value="{{ $id }}" {{ (in_array($id, old('warga_rt', [])) || isset($warga) && $warga->warga_rt) ? 'selected' : '' }}>
                             {{ $warga_rt }}
                         </option>
-                    @endforeach
-                </select>
-                @if($errors->has('warga_rt'))
+                        @endforeach
+                    </select>
+                    @if($errors->has('warga_rt'))
                     <em class="invalid-feedback">
                         {{ $errors->first('warga_rt') }}
                     </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_rt_helper') }}
-                </p>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('global.warga.fields.warga_rt_helper') }}
+                    </p>
             </div>
 
             <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}">
@@ -727,7 +725,7 @@
                     {{ trans('global.warga.fields.warga_status_helper') }}
                 </p>
             </div>
-            
+
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>
