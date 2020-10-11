@@ -486,18 +486,12 @@
                       </div>
 
                       <div class="form-group {{ $errors->has('rw_status') ? 'has-error' : '' }}">
-                        <label for="rw_status">{{ trans('global.rw.fields.rw_status') }}*</label>
-                        <input type="text" id="rw_status" name="rw_status" class="form-control" value="{{ old('rw_status', isset($rw) ? $rw->rw_status : '') }}">
-                        @if($errors->has('rw_status'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('rw_status') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.rw.fields.rw_status_helper') }}
-                        </p>
+                        <label for="rw_status">{{ trans('global.rw.fields.rw_status') }}*</label><br>
+                        <input type="radio" id="rw_status" name="rw_status" value="1">
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="rw_status" name="rw_status" value="2">
+                        <label for="female">Tidak Aktif</label><br>
                       </div>
-
                       <!-- <div class="form-group {{ $errors->has('ins_category') ? 'has-error' : '' }}">
                 <label for="ins_category">{{ trans('global.rw.fields.ins_category') }}*</label>
                 <input type="text" id="ins_category" name="ins_category" class="form-control" value="{{ old('ins_category', isset($rw) ? $rw->ins_category : '') }}">
