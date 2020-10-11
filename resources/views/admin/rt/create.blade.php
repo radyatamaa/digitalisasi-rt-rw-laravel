@@ -486,16 +486,11 @@
                       </div>
 
                       <div class="form-group {{ $errors->has('rt_status') ? 'has-error' : '' }}">
-                        <label for="rt_status">{{ trans('global.rt.fields.rt_status') }}*</label>
-                        <input type="text" id="rt_status" name="rt_status" class="form-control" value="{{ old('rt_status', isset($rt) ? $rt->rt_status : '') }}">
-                        @if($errors->has('rt_status'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('rt_status') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.rt.fields.rt_status_helper') }}
-                        </p>
+                        <label for="rt_status">{{ trans('global.rt.fields.rt_status') }}*</label><br>
+                        <input type="radio" id="rt_status" name="rt_status" value="1">
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="rt_status" name="rt_status" value="2">
+                        <label for="female">Tidak Aktif</label><br>
                       </div>
 
                       <div>
