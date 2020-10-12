@@ -224,7 +224,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -233,7 +233,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -242,12 +242,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
               </a>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -259,7 +265,7 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RT</p>
@@ -277,7 +283,7 @@
                     <p>Kelurahan</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Address Code</p>
@@ -320,9 +326,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -331,7 +337,7 @@
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
@@ -435,41 +441,41 @@
                   <!-- /.card-header -->
                   <!-- form start -->
                   <div class="card-body">
-        <form action="{{ route("admin.master_alamat.update", [$master_alamat->id]) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="form-group {{ $errors->has('address_code_name') ? 'has-error' : '' }}">
-                <label for="address_code_name">{{ trans('global.master_alamat.fields.address_code_name') }}*</label>
-                <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="{{ old('address_code_name', isset($master_alamat) ? $master_alamat->address_code_name : '') }}">
-                @if($errors->has('address_code_name'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('address_code_name') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_alamat.fields.address_code_name_helper') }}
-                </p>
-            </div>
+                    <form action="{{ route("admin.master_alamat.update", [$master_alamat->id]) }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      @method('PUT')
+                      <div class="form-group {{ $errors->has('address_code_name') ? 'has-error' : '' }}">
+                        <label for="address_code_name">{{ trans('global.master_alamat.fields.address_code_name') }}*</label>
+                        <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="{{ old('address_code_name', isset($master_alamat) ? $master_alamat->address_code_name : '') }}">
+                        @if($errors->has('address_code_name'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('address_code_name') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.master_alamat.fields.address_code_name_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('address_code_rt') ? 'has-error' : '' }}">
-                <label for="address_code_rt">{{ trans('global.master_alamat.fields.address_code_rt') }}*</label>
-                <input type="text" id="address_code_rt" name="address_code_rt" class="form-control" value="{{ old('address_code_rt', isset($master_alamat) ? $master_alamat->address_code_rt : '') }}">
-                @if($errors->has('address_code_rt'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('address_code_rt') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_alamat.fields.address_code_rt_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('address_code_rt') ? 'has-error' : '' }}">
+                        <label for="address_code_rt">{{ trans('global.master_alamat.fields.address_code_rt') }}*</label>
+                        <input type="text" id="address_code_rt" name="address_code_rt" class="form-control" value="{{ old('address_code_rt', isset($master_alamat) ? $master_alamat->address_code_rt : '') }}">
+                        @if($errors->has('address_code_rt'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('address_code_rt') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.master_alamat.fields.address_code_rt_helper') }}
+                        </p>
+                      </div>
 
 
-            <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-            </div>
-        </form>
-    </div>
+                      <div>
+                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                      </div>
+                    </form>
+                  </div>
                 </div>
                 <!-- /.card-body -->
               </div>

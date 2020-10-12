@@ -224,7 +224,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -233,7 +233,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -242,12 +242,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
               </a>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -271,7 +277,7 @@
                     <p>RW</p>
                   </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kelurahan</p>
@@ -289,7 +295,7 @@
                     <p>Agama</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pekerjaan</p>
@@ -320,9 +326,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -331,7 +337,7 @@
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
@@ -349,7 +355,6 @@
                     <p>Kategori SDM</p>
                   </a>
                 </li>
-
               </ul>
             </li>
 
@@ -428,26 +433,26 @@
               @section('content')
 
               <div class="card">
-    <div class="card-header">
-        {{ trans('global.create') }} {{ trans('global.master_pekerjaan.title_singular') }}
-    </div>
+                <div class="card-header">
+                  {{ trans('global.create') }} {{ trans('global.master_pekerjaan.title_singular') }}
+                </div>
 
-    <div class="card-body">
-        <form action="{{ route("admin.master_pekerjaan.store") }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group {{ $errors->has('job_name') ? 'has-error' : '' }}">
-                <label for="job_name">{{ trans('global.master_pekerjaan.fields.job_name') }}*</label>
-                <input type="text" id="job_name" name="job_name" class="form-control" value="{{ old('job_name', isset($master_pekerjaan) ? $master_pekerjaan->job_name : '') }}">
-                @if($errors->has('job_name'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('job_name') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_pekerjaan.fields.job_name_helper') }}
-                </p>
-            </div>
-            <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                <div class="card-body">
+                  <form action="{{ route("admin.master_pekerjaan.store") }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group {{ $errors->has('job_name') ? 'has-error' : '' }}">
+                      <label for="job_name">{{ trans('global.master_pekerjaan.fields.job_name') }}*</label>
+                      <input type="text" id="job_name" name="job_name" class="form-control" value="{{ old('job_name', isset($master_pekerjaan) ? $master_pekerjaan->job_name : '') }}">
+                      @if($errors->has('job_name'))
+                      <em class="invalid-feedback">
+                        {{ $errors->first('job_name') }}
+                      </em>
+                      @endif
+                      <p class="helper-block">
+                        {{ trans('global.master_pekerjaan.fields.job_name_helper') }}
+                      </p>
+                    </div>
+                    <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="description">{{ trans('global.master_pekerjaan.fields.description') }}</label>
                 <textarea id="description" name="description" class="form-control ">{{ old('description', isset($master_pekerjaan) ? $master_pekerjaan->description : '') }}</textarea>
                 @if($errors->has('description'))
@@ -459,7 +464,7 @@
                     {{ trans('global.master_pekerjaan.fields.description_helper') }}
                 </p>
             </div> -->
-            <!-- <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
+                    <!-- <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                 <label for="price">{{ trans('global.master_pekerjaan.fields.price') }}</label>
                 <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($master_pekerjaan) ? $master_pekerjaan->price : '') }}" step="0.01">
                 @if($errors->has('price'))
@@ -471,12 +476,12 @@
                     {{ trans('global.master_pekerjaan.fields.price_helper') }}
                 </p>
             </div> -->
-            <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-            </div>
-        </form>
-    </div>
-</div>
+                    <div>
+                      <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                    </div>
+                  </form>
+                </div>
+              </div>
 
               <!-- /.card -->
             </div>
