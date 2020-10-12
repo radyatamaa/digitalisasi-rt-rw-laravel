@@ -224,7 +224,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -233,7 +233,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -242,12 +242,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
               </a>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -320,9 +326,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -349,7 +355,6 @@
                     <p>Kategori SDM</p>
                   </a>
                 </li>
-
               </ul>
             </li>
 
@@ -426,80 +431,80 @@
 
               <!-- /.card -->
               @section('content')
-@can('pendidikan_create')
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.pendidikan.create") }}">
-            {{ trans('global.add') }} {{ trans('global.pendidikan.title_singular') }}
-        </a>
-    </div>
-</div>
-@endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.pendidikan.title_singular') }} {{ trans('global.list') }}
-    </div>
+              @can('pendidikan_create')
+              <div style="margin-bottom: 10px;" class="row">
+                <div class="col-lg-12">
+                  <a class="btn btn-success" href="{{ route("admin.pendidikan.create") }}">
+                    {{ trans('global.add') }} {{ trans('global.pendidikan.title_singular') }}
+                  </a>
+                </div>
+              </div>
+              @endcan
+              <div class="card">
+                <div class="card-header">
+                  {{ trans('global.pendidikan.title_singular') }} {{ trans('global.list') }}
+                </div>
 
-    <div class="card-body">
-        <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th width="10">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th width="10">
 
-                        </th>
-                        <th>
+                          </th>
+                          <th>
                             {{ trans('global.pendidikan.fields.pendidikan_name') }}
-                        </th>
-                        <!-- <th>
+                          </th>
+                          <!-- <th>
                             {{ trans('global.product.fields.description') }}
                         </th>
                         <th>
                             {{ trans('global.product.fields.price') }}
                         </th> -->
-                        <th>
+                          <th>
                             &nbsp;
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($pendidikan as $key => $pendidikans)
-                    <tr data-entry-id="{{ $pendidikans->id }}">
-                        <td>
-                          {{ $key + 1}}
-                        </td>
-                        <td>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($pendidikan as $key => $pendidikans)
+                        <tr data-entry-id="{{ $pendidikans->id }}">
+                          <td>
+                            {{ $key + 1}}
+                          </td>
+                          <td>
                             {{ $pendidikans->pendidikan_name ?? '' }}
-                        </td>
-                        <!-- <td>
+                          </td>
+                          <!-- <td>
                                 {{ $product->description ?? '' }}
                             </td>
                             <td>
                                 {{ $product->price ?? '' }}
                             </td> -->
-                        <td>
-                       
+                          <td>
+
                             @can('pendidikan_edit')
                             <a class="btn btn-xs btn-info" href="{{ route('admin.pendidikan.edit', $pendidikans->id) }}">
-                                {{ trans('global.edit') }}
+                              {{ trans('global.edit') }}
                             </a>
                             @endcan
                             @can('pendidikan_delete')
                             <form action="{{ route('admin.pendidikan.destroy', $pendidikans->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                              <input type="hidden" name="_method" value="DELETE">
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                              <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                             </form>
                             @endcan
-                        </td>
+                          </td>
 
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
               <!-- /.card -->
             </div>
             <!-- /.col -->

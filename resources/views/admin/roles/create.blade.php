@@ -224,7 +224,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -233,7 +233,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -242,12 +242,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
               </a>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -320,9 +326,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -331,7 +337,7 @@
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
@@ -349,7 +355,6 @@
                     <p>Kategori SDM</p>
                   </a>
                 </li>
-
               </ul>
             </li>
 
@@ -435,47 +440,47 @@
                   </div>
                   <!-- /.card-header -->
                   <!-- form start -->
-                  
-    <div class="card-body">
-        <form action="{{ route("admin.roles.store") }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-                <label for="title">{{ trans('global.role.fields.title') }}*</label>
-                <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($role) ? $role->title : '') }}">
-                @if($errors->has('title'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('title') }}
-                    </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.role.fields.title_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
-                <label for="permissions">{{ trans('global.role.fields.permissions') }}*
-                    <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label>
-                <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple">
-                    @foreach($permissions as $id => $permissions)
-                        <option value="{{ $id }}" {{ (in_array($id, old('permissions', [])) || isset($role) && $role->permissions->contains($id)) ? 'selected' : '' }}>
+
+                  <div class="card-body">
+                    <form action="{{ route("admin.roles.store") }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                        <label for="title">{{ trans('global.role.fields.title') }}*</label>
+                        <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($role) ? $role->title : '') }}">
+                        @if($errors->has('title'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('title') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.role.fields.title_helper') }}
+                        </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
+                        <label for="permissions">{{ trans('global.role.fields.permissions') }}*
+                          <span class="btn btn-info btn-xs select-all">Select all</span>
+                          <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label>
+                        <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple">
+                          @foreach($permissions as $id => $permissions)
+                          <option value="{{ $id }}" {{ (in_array($id, old('permissions', [])) || isset($role) && $role->permissions->contains($id)) ? 'selected' : '' }}>
                             {{ $permissions }}
-                        </option>
-                    @endforeach
-                </select>
-                @if($errors->has('permissions'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('permissions') }}
-                    </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.role.fields.permissions_helper') }}
-                </p>
-            </div>
-            <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-            </div>
-        </form>
-    </div>
+                          </option>
+                          @endforeach
+                        </select>
+                        @if($errors->has('permissions'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('permissions') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.role.fields.permissions_helper') }}
+                        </p>
+                      </div>
+                      <div>
+                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                      </div>
+                    </form>
+                  </div>
                 </div>
                 <!-- /.card-body -->
               </div>

@@ -224,7 +224,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -233,7 +233,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -242,16 +242,22 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
+              </a>
+            </li>
             <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Master Data
@@ -308,21 +314,21 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pendidikan</p>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
+                  <a href="pages/charts/flot.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Sekolah</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Wilayah</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -349,7 +355,6 @@
                     <p>Kategori SDM</p>
                   </a>
                 </li>
-
               </ul>
             </li>
 
@@ -426,88 +431,88 @@
 
               <!-- /.card -->
               @section('content')
-@can('user_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.users.create") }}">
-                {{ trans('global.add') }} {{ trans('global.user.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.user.title_singular') }} {{ trans('global.list') }}
-    </div>
+              @can('user_create')
+              <div style="margin-bottom: 10px;" class="row">
+                <div class="col-lg-12">
+                  <a class="btn btn-success" href="{{ route("admin.users.create") }}">
+                    {{ trans('global.add') }} {{ trans('global.user.title_singular') }}
+                  </a>
+                </div>
+              </div>
+              @endcan
+              <div class="card">
+                <div class="card-header">
+                  {{ trans('global.user.title_singular') }} {{ trans('global.list') }}
+                </div>
 
-    <div class="card-body">
-        <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th width="10">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th width="10">
 
-                        </th>
-                        <th>
+                          </th>
+                          <th>
                             {{ trans('global.user.fields.name') }}
-                        </th>
-                        <th>
+                          </th>
+                          <th>
                             {{ trans('global.user.fields.email') }}
-                        </th>
-                        <th>
+                          </th>
+                          <th>
                             {{ trans('global.user.fields.email_verified_at') }}
-                        </th>
-                        <th>
+                          </th>
+                          <th>
                             {{ trans('global.user.fields.roles') }}
-                        </th>
-                        <th>
+                          </th>
+                          <th>
                             &nbsp;
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $key => $user)
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($users as $key => $user)
                         <tr data-entry-id="{{ $user->id }}">
-                            <td>
-                                {{ $key + 1}}
-                            </td>
-                            <td>
-                                {{ $user->name ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->email ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->email_verified_at ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($user->roles as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
-                                @endforeach
-                            </td>
-                            <td>
-                            
-                                @can('user_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-                                @can('user_delete')
-                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-                            </td>
+                          <td>
+                            {{ $key + 1}}
+                          </td>
+                          <td>
+                            {{ $user->name ?? '' }}
+                          </td>
+                          <td>
+                            {{ $user->email ?? '' }}
+                          </td>
+                          <td>
+                            {{ $user->email_verified_at ?? '' }}
+                          </td>
+                          <td>
+                            @foreach($user->roles as $key => $item)
+                            <span class="badge badge-info">{{ $item->title }}</span>
+                            @endforeach
+                          </td>
+                          <td>
+
+                            @can('user_edit')
+                            <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
+                              {{ trans('global.edit') }}
+                            </a>
+                            @endcan
+                            @can('user_delete')
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                              <input type="hidden" name="_method" value="DELETE">
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                              <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                            </form>
+                            @endcan
+                          </td>
 
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
               <!-- /.card -->
             </div>
             <!-- /.col -->

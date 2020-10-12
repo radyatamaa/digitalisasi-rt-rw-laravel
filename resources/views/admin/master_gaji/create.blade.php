@@ -224,7 +224,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -233,7 +233,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -242,12 +242,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
               </a>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -271,7 +277,7 @@
                     <p>RW</p>
                   </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kelurahan</p>
@@ -295,7 +301,7 @@
                     <p>Pekerjaan</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Gaji</p>
@@ -320,9 +326,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -331,7 +337,7 @@
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
@@ -349,9 +355,9 @@
                     <p>Kategori SDM</p>
                   </a>
                 </li>
-
               </ul>
             </li>
+
 
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -427,39 +433,39 @@
               <!-- /.card -->
               @section('content')
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.create') }} {{ trans('global.master_gaji.title_singular') }}
-    </div>
+              <div class="card">
+                <div class="card-header">
+                  {{ trans('global.create') }} {{ trans('global.master_gaji.title_singular') }}
+                </div>
 
-    <div class="card-body">
-        <form action="{{ route("admin.master_gaji.store") }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group {{ $errors->has('salary_start') ? 'has-error' : '' }}">
-                <label for="salary_start">{{ trans('global.master_gaji.fields.salary_start') }}*</label>
-                <input type="text" id="salary_start" name="salary_start" class="form-control" value="{{ old('salary_start', isset($master_gaji) ? $master_gaji->salary_start : '') }}">
-                @if($errors->has('salary_start'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('salary_start') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_gaji.fields.salary_start_helper') }}
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('salary_end') ? 'has-error' : '' }}">
-                <label for="salary_end">{{ trans('global.master_gaji.fields.salary_end') }}*</label>
-                <input type="text" id="salary_end" name="salary_end" class="form-control" value="{{ old('salary_end', isset($master_gaji) ? $master_gaji->salary_end : '') }}">
-                @if($errors->has('salary_end'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('salary_end') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_gaji.fields.salary_end_helper') }}
-                </p>
-            </div>
-            <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                <div class="card-body">
+                  <form action="{{ route("admin.master_gaji.store") }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group {{ $errors->has('salary_start') ? 'has-error' : '' }}">
+                      <label for="salary_start">{{ trans('global.master_gaji.fields.salary_start') }}*</label>
+                      <input type="text" id="salary_start" name="salary_start" class="form-control" value="{{ old('salary_start', isset($master_gaji) ? $master_gaji->salary_start : '') }}">
+                      @if($errors->has('salary_start'))
+                      <em class="invalid-feedback">
+                        {{ $errors->first('salary_start') }}
+                      </em>
+                      @endif
+                      <p class="helper-block">
+                        {{ trans('global.master_gaji.fields.salary_start_helper') }}
+                      </p>
+                    </div>
+                    <div class="form-group {{ $errors->has('salary_end') ? 'has-error' : '' }}">
+                      <label for="salary_end">{{ trans('global.master_gaji.fields.salary_end') }}*</label>
+                      <input type="text" id="salary_end" name="salary_end" class="form-control" value="{{ old('salary_end', isset($master_gaji) ? $master_gaji->salary_end : '') }}">
+                      @if($errors->has('salary_end'))
+                      <em class="invalid-feedback">
+                        {{ $errors->first('salary_end') }}
+                      </em>
+                      @endif
+                      <p class="helper-block">
+                        {{ trans('global.master_gaji.fields.salary_end_helper') }}
+                      </p>
+                    </div>
+                    <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="description">{{ trans('global.master_gaji.fields.description') }}</label>
                 <textarea id="description" name="description" class="form-control ">{{ old('description', isset($master_gaji) ? $master_gaji->description : '') }}</textarea>
                 @if($errors->has('description'))
@@ -471,7 +477,7 @@
                     {{ trans('global.master_gaji.fields.description_helper') }}
                 </p>
             </div> -->
-            <!-- <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
+                    <!-- <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                 <label for="price">{{ trans('global.master_gaji.fields.price') }}</label>
                 <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($master_gaji) ? $master_gaji->price : '') }}" step="0.01">
                 @if($errors->has('price'))
@@ -483,12 +489,12 @@
                     {{ trans('global.master_gaji.fields.price_helper') }}
                 </p>
             </div> -->
-            <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-            </div>
-        </form>
-    </div>
-</div>
+                    <div>
+                      <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                    </div>
+                  </form>
+                </div>
+              </div>
 
               <!-- /.card -->
             </div>
