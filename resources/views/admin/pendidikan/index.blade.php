@@ -283,7 +283,7 @@
                     <p>Address Code</p>
                   </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Agama</p>
@@ -301,7 +301,7 @@
                     <p>Gaji</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a href="pages/charts/flot.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pendidikan</p>
@@ -406,12 +406,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>List Pekerjaan</h1>
+              <h1>List Pendidikan</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">List Pekerjaan</li>
+                <li class="breadcrumb-item active">List Pendidikan</li>
               </ol>
             </div>
           </div>
@@ -442,7 +442,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable">
+        <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th width="10">
@@ -466,7 +466,7 @@
                     @foreach($pendidikan as $key => $pendidikans)
                     <tr data-entry-id="{{ $pendidikans->id }}">
                         <td>
-
+                          {{ $key + 1}}
                         </td>
                         <td>
                             {{ $pendidikans->pendidikan_name ?? '' }}
@@ -478,11 +478,7 @@
                                 {{ $product->price ?? '' }}
                             </td> -->
                         <td>
-                            @can('pendidikan_show')
-                            <a class="btn btn-xs btn-primary" href="{{ route('admin.pendidikan.show', $pendidikans->id) }}">
-                                {{ trans('global.view') }}
-                            </a>
-                            @endcan
+                       
                             @can('pendidikan_edit')
                             <a class="btn btn-xs btn-info" href="{{ route('admin.pendidikan.edit', $pendidikans->id) }}">
                                 {{ trans('global.edit') }}
