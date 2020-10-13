@@ -501,6 +501,9 @@
                                                         {{ trans('global.keuangan_category.fields.category_name') }}
                                                     </th>
                                                     <th>
+                                                        {{ trans('global.keuangan_category.fields.id_rt') }}
+                                                    </th>
+                                                    <th>
                                                         &nbsp;
                                                     </th>
                                                 </tr>
@@ -513,6 +516,9 @@
                                                     </td>
                                                     <td>
                                                         {{ $keuangan_categorys->category_name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $keuangan_categorys->id_rt ?? '' }}
                                                     </td>
                                                     <td>
                                                         @can('keuangan_category_show')

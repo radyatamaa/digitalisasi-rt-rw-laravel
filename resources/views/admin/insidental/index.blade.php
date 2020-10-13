@@ -510,6 +510,9 @@
                                                     <th>
                                                         {{ trans('global.insidental.fields.ins_date') }}
                                                     </th>
+                                                    <th>
+                                                        {{ trans('global.insidental.fields.id_rt') }}
+                                                    </th>
 
                                                     <th>
                                                         &nbsp;
@@ -520,7 +523,7 @@
                                                 @foreach($insidental as $key => $insidentals)
                                                 <tr data-entry-id="{{ $insidentals->id }}">
                                                     <td>
-
+                                                    {{$key+1}}
                                                     </td>
                                                     <td>
                                                         {{ $insidentals->ins_name ?? '' }}
@@ -534,7 +537,9 @@
                                                     <td>
                                                         {{ $insidentals->ins_date ?? '' }}
                                                     </td>
-
+                                                    <td>
+                                                        {{ $insidentals->id_rt ?? '' }}
+                                                    </td>
                                                     <td>
                                                         @can('insidental_show')
                                                         <a class="btn btn-xs btn-primary" href="{{ route('admin.insidental.show', $insidentals->id) }}">

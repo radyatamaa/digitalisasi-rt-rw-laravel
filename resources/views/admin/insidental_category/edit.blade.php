@@ -494,6 +494,8 @@
                                                 {{ trans('global.insidental_category.fields.category_name_helper') }}
                                             </p>
                                         </div>
+                                        <input type="text" id="id_rt" name="id_rt" class="form-control" value="{{$user}}" hidden>
+                                       
 
                                         <div>
                                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
