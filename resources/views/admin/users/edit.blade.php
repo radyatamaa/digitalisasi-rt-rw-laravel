@@ -434,7 +434,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Logout
@@ -502,9 +502,21 @@
                           {{ trans('global.user.fields.name_helper') }}
                         </p>
                       </div>
+                      <div class="form-group {{ $errors->has('user_fullname') ? 'has-error' : '' }}">
+                        <label for="user_fullname">{{ trans('global.user.fields.user_fullname') }}*</label>
+                        <input type="text" id="user_fullname" name="user_fullname" class="form-control" value="{{ old('user_fullname', isset($user) ? $user->user_fullname : '') }}">
+                        @if($errors->has('user_fullname'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('user_fullname') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.user.fields.user_fullname_helper') }}
+                        </p>
+                      </div>
                       <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                         <label for="email">{{ trans('global.user.fields.email') }}*</label>
-                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}">
+                        <input type="text" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}">
                         @if($errors->has('email'))
                         <em class="invalid-feedback">
                           {{ $errors->first('email') }}
@@ -513,6 +525,63 @@
                         <p class="helper-block">
                           {{ trans('global.user.fields.email_helper') }}
                         </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('kelurahan_id') ? 'has-error' : '' }}">
+                        <label for="kelurahan_id">{{ trans('global.user.fields.kelurahan_id') }}*
+                          <select name="kelurahan_id" id="kelurahan_id" class="form-control select2">
+                          <option value=""></option>
+                            @foreach($kelurahan_id as $id => $kelurahan_id)
+                            <option value="{{ $id }}" {{ (in_array($id, old('kelurahan_id', [])) || isset($rw) && $rw->kelurahan_id->contains($id)) ? 'selected' : '' }}>
+                              {{ $kelurahan_id }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('kelurahan_id'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('kelurahan_id') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.user.fields.kelurahan_id_helper') }}
+                          </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('rw_id') ? 'has-error' : '' }}">
+                        <label for="rw_id">{{ trans('global.user.fields.rw_id') }}*
+                          <select name="rw_id" id="rw_id" class="form-control select2">
+                          <option value=""></option>
+                            @foreach($rw_id as $id => $rw_id)
+                            <option value="{{ $id }}" {{ (in_array($id, old('rw_id', [])) || isset($rw) && $rw->rw_id->contains($id)) ? 'selected' : '' }}>
+                              {{ $rw_id }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('rw_id'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('rw_id') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.user.fields.rw_id_helper') }}
+                          </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('rt_id') ? 'has-error' : '' }}">
+                        <label for="rt_id">{{ trans('global.user.fields.rt_id') }}*
+                          <select name="rt_id" id="rt_id" class="form-control select2">
+                          <option value=""></option>
+                            @foreach($rt_id as $id => $rt_id)
+                            <option value="{{ $id }}" {{ (in_array($id, old('rt_id', [])) || isset($rw) && $rw->rt_id->contains($id)) ? 'selected' : '' }}>
+                              {{ $rt_id }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('rt_id'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('rt_id') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.user.fields.rt_id_helper') }}
+                          </p>
                       </div>
                       <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                         <label for="password">{{ trans('global.user.fields.password') }}</label>
