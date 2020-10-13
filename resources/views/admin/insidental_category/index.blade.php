@@ -501,6 +501,9 @@
                                                         {{ trans('global.insidental_category.fields.category_name') }}
                                                     </th>
                                                     <th>
+                                                        {{ trans('global.insidental_category.fields.id_rt') }}
+                                                    </th>
+                                                    <th>
                                                         &nbsp;
                                                     </th>
                                                 </tr>
@@ -513,6 +516,9 @@
                                                     </td>
                                                     <td>
                                                         {{ $insidental_categorys->category_name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $insidental_categorys->id_rt ?? '' }}
                                                     </td>
                                                     <td>
                                                         @can('insidental_category_show')
