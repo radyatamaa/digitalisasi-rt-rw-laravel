@@ -19,28 +19,29 @@ class UsersController extends Controller
     {
         abort_unless(\Gate::allows('user_access'), 403);
 
-        // $rw = Auth::user()->rw_id;
+        $rw = Auth::user()->rw_id;
 
-        // $rt = Auth::user()->rt_id;
+        $rt = Auth::user()->rt_id;
 
-        // $kelurahan = Auth::user()->kelurahan_id;
+        $kelurahan = Auth::user()->kelurahan_id;
 
-        // if($rw != null){
-        //     User::where('rt_rw_id', $user)->get();
-        // }else if($kelurahan != null){
-        //     User::where('rw_id', $user)->get();
-        // }else{
-
-        // $users = User::select('users.*,
-        // rw.rw_name,
-        // rt.rt_name,
-        // kelurahan.kel_name
-        // FROM users 
-        // JOIN kelurahan ON kelurahan.id = users.kelurahan_id OR users.kelurahan_id = null
-        // JOIN rt ON rt.id = users.rt_id OR users.rt_id = null
-        // JOIN rw ON rw_id = users.rw_id OR users.rw_id = null')->get();
-
-        $users = User::all();
+        if($kelurahan != null){
+            $users = User::select(
+                'users.*',
+                'rw.rw_name')
+                ->join('rw', 'rw.id', '=', 'users.rw_id')
+                ->where('rw.rw_kel_id', $kelurahan)
+                ->get();
+        }else if($rw != null){
+            $users = User::select(
+                'users.*',
+                'rt.rt_name')
+                ->join('rt', 'rt.id', '=', 'users.rt_id')
+                ->where('rt.rt_rw_id', $rw)
+                ->get();
+        }else{
+            $users = User::all();
+        }
 
         return view('admin.users.index', compact('users'));
     }
