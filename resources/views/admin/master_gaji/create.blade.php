@@ -465,6 +465,7 @@
                         {{ trans('global.master_gaji.fields.salary_end_helper') }}
                       </p>
                     </div>
+                    <input type="text" id="salary_rt" name="salary_rt" class="form-control" value="" hidden>
                     <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="description">{{ trans('global.master_gaji.fields.description') }}</label>
                 <textarea id="description" name="description" class="form-control ">{{ old('description', isset($master_gaji) ? $master_gaji->description : '') }}</textarea>

@@ -453,6 +453,9 @@
 
                           </th>
                           <th>
+                            {{ trans('global.master_gaji.fields.salary_rt') }}
+                          </th>
+                          <th>
                             {{ trans('global.master_gaji.fields.salary_start') }}
                           </th>
                           <th>
@@ -474,6 +477,9 @@
                         <tr data-entry-id="{{ $master_gajis->id }}">
                           <td>
                             {{ $key + 1}}
+                          </td>
+                          <td>
+                            {{ $master_gajis->salary_rt ?? '' }}
                           </td>
                           <td>
                             {{ $master_gajis->salary_start ?? '' }}

@@ -462,6 +462,9 @@
                                                         {{ trans('global.history_warga.fields.history_category') }}
                                                     </th>
                                                     <th>
+                                                        {{ trans('global.history_warga.fields.id_rt') }}
+                                                    </th>
+                                                    <th>
                                                         {{ trans('global.history_warga.fields.warga_id') }}
                                                     </th>
                                                     <th>
@@ -483,6 +486,9 @@
                                                     </td>
                                                     <td>
                                                         {{ $history_wargas->history_category ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $history_wargas->id_rt ?? '' }}
                                                     </td>
                                                     <td>
                                                         {{ $history_wargas->warga_id ?? '' }}
