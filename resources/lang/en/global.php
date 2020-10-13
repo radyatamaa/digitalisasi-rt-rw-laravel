@@ -24,7 +24,7 @@ return [
     'remember_me'                          => 'Remember me',
     'forgot_password'                      => 'Forgot your password?',
     'register'                             => 'Register',
-    'login_email'                          => 'Email',
+    'login_email'                          => 'Username',
     'login_password'                       => 'Password',
     'login_password_confirmation'          => 'Password confirmation',
     'yes'                                  => 'Yes',
