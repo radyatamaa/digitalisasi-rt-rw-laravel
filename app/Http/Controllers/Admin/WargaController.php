@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateWargaRequest;
 use App\Warga;
 use App\Pendidikan;
 use App\Master_Alamat;
+use Illuminate\Support\Facades\Auth;
 
 
 class WargaController extends Controller
