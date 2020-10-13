@@ -9,14 +9,21 @@ use App\Http\Requests\StoreHistoryWargaRequest;
 use App\Http\Requests\UpdateHistoryWargaRequest;
 use App\History_Warga;
 use App\Warga;
+use App\Rt;
+use Illuminate\Support\Facades\Auth;
 
 class HistoryWargaController extends Controller
 {
     public function index()
     {
+        $user = Auth::user()->rt_id;
 
         abort_unless(\Gate::allows('history_warga_access'), 403);
-        $history_warga = History_Warga::all();
+        if ($user != null) {
+            $history_warga = History_Warga::where('id_rt', $user)->get();
+        } else {
+            $history_warga = History_Warga::all();
+        }
 
         return view('admin.history_warga.index', compact('history_warga'));
     }
@@ -27,7 +34,7 @@ class HistoryWargaController extends Controller
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
         $warga_ids = Warga::all();
-        
+
         return view('admin.history_warga.create', compact('history_category', 'warga_ids'));
     }
 
@@ -46,7 +53,7 @@ class HistoryWargaController extends Controller
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
         $warga_ids = Warga::all();
-        return view('admin.history_warga.edit', compact('history_warga', 'history_category','warga_ids'));
+        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids'));
     }
 
     public function update(UpdateHistoryWargaRequest $request, History_Warga $history_warga)

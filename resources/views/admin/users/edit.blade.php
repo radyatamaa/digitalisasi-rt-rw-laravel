@@ -199,6 +199,7 @@
                 </li>
               </ul>
             </li>
+            @can('warga_access')
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -223,6 +224,8 @@
 
               </ul>
             </li>
+            @endcan
+            @can('keuangan_access')
             <li class="nav-item">
               <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -232,7 +235,9 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            @endcan
+            @can('event_access')
+            <li class="nav-item active">
               <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
@@ -241,6 +246,8 @@
                 </p>
               </a>
             </li>
+            @endcan
+            @can('insidental_access')
             <li class="nav-item">
               <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -250,12 +257,15 @@
                 </p>
               </a>
             </li>
+            @endcan
+            @can('history_warga_access')
             <li class="nav-item">
               <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>History Warga</p>
               </a>
             </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -265,101 +275,131 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('rt_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RT</p>
                   </a>
                 </li>
+                @endcan
+                @can('rw_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RW</p>
                   </a>
                 </li>
+                @endcan
+                @can('kelurahan_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kelurahan</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_alamat_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Address Code</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_agama_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Agama</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_pekerjaan_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pekerjaan</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_gaji_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Gaji</p>
                   </a>
                 </li>
+                @endcan
+                @can('pendidikan_access')
                 <li class="nav-item">
                   <a href="pages/charts/flot.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pendidikan</p>
                   </a>
                 </li>
+                @endcan
+                @can('sekolah_access')
                 <li class="nav-item">
                   <a href="pages/charts/flot.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Sekolah</p>
                   </a>
                 </li>
+                @endcan
+                @can('wilayah_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Wilayah</p>
                   </a>
                 </li>
+                @endcan
+                @can('history_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Histori</p>
                   </a>
                 </li>
+                @endcan
+                @can('keuangan_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
+                @endcan
+                @can('event_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
                   </a>
                 </li>
+                @endcan
+                @can('insidental_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Insidental</p>
                   </a>
                 </li>
+                @endcan
+                @can('sdm_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori SDM</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
 
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link acitve">
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Setting
@@ -367,28 +407,34 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('permission_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Permissions</p>
                   </a>
                 </li>
+                @endcan
+                @can('role_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Roles</p>
                   </a>
                 </li>
-                <li class="nav-item acitve">
+                @endcan
+                @can('user_access')
+                <li class="nav-item">
                   <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Users</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Logout
@@ -456,9 +502,21 @@
                           {{ trans('global.user.fields.name_helper') }}
                         </p>
                       </div>
+                      <div class="form-group {{ $errors->has('user_fullname') ? 'has-error' : '' }}">
+                        <label for="user_fullname">{{ trans('global.user.fields.user_fullname') }}*</label>
+                        <input type="text" id="user_fullname" name="user_fullname" class="form-control" value="{{ old('user_fullname', isset($user) ? $user->user_fullname : '') }}">
+                        @if($errors->has('user_fullname'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('user_fullname') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.user.fields.user_fullname_helper') }}
+                        </p>
+                      </div>
                       <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                         <label for="email">{{ trans('global.user.fields.email') }}*</label>
-                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}">
+                        <input type="text" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}">
                         @if($errors->has('email'))
                         <em class="invalid-feedback">
                           {{ $errors->first('email') }}
@@ -467,6 +525,63 @@
                         <p class="helper-block">
                           {{ trans('global.user.fields.email_helper') }}
                         </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('kelurahan_id') ? 'has-error' : '' }}">
+                        <label for="kelurahan_id">{{ trans('global.user.fields.kelurahan_id') }}*
+                          <select name="kelurahan_id" id="kelurahan_id" class="form-control select2">
+                          <option value=""></option>
+                            @foreach($kelurahan_id as $id => $kelurahan_id)
+                            <option value="{{ $id }}" {{ (in_array($id, old('kelurahan_id', [])) || isset($rw) && $rw->kelurahan_id->contains($id)) ? 'selected' : '' }}>
+                              {{ $kelurahan_id }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('kelurahan_id'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('kelurahan_id') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.user.fields.kelurahan_id_helper') }}
+                          </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('rw_id') ? 'has-error' : '' }}">
+                        <label for="rw_id">{{ trans('global.user.fields.rw_id') }}*
+                          <select name="rw_id" id="rw_id" class="form-control select2">
+                          <option value=""></option>
+                            @foreach($rw_id as $id => $rw_id)
+                            <option value="{{ $id }}" {{ (in_array($id, old('rw_id', [])) || isset($rw) && $rw->rw_id->contains($id)) ? 'selected' : '' }}>
+                              {{ $rw_id }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('rw_id'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('rw_id') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.user.fields.rw_id_helper') }}
+                          </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('rt_id') ? 'has-error' : '' }}">
+                        <label for="rt_id">{{ trans('global.user.fields.rt_id') }}*
+                          <select name="rt_id" id="rt_id" class="form-control select2">
+                          <option value=""></option>
+                            @foreach($rt_id as $id => $rt_id)
+                            <option value="{{ $id }}" {{ (in_array($id, old('rt_id', [])) || isset($rw) && $rw->rt_id->contains($id)) ? 'selected' : '' }}>
+                              {{ $rt_id }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('rt_id'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('rt_id') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.user.fields.rt_id_helper') }}
+                          </p>
                       </div>
                       <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                         <label for="password">{{ trans('global.user.fields.password') }}</label>
