@@ -199,6 +199,7 @@
                 </li>
               </ul>
             </li>
+            @can('warga_access')
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -223,8 +224,10 @@
 
               </ul>
             </li>
+            @endcan
+            @can('keuangan_access')
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -232,8 +235,10 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+            @endcan
+            @can('event_access')
+            <li class="nav-item active">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -241,17 +246,28 @@
                 </p>
               </a>
             </li>
+            @endcan
+            @can('insidental_access')
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
               </a>
             </li>
-            <li class="nav-item has-treeview ">
-              <a href="#" class="nav-link">
+            @endcan
+            @can('history_warga_access')
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
+              </a>
+            </li>
+            @endcan
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Master Data
@@ -259,97 +275,126 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('rt_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RT</p>
                   </a>
                 </li>
+                @endcan
+                @can('rw_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RW</p>
                   </a>
                 </li>
+                @endcan
+                @can('kelurahan_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kelurahan</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_alamat_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Address Code</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_agama_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Agama</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_pekerjaan_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pekerjaan</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_gaji_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Gaji</p>
                   </a>
                 </li>
+                @endcan
+                @can('pendidikan_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pendidikan</p>
                   </a>
                 </li>
+                @endcan
+                @can('sekolah_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Sekolah</p>
                   </a>
                 </li>
+                @endcan
+                @can('wilayah_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Wilayah</p>
                   </a>
                 </li>
+                @endcan
+                @can('history_category_access')
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
+                @endcan
+                @can('keuangan_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
-                <li class="nav-item ">
+                @endcan
+                @can('event_category_access')
+                <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
                   </a>
                 </li>
+                @endcan
+                @can('insidental_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Insidental</p>
                   </a>
                 </li>
+                @endcan
+                @can('sdm_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori SDM</p>
                   </a>
                 </li>
-
+                @endcan
               </ul>
             </li>
 
@@ -362,28 +407,34 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('permission_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Permissions</p>
                   </a>
                 </li>
+                @endcan
+                @can('role_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Roles</p>
                   </a>
                 </li>
+                @endcan
+                @can('user_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Users</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+              <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Logout
@@ -436,286 +487,286 @@
                   <!-- /.card-header -->
                   <!-- form start -->
                   <div class="card-body">
-        <form action="{{ route("admin.warga.store") }}" method="POST" enctype="multipart/form-data">
-            @csrf
+                    <form action="{{ route("admin.warga.store") }}" method="POST" enctype="multipart/form-data">
+                      @csrf
 
-            <div class="form-group {{ $errors->has('warga_no_ktp') ? 'has-error' : '' }}">
-                <label for="warga_no_ktp">{{ trans('global.warga.fields.warga_no_ktp') }}*</label>
-                <input type="text" id="warga_no_ktp" name="warga_no_ktp" class="form-control" value="{{ old('warga_no_ktp', isset($warga) ? $warga->warga_no_ktp : '') }}">
-                @if($errors->has('warga_no_ktp'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_no_ktp') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_no_ktp_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_no_ktp') ? 'has-error' : '' }}">
+                        <label for="warga_no_ktp">{{ trans('global.warga.fields.warga_no_ktp') }}*</label>
+                        <input type="text" id="warga_no_ktp" name="warga_no_ktp" class="form-control" value="{{ old('warga_no_ktp', isset($warga) ? $warga->warga_no_ktp : '') }}">
+                        @if($errors->has('warga_no_ktp'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_no_ktp') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_no_ktp_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('warga_no_kk') ? 'has-error' : '' }}">
-                <label for="warga_no_kk">{{ trans('global.warga.fields.warga_no_kk') }}*</label>
-                <input type="text" id="warga_no_kk" name="warga_no_kk" class="form-control" value="{{ old('warga_no_kk', isset($warga) ? $warga->warga_no_kk : '') }}">
-                @if($errors->has('warga_no_kk'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_no_kk') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_no_kk_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_no_kk') ? 'has-error' : '' }}">
+                        <label for="warga_no_kk">{{ trans('global.warga.fields.warga_no_kk') }}*</label>
+                        <input type="text" id="warga_no_kk" name="warga_no_kk" class="form-control" value="{{ old('warga_no_kk', isset($warga) ? $warga->warga_no_kk : '') }}">
+                        @if($errors->has('warga_no_kk'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_no_kk') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_no_kk_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('warga_first_name') ? 'has-error' : '' }}">
-                <label for="warga_first_name">{{ trans('global.warga.fields.warga_first_name') }}*</label>
-                <input type="text" id="warga_first_name" name="warga_first_name" class="form-control" value="{{ old('warga_first_name', isset($warga) ? $warga->warga_first_name : '') }}">
-                @if($errors->has('warga_first_name'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_first_name') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_first_name_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_first_name') ? 'has-error' : '' }}">
+                        <label for="warga_first_name">{{ trans('global.warga.fields.warga_first_name') }}*</label>
+                        <input type="text" id="warga_first_name" name="warga_first_name" class="form-control" value="{{ old('warga_first_name', isset($warga) ? $warga->warga_first_name : '') }}">
+                        @if($errors->has('warga_first_name'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_first_name') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_first_name_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('warga_last_name') ? 'has-error' : '' }}">
-                <label for="warga_last_name">{{ trans('global.warga.fields.warga_last_name') }}*</label>
-                <input type="text" id="warga_last_name" name="warga_last_name" class="form-control" value="{{ old('warga_last_name', isset($warga) ? $warga->warga_last_name : '') }}">
-                @if($errors->has('warga_last_name'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_last_name') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_last_name_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_last_name') ? 'has-error' : '' }}">
+                        <label for="warga_last_name">{{ trans('global.warga.fields.warga_last_name') }}*</label>
+                        <input type="text" id="warga_last_name" name="warga_last_name" class="form-control" value="{{ old('warga_last_name', isset($warga) ? $warga->warga_last_name : '') }}">
+                        @if($errors->has('warga_last_name'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_last_name') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_last_name_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('warga_sex') ? 'has-error' : '' }}">
-                <label for="warga_sex">{{ trans('global.warga.fields.warga_sex') }}*</label><br>
-                <input type="radio" id="warga_sex" name="warga_sex" value="1">
-                <label for="male">Male</label><br>
-                <input type="radio" id="warga_sex" name="warga_sex" value="2">
-                <label for="female">Female</label><br>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_sex') ? 'has-error' : '' }}">
+                        <label for="warga_sex">{{ trans('global.warga.fields.warga_sex') }}*</label><br>
+                        <input type="radio" id="warga_sex" name="warga_sex" value="1">
+                        <label for="male">Male</label><br>
+                        <input type="radio" id="warga_sex" name="warga_sex" value="2">
+                        <label for="female">Female</label><br>
+                      </div>
 
-            <div class="form-group {{ $errors->has('warga_religion') ? 'has-error' : '' }}">
-                <label for="warga_religion">{{ trans('global.warga.fields.warga_religion') }}*
-                    <select name="warga_religion" id="warga_religion" class="form-control select2">
-                        @foreach($religions as $id => $religion)
-                        <option value="{{ $id }}" {{ (in_array($id, old('warga_religion', [])) || isset($warga) && $warga->warga_religion->contains($id)) ? 'selected' : '' }}>
-                            {{ $religion }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('religion'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('religion') }}
-                    </em>
-                    @endif
-                    <p class="helper-block">
-                        {{ trans('global.warga.fields.warga_religion_helper') }}
-                    </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_religion') ? 'has-error' : '' }}">
+                        <label for="warga_religion">{{ trans('global.warga.fields.warga_religion') }}*
+                          <select name="warga_religion" id="warga_religion" class="form-control select2">
+                            @foreach($religions as $id => $religion)
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_religion', [])) || isset($warga) && $warga->warga_religion->contains($id)) ? 'selected' : '' }}>
+                              {{ $religion }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('religion'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('religion') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.warga.fields.warga_religion_helper') }}
+                          </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('warga_address') ? 'has-error' : '' }}">
-                <label for="warga_address">{{ trans('global.warga.fields.warga_address') }}*</label>
-                <input type="text" id="warga_address" name="warga_address" class="form-control" value="{{ old('warga_address', isset($warga) ? $warga->warga_address : '') }}">
-                @if($errors->has('warga_address'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_address') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_address_helper') }}
-                </p>
-            </div>
-
-
-
-            <div class="form-group {{ $errors->has('warga_address_code') ? 'has-error' : '' }}">
-                <label for="warga_address_code">{{ trans('global.warga.fields.warga_address_code') }}*
-                    <select name="warga_address_code" id="warga_address_code" class="form-control select2">
-                        @foreach($master_alamats as $id => $master_alamat)
-                        <option value="{{ $id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code->contains($id)) ? 'selected' : '' }}>
-                            {{ $master_alamat }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('master_alamat'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('master_alamat') }}
-                    </em>
-                    @endif
-                    <p class="helper-block">
-                        {{ trans('global.warga.fields.warga_address_code_helper') }}
-                    </p>
-            </div>
-
-            <div class="form-group {{ $errors->has('warga_job') ? 'has-error' : '' }}">
-                <label for="warga_job">{{ trans('global.warga.fields.warga_job') }}*
-                    <select name="warga_job" id="warga_job" class="form-control select2">
-                        @foreach($jobs as $id => $job)
-                        <option value="{{ $id }}" {{ (in_array($id, old('warga_job', [])) || isset($warga) && $warga->warga_job->contains($id)) ? 'selected' : '' }}>
-                            {{ $job }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('job'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('job') }}
-                    </em>
-                    @endif
-                    <p class="helper-block">
-                        {{ trans('global.warga.fields.warga_job_helper') }}
-                    </p>
-            </div>
-
-
-            <div class="form-group {{ $errors->has('warga_salary_range') ? 'has-error' : '' }}">
-                <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*</label>
-                <input type="text" id="warga_salary_range" name="warga_salary_range" class="form-control" value="{{ old('warga_salary_range', isset($warga) ? $warga->warga_salary_range : '') }}">
-                @if($errors->has('warga_salary_range'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_salary_range') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_salary_range_helper') }}
-                </p>
-            </div>
-
-            <div class="form-group {{ $errors->has('warga_phone') ? 'has-error' : '' }}">
-                <label for="warga_phone">{{ trans('global.warga.fields.warga_phone') }}*</label>
-                <input type="text" id="warga_phone" name="warga_phone" class="form-control" value="{{ old('warga_phone', isset($warga) ? $warga->warga_phone : '') }}">
-                @if($errors->has('warga_phone'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_phone') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_phone_helper') }}
-                </p>
-            </div>
-
-            <div class="form-group {{ $errors->has('warga_email') ? 'has-error' : '' }}">
-                <label for="warga_email">{{ trans('global.warga.fields.warga_email') }}*</label>
-                <input type="text" id="warga_email" name="warga_email" class="form-control" value="{{ old('warga_email', isset($warga) ? $warga->warga_email : '') }}">
-                @if($errors->has('warga_email'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_email') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_email_helper') }}
-                </p>
-            </div>
-
-            <div class="form-group {{ $errors->has('warga_birth_date') ? 'has-error' : '' }}">
-                <label for="warga_birth_date">{{ trans('global.warga.fields.warga_birth_date') }}*</label>
-                <input type="date" id="warga_birth_date" name="warga_birth_date" class="form-control" value="{{ old('warga_birth_date', isset($warga) ? $warga->warga_birth_date : '') }}">
-                @if($errors->has('warga_birth_date'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_birth_date') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_birth_date_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_address') ? 'has-error' : '' }}">
+                        <label for="warga_address">{{ trans('global.warga.fields.warga_address') }}*</label>
+                        <input type="text" id="warga_address" name="warga_address" class="form-control" value="{{ old('warga_address', isset($warga) ? $warga->warga_address : '') }}">
+                        @if($errors->has('warga_address'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_address') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_address_helper') }}
+                        </p>
+                      </div>
 
 
 
-            <div class="form-group {{ $errors->has('warga_is_ktp_sama_domisili') ? 'has-error' : '' }}">
-                <label for="warga_is_ktp_sama_domisili">{{ trans('global.warga.fields.warga_is_ktp_sama_domisili') }}*</label><br>
-                <input type="radio" id="warga_is_ktp_sama_domisili" name="warga_is_ktp_sama_domisili" value="1">
-                <label for="ya">Ya</label><br>
-                <input type="radio" id="warga_is_ktp_sama_domisili" name="warga_is_ktp_sama_domisili" value="2">
-                <label for="tidak">Tidak</label><br>
+                      <div class="form-group {{ $errors->has('warga_address_code') ? 'has-error' : '' }}">
+                        <label for="warga_address_code">{{ trans('global.warga.fields.warga_address_code') }}*
+                          <select name="warga_address_code" id="warga_address_code" class="form-control select2">
+                            @foreach($master_alamats as $id => $master_alamat)
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code->contains($id)) ? 'selected' : '' }}>
+                              {{ $master_alamat }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('master_alamat'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('master_alamat') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.warga.fields.warga_address_code_helper') }}
+                          </p>
+                      </div>
 
-            </div>
-
-            <div class="form-group {{ $errors->has('warga_join_date') ? 'has-error' : '' }}">
-                <label for="warga_join_date">{{ trans('global.warga.fields.warga_join_date') }}*</label>
-                <input type="date" id="warga_join_date" name="warga_join_date" class="form-control" value="{{ old('warga_join_date', isset($warga) ? $warga->warga_join_date : '') }}">
-                @if($errors->has('warga_join_date'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_join_date') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_join_date_helper') }}
-                </p>
-            </div>
-
-
-
-            <div class="form-group {{ $errors->has('warga_pendidikan') ? 'has-error' : '' }}">
-                <label for="warga_pendidikan">{{ trans('global.warga.fields.warga_pendidikan') }}*
-                    <select name="warga_pendidikan" id="warga_pendidikan" class="form-control select2">
-                        @foreach($pendidikans as $id => $pendidikan)
-                        <option value="{{ $id }}" {{ (in_array($id, old('warga_pendidikan', [])) || isset($warga) && $warga->warga_pendidikan->contains($id)) ? 'selected' : '' }}>
-                            {{ $pendidikan }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('pendidikan'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('pendidikan') }}
-                    </em>
-                    @endif
-                    <p class="helper-block">
-                        {{ trans('global.warga.fields.warga_pendidikan_helper') }}
-                    </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_job') ? 'has-error' : '' }}">
+                        <label for="warga_job">{{ trans('global.warga.fields.warga_job') }}*
+                          <select name="warga_job" id="warga_job" class="form-control select2">
+                            @foreach($jobs as $id => $job)
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_job', [])) || isset($warga) && $warga->warga_job->contains($id)) ? 'selected' : '' }}>
+                              {{ $job }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('job'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('job') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.warga.fields.warga_job_helper') }}
+                          </p>
+                      </div>
 
 
-            <div class="form-group {{ $errors->has('warga_rt') ? 'has-error' : '' }}">
-                <label for="warga_rt">{{ trans('global.warga.fields.warga_rt') }}*
-                    <select name="warga_rt" id="warga_rt" class="form-control select2">
-                        @foreach($rts as $id => $rt)
-                        <option value="{{ $id }}" {{ (in_array($id, old('warga_rt', [])) || isset($warga) && $warga->warga_rt->contains($id)) ? 'selected' : '' }}>
-                            {{ $rt }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('rt'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('rt') }}
-                    </em>
-                    @endif
-                    <p class="helper-block">
-                        {{ trans('global.warga.fields.warga_rt_helper') }}
-                    </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_salary_range') ? 'has-error' : '' }}">
+                        <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*</label>
+                        <input type="text" id="warga_salary_range" name="warga_salary_range" class="form-control" value="{{ old('warga_salary_range', isset($warga) ? $warga->warga_salary_range : '') }}">
+                        @if($errors->has('warga_salary_range'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_salary_range') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_salary_range_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}">
-                <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label>
-                <input type="text" id="warga_status" name="warga_status" class="form-control" value="{{ old('warga_status', isset($warga) ? $warga->warga_status : '') }}">
-                @if($errors->has('warga_status'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('warga_status') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.warga.fields.warga_status_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('warga_phone') ? 'has-error' : '' }}">
+                        <label for="warga_phone">{{ trans('global.warga.fields.warga_phone') }}*</label>
+                        <input type="text" id="warga_phone" name="warga_phone" class="form-control" value="{{ old('warga_phone', isset($warga) ? $warga->warga_phone : '') }}">
+                        @if($errors->has('warga_phone'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_phone') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_phone_helper') }}
+                        </p>
+                      </div>
 
-            <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-            </div>
-        </form>
-    </div>
-                <!-- /.card-body -->
+                      <div class="form-group {{ $errors->has('warga_email') ? 'has-error' : '' }}">
+                        <label for="warga_email">{{ trans('global.warga.fields.warga_email') }}*</label>
+                        <input type="text" id="warga_email" name="warga_email" class="form-control" value="{{ old('warga_email', isset($warga) ? $warga->warga_email : '') }}">
+                        @if($errors->has('warga_email'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_email') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_email_helper') }}
+                        </p>
+                      </div>
+
+                      <div class="form-group {{ $errors->has('warga_birth_date') ? 'has-error' : '' }}">
+                        <label for="warga_birth_date">{{ trans('global.warga.fields.warga_birth_date') }}*</label>
+                        <input type="date" id="warga_birth_date" name="warga_birth_date" class="form-control" value="{{ old('warga_birth_date', isset($warga) ? $warga->warga_birth_date : '') }}">
+                        @if($errors->has('warga_birth_date'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_birth_date') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_birth_date_helper') }}
+                        </p>
+                      </div>
+
+
+
+                      <div class="form-group {{ $errors->has('warga_is_ktp_sama_domisili') ? 'has-error' : '' }}">
+                        <label for="warga_is_ktp_sama_domisili">{{ trans('global.warga.fields.warga_is_ktp_sama_domisili') }}*</label><br>
+                        <input type="radio" id="warga_is_ktp_sama_domisili" name="warga_is_ktp_sama_domisili" value="1">
+                        <label for="ya">Ya</label><br>
+                        <input type="radio" id="warga_is_ktp_sama_domisili" name="warga_is_ktp_sama_domisili" value="2">
+                        <label for="tidak">Tidak</label><br>
+
+                      </div>
+
+                      <div class="form-group {{ $errors->has('warga_join_date') ? 'has-error' : '' }}">
+                        <label for="warga_join_date">{{ trans('global.warga.fields.warga_join_date') }}*</label>
+                        <input type="date" id="warga_join_date" name="warga_join_date" class="form-control" value="{{ old('warga_join_date', isset($warga) ? $warga->warga_join_date : '') }}">
+                        @if($errors->has('warga_join_date'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_join_date') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_join_date_helper') }}
+                        </p>
+                      </div>
+
+
+
+                      <div class="form-group {{ $errors->has('warga_pendidikan') ? 'has-error' : '' }}">
+                        <label for="warga_pendidikan">{{ trans('global.warga.fields.warga_pendidikan') }}*
+                          <select name="warga_pendidikan" id="warga_pendidikan" class="form-control select2">
+                            @foreach($pendidikans as $id => $pendidikan)
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_pendidikan', [])) || isset($warga) && $warga->warga_pendidikan->contains($id)) ? 'selected' : '' }}>
+                              {{ $pendidikan }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('pendidikan'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('pendidikan') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.warga.fields.warga_pendidikan_helper') }}
+                          </p>
+                      </div>
+
+
+                      <div class="form-group {{ $errors->has('warga_rt') ? 'has-error' : '' }}">
+                        <label for="warga_rt">{{ trans('global.warga.fields.warga_rt') }}*
+                          <select name="warga_rt" id="warga_rt" class="form-control select2">
+                            @foreach($rts as $id => $rt)
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_rt', [])) || isset($warga) && $warga->warga_rt->contains($id)) ? 'selected' : '' }}>
+                              {{ $rt }}
+                            </option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('rt'))
+                          <em class="invalid-feedback">
+                            {{ $errors->first('rt') }}
+                          </em>
+                          @endif
+                          <p class="helper-block">
+                            {{ trans('global.warga.fields.warga_rt_helper') }}
+                          </p>
+                      </div>
+
+                      <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}">
+                        <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label>
+                        <input type="text" id="warga_status" name="warga_status" class="form-control" value="{{ old('warga_status', isset($warga) ? $warga->warga_status : '') }}">
+                        @if($errors->has('warga_status'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_status') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_status_helper') }}
+                        </p>
+                      </div>
+
+                      <div>
+                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
               </div>
-              <!-- /.card -->
+              <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
           </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+          <!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>

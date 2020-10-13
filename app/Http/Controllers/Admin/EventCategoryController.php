@@ -7,22 +7,31 @@ use App\Http\Requests\MassDestroyEventCategoryRequest;
 use App\Http\Requests\StoreEventCategoryRequest;
 use App\Http\Requests\UpdateEventCategoryRequest;
 use App\Event_Category;
+use App\rt;
+use Illuminate\Support\Facades\Auth;
+
 class EventCategoryController extends Controller
 {
     public function index()
     {
-       
+        $user = Auth::user()->rt_id;
         abort_unless(\Gate::allows('event_category_access'), 403);
         $event_category = Event_Category::all();
+        if ($user != null) {
+            $event_category = Event_Category::where('id_rt', $user)->get();
+        } else {
+            $event_category = Event_Category::all();
+        }
 
-        return view('admin.event_category.index', compact('event_category'));
+        return view('admin.event_category.index', compact('event_category', 'user'));
     }
 
     public function create()
     {
+        $rts = Auth::user()->rt_id;
         abort_unless(\Gate::allows('event_category_create'), 403);
 
-        return view('admin.event_category.create');
+        return view('admin.event_category.create', compact('rts'));
     }
 
     public function store(StoreEventCategoryRequest $request)
@@ -36,18 +45,19 @@ class EventCategoryController extends Controller
 
     public function edit(Event_Category $event_category)
     {
+        $rts = Auth::user()->rt_id;
         abort_unless(\Gate::allows('event_category_edit'), 403);
 
-        return view('admin.event_category.edit', compact('event_category'));
+        return view('admin.event_category.edit', compact('event_category', 'rts'));
     }
 
     public function update(UpdateEventCategoryRequest $request, Event_Category $event_category)
     {
-        
+
         abort_unless(\Gate::allows('event_category_edit'), 403);
 
         $event_category->update($request->all());
-        
+
         return redirect()->route('admin.event_category.index');
     }
 

@@ -250,6 +250,12 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>History Warga</p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -302,13 +308,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pendidikan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sekolah</p>
                                     </a>
@@ -320,9 +326,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Kategori History Warga</p>
+                                        <p>Kategori Histori</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -340,7 +346,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Kategori Insidental </p>
+                                        <p>Kategori Insidental</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -349,7 +355,6 @@
                                         <p>Kategori SDM</p>
                                     </a>
                                 </li>
-
                             </ul>
                         </li>
 
@@ -383,7 +388,11 @@
                             </ul>
                         </li>
                         <li class="nav-item">
+<<<<<<< Updated upstream
                             <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+=======
+                            <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+>>>>>>> Stashed changes
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Logout
@@ -497,9 +506,9 @@
                                                     <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                     <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
-                                                        @foreach($keuangan_warga_ids as $id => $keuangan_warga_id)
-                                                        <option value="{{ $keuangan_warga_id->id }}" {{ (in_array($id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $keuangan_warga_id->warga_first_name . " " . $keuangan_warga_id->warga_last_name}}
+                                                        @foreach($keuangan_warga_ids as $address_code_id => $keuangan_warga_id)
+                                                        <option value="{{ $keuangan_warga_id->id }}" {{ (in_array($address_code_id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($address_code_id)) ? 'selected' : '' }}>
+                                                            {{ $keuangan_warga_id->address_code_name}}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -513,26 +522,8 @@
                                                     </p>
                                             </div>
 
-                                            <div class="form-group {{ $errors->has('keuangan_rt') ? 'has-error' : '' }}">
-                                                <label for="keuangan_rt">{{ trans('global.keuangan.fields.keuangan_rt') }}*
-                                                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                    <select name="keuangan_rt" id="keuangan_rt" class="form-control select2">
-                                                        @foreach($keuangan_rt as $id => $keuangan_rt)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('keuangan_rt', [])) || isset($keuangan) && $keuangan->keuangan_rt->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $keuangan_rt }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if($errors->has('keuangan_rt'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('keuangan_rt') }}
-                                                    </em>
-                                                    @endif
-                                                    <p class="helper-block">
-                                                        {{ trans('global.keuangan.fields.keuangan_rt_helper') }}
-                                                    </p>
-                                            </div>
+                                                  <input type="text" id="keuangan_rt" name="keuangan_rt" class="form-control" value="{{$user}}" hidden>
+                                          
                                             <div>
                                                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                                             </div>

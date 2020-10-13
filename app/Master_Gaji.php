@@ -16,6 +16,7 @@ class Master_Gaji extends Model
     ];
 
     protected $fillable = [
+        'salary_rt',
         'salary_start',
         'salary_end',
         'created_at',

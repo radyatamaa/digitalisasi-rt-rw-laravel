@@ -8,14 +8,20 @@ use App\Http\Requests\MassDestroyRtRequest;
 use App\Http\Requests\StoreRtRequest;
 use App\Http\Requests\UpdateRtRequest;
 use App\Rt;
+use Illuminate\Support\Facades\Auth;
 
 class RtController extends Controller
 {
     public function index()
     {
+        $user = Auth::user()->rw_id;
 
         abort_unless(\Gate::allows('rt_access'), 403);
-        $rt = Rt::all();
+        if ($user != null) {
+            $rt = Rt::where('rt_rw_id', $user)->get();
+        } else {
+            $rt = Rt::all();
+        }
 
         return view('admin.rt.index', compact('rt'));
     }
@@ -24,7 +30,14 @@ class RtController extends Controller
     {
         abort_unless(\Gate::allows('rt_create'), 403);
 
-        $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
+        $user = Auth::user()->rw_id;
+
+        if ($user != null) {
+            $rt_rw_id = Rt::all()->pluck('rw_name', 'id')
+                ->where('rt_rw_id', $user)->get();
+        } else {
+            $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
+        }
 
         return view('admin.rt.create', compact('rt_rw_id'));
     }
@@ -43,7 +56,14 @@ class RtController extends Controller
     {
         abort_unless(\Gate::allows('rt_edit'), 403);
 
-        $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
+        $user = Auth::user()->rw_id;
+
+        if ($user != null) {
+            $rt_rw_id = Rt::all()->pluck('rw_name', 'id')
+                ->where('rt_rw_id', $user)->get();
+        } else {
+            $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
+        }
 
         return view('admin.rt.edit', compact('rt', 'rt_rw_id'));
     }

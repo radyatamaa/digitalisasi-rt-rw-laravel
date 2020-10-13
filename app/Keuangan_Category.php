@@ -17,6 +17,7 @@ class Keuangan_Category extends Model
 
     protected $fillable = [
         'category_name',
+        'id_rt',
         'created_at',
         'updated_at',
         'deleted_at',

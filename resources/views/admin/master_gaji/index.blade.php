@@ -199,6 +199,7 @@
                 </li>
               </ul>
             </li>
+            @can('warga_access')
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -223,8 +224,10 @@
 
               </ul>
             </li>
+            @endcan
+            @can('keuangan_access')
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -232,8 +235,10 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+            @endcan
+            @can('event_access')
+            <li class="nav-item active">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -241,15 +246,26 @@
                 </p>
               </a>
             </li>
+            @endcan
+            @can('insidental_access')
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
               </a>
             </li>
+            @endcan
+            @can('history_warga_access')
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -259,97 +275,126 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('rt_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RT</p>
                   </a>
                 </li>
+                @endcan
+                @can('rw_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RW</p>
                   </a>
                 </li>
+                @endcan
+                @can('kelurahan_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kelurahan</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_alamat_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Address Code</p>
                   </a>
                 </li>
-                <li class="nav-item active">
+                @endcan
+                @can('master_agama_access')
+                <li class="nav-item">
                   <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Agama</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_pekerjaan_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pekerjaan</p>
                   </a>
                 </li>
+                @endcan
+                @can('master_gaji_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Gaji</p>
                   </a>
                 </li>
+                @endcan
+                @can('pendidikan_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pendidikan</p>
                   </a>
                 </li>
+                @endcan
+                @can('sekolah_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Sekolah</p>
                   </a>
                 </li>
+                @endcan
+                @can('wilayah_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Wilayah</p>
                   </a>
                 </li>
+                @endcan
+                @can('history_category_access')
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
+                @endcan
+                @can('keuangan_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
+                @endcan
+                @can('event_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
                   </a>
                 </li>
+                @endcan
+                @can('insidental_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Insidental</p>
                   </a>
                 </li>
+                @endcan
+                @can('sdm_category_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori SDM</p>
                   </a>
                 </li>
-
+                @endcan
               </ul>
             </li>
 
@@ -362,28 +407,34 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('permission_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Permissions</p>
                   </a>
                 </li>
+                @endcan
+                @can('role_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Roles</p>
                   </a>
                 </li>
+                @endcan
+                @can('user_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Users</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+              <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Logout
@@ -426,86 +477,92 @@
 
               <!-- /.card -->
               @section('content')
-@can('master_gaji_create')
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.master_gaji.create") }}">
-            {{ trans('global.add') }} {{ trans('global.master_gaji.title_singular') }}
-        </a>
-    </div>
-</div>
-@endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.master_gaji.title_singular') }} {{ trans('global.list') }}
-    </div>
+              @can('master_gaji_create')
+              <div style="margin-bottom: 10px;" class="row">
+                <div class="col-lg-12">
+                  <a class="btn btn-success" href="{{ route("admin.master_gaji.create") }}">
+                    {{ trans('global.add') }} {{ trans('global.master_gaji.title_singular') }}
+                  </a>
+                </div>
+              </div>
+              @endcan
+              <div class="card">
+                <div class="card-header">
+                  {{ trans('global.master_gaji.title_singular') }} {{ trans('global.list') }}
+                </div>
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable">
-                <thead>
-                    <tr>
-                        <th width="10">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class=" table table-bordered table-striped table-hover datatable">
+                      <thead>
+                        <tr>
+                          <th width="10">
 
-                        </th>
-                        <th>
+                          </th>
+                          <th>
+                            {{ trans('global.master_gaji.fields.salary_rt') }}
+                          </th>
+                          <th>
                             {{ trans('global.master_gaji.fields.salary_start') }}
-                        </th>
-                        <th>
+                          </th>
+                          <th>
                             {{ trans('global.master_gaji.fields.salary_end') }}
-                        </th>
-                        <!-- <th>
+                          </th>
+                          <!-- <th>
                             {{ trans('global.product.fields.description') }}
                         </th>
                         <th>
                             {{ trans('global.product.fields.price') }}
                         </th> -->
-                        <th>
+                          <th>
                             &nbsp;
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($master_gaji as $key => $master_gajis)
-                    <tr data-entry-id="{{ $master_gajis->id }}">
-                        <td>
-                        {{ $key + 1}}
-                        </td>
-                        <td>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($master_gaji as $key => $master_gajis)
+                        <tr data-entry-id="{{ $master_gajis->id }}">
+                          <td>
+                            {{ $key + 1}}
+                          </td>
+                          <td>
+                            {{ $master_gajis->salary_rt ?? '' }}
+                          </td>
+                          <td>
                             {{ $master_gajis->salary_start ?? '' }}
-                        </td>
-                        <td>
+                          </td>
+                          <td>
                             {{ $master_gajis->salary_end ?? '' }}
-                        </td>
-                        <!-- <td>
+                          </td>
+                          <!-- <td>
                                 {{ $product->description ?? '' }}
                             </td>
                             <td>
                                 {{ $product->price ?? '' }}
                             </td> -->
-                        <td>
-                            
+                          <td>
+
                             @can('master_gaji_edit')
                             <a class="btn btn-xs btn-info" href="{{ route('admin.master_gaji.edit', $master_gajis->id) }}">
-                                {{ trans('global.edit') }}
+                              {{ trans('global.edit') }}
                             </a>
                             @endcan
                             @can('master_gaji_delete')
                             <form action="{{ route('admin.master_gaji.destroy', $master_gajis->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                              <input type="hidden" name="_method" value="DELETE">
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                              <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                             </form>
                             @endcan
-                        </td>
+                          </td>
 
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
               <!-- /.card -->
             </div>
             <!-- /.col -->

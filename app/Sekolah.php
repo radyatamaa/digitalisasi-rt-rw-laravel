@@ -18,6 +18,7 @@ class Sekolah extends Model
     protected $fillable = [
         'sekolah_pendidikan',
         'sekolah_name',
+        'sekolah_rt',
         'sekolah_wilayah',
         'rt_status',
         'created_at',

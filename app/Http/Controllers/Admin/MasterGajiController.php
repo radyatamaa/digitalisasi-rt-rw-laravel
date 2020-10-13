@@ -2,28 +2,35 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Rt;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyMasterGajiRequest;
 use App\Http\Requests\StoreMasterGajiRequest;
 use App\Http\Requests\UpdateMasterGajiRequest;
 use App\master_gaji;
+use Illuminate\Support\Facades\Auth;
 
 class MasterGajiController extends Controller
 {
     public function index()
     {
+        $user = Auth::user()->rt_id;
+
         abort_unless(\Gate::allows('master_gaji_access'), 403);
-
-        $master_gaji = Master_Gaji::all();
-
+        if ($user != null) {
+            $master_gaji = master_gaji::where('salary_rt', $user)->get();
+        } else {
+            $master_gaji = master_gaji::all();
+        }
         return view('admin.master_gaji.index', compact('master_gaji'));
     }
 
     public function create()
     {
+        $rts = Auth::user()->rt_id;
         abort_unless(\Gate::allows('master_gaji_create'), 403);
 
-        return view('admin.master_gaji.create');
+        return view('admin.master_gaji.create', compact('rts'));
     }
 
     public function store(StoreMasterGajiRequest $request)
@@ -37,9 +44,10 @@ class MasterGajiController extends Controller
 
     public function edit(master_gaji $master_gaji)
     {
+        $rts = Auth::user()->rt_id;
         abort_unless(\Gate::allows('master_gaji_edit'), 403);
 
-        return view('admin.master_gaji.edit', compact('master_gaji'));
+        return view('admin.master_gaji.edit', compact('master_gaji', 'rts'));
     }
 
     public function update(UpdateMasterGajiRequest $request, master_gaji $master_gaji)
