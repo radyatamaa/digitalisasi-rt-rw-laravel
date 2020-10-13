@@ -17,12 +17,12 @@ class RtController extends Controller
         $user = Auth::user()->rw_id;
 
         abort_unless(\Gate::allows('rt_access'), 403);
-        if($user != null){
-            $rt = Rt::all()->where('rt_rw_id', $user)->get();
-        }else{
+        if ($user != null) {
+            $rt = Rt::where('rt_rw_id', $user)->get();
+        } else {
             $rt = Rt::all();
         }
-      
+
         return view('admin.rt.index', compact('rt'));
     }
 
@@ -32,10 +32,10 @@ class RtController extends Controller
 
         $user = Auth::user()->rw_id;
 
-        if($user != null){
+        if ($user != null) {
             $rt_rw_id = Rt::all()->pluck('rw_name', 'id')
-            ->where('rt_rw_id', $user)->get();
-        }else{
+                ->where('rt_rw_id', $user)->get();
+        } else {
             $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
         }
 
@@ -58,10 +58,10 @@ class RtController extends Controller
 
         $user = Auth::user()->rw_id;
 
-        if($user != null){
+        if ($user != null) {
             $rt_rw_id = Rt::all()->pluck('rw_name', 'id')
-            ->where('rt_rw_id', $user)->get();
-        }else{
+                ->where('rt_rw_id', $user)->get();
+        } else {
             $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
         }
 

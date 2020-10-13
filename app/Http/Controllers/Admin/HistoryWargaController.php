@@ -20,7 +20,7 @@ class HistoryWargaController extends Controller
 
         abort_unless(\Gate::allows('history_warga_access'), 403);
         if ($user != null) {
-            $history_warga = History_Warga::all()->where('id_rt', $user)->get();
+            $history_warga = History_Warga::where('id_rt', $user)->get();
         } else {
             $history_warga = History_Warga::all();
         }

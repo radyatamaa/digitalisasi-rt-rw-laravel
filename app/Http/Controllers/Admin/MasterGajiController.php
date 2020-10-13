@@ -18,7 +18,7 @@ class MasterGajiController extends Controller
 
         abort_unless(\Gate::allows('master_gaji_access'), 403);
         if ($user != null) {
-            $master_gaji = master_gaji::all()->where('salary_rt', $user)->get();
+            $master_gaji = master_gaji::where('salary_rt', $user)->get();
         } else {
             $master_gaji = master_gaji::all();
         }

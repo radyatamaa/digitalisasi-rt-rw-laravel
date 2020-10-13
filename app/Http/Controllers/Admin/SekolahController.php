@@ -20,7 +20,7 @@ class SekolahController extends Controller
 
         abort_unless(\Gate::allows('sekolah_access'), 403);
         if ($user != null) {
-            $sekolah = Sekolah::all()->where('sekolah_rt', $user)->get();
+            $sekolah = Sekolah::where('sekolah_rt', $user)->get();
         } else {
             $sekolah = sekolah::all();
         }

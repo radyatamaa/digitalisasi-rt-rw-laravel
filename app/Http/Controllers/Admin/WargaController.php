@@ -22,36 +22,38 @@ class WargaController extends Controller
     {
 
         abort_unless(\Gate::allows('warga_access'), 403);
-        
-        $user = Auth::user()->rt_id;
-        if($user != null){
-            $warga = Warga::select('warga.*',
-            'religion.religion_name',
-            'rt.rt_name',
-            'pendidikan.pendidikan_name',
-            'address_code.address_code_name',
-            'job.job_name')
-            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
-            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->where('warga.warga_rt', $user)
-            ->get();
-    
-        }else{
-        $warga = Warga::select('warga.*',
-        'religion.religion_name',
-        'rt.rt_name',
-        'pendidikan.pendidikan_name',
-        'address_code.address_code_name',
-        'job.job_name')
-        ->join('religion', 'religion.id', '=', 'warga.warga_religion')
-        ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-        ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-        ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-        ->join('job', 'job.id', '=', 'warga.warga_job')->get();
 
+        $user = Auth::user()->rt_id;
+        if ($user != null) {
+            $warga = Warga::select(
+                'warga.*',
+                'religion.religion_name',
+                'rt.rt_name',
+                'pendidikan.pendidikan_name',
+                'address_code.address_code_name',
+                'job.job_name'
+            )
+                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->where('warga.warga_rt', $user)
+                ->get();
+        } else {
+            $warga = Warga::select(
+                'warga.*',
+                'religion.religion_name',
+                'rt.rt_name',
+                'pendidikan.pendidikan_name',
+                'address_code.address_code_name',
+                'job.job_name'
+            )
+                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')->get();
         }
 
         // $warga = Warga::all();
@@ -61,20 +63,20 @@ class WargaController extends Controller
     public function create()
     {
         abort_unless(\Gate::allows('warga_create'), 403);
-        
+
         $user = Auth::user()->rt_id;
 
         $religions = Master_agama::all()->pluck('religion_name', 'id');
         $jobs = Master_Pekerjaan::all()->pluck('job_name', 'id');
-        if($user != null){
-            $rts = Rt::all()->where('id', $user)->pluck('rt_name', 'id');
-        }else{
+        if ($user != null) {
+            $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
+        } else {
             $rts = Rt::all()->pluck('rt_name', 'id');
         }
         $pendidikans = Pendidikan::all()->pluck('pendidikan_name', 'id');
         $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
 
-        return view('admin.warga.create', compact( 'religions','jobs','rts','pendidikans','master_alamats'));
+        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats'));
     }
 
     public function store(StoreWargaRequest $request)
@@ -93,16 +95,22 @@ class WargaController extends Controller
 
         $warga_religion = Master_agama::all()->pluck('religion_name', 'id');
         $warga_job = Master_Pekerjaan::all()->pluck('job_name', 'id');
-        if($user != null){
-            $warga_rt = Rt::all()->where('id', $user)->pluck('rt_name', 'id');
-        }else{
+        if ($user != null) {
+            $warga_rt = Rt::where('id', $user)->pluck('rt_name', 'id');
+        } else {
             $warga_rt = Rt::all()->pluck('rt_name', 'id');
         }
         $warga_pendidikan = Pendidikan::all()->pluck('pendidikan_name', 'id');
         $warga_address_code = Master_Alamat::all()->pluck('address_code_name', 'id');
 
-        return view('admin.warga.edit', compact('warga','warga_religion','warga_job',
-        'warga_rt','warga_pendidikan','warga_address_code'));
+        return view('admin.warga.edit', compact(
+            'warga',
+            'warga_religion',
+            'warga_job',
+            'warga_rt',
+            'warga_pendidikan',
+            'warga_address_code'
+        ));
     }
 
     public function update(UpdateWargaRequest $request, Warga $warga)
