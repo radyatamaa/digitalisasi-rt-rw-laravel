@@ -333,7 +333,7 @@
                 @endcan
                 @can('pendidikan_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pendidikan</p>
                   </a>
@@ -341,7 +341,7 @@
                 @endcan
                 @can('sekolah_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Sekolah</p>
                   </a>
@@ -434,7 +434,7 @@
               </ul>
             </li>
             <li class="nav-item">
-               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+              <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Logout
@@ -529,7 +529,7 @@
                       <div class="form-group {{ $errors->has('kelurahan_id') ? 'has-error' : '' }}">
                         <label for="kelurahan_id">{{ trans('global.user.fields.kelurahan_id') }}*
                           <select name="kelurahan_id" id="kelurahan_id" class="form-control select2">
-                          <option value=""></option>
+                            <option value=""></option>
                             @foreach($kelurahan_id as $id => $kelurahan_id)
                             <option value="{{ $id }}" {{ (in_array($id, old('kelurahan_id', [])) || isset($rw) && $rw->kelurahan_id->contains($id)) ? 'selected' : '' }}>
                               {{ $kelurahan_id }}
@@ -548,7 +548,7 @@
                       <div class="form-group {{ $errors->has('rw_id') ? 'has-error' : '' }}">
                         <label for="rw_id">{{ trans('global.user.fields.rw_id') }}*
                           <select name="rw_id" id="rw_id" class="form-control select2">
-                          <option value=""></option>
+                            <option value=""></option>
                             @foreach($rw_id as $id => $rw_id)
                             <option value="{{ $id }}" {{ (in_array($id, old('rw_id', [])) || isset($rw) && $rw->rw_id->contains($id)) ? 'selected' : '' }}>
                               {{ $rw_id }}
@@ -567,7 +567,7 @@
                       <div class="form-group {{ $errors->has('rt_id') ? 'has-error' : '' }}">
                         <label for="rt_id">{{ trans('global.user.fields.rt_id') }}*
                           <select name="rt_id" id="rt_id" class="form-control select2">
-                          <option value=""></option>
+                            <option value=""></option>
                             @foreach($rt_id as $id => $rt_id)
                             <option value="{{ $id }}" {{ (in_array($id, old('rt_id', [])) || isset($rw) && $rw->rt_id->contains($id)) ? 'selected' : '' }}>
                               {{ $rt_id }}

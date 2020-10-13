@@ -388,6 +388,8 @@ return [
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
+            'id_rt'               => 'ID RT',
+            'id_rt_helper'        => '',
             'category_name'               => 'Category Name',
             'category_name_helper'        => '',
             'created_at'         => 'Created At',
