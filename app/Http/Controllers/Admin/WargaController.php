@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateWargaRequest;
 use App\Warga;
 use App\Pendidikan;
 use App\Master_Alamat;
+use Illuminate\Support\Facades\Auth;
 
 
 class WargaController extends Controller
@@ -22,6 +23,23 @@ class WargaController extends Controller
 
         abort_unless(\Gate::allows('warga_access'), 403);
         
+        $user = Auth::user()->rt_id;
+        if($user != null){
+            $warga = Warga::select('warga.*',
+            'religion.religion_name',
+            'rt.rt_name',
+            'pendidikan.pendidikan_name',
+            'address_code.address_code_name',
+            'job.job_name')
+            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->where('warga.warga_rt', $user)
+            ->get();
+    
+        }else{
         $warga = Warga::select('warga.*',
         'religion.religion_name',
         'rt.rt_name',
@@ -34,6 +52,8 @@ class WargaController extends Controller
         ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
         ->join('job', 'job.id', '=', 'warga.warga_job')->get();
 
+        }
+
         // $warga = Warga::all();
         return view('admin.warga.index', compact('warga'));
     }
@@ -42,9 +62,15 @@ class WargaController extends Controller
     {
         abort_unless(\Gate::allows('warga_create'), 403);
         
+        $user = Auth::user()->rt_id;
+
         $religions = Master_agama::all()->pluck('religion_name', 'id');
         $jobs = Master_Pekerjaan::all()->pluck('job_name', 'id');
-        $rts = Rt::all()->pluck('rt_name', 'id');
+        if($user != null){
+            $rts = Rt::all()->where('id', $user)->pluck('rt_name', 'id');
+        }else{
+            $rts = Rt::all()->pluck('rt_name', 'id');
+        }
         $pendidikans = Pendidikan::all()->pluck('pendidikan_name', 'id');
         $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
 
@@ -63,10 +89,15 @@ class WargaController extends Controller
     public function edit(Warga $warga)
     {
         abort_unless(\Gate::allows('warga_edit'), 403);
+        $user = Auth::user()->rt_id;
 
         $warga_religion = Master_agama::all()->pluck('religion_name', 'id');
         $warga_job = Master_Pekerjaan::all()->pluck('job_name', 'id');
-        $warga_rt = Rt::all()->pluck('rt_name', 'id');
+        if($user != null){
+            $warga_rt = Rt::all()->where('id', $user)->pluck('rt_name', 'id');
+        }else{
+            $warga_rt = Rt::all()->pluck('rt_name', 'id');
+        }
         $warga_pendidikan = Pendidikan::all()->pluck('pendidikan_name', 'id');
         $warga_address_code = Master_Alamat::all()->pluck('address_code_name', 'id');
 

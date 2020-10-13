@@ -224,7 +224,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Keuangan
@@ -233,7 +233,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Event
@@ -242,12 +242,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Insidential
+                                    Insidental
                                     <!-- <span class="right badge badge-danger">New</span> -->
                                 </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>History Warga</p>
                             </a>
                         </li>
                         <li class="nav-item has-treeview menu-open">
@@ -320,9 +326,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Kategori History Warga</p>
+                                        <p>Kategori Histori</p>
                                     </a>
                                 </li>
                                 <li class="nav-item active">
@@ -331,7 +337,7 @@
                                         <p>Kategori Keuangan</p>
                                     </a>
                                 </li>
-                                <li class="nav-item ">
+                                <li class="nav-item">
                                     <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Event</p>

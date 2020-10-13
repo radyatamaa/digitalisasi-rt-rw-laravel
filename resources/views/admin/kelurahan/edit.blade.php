@@ -224,7 +224,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Keuangan
@@ -233,7 +233,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Event
@@ -242,12 +242,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                  Insidential
+                  Insidental
                   <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
               </a>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -259,7 +265,7 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>RT</p>
@@ -271,7 +277,7 @@
                     <p>RW</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kelurahan</p>
@@ -320,9 +326,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Kategori History Warga</p>
+                    <p>Kategori Histori</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -331,7 +337,7 @@
                     <p>Kategori Keuangan</p>
                   </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                   <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Event</p>
@@ -435,66 +441,66 @@
                   <!-- /.card-header -->
                   <!-- form start -->
                   <div class="card-body">
-        <form action="{{ route("admin.kelurahan.update", [$kelurahan->id]) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="form-group {{ $errors->has('kel_name') ? 'has-error' : '' }}">
-                <label for="kel_name">{{ trans('global.kelurahan.fields.kel_name') }}*</label>
-                <input type="text" id="kel_name" name="kel_name" class="form-control" value="{{ old('kel_name', isset($kelurahan) ? $kelurahan->kel_name : '') }}">
-                @if($errors->has('kel_name'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('kel_name') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.kelurahan.fields.kel_name_helper') }}
-                </p>
-            </div>
+                    <form action="{{ route("admin.kelurahan.update", [$kelurahan->id]) }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      @method('PUT')
+                      <div class="form-group {{ $errors->has('kel_name') ? 'has-error' : '' }}">
+                        <label for="kel_name">{{ trans('global.kelurahan.fields.kel_name') }}*</label>
+                        <input type="text" id="kel_name" name="kel_name" class="form-control" value="{{ old('kel_name', isset($kelurahan) ? $kelurahan->kel_name : '') }}">
+                        @if($errors->has('kel_name'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('kel_name') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.kelurahan.fields.kel_name_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('kel_code') ? 'has-error' : '' }}">
-                <label for="kel_code">{{ trans('global.kelurahan.fields.kel_code') }}*</label>
-                <input type="text" id="kel_code" name="kel_code" class="form-control" value="{{ old('kel_code', isset($kelurahan) ? $kelurahan->kel_code : '') }}">
-                @if($errors->has('kel_code'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('kel_code') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.kelurahan.fields.kel_code_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('kel_code') ? 'has-error' : '' }}">
+                        <label for="kel_code">{{ trans('global.kelurahan.fields.kel_code') }}*</label>
+                        <input type="text" id="kel_code" name="kel_code" class="form-control" value="{{ old('kel_code', isset($kelurahan) ? $kelurahan->kel_code : '') }}">
+                        @if($errors->has('kel_code'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('kel_code') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.kelurahan.fields.kel_code_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('kel_kec_id') ? 'has-error' : '' }}">
-                <label for="kel_kec_id">{{ trans('global.kelurahan.fields.kel_kec_id') }}*</label>
-                <input type="text" id="kel_kec_id" name="kel_kec_id" class="form-control" value="{{ old('kel_kec_id', isset($kelurahan) ? $kelurahan->kel_kec_id : '') }}">
-                @if($errors->has('kel_kec_id'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('kel_kec_id') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.kelurahan.fields.kel_kec_id_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('kel_kec_id') ? 'has-error' : '' }}">
+                        <label for="kel_kec_id">{{ trans('global.kelurahan.fields.kel_kec_id') }}*</label>
+                        <input type="text" id="kel_kec_id" name="kel_kec_id" class="form-control" value="{{ old('kel_kec_id', isset($kelurahan) ? $kelurahan->kel_kec_id : '') }}">
+                        @if($errors->has('kel_kec_id'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('kel_kec_id') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.kelurahan.fields.kel_kec_id_helper') }}
+                        </p>
+                      </div>
 
-            <div class="form-group {{ $errors->has('kel_status') ? 'has-error' : '' }}">
-                <label for="kel_status">{{ trans('global.kelurahan.fields.kel_status') }}*</label>
-                <input type="text" id="kel_status" name="kel_status" class="form-control" value="{{ old('kel_status', isset($kelurahan) ? $kelurahan->kel_status : '') }}">
-                @if($errors->has('kel_status'))
-                <em class="invalid-feedback">
-                    {{ $errors->first('kel_status') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.kelurahan.fields.kel_status_helper') }}
-                </p>
-            </div>
+                      <div class="form-group {{ $errors->has('kel_status') ? 'has-error' : '' }}">
+                        <label for="kel_status">{{ trans('global.kelurahan.fields.kel_status') }}*</label>
+                        <input type="text" id="kel_status" name="kel_status" class="form-control" value="{{ old('kel_status', isset($kelurahan) ? $kelurahan->kel_status : '') }}">
+                        @if($errors->has('kel_status'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('kel_status') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.kelurahan.fields.kel_status_helper') }}
+                        </p>
+                      </div>
 
-            <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-            </div>
-        </form>
-    </div>
+                      <div>
+                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                      </div>
+                    </form>
+                  </div>
                 </div>
                 <!-- /.card-body -->
               </div>
