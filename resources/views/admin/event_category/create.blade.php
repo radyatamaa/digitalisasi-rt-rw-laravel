@@ -333,7 +333,7 @@
                                 @endcan
                                 @can('pendidikan_access')
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pendidikan</p>
                                     </a>
@@ -341,7 +341,7 @@
                                 @endcan
                                 @can('sekolah_access')
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sekolah</p>
                                     </a>
@@ -434,7 +434,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                             <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Logout
@@ -502,11 +502,13 @@
                                                     {{ trans('global.event_category.fields.category_name_helper') }}
                                                 </p>
                                             </div>
+                                            <input type="text" id="id_rt" name="id_rt" class="form-control" value="{{$rts}}" hidden>
                                             <div>
                                                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                                             </div>
                                         </form>
                                     </div>
+
 
                                 </div>
                                 <!-- /.card-body -->

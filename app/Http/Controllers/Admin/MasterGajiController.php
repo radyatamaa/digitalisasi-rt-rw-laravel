@@ -27,21 +27,15 @@ class MasterGajiController extends Controller
 
     public function create()
     {
+        $rts = Auth::user()->rt_id;
         abort_unless(\Gate::allows('master_gaji_create'), 403);
 
-        return view('admin.master_gaji.create');
+        return view('admin.master_gaji.create', compact('rts'));
     }
 
     public function store(StoreMasterGajiRequest $request)
     {
         abort_unless(\Gate::allows('master_gaji_create'), 403);
-
-        $user = Auth::user()->rt_id;
-        if ($user != null) {
-            $_POST['salary_rt'] = $user;
-        } else {
-            $_POST['salary_rt'] = null;
-        }
 
         $master_gaji = Master_Gaji::create($request->all());
 
@@ -50,9 +44,10 @@ class MasterGajiController extends Controller
 
     public function edit(master_gaji $master_gaji)
     {
+        $rts = Auth::user()->rt_id;
         abort_unless(\Gate::allows('master_gaji_edit'), 403);
 
-        return view('admin.master_gaji.edit', compact('master_gaji'));
+        return view('admin.master_gaji.edit', compact('master_gaji', 'rts'));
     }
 
     public function update(UpdateMasterGajiRequest $request, master_gaji $master_gaji)

@@ -24,7 +24,7 @@ return [
     'remember_me'                          => 'Remember me',
     'forgot_password'                      => 'Forgot your password?',
     'register'                             => 'Register',
-    'login_email'                          => 'Email',
+    'login_email'                          => 'Username',
     'login_password'                       => 'Password',
     'login_password_confirmation'          => 'Password confirmation',
     'yes'                                  => 'Yes',
@@ -388,6 +388,8 @@ return [
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
+            'id_rt'               => 'ID RT',
+            'id_rt_helper'        => '',
             'category_name'               => 'Category Name',
             'category_name_helper'        => '',
             'created_at'         => 'Created At',
