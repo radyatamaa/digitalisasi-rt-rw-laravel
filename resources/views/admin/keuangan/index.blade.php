@@ -516,6 +516,7 @@
                                                     <th>
                                                         {{ trans('global.keuangan.fields.keuangan_rt') }}
                                                     </th>
+                                                  
 
                                                     <th>
                                                         &nbsp;
@@ -525,8 +526,12 @@
                                             <tbody>
                                                 @foreach($keuangan as $key => $keuangans)
                                                 <tr data-entry-id="{{ $keuangans->id }}">
+                                                @php
+                                            {{  $date=date_create($keuangans->keuangan_periode);
+                                                $keuangans->keuangan_periode = date_format($date,"Y/m"); }}
+                                                @endphp
                                                     <td>
-
+                                                    {{$key+1}}
                                                     </td>
                                                     <td>
                                                         {{ $keuangans->keuangan_tipe ?? '' }}
@@ -541,11 +546,12 @@
                                                         {{ $keuangans->keuangan_value ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $keuangans->warga_first_name . ' ' . $keuangans->warga_last_name ?? '' }}
-                                                    </td>
+                                                    {{ $keuangans->address_code_name ?? '' }}       
+                                                </td>
                                                     <td>
                                                         {{ $keuangans->rt_name ?? '' }}
                                                     </td>
+                                                  
 
                                                     <td>
                                                         @can('keuangan_show')

@@ -20,6 +20,7 @@ class Insidental extends Model
         'ins_category',
         'ins_detail',
         'ins_date',
+        'id_rt',
         'created_at',
         'updated_at',
         'deleted_at',
