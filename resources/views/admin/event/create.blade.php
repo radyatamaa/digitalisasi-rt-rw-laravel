@@ -333,7 +333,7 @@
                                 @endcan
                                 @can('pendidikan_access')
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pendidikan</p>
                                     </a>
@@ -341,7 +341,7 @@
                                 @endcan
                                 @can('sekolah_access')
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sekolah</p>
                                     </a>
@@ -434,7 +434,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                             <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Logout
@@ -502,11 +502,11 @@
                                                 </p>
                                             </div>
 
-                                            <div class="form-group {{ $errors->has('event_rt') ? 'has-error' : '' }}">
-                                                <label for="event_rt">{{ trans('global.event.fields.event_rt') }}*
-                                                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                                            <!-- <div class="form-group {{ $errors->has('event_rt') ? 'has-error' : '' }}">
+                                                <label for="event_rt">{{ trans('global.event.fields.event_rt') }}* -->
+                                            <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                    <select name="event_rt" id="event_rt" class="form-control select2">
+                                            <!-- <select name="event_rt" id="event_rt" class="form-control select2">
                                                         @foreach($event_rt as $id => $event_rt)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('event_rt', [])) || isset($event) && $event->event_rt->contains($id)) ? 'selected' : '' }}>
                                                             {{ $event_rt }}
@@ -521,7 +521,7 @@
                                                     <p class="helper-block">
                                                         {{ trans('global.event.fields.event_rt_helper') }}
                                                     </p>
-                                            </div>
+                                            </div> -->
 
 
 
@@ -557,6 +557,7 @@
                                                     {{ trans('global.event.fields.event_date_helper') }}
                                                 </p>
                                             </div>
+                                            <input type="text" id="event_rt" name="event_rt" class="form-control" value="{{$rts}}" hidden>
                                             <div>
                                                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                                             </div>
