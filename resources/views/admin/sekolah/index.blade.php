@@ -459,6 +459,9 @@
                                                         {{ trans('global.sekolah.fields.sekolah_name') }}
                                                     </th>
                                                     <th>
+                                                        {{ trans('global.sekolah.fields.sekolah_rt') }}
+                                                    </th>
+                                                    <th>
                                                         {{ trans('global.sekolah.fields.sekolah_wilayah') }}
                                                     </th>
                                                     <th>
@@ -477,6 +480,9 @@
                                                     </td>
                                                     <td>
                                                         {{ $sekolahs->sekolah_name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $sekolahs->sekolah_rt ?? '' }}
                                                     </td>
                                                     <td>
                                                         {{ $sekolahs->sekolah_wilayah ?? '' }}
