@@ -17,6 +17,7 @@ class UsersController extends Controller
 {
     public function index()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('user_access'), 403);
 
         $rw = Auth::user()->rw_id;
@@ -43,11 +44,12 @@ class UsersController extends Controller
             $users = User::all();
         }
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('user_create'), 403);
 
         $rw = Auth::user()->rw_id;
@@ -83,7 +85,7 @@ class UsersController extends Controller
             $roles = Role::all()->pluck('title', 'id');
         }
 
-        return view('admin.users.create', compact('roles', 'rt_id', 'rw_id', 'kelurahan_id'));
+        return view('admin.users.create', compact('roles', 'rt_id', 'rw_id', 'kelurahan_id','userLogin'));
     }
 
     public function store(StoreUserRequest $request)
@@ -98,6 +100,7 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('user_edit'), 403);
 
         $rw = Auth::user()->rw_id;
@@ -139,7 +142,7 @@ class UsersController extends Controller
 
         $user->load('roles');
 
-        return view('admin.users.edit', compact('roles', 'user', 'rt_id', 'rw_id', 'kelurahan_id'));
+        return view('admin.users.edit', compact('roles', 'user', 'rt_id', 'rw_id', 'kelurahan_id','userLogin'));
     }
 
     public function update(UpdateUserRequest $request, User $user)

@@ -21,7 +21,7 @@ class WargaController extends Controller
 {
     public function index()
     {
-
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('warga_access'), 403);
 
         $user = Auth::user()->rt_id;
@@ -58,11 +58,12 @@ class WargaController extends Controller
         }
 
         // $warga = Warga::all();
-        return view('admin.warga.index', compact('warga'));
+        return view('admin.warga.index', compact('warga','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('warga_create'), 403);
 
         $user = Auth::user()->rt_id;
@@ -82,7 +83,11 @@ class WargaController extends Controller
         $pendidikans = Pendidikan::all()->pluck('pendidikan_name', 'id');
         
 
+<<<<<<< Updated upstream
         return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','warga_salary_range'));
+=======
+        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','userLogin'));
+>>>>>>> Stashed changes
     }
 
     public function store(StoreWargaRequest $request)
@@ -96,6 +101,7 @@ class WargaController extends Controller
 
     public function edit(Warga $warga)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('warga_edit'), 403);
         $user = Auth::user()->rt_id;
 
@@ -120,7 +126,11 @@ class WargaController extends Controller
             'warga_rt',
             'warga_pendidikan',
             'warga_address_code',
+<<<<<<< Updated upstream
             'warga_salary_range'
+=======
+            'userLogin'
+>>>>>>> Stashed changes
         ));
     }
 

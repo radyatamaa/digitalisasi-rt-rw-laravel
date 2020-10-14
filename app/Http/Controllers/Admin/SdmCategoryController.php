@@ -14,6 +14,7 @@ class SdmCategoryController extends Controller
 {
     public function index()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('sdm_category_access'), 403);
         $rt = Auth::user()->rt_id;
         if($rt != null){
@@ -22,14 +23,15 @@ class SdmCategoryController extends Controller
             $sdm_category = Sdm_Category::all();
         }
 
-        return view('admin.sdm_category.index', compact('sdm_category'));
+        return view('admin.sdm_category.index', compact('sdm_category','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('sdm_category_create'), 403);
         $rt = Auth::user()->rt_id;
-        return view('admin.sdm_category.create', compact('rt'));
+        return view('admin.sdm_category.create', compact('rt','userLogin'));
     }
 
     public function store(StoreSdmCategoryRequest $request)
@@ -43,11 +45,12 @@ class SdmCategoryController extends Controller
 
     public function edit(Sdm_Category $sdm_category)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('sdm_category_edit'), 403);
         
         $rt = Auth::user()->rt_id;
 
-        return view('admin.sdm_category.edit', compact('sdm_category','rt'));
+        return view('admin.sdm_category.edit', compact('sdm_category','rt','userLogin'));
     }
 
     public function update(UpdateSdmCategoryRequest $request, Sdm_Category $sdm_category)

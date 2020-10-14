@@ -8,25 +8,27 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Permission;
 use App\Role;
-
+use Illuminate\Support\Facades\Auth;
 class RolesController extends Controller
 {
     public function index()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('role_access'), 403);
 
         $roles = Role::all();
 
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('role_create'), 403);
 
         $permissions = Permission::all()->pluck('title', 'id');
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions','userLogin'));
     }
 
     public function store(StoreRoleRequest $request)
@@ -41,13 +43,14 @@ class RolesController extends Controller
 
     public function edit(Role $role)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('role_edit'), 403);
 
         $permissions = Permission::all()->pluck('title', 'id');
 
         $role->load('permissions');
 
-        return view('admin.roles.edit', compact('permissions', 'role'));
+        return view('admin.roles.edit', compact('permissions', 'role','userLogin'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role)
