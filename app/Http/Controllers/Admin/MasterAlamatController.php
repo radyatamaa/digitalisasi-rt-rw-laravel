@@ -8,25 +8,31 @@ use App\Http\Requests\StoreMasterAlamatRequest;
 use App\Http\Requests\UpdateMasterAlamatRequest;
 use App\Master_Alamat;
 use Illuminate\Support\Facades\Auth;
+use App\Rt;
 
 class MasterAlamatController extends Controller
 {
     public function index()
     {
+        $user = Auth::user()->rt_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_alamat_access'), 403);
+        if ($user != null) {
+            $master_alamat = Master_Alamat::where('address_code_rt', $user)->get();
+        } else {
+            $master_alamat = Master_Alamat::all();
+        }
 
-        $master_alamat = Master_Alamat::all();
-
-        return view('admin.master_alamat.index', compact('master_alamat', 'userLogin'));
+        return view('admin.master_alamat.index', compact('master_alamat', 'user', 'userLogin'));
     }
 
     public function create()
     {
+        $rts = Auth::user()->rt_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_alamat_create'), 403);
 
-        return view('admin.master_alamat.create', 'userLogin');
+        return view('admin.master_alamat.create', compact('userLogin', 'rts'));
     }
 
     public function store(StoreMasterAlamatRequest $request)
@@ -40,6 +46,7 @@ class MasterAlamatController extends Controller
 
     public function edit(master_alamat $master_alamat)
     {
+
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_alamat_edit'), 403);
 

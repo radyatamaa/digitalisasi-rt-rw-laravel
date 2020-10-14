@@ -50,6 +50,7 @@ class KeuanganController extends Controller
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         $user = Auth::user()->rt_id;
         abort_unless(\Gate::allows('keuangan_create'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
@@ -57,7 +58,7 @@ class KeuanganController extends Controller
         $keuangan_warga_ids = Master_Alamat::all();
 
 
-        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user'));
+        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user', 'userLogin'));
     }
 
     public function store(StoreKeuanganRequest $request)
@@ -71,12 +72,13 @@ class KeuanganController extends Controller
 
     public function edit(Keuangan $keuangan)
     {
+        $userLogin = Auth::user()->user_fullname;
         $user = Auth::user()->rt_id;
         abort_unless(\Gate::allows('keuangan_edit'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
         $keuangan_category = Keuangan_Category::all()->pluck('category_name', 'id');
         $keuangan_warga_ids =  Master_Alamat::all();
-        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user'));
+        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user', 'userLogin'));
     }
 
     public function update(UpdateKeuanganRequest $request, Keuangan $keuangan)
