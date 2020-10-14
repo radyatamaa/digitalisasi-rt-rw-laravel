@@ -29,7 +29,7 @@ class InsidentalController extends Controller
                 ->where('insidental.id_rt', $user)
                 ->get();
         } else {
-            $ins_category = Insidental::select(
+            $insidental = Insidental::select(
                 'insidental.*',
                 'rt.rt_name',
                 'ins_category.category_name'

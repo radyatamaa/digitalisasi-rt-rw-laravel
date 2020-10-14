@@ -546,7 +546,7 @@
                                                         {{ $insidentals->ins_date ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $insidentals->id_rt ?? '' }}
+                                                        {{ $insidentals->rt_name ?? '' }}
                                                     </td>
                                                     <td>
                                                         @can('insidental_show')
