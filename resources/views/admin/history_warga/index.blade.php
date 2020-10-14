@@ -531,13 +531,13 @@
                                                         {{ $history_wargas->history_date ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $history_wargas->history_category ?? '' }}
+                                                        {{ $history_wargas->category_name ?? '' }}
                                                     </td>
                                                     <td>
                                                         {{ $history_wargas->id_rt ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $history_wargas->warga_id ?? '' }}
+                                                        {{ $history_wargas->warga_first_name . ' ' . $history_wargas->warga_last_name ?? '' }}
                                                     </td>
                                                     <td>
                                                         @can('history_warga_show')

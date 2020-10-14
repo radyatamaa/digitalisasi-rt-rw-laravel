@@ -522,7 +522,7 @@
 
                                                     </td>
                                                     <td>
-                                                        {{ $sekolahs->sekolah_pendidikan ?? '' }}
+                                                        {{ $sekolahs->pendidikan_name ?? '' }}
                                                     </td>
                                                     <td>
                                                         {{ $sekolahs->sekolah_name ?? '' }}
@@ -531,7 +531,7 @@
                                                         {{ $sekolahs->sekolah_rt ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $sekolahs->sekolah_wilayah ?? '' }}
+                                                        {{ $sekolahs->wilayah_name ?? '' }}
                                                     </td>
                                                     <td>
                                                         @can('sekolah_show')
