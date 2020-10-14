@@ -15,9 +15,7 @@ class UpdateWargaRequest extends FormRequest
     public function rules()
     {
         return [
-            'warga_no_ktp' => [
-                'required',
-            ],
+           
             'warga_no_kk' => [
                 'required',
             ],

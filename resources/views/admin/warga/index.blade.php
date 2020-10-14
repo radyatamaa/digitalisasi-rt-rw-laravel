@@ -602,7 +602,7 @@
                             {{ $wargas->job_name ?? '' }}
                           </td>
                           <td>
-                            {{ $wargas->warga_salary_range ?? '' }}
+                            {{ $wargas->salary_start . ' - ' . $wargas->salary_end ?? '' }}
                           </td>
                           <td>
                             {{ $wargas->warga_phone ?? '' }}
@@ -636,10 +636,23 @@
                           <td>
                             {{ $wargas->rt_name ?? '' }}
                           </td>
+                          @if($wargas->warga_status == 1)
                           <td>
-                            {{ $wargas->warga_status ?? '' }}
+                            Aktif
                           </td>
-
+                          @elseif($wargas->warga_status == 2)
+                          <td>
+                           Tidak Aktif
+                          </td>
+                          @elseif($wargas->warga_status == 0)
+                          <td>
+                            Pending
+                          </td>
+                          @else
+                          <td>
+                            
+                          </td>
+                          @endif
                           <td>
 
                             @can('warga_edit')

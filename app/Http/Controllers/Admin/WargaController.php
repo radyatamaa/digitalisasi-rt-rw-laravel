@@ -32,13 +32,16 @@ class WargaController extends Controller
                 'rt.rt_name',
                 'pendidikan.pendidikan_name',
                 'address_code.address_code_name',
-                'job.job_name'
+                'job.job_name',
+                'salary.salary_start',
+                'salary.salary_end'
             )
                 ->join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_rt', $user)
                 ->get();
         } else {
@@ -48,13 +51,16 @@ class WargaController extends Controller
                 'rt.rt_name',
                 'pendidikan.pendidikan_name',
                 'address_code.address_code_name',
-                'job.job_name'
+                'job.job_name',
+                'salary.salary_start',
+                'salary.salary_end'
             )
                 ->join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')->get();
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->get();
         }
 
         // $warga = Warga::all();
@@ -82,12 +88,8 @@ class WargaController extends Controller
         }
         $pendidikans = Pendidikan::all()->pluck('pendidikan_name', 'id');
         
+        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','userLogin','warga_salary_range'));
 
-<<<<<<< Updated upstream
-        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','warga_salary_range'));
-=======
-        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','userLogin'));
->>>>>>> Stashed changes
     }
 
     public function store(StoreWargaRequest $request)
@@ -126,11 +128,8 @@ class WargaController extends Controller
             'warga_rt',
             'warga_pendidikan',
             'warga_address_code',
-<<<<<<< Updated upstream
-            'warga_salary_range'
-=======
+            'warga_salary_range',
             'userLogin'
->>>>>>> Stashed changes
         ));
     }
 
