@@ -7,23 +7,25 @@ use App\Http\Requests\MassDestroyPermissionRequest;
 use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
 use App\Permission;
-
+use Illuminate\Support\Facades\Auth;
 class PermissionsController extends Controller
 {
     public function index()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('permission_access'), 403);
 
         $permissions = Permission::all();
 
-        return view('admin.permissions.index', compact('permissions'));
+        return view('admin.permissions.index', compact('permissions','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('permission_create'), 403);
 
-        return view('admin.permissions.create');
+        return view('admin.permissions.create', compact('userLogin'));
     }
 
     public function store(StorePermissionRequest $request)
@@ -37,9 +39,10 @@ class PermissionsController extends Controller
 
     public function edit(Permission $permission)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('permission_edit'), 403);
 
-        return view('admin.permissions.edit', compact('permission'));
+        return view('admin.permissions.edit', compact('permission','userLogin'));
     }
 
     public function update(UpdatePermissionRequest $request, Permission $permission)
