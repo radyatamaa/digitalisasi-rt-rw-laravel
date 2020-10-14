@@ -40,12 +40,7 @@ class SekolahController extends Controller
                 ->join('pendidikan', 'pendidikan.id', '=', 'sekolah.sekolah_pendidikan')->get();
         }
 
-<<<<<<< Updated upstream
         return view('admin.sekolah.index', compact('sekolah','userLogin'));
-=======
-
-        return view('admin.sekolah.index', compact('sekolah'));
->>>>>>> Stashed changes
     }
 
     public function create()
