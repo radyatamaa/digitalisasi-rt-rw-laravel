@@ -39,7 +39,7 @@ class InsidentalController extends Controller
                 ->get();
         }
 
-        return view('admin.insidental.index', compact('insidental', 'user', 'userLogin','ins_category'));
+        return view('admin.insidental.index', compact('insidental', 'user', 'userLogin'));
     }
 
     public function create()

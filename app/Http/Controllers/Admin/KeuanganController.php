@@ -65,7 +65,7 @@ class KeuanganController extends Controller
             $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
            
         }
-        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user','userLogin','master_alamats'));
+        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'user','userLogin','master_alamats'));
 
     }
 
@@ -84,9 +84,18 @@ class KeuanganController extends Controller
         $user = Auth::user()->rt_id;
         abort_unless(\Gate::allows('keuangan_edit'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
-        $keuangan_category = Keuangan_Category::all()->pluck('category_name', 'id');
-        $keuangan_warga_ids =  Master_Alamat::all();
-        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user', 'userLogin'));
+       
+        if ($user != null) {
+            $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
+            $master_alamats = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
+            $keuangan_category = Keuangan_Category::where('id_rt', $user)->pluck('category_name', 'id');
+            
+        } else {
+            $rts = Rt::all()->pluck('rt_name', 'id');
+            $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
+            $keuangan_category = Keuangan_Category::where('id_rt', $user)->pluck('category_name', 'id');
+        }
+        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt', 'keuangan_category', 'master_alamats', 'user', 'userLogin'));
     }
 
     public function update(UpdateKeuanganRequest $request, Keuangan $keuangan)
