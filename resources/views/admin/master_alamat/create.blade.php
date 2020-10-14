@@ -498,55 +498,8 @@
                         {{ trans('global.master_alamat.fields.address_code_name_helper') }}
                       </p>
                     </div>
+                    <input type="text" id="address_code_rt" name="address_code_rt" class="form-control" value="{{$rts}}" hidden>
 
-                    <div class="form-group {{ $errors->has('address_code_rt') ? 'has-error' : '' }}">
-                      <label for="address_code_rt">{{ trans('global.master_alamat.fields.address_code_rt') }}*</label>
-                      <input type="text" id="address_code_rt" name="address_code_rt" class="form-control" value="{{ old('address_code_rt', isset($master_alamat) ? $master_alamat->address_code_rt : '') }}">
-                      @if($errors->has('address_code_rt'))
-                      <em class="invalid-feedback">
-                        {{ $errors->first('address_code_rt') }}
-                      </em>
-                      @endif
-                      <p class="helper-block">
-                        {{ trans('global.master_alamat.fields.address_code_rt_helper') }}
-                      </p>
-                    </div>
-
-                    <div class="form-group">
-                      <select class="browser-default custom-select">
-                        <option selected>RT Name</option>
-                        <option value="1">001</option>
-                        <option value="2">002</option>
-                        <option value="3">003</option>
-                      </select>
-                    </div>
-
-
-
-                    <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                <label for="description">{{ trans('global.master_alamat.fields.description') }}</label>
-                <textarea id="description" name="description" class="form-control ">{{ old('description', isset($master_alamat) ? $master_alamat->description : '') }}</textarea>
-                @if($errors->has('description'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('description') }}
-                    </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_alamat.fields.description_helper') }}
-                </p>
-            </div> -->
-                    <!-- <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
-                <label for="price">{{ trans('global.master_alamat.fields.price') }}</label>
-                <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($master_alamat) ? $master_alamat->price : '') }}" step="0.01">
-                @if($errors->has('price'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('price') }}
-                    </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_alamat.fields.price_helper') }}
-                </p>
-            </div> -->
                     <div>
                       <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                     </div>

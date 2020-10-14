@@ -21,12 +21,31 @@ class SekolahController extends Controller
 
         abort_unless(\Gate::allows('sekolah_access'), 403);
         if ($user != null) {
-            $sekolah = Sekolah::where('sekolah_rt', $user)->get();
+            $sekolah = sekolah::select(
+                'sekolah.*',
+                'pendidikan.pendidikan_name',
+                'wilayah.wilayah_name'
+            )
+                ->join('pendidikan', 'pendidikan.id', '=', 'sekolah.sekolah_pendidikan')
+                ->join('wilayah', 'wilayah.id', '=', 'sekolah.sekolah_wilayah')
+                ->where('sekolah.sekolah_rt', $user)
+                ->get();
         } else {
-            $sekolah = sekolah::all();
+            $sekolah = sekolah::select(
+                'sekolah.*',
+                'pendidikan.pendidikan_name',
+                'wilayah.wilayah_name'
+            )
+                ->join('wilayah', 'wilayah.id', '=', 'sekolah.sekolah_wilayah')
+                ->join('pendidikan', 'pendidikan.id', '=', 'sekolah.sekolah_pendidikan')->get();
         }
 
+<<<<<<< Updated upstream
         return view('admin.sekolah.index', compact('sekolah','userLogin'));
+=======
+
+        return view('admin.sekolah.index', compact('sekolah'));
+>>>>>>> Stashed changes
     }
 
     public function create()
