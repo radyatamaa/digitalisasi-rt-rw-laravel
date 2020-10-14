@@ -512,6 +512,9 @@
                             {{ trans('global.warga.fields.warga_last_name') }}
                           </th>
                           <th>
+                            {{ trans('global.warga.fields.warga_rt') }}
+                          </th>
+                          <th>
                             {{ trans('global.warga.fields.warga_sex') }}
                           </th>
                           <th>
@@ -547,9 +550,7 @@
                           <th>
                             {{ trans('global.warga.fields.warga_pendidikan') }}
                           </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_rt') }}
-                          </th>
+                          
                           <th>
                             {{ trans('global.warga.fields.warga_status') }}
                           </th>
@@ -575,6 +576,9 @@
                           </td>
                           <td>
                             {{ $wargas->warga_last_name ?? '' }}
+                          </td>
+                          <td>
+                            {{ $wargas->rt_name ?? '' }}
                           </td>
                           @if($wargas->warga_sex == 1)
                           <td>
@@ -633,9 +637,7 @@
                           <td>
                             {{ $wargas->pendidikan_name ?? '' }}
                           </td>
-                          <td>
-                            {{ $wargas->rt_name ?? '' }}
-                          </td>
+                         
                           @if($wargas->warga_status == 1)
                           <td>
                             Aktif
