@@ -14,10 +14,7 @@ class StoreWargaRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'warga_no_ktp' => [
-                'required',
-            ],
+        return [           
             'warga_no_kk' => [
                 'required',
             ],
