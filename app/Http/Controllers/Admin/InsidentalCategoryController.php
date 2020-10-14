@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateInsidentalCategoryRequest;
 use App\Insidental_Category;
 use Illuminate\Support\Facades\Auth;
 use App\Rt;
+
 class InsidentalCategoryController extends Controller
 {
     public function index()
@@ -16,21 +17,23 @@ class InsidentalCategoryController extends Controller
         $user = Auth::user()->rt_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_category_access'), 403);
-        if($user != null){
+        if ($user != null) {
             $insidental_category = Insidental_Category::where('id_rt', $user)->get();
-        }else{
+        } else {
             $insidental_category = Insidental_Category::all();
         }
 
-        return view('admin.insidental_category.index', compact('insidental_category','user','userLogin'));
+        return view('admin.insidental_category.index', compact('insidental_category', 'user', 'userLogin'));
     }
 
     public function create()
     {
+
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_category_create'), 403);
 
-        return view('admin.insidental_category.create', compact('user'));
+        return view('admin.insidental_category.create', compact('user', 'userLogin'));
     }
 
     public function store(StoreInsidentalCategoryRequest $request)
@@ -45,18 +48,19 @@ class InsidentalCategoryController extends Controller
     public function edit(Insidental_Category $insidental_category)
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_category_edit'), 403);
 
-        return view('admin.insidental_category.edit', compact('insidental_category','user'));
+        return view('admin.insidental_category.edit', compact('insidental_category', 'user', 'userLogin'));
     }
 
     public function update(UpdateInsidentalCategoryRequest $request, Insidental_Category $insidental_category)
     {
-        
+
         abort_unless(\Gate::allows('insidental_category_edit'), 403);
 
         $insidental_category->update($request->all());
-        
+
         return redirect()->route('admin.insidental_category.index');
     }
 

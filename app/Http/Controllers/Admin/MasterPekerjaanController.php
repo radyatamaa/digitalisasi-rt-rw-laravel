@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyMasterPekerjaanRequest;
 use App\Http\Requests\StoreMasterPekerjaanRequest;
 use App\Http\Requests\UpdateMasterPekerjaanRequest;
-use App\master_pekerjaan;
+use App\Master_Pekerjaan;
 
 class MasterPekerjaanController extends Controller
 {

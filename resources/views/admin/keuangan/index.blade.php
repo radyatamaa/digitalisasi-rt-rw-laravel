@@ -161,7 +161,7 @@
                         <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin</a>
+                        <a href="#" class="d-block">{{$userLogin}}</a>
                     </div>
                 </div>
 
@@ -516,7 +516,7 @@
                                                     <th>
                                                         {{ trans('global.keuangan.fields.keuangan_rt') }}
                                                     </th>
-                                                  
+
 
                                                     <th>
                                                         &nbsp;
@@ -526,12 +526,12 @@
                                             <tbody>
                                                 @foreach($keuangan as $key => $keuangans)
                                                 <tr data-entry-id="{{ $keuangans->id }}">
-                                                @php
-                                            {{  $date=date_create($keuangans->keuangan_periode);
+                                                    @php
+                                                    {{ $date=date_create($keuangans->keuangan_periode);
                                                 $keuangans->keuangan_periode = date_format($date,"Y/m"); }}
-                                                @endphp
+                                                    @endphp
                                                     <td>
-                                                    {{$key+1}}
+                                                        {{$key+1}}
                                                     </td>
                                                     <td>
                                                         {{ $keuangans->keuangan_tipe ?? '' }}
@@ -546,12 +546,12 @@
                                                         {{ $keuangans->keuangan_value ?? '' }}
                                                     </td>
                                                     <td>
-                                                    {{ $keuangans->address_code_name ?? '' }}       
-                                                </td>
+                                                        {{ $keuangans->address_code_name ?? '' }}
+                                                    </td>
                                                     <td>
                                                         {{ $keuangans->rt_name ?? '' }}
                                                     </td>
-                                                  
+
 
                                                     <td>
                                                         @can('keuangan_show')

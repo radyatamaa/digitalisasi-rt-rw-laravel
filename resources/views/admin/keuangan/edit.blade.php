@@ -161,7 +161,7 @@
                         <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin</a>
+                        <a href="#" class="d-block">{{$userLogin}}</a>
                     </div>
                 </div>
 
@@ -387,17 +387,16 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-<<<<<<< Updated upstream
-                            <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-=======
-                            <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
->>>>>>> Stashed changes
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Logout
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
+                            <<<<<<< Updated upstream <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                                =======
+                                <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+                                    >>>>>>> Stashed changes
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Logout
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
                         </li>
 
                     </ul>
@@ -515,7 +514,7 @@
                                                 <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
                                                     @foreach($keuangan_warga_ids as $address_code_name => $keuangan_warga_id)
                                                     <option value="{{ $keuangan_warga_id->id}}" {{ (in_array($keuangan_warga_id->id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id) ? 'selected' : '' }}>
-                                                    {{ $keuangan_warga_id->address_code_name}}
+                                                        {{ $keuangan_warga_id->address_code_name}}
                                                     </option>
                                                     @endforeach
                                                 </select>
@@ -529,9 +528,9 @@
                                                 </p>
                                         </div>
 
-                                      
+
                                         <input type="text" id="keuangan_rt" name="keuangan_rt" class="form-control" value="{{$user}}" hidden>
-                                          
+
                                         <div>
                                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                                         </div>

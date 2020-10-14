@@ -17,7 +17,7 @@ class HistoryWargaController extends Controller
     public function index()
     {
         $user = Auth::user()->rt_id;
-
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_access'), 403);
         if ($user != null) {
             $history_warga = History_Warga::where('id_rt', $user)->get();
@@ -25,18 +25,19 @@ class HistoryWargaController extends Controller
             $history_warga = History_Warga::all();
         }
 
-        return view('admin.history_warga.index', compact('history_warga'));
+        return view('admin.history_warga.index', compact('history_warga', 'userLogin'));
     }
 
     public function create()
     {
         $rts = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_create'), 403);
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
         $warga_ids = Warga::all();
 
-        return view('admin.history_warga.create', compact('history_category', 'warga_ids', 'rts'));
+        return view('admin.history_warga.create', compact('history_category', 'warga_ids', 'rts', 'userLogin'));
     }
 
     public function store(StoreHistoryWargaRequest $request)
@@ -51,11 +52,12 @@ class HistoryWargaController extends Controller
     public function edit(History_Warga $history_warga)
     {
         $rts = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_edit'), 403);
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
         $warga_ids = Warga::all();
-        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts'));
+        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin'));
     }
 
     public function update(UpdateHistoryWargaRequest $request, History_Warga $history_warga)

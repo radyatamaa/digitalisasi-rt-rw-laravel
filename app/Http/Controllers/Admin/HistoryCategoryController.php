@@ -7,22 +7,25 @@ use App\Http\Requests\MassDestroyHistoryCategoryRequest;
 use App\Http\Requests\StoreHistoryCategoryRequest;
 use App\Http\Requests\UpdateHistoryCategoryRequest;
 use App\History_Category;
+use Illuminate\Support\Facades\Auth;
+
 class HistoryCategoryController extends Controller
 {
     public function index()
     {
-       
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_category_access'), 403);
         $history_category = History_Category::all();
 
-        return view('admin.history_category.index', compact('history_category'));
+        return view('admin.history_category.index', compact('history_category', 'userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_category_create'), 403);
 
-        return view('admin.history_category.create');
+        return view('admin.history_category.create', compact('userLogin'));
     }
 
     public function store(StoreHistoryCategoryRequest $request)
@@ -36,18 +39,19 @@ class HistoryCategoryController extends Controller
 
     public function edit(History_Category $history_category)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_category_edit'), 403);
 
-        return view('admin.history_category.edit', compact('history_category'));
+        return view('admin.history_category.edit', compact('history_category', 'userLogin'));
     }
 
     public function update(UpdateHistoryCategoryRequest $request, History_Category $history_category)
     {
-        
+
         abort_unless(\Gate::allows('history_category_edit'), 403);
 
         $history_category->update($request->all());
-        
+
         return redirect()->route('admin.history_category.index');
     }
 

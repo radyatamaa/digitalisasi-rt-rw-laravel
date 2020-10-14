@@ -18,31 +18,34 @@ class KeuanganController extends Controller
     public function index()
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('keuangan_access'), 403);
-   
-        if($user!= null){
-            $keuangan = Keuangan::select('keuangan.*',
-            'rt.rt_name',
-            'keuangan_category.category_name',       
-            'address_code.address_code_name')
-            ->join('rt', 'rt.id', '=', 'keuangan.keuangan_rt')
-            ->join('address_code', 'address_code.id', '=', 'keuangan.keuangan_warga_id')
-            ->join('keuangan_category', 'keuangan_category.id', '=', 'keuangan.keuangan_category')
-            ->where('keuangan.keuangan_rt', $user)
-            ->get();
-     
-        }else {
-            $keuangan = Keuangan::select('keuangan.*',
-            'rt.rt_name',
-            'keuangan_category.category_name',       
-            'address_code.address_code_name')
-            ->join('rt', 'rt.id', '=', 'keuangan.keuangan_rt')
-            ->join('address_code', 'address_code.id', '=', 'keuangan.keuangan_warga_id')
-            ->join('keuangan_category', 'keuangan_category.id', '=', 'keuangan.keuangan_category')->get();
-         
+
+        if ($user != null) {
+            $keuangan = Keuangan::select(
+                'keuangan.*',
+                'rt.rt_name',
+                'keuangan_category.category_name',
+                'address_code.address_code_name'
+            )
+                ->join('rt', 'rt.id', '=', 'keuangan.keuangan_rt')
+                ->join('address_code', 'address_code.id', '=', 'keuangan.keuangan_warga_id')
+                ->join('keuangan_category', 'keuangan_category.id', '=', 'keuangan.keuangan_category')
+                ->where('keuangan.keuangan_rt', $user)
+                ->get();
+        } else {
+            $keuangan = Keuangan::select(
+                'keuangan.*',
+                'rt.rt_name',
+                'keuangan_category.category_name',
+                'address_code.address_code_name'
+            )
+                ->join('rt', 'rt.id', '=', 'keuangan.keuangan_rt')
+                ->join('address_code', 'address_code.id', '=', 'keuangan.keuangan_warga_id')
+                ->join('keuangan_category', 'keuangan_category.id', '=', 'keuangan.keuangan_category')->get();
         }
-        
-        return view('admin.keuangan.index', compact('keuangan','user'));
+
+        return view('admin.keuangan.index', compact('keuangan', 'user', 'userLogin'));
     }
 
     public function create()
@@ -54,7 +57,7 @@ class KeuanganController extends Controller
         $keuangan_warga_ids = Master_Alamat::all();
 
 
-        return view('admin.keuangan.create', compact('keuangan_rt','keuangan_category','keuangan_warga_ids','user'));
+        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user'));
     }
 
     public function store(StoreKeuanganRequest $request)
@@ -73,7 +76,7 @@ class KeuanganController extends Controller
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
         $keuangan_category = Keuangan_Category::all()->pluck('category_name', 'id');
         $keuangan_warga_ids =  Master_Alamat::all();
-        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt','keuangan_category','keuangan_warga_ids','user'));
+        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user'));
     }
 
     public function update(UpdateKeuanganRequest $request, Keuangan $keuangan)

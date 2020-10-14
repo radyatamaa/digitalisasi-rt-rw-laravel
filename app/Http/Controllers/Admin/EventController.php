@@ -16,6 +16,7 @@ class EventController extends Controller
     public function index()
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_access'), 403);
         if ($user != null) {
             $event = Event::select(
@@ -36,17 +37,18 @@ class EventController extends Controller
         }
 
 
-        return view('admin.event.index', compact('event', 'user'));
+        return view('admin.event.index', compact('event', 'user', 'userLogin'));
     }
 
     public function create()
     {
         $rts = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_create'), 403);
         $event_rt = Rt::all()->pluck('rt_name', 'id');
         $event_category = Event_Category::all()->pluck('category_name', 'id');
 
-        return view('admin.event.create', compact('event_rt', 'event_category', 'rts'));
+        return view('admin.event.create', compact('event_rt', 'event_category', 'rts', 'userLogin'));
     }
 
     public function store(StoreEventRequest $request)
@@ -61,11 +63,12 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         $rts = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_edit'), 403);
         $event_rt = Rt::all()->pluck('rt_name', 'id');
         $event_category = Event_Category::all()->pluck('category_name', 'id');
 
-        return view('admin.event.edit', compact('event', 'event_rt', 'event_category', 'rts'));
+        return view('admin.event.edit', compact('event', 'event_rt', 'event_category', 'rts', 'userLogin'));
     }
 
     public function update(UpdateEventRequest $request, Event $event)
