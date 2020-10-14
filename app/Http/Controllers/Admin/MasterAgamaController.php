@@ -6,24 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyMasterAgamaRequest;
 use App\Http\Requests\StoreMasterAgamaRequest;
 use App\Http\Requests\UpdateMasterAgamaRequest;
-use App\master_agama;
+use App\Master_Agama;
+use Illuminate\Support\Facades\Auth;
 
 class MasterAgamaController extends Controller
 {
     public function index()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_agama_access'), 403);
 
         $master_agama = Master_Agama::all();
 
-        return view('admin.master_agama.index', compact('master_agama'));
+        return view('admin.master_agama.index', compact('master_agama', 'userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_agama_create'), 403);
 
-        return view('admin.master_agama.create');
+        return view('admin.master_agama.create', compact('userLogin'));
     }
 
     public function store(StoreMasterAgamaRequest $request)
@@ -37,9 +40,10 @@ class MasterAgamaController extends Controller
 
     public function edit(master_agama $master_agama)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_agama_edit'), 403);
 
-        return view('admin.master_agama.edit', compact('master_agama'));
+        return view('admin.master_agama.edit', compact('master_agama', 'userLogin'));
     }
 
     public function update(UpdateMasterAgamaRequest $request, master_agama $master_agama)

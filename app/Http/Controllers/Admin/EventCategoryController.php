@@ -15,6 +15,7 @@ class EventCategoryController extends Controller
     public function index()
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_category_access'), 403);
         $event_category = Event_Category::all();
         if ($user != null) {
@@ -23,15 +24,16 @@ class EventCategoryController extends Controller
             $event_category = Event_Category::all();
         }
 
-        return view('admin.event_category.index', compact('event_category', 'user'));
+        return view('admin.event_category.index', compact('event_category', 'user', 'userLogin'));
     }
 
     public function create()
     {
         $rts = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_category_create'), 403);
 
-        return view('admin.event_category.create', compact('rts'));
+        return view('admin.event_category.create', compact('rts', 'userLogin'));
     }
 
     public function store(StoreEventCategoryRequest $request)
@@ -46,9 +48,10 @@ class EventCategoryController extends Controller
     public function edit(Event_Category $event_category)
     {
         $rts = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_category_edit'), 403);
 
-        return view('admin.event_category.edit', compact('event_category', 'rts'));
+        return view('admin.event_category.edit', compact('event_category', 'rts', 'userLogin'));
     }
 
     public function update(UpdateEventCategoryRequest $request, Event_Category $event_category)

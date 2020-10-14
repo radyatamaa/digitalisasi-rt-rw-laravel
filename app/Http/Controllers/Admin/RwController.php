@@ -8,25 +8,27 @@ use App\Http\Requests\MassDestroyRwRequest;
 use App\Http\Requests\StoreRwRequest;
 use App\Http\Requests\UpdateRwRequest;
 use App\Rw;
+use Illuminate\Support\Facades\Auth;
 
 class RwController extends Controller
 {
     public function index()
     {
-
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('rw_access'), 403);
         $rw = Rw::all();
 
-        return view('admin.rw.index', compact('rw'));
+        return view('admin.rw.index', compact('rw','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('rw_create'), 403);
 
         $rw_kel_id = Kelurahan::all()->pluck('kel_name', 'id');
 
-        return view('admin.rw.create', compact('rw_kel_id'));
+        return view('admin.rw.create', compact('rw_kel_id','userLogin'));
     }
 
 
@@ -41,11 +43,12 @@ class RwController extends Controller
 
     public function edit(rw $rw)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('rw_edit'), 403);
 
         $rw_kel_id = Kelurahan::all()->pluck('kel_name', 'id');
 
-        return view('admin.rw.edit', compact('rw', 'rw_kel_id'));
+        return view('admin.rw.edit', compact('rw', 'rw_kel_id','userLogin'));
     }
 
 
