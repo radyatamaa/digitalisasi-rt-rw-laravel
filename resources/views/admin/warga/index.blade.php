@@ -266,6 +266,14 @@
               </a>
             </li>
             @endcan
+            @can('sdm_access')
+                        <li class="nav-item">
+                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>SDM</p>
+                            </a>
+                        </li>
+                        @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -512,6 +520,9 @@
                             {{ trans('global.warga.fields.warga_last_name') }}
                           </th>
                           <th>
+                            {{ trans('global.warga.fields.warga_rt') }}
+                          </th>
+                          <th>
                             {{ trans('global.warga.fields.warga_sex') }}
                           </th>
                           <th>
@@ -547,9 +558,7 @@
                           <th>
                             {{ trans('global.warga.fields.warga_pendidikan') }}
                           </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_rt') }}
-                          </th>
+                          
                           <th>
                             {{ trans('global.warga.fields.warga_status') }}
                           </th>
@@ -575,6 +584,9 @@
                           </td>
                           <td>
                             {{ $wargas->warga_last_name ?? '' }}
+                          </td>
+                          <td>
+                            {{ $wargas->rt_name ?? '' }}
                           </td>
                           @if($wargas->warga_sex == 1)
                           <td>
@@ -633,9 +645,7 @@
                           <td>
                             {{ $wargas->pendidikan_name ?? '' }}
                           </td>
-                          <td>
-                            {{ $wargas->rt_name ?? '' }}
-                          </td>
+                         
                           @if($wargas->warga_status == 1)
                           <td>
                             Aktif

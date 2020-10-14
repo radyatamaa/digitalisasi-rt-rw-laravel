@@ -381,6 +381,33 @@ return [
             'deleted_at_helper'  => '',
         ],
     ],
+    'sdm'                              => [
+        'title'          => 'SDM',
+        'title_singular' => 'SDM',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'sdm_fullname'               => 'SDM Fullname',
+            'sdm_fullname_helper'        => '',
+            'sdm_no_ktp'               => 'SDM No KTP',
+            'sdm_no_ktp_helper'        => '',
+            'sdm_phone'               => 'SDM Phone',
+            'sdm_phone_helper'        => '',
+            'sdm_join_date'               => 'SDM Join Date',
+            'sdm_join_date_helper'        => '',
+            'sdm_rt'               => 'SDM RT',
+            'sdm_rt_helper'        => '',
+            'sdm_category'               => 'SDM Category',
+            'sdm_category_helper'        => '',
+            
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+    ],
 
     'event_category'                              => [
         'title'          => 'Event Category',
@@ -401,6 +428,9 @@ return [
         ],
     ],
 
+
+
+    
     'insidental_category'                              => [
         'title'          => 'Insidental Category',
         'title_singular' => 'Insidental Category',
