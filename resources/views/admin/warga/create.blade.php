@@ -623,17 +623,25 @@
                       </div>
 
 
+                    
+
                       <div class="form-group {{ $errors->has('warga_salary_range') ? 'has-error' : '' }}">
-                        <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*</label>
-                        <input type="text" id="warga_salary_range" name="warga_salary_range" class="form-control" value="{{ old('warga_salary_range', isset($warga) ? $warga->warga_salary_range : '') }}">
-                        @if($errors->has('warga_salary_range'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('warga_salary_range') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.warga.fields.warga_salary_range_helper') }}
-                        </p>
+                        <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*
+                          <select name="warga_salary_range" id="warga_salary_range" class="form-control select2">
+                             @foreach($warga_salary_range as $address_code_id => $warga_salary_range)
+                              <option value="{{ $warga_salary_range->id }}" {{ (in_array($address_code_id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($address_code_id)) ? 'selected' : '' }}>
+                                {{ $warga_salary_range->salary_start . ' - '. $warga_salary_range->salary_end}}
+                              </option>
+                              @endforeach
+                              </select>
+                              @if($errors->has('warga_salary_range'))
+                              <em class="invalid-feedback">
+                              {{ $errors->first('warga_salary_range') }}
+                               </em>
+                               @endif
+                               <p class="helper-block">
+                              {{ trans('global.warga.fields.warga_salary_range_helper') }}
+                                </p>
                       </div>
 
                       <div class="form-group {{ $errors->has('warga_phone') ? 'has-error' : '' }}">
@@ -739,18 +747,15 @@
                             {{ trans('global.warga.fields.warga_rt_helper') }}
                           </p>
                       </div>
-
+                
                       <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}">
-                        <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label>
-                        <input type="text" id="warga_status" name="warga_status" class="form-control" value="{{ old('warga_status', isset($warga) ? $warga->warga_status : '') }}">
-                        @if($errors->has('warga_status'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('warga_status') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.warga.fields.warga_status_helper') }}
-                        </p>
+                        <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="1">
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="2">
+                        <label for="female">Tidak Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="0">
+                        <label for="female">Pending</label><br>
                       </div>
 
                       <div>
