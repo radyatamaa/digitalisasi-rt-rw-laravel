@@ -47,7 +47,6 @@ class WilayahController extends Controller
 
     public function update(UpdateWilayahRequest $request, wilayah $wilayah)
     {
-        echo "kontol";
         abort_unless(\Gate::allows('wilayah_edit'), 403);
 
         $wilayah->update($request->all());

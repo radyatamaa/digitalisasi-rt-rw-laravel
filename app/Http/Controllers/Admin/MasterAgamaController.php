@@ -48,7 +48,6 @@ class MasterAgamaController extends Controller
 
     public function update(UpdateMasterAgamaRequest $request, master_agama $master_agama)
     {
-        echo "kontol";
         abort_unless(\Gate::allows('master_agama_edit'), 403);
 
         $master_agama->update($request->all());
