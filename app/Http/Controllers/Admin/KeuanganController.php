@@ -55,10 +55,22 @@ class KeuanganController extends Controller
         abort_unless(\Gate::allows('keuangan_create'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
         $keuangan_category = Keuangan_Category::all()->pluck('category_name', 'id');
-        $keuangan_warga_ids = Master_Alamat::all();
+     
+        if ($user != null) {
+            $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
+            $master_alamats = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
+            
+        } else {
+            $rts = Rt::all()->pluck('rt_name', 'id');
+            $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
+           
+        }
 
-
+<<<<<<< Updated upstream
         return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user', 'userLogin'));
+=======
+        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'user','userLogin','master_alamats'));
+>>>>>>> Stashed changes
     }
 
     public function store(StoreKeuanganRequest $request)

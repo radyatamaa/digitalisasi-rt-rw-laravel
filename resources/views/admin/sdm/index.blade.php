@@ -150,7 +150,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="../../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
+                <img src="../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
                 <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
             </a>
             <!-- Sidebar -->
@@ -199,6 +199,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @can('warga_access')
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -223,7 +224,9 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item active">
+                        @endcan
+                        @can('keuangan_access')
+                        <li class="nav-item">
                             <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
@@ -232,7 +235,9 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        @endcan
+                        @can('event_access')
+                        <li class="nav-item active">
                             <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
@@ -241,6 +246,8 @@
                                 </p>
                             </a>
                         </li>
+                        @endcan
+                        @can('insidental_access')
                         <li class="nav-item">
                             <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
@@ -250,19 +257,23 @@
                                 </p>
                             </a>
                         </li>
+                        @endcan
+                        @can('history_warga_access')
                         <li class="nav-item">
                             <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>History Warga</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('sdm_access')
                         <li class="nav-item">
                             <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>SDM</p>
                             </a>
                         </li>
-                        
+                        @endcan
                         <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -272,96 +283,126 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                @can('rt_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>RT</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('rw_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>RW</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('kelurahan_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kelurahan</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('master_alamat_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Address Code</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('master_agama_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Agama</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('master_pekerjaan_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pekerjaan</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('master_gaji_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Gaji</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('pendidikan_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pendidikan</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('sekolah_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sekolah</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('wilayah_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Wilayah</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('history_category_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Histori</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('keuangan_category_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Keuangan</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('event_category_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Event</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('insidental_category_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Insidental</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('sdm_category_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori SDM</p>
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
 
@@ -374,37 +415,40 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                @can('permission_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Permissions</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('role_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Roles</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('user_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Users</p>
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                                
-                                <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
-                                  
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Logout
-                                        <!-- <span class="right badge badge-danger">New</span> -->
-                                    </p>
-                                </a>
+                            <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Logout
+                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                </p>
+                            </a>
                         </li>
 
                     </ul>
@@ -421,12 +465,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>List Keuangan</h1>
+                            <h1>List Kategori SDM</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">List Keuangan</li>
+                                <li class="breadcrumb-item active">List Kategori SDM</li>
                             </ol>
                         </div>
                     </div>
@@ -438,130 +482,130 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-
                             <!-- /.card -->
                             @section('content')
+                            @can('sdm_create')
+                            <div style="margin-bottom: 10px;" class="row">
+                                <div class="col-lg-12">
+                                    <a class="btn btn-success" href="{{ route("admin.sdm.create") }}">
+                                        {{ trans('global.add') }} {{ trans('global.sdm.title_singular') }}
+                                    </a>
+                                </div>
+                            </div>
+                            @endcan
                             <div class="card">
-                                <!-- /.card-header -->
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Create Keuangan</h3>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
+                                <div class="card-header">
+                                    {{ trans('global.sdm.title_singular') }} {{ trans('global.list') }}
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th width="10">
 
-                                    <div class="card-body">
-                                        <form action="{{ route("admin.keuangan.store") }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form-group {{ $errors->has('keuangan_tipe') ? 'has-error' : '' }}">
-                                                <label for="keuangan_tipe">{{ trans('global.keuangan.fields.keuangan_tipe') }}</label><br>
-                                                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="1">
-                                                <label for="uang_masuk">Uang Masuk</label><br>
-                                                <input type="radio" id="keuangan_tipe" name="keuangan_tipe" value="2">
-                                                <label for="uang_keluar">Uang Keluar</label><br>
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.sdm.fields.sdm_fullname') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.sdm.fields.sdm_no_ktp') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.sdm.fields.sdm_phone') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.sdm.fields.sdm_join_date') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.sdm.fields.sdm_rt') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.sdm.fields.sdm_category') }}
+                                                    </th>
+                                                    <th>
+                                                        &nbsp;
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($sdm as $key => $sdms)
+                                                <tr data-entry-id="{{ $sdms->id }}">
+                                                    <td>
+                                                        {{$key + 1}}
+                                                    </td>
+                                                    <td>
+                                                        {{ $sdms->sdm_fullname ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $sdms->sdm_no_ktp ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $sdms->sdm_phone ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $sdms->sdm_join_date ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $sdms->rt_name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $sdms->category_name ?? '' }}
+                                                    </td>
 
-                                            </div>
-                                            <div class="form-group {{ $errors->has('keuangan_category') ? 'has-error' : '' }}">
-                                                <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}*
-                                                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                    <select name="keuangan_category" id="keuangan_category" class="form-control select2">
-                                                        @foreach($keuangan_category as $id => $keuangan_category)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $keuangan_category }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if($errors->has('keuangan_category'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('keuangan_category') }}
-                                                    </em>
-                                                    @endif
-                                                    <p class="helper-block">
-                                                        {{ trans('global.keuangan.fields.keuangan_category_helper') }}
-                                                    </p>
-                                            </div>
+                                                    <td>
+                                                        @can('sdm_show')
+                                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.sdm.show', $sdms->id) }}">
+                                                            {{ trans('global.view') }}
+                                                        </a>
+                                                        @endcan
+                                                        @can('sdm_edit')
+                                                        <a class="btn btn-xs btn-info" href="{{ route('admin.sdm.edit', $sdms->id) }}">
+                                                            {{ trans('global.edit') }}
+                                                        </a>
+                                                        @endcan
+                                                        @can('sdm_delete')
+                                                        <form action="{{ route('admin.sdm.destroy', $sdms->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                                        </form>
+                                                        @endcan
+                                                    </td>
 
-                                            <div class="form-group {{ $errors->has('keuangan_periode') ? 'has-error' : '' }}">
-                                                <label for="keuangan_periode">{{ trans('global.keuangan.fields.keuangan_periode') }}</label>
-                                                <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($keuangan) ? $keuangan->keuangan_periode : '') }}" step="0.01">
-                                                @if($errors->has('keuangan_periode'))
-                                                <em class="invalid-feedback">
-                                                    {{ $errors->first('keuangan_periode') }}
-                                                </em>
-                                                @endif
-                                                <p class="helper-block">
-                                                    {{ trans('global.keuangan.fields.keuangan_periode_helper') }}
-                                                </p>
-                                            </div>
-                                            <div class="form-group {{ $errors->has('keuangan_value') ? 'has-error' : '' }}">
-                                                <label for="keuangan_value">{{ trans('global.keuangan.fields.keuangan_value') }}</label>
-                                                <input type="number" id="keuangan_value" name="keuangan_value" class="form-control" value="{{ old('keuangan_value', isset($keuangan) ? $keuangan->keuangan_value : '') }}" step="0.01">
-                                                @if($errors->has('keuangan_value'))
-                                                <em class="invalid-feedback">
-                                                    {{ $errors->first('keuangan_value') }}
-                                                </em>
-                                                @endif
-                                                <p class="helper-block">
-                                                    {{ trans('global.keuangan.fields.keuangan_value_helper') }}
-                                                </p>
-                                            </div>
-
-                                            <div class="form-group {{ $errors->has('keuangan_warga_id') ? 'has-error' : '' }}">
-                                                <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}*
-                                                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                    <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
-                                                        @foreach($master_alamats as $id => $master_alamat)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($id)) ? 'selected' : '' }}>
-                                                        {{ $master_alamat }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if($errors->has('master_alamat'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('master_alamat') }}
-                                                    </em>
-                                                    @endif
-                                                    <p class="helper-block">
-                                                        {{ trans('global.keuangan.fields.keuangan_warga_id_helper') }}
-                                                    </p>
-                                            </div>
-
-                                            <input type="text" id="keuangan_rt" name="keuangan_rt" class="form-control" value="{{$user}}" hidden>
-
-                                            <div>
-                                                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-                                            </div>
-                                        </form>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
                         </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.0.5
-            </div>
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
-        </footer>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+                    </div>
+                </div>
+                <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 3.0.5
+        </div>
+        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 

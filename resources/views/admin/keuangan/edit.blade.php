@@ -256,6 +256,12 @@
                                 <p>History Warga</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>SDM</p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-chart-pie"></i>
