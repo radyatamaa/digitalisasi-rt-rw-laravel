@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateWargaRequest;
 use App\Warga;
 use App\Pendidikan;
 use App\Master_Alamat;
+use App\Master_Gaji;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -20,7 +21,7 @@ class WargaController extends Controller
 {
     public function index()
     {
-
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('warga_access'), 403);
 
         $user = Auth::user()->rt_id;
@@ -57,26 +58,36 @@ class WargaController extends Controller
         }
 
         // $warga = Warga::all();
-        return view('admin.warga.index', compact('warga'));
+        return view('admin.warga.index', compact('warga','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('warga_create'), 403);
 
         $user = Auth::user()->rt_id;
 
         $religions = Master_agama::all()->pluck('religion_name', 'id');
         $jobs = Master_Pekerjaan::all()->pluck('job_name', 'id');
+       
         if ($user != null) {
             $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
+            $master_alamats = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
+            $warga_salary_range = Master_Gaji::where('salary_rt', $user)->get();
         } else {
             $rts = Rt::all()->pluck('rt_name', 'id');
+            $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
+            $warga_salary_range = Master_Gaji::all();
         }
         $pendidikans = Pendidikan::all()->pluck('pendidikan_name', 'id');
-        $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
+        
 
-        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats'));
+<<<<<<< Updated upstream
+        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','warga_salary_range'));
+=======
+        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','userLogin'));
+>>>>>>> Stashed changes
     }
 
     public function store(StoreWargaRequest $request)
@@ -90,6 +101,7 @@ class WargaController extends Controller
 
     public function edit(Warga $warga)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('warga_edit'), 403);
         $user = Auth::user()->rt_id;
 
@@ -97,11 +109,15 @@ class WargaController extends Controller
         $warga_job = Master_Pekerjaan::all()->pluck('job_name', 'id');
         if ($user != null) {
             $warga_rt = Rt::where('id', $user)->pluck('rt_name', 'id');
+            $warga_address_code = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
+            $warga_salary_range = Master_Gaji::where('salary_rt', $user)->get();
         } else {
             $warga_rt = Rt::all()->pluck('rt_name', 'id');
+            $warga_address_code = Master_Alamat::all()->pluck('address_code_name', 'id');
+            $warga_salary_range = Master_Gaji::all();
         }
         $warga_pendidikan = Pendidikan::all()->pluck('pendidikan_name', 'id');
-        $warga_address_code = Master_Alamat::all()->pluck('address_code_name', 'id');
+  
 
         return view('admin.warga.edit', compact(
             'warga',
@@ -109,7 +125,12 @@ class WargaController extends Controller
             'warga_job',
             'warga_rt',
             'warga_pendidikan',
-            'warga_address_code'
+            'warga_address_code',
+<<<<<<< Updated upstream
+            'warga_salary_range'
+=======
+            'userLogin'
+>>>>>>> Stashed changes
         ));
     }
 

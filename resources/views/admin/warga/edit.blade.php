@@ -161,7 +161,7 @@
             <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Admin</a>
+            <a href="#" class="d-block">{{$userLogin}}</a>
           </div>
         </div>
 
@@ -636,16 +636,22 @@
 
 
                       <div class="form-group {{ $errors->has('warga_salary_range') ? 'has-error' : '' }}">
-                        <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*</label>
-                        <input type="text" id="warga_salary_range" name="warga_salary_range" class="form-control" value="{{ old('warga_salary_range', isset($warga) ? $warga->warga_salary_range : '') }}">
-                        @if($errors->has('warga_salary_range'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('warga_salary_range') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.warga.fields.warga_salary_range_helper') }}
-                        </p>
+                        <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*
+                          <select name="warga_salary_range" id="warga_salary_range" class="form-control select2">
+                             @foreach($warga_salary_range as $address_code_id => $warga_salary_range)
+                              <option value="{{ $warga_salary_range->id }}" {{ (in_array($address_code_id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($address_code_id)) ? 'selected' : '' }}>
+                                {{ $warga_salary_range->salary_start . ' - '. $warga_salary_range->salary_end}}
+                              </option>
+                              @endforeach
+                              </select>
+                              @if($errors->has('warga_salary_range'))
+                              <em class="invalid-feedback">
+                              {{ $errors->first('warga_salary_range') }}
+                               </em>
+                               @endif
+                               <p class="helper-block">
+                              {{ trans('global.warga.fields.warga_salary_range_helper') }}
+                                </p>
                       </div>
 
                       <div class="form-group {{ $errors->has('warga_phone') ? 'has-error' : '' }}">
@@ -776,6 +782,39 @@
                         <p class="helper-block">
                           {{ trans('global.warga.fields.warga_status_helper') }}
                         </p>
+                      </div>
+
+                      <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}">
+                        <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label><br>
+                        @if($warga->warga_status == 1)
+                        <input type="radio" id="warga_status" name="warga_status" value="1" checked>
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="2">
+                        <label for="female">Tidak Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="0">
+                        <label for="female">Pending</label><br>
+                        @elseif($warga->warga_status == 2)
+                        <input type="radio" id="warga_status" name="warga_status" value="1">
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="2" checked>
+                        <label for="female">Tidak Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="0">
+                        <label for="female">Pending</label><br>
+                        @elseif($warga->warga_status == 0)
+                        <input type="radio" id="warga_status" name="warga_status" value="1">
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="2">
+                        <label for="female">Tidak Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="0" checked>
+                        <label for="female">Pending</label><br>
+                        @else
+                        <input type="radio" id="warga_status" name="warga_status" value="1">
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="2">
+                        <label for="female">Tidak Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="0">
+                        <label for="female">Pending</label><br>
+                        @endif
                       </div>
 
                       <div>
