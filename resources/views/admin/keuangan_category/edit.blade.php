@@ -161,7 +161,7 @@
                         <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin</a>
+                        <a href="#" class="d-block">{{$userLogin}}</a>
                     </div>
                 </div>
 
@@ -497,7 +497,7 @@
                                             </p>
                                         </div>
                                         <input type="text" id="id_rt" name="id_rt" class="form-control" value="{{$user}}" hidden>
-                                       
+
 
                                         <div>
                                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">

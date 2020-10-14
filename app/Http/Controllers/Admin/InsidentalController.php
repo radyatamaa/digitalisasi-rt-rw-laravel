@@ -16,24 +16,26 @@ class InsidentalController extends Controller
     public function index()
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_access'), 403);
-        if($user != null){
+        if ($user != null) {
             $insidental = Insidental::where('id_rt', $user)->get();
-        }else{
+        } else {
             $insidental = Insidental::all();
         }
 
-        return view('admin.insidental.index', compact('insidental','user'));
+        return view('admin.insidental.index', compact('insidental', 'user', 'userLogin'));
     }
 
     public function create()
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_create'), 403);
 
         $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
 
-        return view('admin.insidental.create', compact('ins_category','user'));
+        return view('admin.insidental.create', compact('ins_category', 'user', 'userLogin'));
     }
 
     public function store(StoreInsidentalRequest $request)
@@ -48,11 +50,12 @@ class InsidentalController extends Controller
     public function edit(Insidental $insidental)
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_edit'), 403);
 
         $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
 
-        return view('admin.insidental.edit', compact('insidental', 'ins_category','user'));
+        return view('admin.insidental.edit', compact('insidental', 'ins_category', 'user', 'userLogin'));
     }
 
     public function update(UpdateInsidentalRequest $request, Insidental $insidental)
