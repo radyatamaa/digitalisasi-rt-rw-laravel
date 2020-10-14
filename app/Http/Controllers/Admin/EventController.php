@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Event;
 use App\Event_Category;
 use App\Rt;
+
 use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
@@ -46,8 +47,15 @@ class EventController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_create'), 403);
         $event_rt = Rt::all()->pluck('rt_name', 'id');
-        $event_category = Event_Category::all()->pluck('category_name', 'id');
-
+        if ($rts != null) {
+            
+            $event_category = Event_Category::where('id_rt', $rts)->pluck('category_name', 'id');
+            
+        } else {
+           
+            $event_category = Event_Category::all()->pluck('category_name', 'id');
+           
+        }
         return view('admin.event.create', compact('event_rt', 'event_category', 'rts', 'userLogin'));
     }
 
@@ -66,8 +74,16 @@ class EventController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_edit'), 403);
         $event_rt = Rt::all()->pluck('rt_name', 'id');
-        $event_category = Event_Category::all()->pluck('category_name', 'id');
-
+        
+        if ($rts != null) {
+            
+            $event_category = Event_Category::where('id_rt', $rts)->pluck('category_name', 'id');
+            
+        } else {
+           
+            $event_category = Event_Category::all()->pluck('category_name', 'id');
+           
+        }
         return view('admin.event.edit', compact('event', 'event_rt', 'event_category', 'rts', 'userLogin'));
     }
 

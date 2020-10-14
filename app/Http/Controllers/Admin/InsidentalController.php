@@ -19,12 +19,27 @@ class InsidentalController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_access'), 403);
         if ($user != null) {
-            $insidental = Insidental::where('id_rt', $user)->get();
+            $insidental = Insidental::select(
+                'insidental.*',
+                'rt.rt_name',
+                'ins_category.category_name'
+            )
+                ->join('rt', 'rt.id', '=', 'insidental.id_rt')
+                ->join('ins_category', 'ins_category.id', '=', 'insidental.ins_category')
+                ->where('insidental.id_rt', $user)
+                ->get();
         } else {
-            $insidental = Insidental::all();
+            $ins_category = Insidental::select(
+                'insidental.*',
+                'rt.rt_name',
+                'ins_category.category_name'
+            )
+                ->join('rt', 'rt.id', '=', 'insidental.id_rt')
+                ->join('ins_category', 'ins_category.id', '=', 'insidental.ins_category')
+                ->get();
         }
 
-        return view('admin.insidental.index', compact('insidental', 'user', 'userLogin'));
+        return view('admin.insidental.index', compact('insidental', 'user', 'userLogin','ins_category'));
     }
 
     public function create()
@@ -33,8 +48,16 @@ class InsidentalController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_create'), 403);
 
-        $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
-
+       
+        if ($user != null) {
+            
+            $ins_category = Insidental_Category::where('id_rt', $user)->pluck('category_name', 'id');
+            
+        } else {
+           
+            $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
+           
+        }
         return view('admin.insidental.create', compact('ins_category', 'user', 'userLogin'));
     }
 
@@ -53,7 +76,15 @@ class InsidentalController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_edit'), 403);
 
-        $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
+        if ($user != null) {
+            
+            $ins_category = Insidental_Category::where('id_rt', $user)->pluck('category_name', 'id');
+            
+        } else {
+           
+            $ins_category = Insidental_Category::all()->pluck('category_name', 'id');
+           
+        }
 
         return view('admin.insidental.edit', compact('insidental', 'ins_category', 'user', 'userLogin'));
     }
