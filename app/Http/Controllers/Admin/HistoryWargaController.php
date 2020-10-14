@@ -20,9 +20,25 @@ class HistoryWargaController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_access'), 403);
         if ($user != null) {
-            $history_warga = History_Warga::where('id_rt', $user)->get();
+            $history_warga = history_warga::select(
+                'history_warga.*',
+                'history_category.category_name',
+                'warga.warga_first_name',
+                'warga.warga_last_name'
+            )
+                ->join('history_category', 'history_category.id', '=', 'history_warga.history_category')
+                ->join('warga', 'warga.id', '=', 'history_warga.warga_id')
+                ->where('history_warga.id_rt', $user)
+                ->get();
         } else {
-            $history_warga = History_Warga::all();
+            $history_warga = history_warga::select(
+                'history_warga.*',
+                'history_category.category_name',
+                'warga.warga_first_name',
+                'warga.warga_last_name'
+            )
+                ->join('history_category', 'history_category.id', '=', 'history_warga.history_category')
+                ->join('warga', 'warga.id', '=', 'history_warga.warga_id')->get();
         }
 
         return view('admin.history_warga.index', compact('history_warga', 'userLogin'));
@@ -33,9 +49,13 @@ class HistoryWargaController extends Controller
         $rts = Auth::user()->rt_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_create'), 403);
+        if ($rts != null) {
+            $warga_ids = Warga::where('warga_rt', $rts)->get();
+        } else {
+            $warga_ids = Warga::all();
+        }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-        $warga_ids = Warga::all();
 
         return view('admin.history_warga.create', compact('history_category', 'warga_ids', 'rts', 'userLogin'));
     }
@@ -54,9 +74,14 @@ class HistoryWargaController extends Controller
         $rts = Auth::user()->rt_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_edit'), 403);
+        if ($rts != null) {
+            $warga_ids = Warga::where('warga_rt', $rts)->get();
+        } else {
+            $warga_ids = Warga::all();
+        }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-        $warga_ids = Warga::all();
+
         return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin'));
     }
 

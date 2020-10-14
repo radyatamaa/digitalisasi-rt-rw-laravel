@@ -512,6 +512,9 @@
                             {{ trans('global.warga.fields.warga_last_name') }}
                           </th>
                           <th>
+                            {{ trans('global.warga.fields.warga_rt') }}
+                          </th>
+                          <th>
                             {{ trans('global.warga.fields.warga_sex') }}
                           </th>
                           <th>
@@ -547,9 +550,7 @@
                           <th>
                             {{ trans('global.warga.fields.warga_pendidikan') }}
                           </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_rt') }}
-                          </th>
+                          
                           <th>
                             {{ trans('global.warga.fields.warga_status') }}
                           </th>
@@ -575,6 +576,9 @@
                           </td>
                           <td>
                             {{ $wargas->warga_last_name ?? '' }}
+                          </td>
+                          <td>
+                            {{ $wargas->rt_name ?? '' }}
                           </td>
                           @if($wargas->warga_sex == 1)
                           <td>
@@ -602,7 +606,7 @@
                             {{ $wargas->job_name ?? '' }}
                           </td>
                           <td>
-                            {{ $wargas->warga_salary_range ?? '' }}
+                            {{ $wargas->salary_start . ' - ' . $wargas->salary_end ?? '' }}
                           </td>
                           <td>
                             {{ $wargas->warga_phone ?? '' }}
@@ -633,13 +637,24 @@
                           <td>
                             {{ $wargas->pendidikan_name ?? '' }}
                           </td>
+                         
+                          @if($wargas->warga_status == 1)
                           <td>
-                            {{ $wargas->rt_name ?? '' }}
+                            Aktif
                           </td>
+                          @elseif($wargas->warga_status == 2)
                           <td>
-                            {{ $wargas->warga_status ?? '' }}
+                           Tidak Aktif
                           </td>
-
+                          @elseif($wargas->warga_status == 0)
+                          <td>
+                            Pending
+                          </td>
+                          @else
+                          <td>
+                            
+                          </td>
+                          @endif
                           <td>
 
                             @can('warga_edit')

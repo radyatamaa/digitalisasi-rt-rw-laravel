@@ -6,12 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyMasterPekerjaanRequest;
 use App\Http\Requests\StoreMasterPekerjaanRequest;
 use App\Http\Requests\UpdateMasterPekerjaanRequest;
-<<<<<<< Updated upstream
-use App\Master_Pekerjaan;
-=======
 use App\master_pekerjaan;
 use Illuminate\Support\Facades\Auth;
->>>>>>> Stashed changes
 
 class MasterPekerjaanController extends Controller
 {
