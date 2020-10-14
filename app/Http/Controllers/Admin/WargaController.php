@@ -90,6 +90,10 @@ class WargaController extends Controller
         
         return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','userLogin','warga_salary_range'));
 
+<<<<<<< Updated upstream
+=======
+        return view('admin.warga.create', compact('religions', 'jobs', 'rts', 'pendidikans', 'master_alamats','userLogin'));
+>>>>>>> Stashed changes
     }
 
     public function store(StoreWargaRequest $request)
