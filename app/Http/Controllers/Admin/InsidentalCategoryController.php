@@ -14,6 +14,7 @@ class InsidentalCategoryController extends Controller
     public function index()
     {
         $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_category_access'), 403);
         if($user != null){
             $insidental_category = Insidental_Category::where('id_rt', $user)->get();
@@ -21,7 +22,7 @@ class InsidentalCategoryController extends Controller
             $insidental_category = Insidental_Category::all();
         }
 
-        return view('admin.insidental_category.index', compact('insidental_category','user'));
+        return view('admin.insidental_category.index', compact('insidental_category','user','userLogin'));
     }
 
     public function create()

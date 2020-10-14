@@ -33,8 +33,7 @@ class RtController extends Controller
         $user = Auth::user()->rw_id;
 
         if ($user != null) {
-            $rt_rw_id = Rt::all()->pluck('rw_name', 'id')
-                ->where('rt_rw_id', $user)->get();
+            $rt_rw_id = Rw::where('id', $user)->pluck('rw_name', 'id');
         } else {
             $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
         }
@@ -59,8 +58,7 @@ class RtController extends Controller
         $user = Auth::user()->rw_id;
 
         if ($user != null) {
-            $rt_rw_id = Rt::all()->pluck('rw_name', 'id')
-                ->where('rt_rw_id', $user)->get();
+            $rt_rw_id = Rw::where('id', $user)->pluck('rw_name', 'id');
         } else {
             $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
         }

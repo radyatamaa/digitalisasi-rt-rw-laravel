@@ -57,8 +57,7 @@ class UsersController extends Controller
         $kelurahan = Auth::user()->kelurahan_id;
 
         if ($kelurahan != null) {
-            $kelurahan_id = Kelurahan::where('id', $kelurahan)
-                ->pluck('kel_name', 'id');
+            $kelurahan_id = [];
 
             $rw_id = Rw::where('rw_kel_id', $kelurahan)
                 ->pluck('rw_name', 'id');
@@ -71,8 +70,7 @@ class UsersController extends Controller
 
             $kelurahan_id = [];
 
-            $rw_id = Rw::where('id', $rw)
-                ->pluck('rw_name', 'id');
+            $rw_id = [];
 
             $rt_id = Rt::where('rt_rw_id', $rw)
                 ->pluck('rt_name', 'id');
