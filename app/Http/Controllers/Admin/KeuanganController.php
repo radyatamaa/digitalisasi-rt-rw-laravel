@@ -65,12 +65,8 @@ class KeuanganController extends Controller
             $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
            
         }
+        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user','userLogin','master_alamats'));
 
-<<<<<<< Updated upstream
-        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'keuangan_warga_ids', 'user', 'userLogin'));
-=======
-        return view('admin.keuangan.create', compact('keuangan_rt', 'keuangan_category', 'user','userLogin','master_alamats'));
->>>>>>> Stashed changes
     }
 
     public function store(StoreKeuanganRequest $request)
