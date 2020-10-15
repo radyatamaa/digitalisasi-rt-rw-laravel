@@ -83,7 +83,7 @@ class KeuanganController extends Controller
         $user = Auth::user()->rt_id;
         abort_unless(\Gate::allows('keuangan_edit'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
-        $keuangan->keuangan_periode = date('d-m-Y', strtotime($keuangan->keuangan_periode));
+        $periodConvert = date('yy-m-d', strtotime($keuangan->keuangan_periode));
         if ($user != null) {
             $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
             $master_alamats = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
@@ -94,7 +94,7 @@ class KeuanganController extends Controller
             $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
             $keuangan_category = Keuangan_Category::where('id_rt', $user)->pluck('category_name', 'id');
         }
-        return view('admin.keuangan.edit', compact('keuangan', 'keuangan_rt', 'keuangan_category', 'master_alamats', 'user', 'userLogin'));
+        return view('admin.keuangan.edit', compact('periodConvert','keuangan', 'keuangan_rt', 'keuangan_category', 'master_alamats', 'user', 'userLogin'));
     }
 
     public function update(UpdateKeuanganRequest $request, Keuangan $keuangan)
