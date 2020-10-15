@@ -492,7 +492,7 @@
                                         @method('PUT')
                                         <div class="form-group {{ $errors->has('sdm_fullname') ? 'has-error' : '' }}">
                                             <label for="sdm_fullname">{{ trans('global.sdm.fields.sdm_fullname') }}*</label>
-                                            <input type="text" id="sdm_fullname" name="sdm_fullname" class="form-control" value="{{ old('sdm_fullname', isset($sdm) ? $sdm->sdm_fullname : '') }}">
+                                            <input type="text" id="sdm_fullname" name="sdm_fullname" class="form-control" value="{{ old('sdm_fullname', isset($sdm) ? $sdm->sdm_fullname : '') }}" required>
                                             @if($errors->has('sdm_fullname'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('sdm_fullname') }}
@@ -504,7 +504,7 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('sdm_no_ktp') ? 'has-error' : '' }}">
                                             <label for="sdm_no_ktp">{{ trans('global.sdm.fields.sdm_no_ktp') }}*</label>
-                                            <input type="number" id="sdm_no_ktp" name="sdm_no_ktp" class="form-control" value="{{ old('sdm_no_ktp', isset($sdm) ? $sdm->sdm_no_ktp : '') }}">
+                                            <input type="number" id="sdm_no_ktp" name="sdm_no_ktp" class="form-control" value="{{ old('sdm_no_ktp', isset($sdm) ? $sdm->sdm_no_ktp : '') }}" required>
                                             @if($errors->has('sdm_no_ktp'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('sdm_no_ktp') }}
@@ -516,7 +516,7 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('sdm_phone') ? 'has-error' : '' }}">
                                             <label for="sdm_phone">{{ trans('global.sdm.fields.sdm_phone') }}*</label>
-                                            <input type="number" id="sdm_phone" name="sdm_phone" class="form-control" value="{{ old('sdm_phone', isset($sdm) ? $sdm->sdm_phone : '') }}">
+                                            <input type="number" id="sdm_phone" name="sdm_phone" class="form-control" value="{{ old('sdm_phone', isset($sdm) ? $sdm->sdm_phone : '') }}" required>
                                             @if($errors->has('sdm_phone'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('sdm_phone') }}
@@ -528,7 +528,7 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('sdm_join_date') ? 'has-error' : '' }}">
                                             <label for="sdm_join_date">{{ trans('global.sdm.fields.sdm_join_date') }}*</label>
-                                            <input type="date" id="sdm_join_date" name="sdm_join_date" class="form-control" value="{{ old('sdm_join_date', isset($joinDate) ? $joinDate : '') }}">
+                                            <input type="date" id="sdm_join_date" name="sdm_join_date" class="form-control" value="{{ old('sdm_join_date', isset($joinDate) ? $joinDate : '') }}" required>
                                             @if($errors->has('sdm_join_date'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('sdm_join_date') }}
@@ -554,7 +554,7 @@
                                             <label for="sdm_category">{{ trans('global.sdm.fields.sdm_category') }}*
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                <select name="sdm_category" id="sdm_category" class="form-control select2">
+                                                <select name="sdm_category" id="sdm_category" class="form-control select2" required>
                                                     @foreach($sdm_categorys as $id => $sdm_category)
                                                     <option value="{{ $id }}" {{ (isset($sdm) && $sdm->sdm_category == $id) ? 'selected' : '' }}>
                                                         {{ $sdm_category }}

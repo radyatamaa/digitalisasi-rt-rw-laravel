@@ -446,7 +446,7 @@
                                                 <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}*
                                                     <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                    <select name="keuangan_category" id="keuangan_category" class="form-control select2">
+                                                    <select name="keuangan_category" id="keuangan_category" class="form-control select2" required>
                                                         @foreach($keuangan_category as $id => $keuangan_category)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category->contains($id)) ? 'selected' : '' }}>
                                                             {{ $keuangan_category }}
@@ -465,7 +465,7 @@
 
                                             <div class="form-group {{ $errors->has('keuangan_periode') ? 'has-error' : '' }}">
                                                 <label for="keuangan_periode">{{ trans('global.keuangan.fields.keuangan_periode') }}</label>
-                                                <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($keuangan) ? $keuangan->keuangan_periode : '') }}" step="0.01">
+                                                <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($keuangan) ? $keuangan->keuangan_periode : '') }}" step="0.01" required>
                                                 @if($errors->has('keuangan_periode'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('keuangan_periode') }}
@@ -477,7 +477,7 @@
                                             </div>
                                             <div class="form-group {{ $errors->has('keuangan_value') ? 'has-error' : '' }}">
                                                 <label for="keuangan_value">{{ trans('global.keuangan.fields.keuangan_value') }}</label>
-                                                <input type="number" id="keuangan_value" name="keuangan_value" class="form-control" value="{{ old('keuangan_value', isset($keuangan) ? $keuangan->keuangan_value : '') }}" step="0.01">
+                                                <input type="number" id="keuangan_value" name="keuangan_value" class="form-control" value="{{ old('keuangan_value', isset($keuangan) ? $keuangan->keuangan_value : '') }}" step="0.01" required>
                                                 @if($errors->has('keuangan_value'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('keuangan_value') }}
@@ -492,7 +492,7 @@
                                                 <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}*
                                                     <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                    <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
+                                                    <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2" required>
                                                         @foreach($master_alamats as $id => $master_alamat)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($id)) ? 'selected' : '' }}>
                                                         {{ $master_alamat }}
