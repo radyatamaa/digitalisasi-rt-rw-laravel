@@ -149,7 +149,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="#" class="brand-link">
                 <img src="{{ asset('dist/img/Logo1b.png')}}" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
                 <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
             </a>
@@ -374,10 +374,10 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <<<<<<< Updated upstream <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                                =======
+                  <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                             
                                 <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
-                                    >>>>>>> Stashed changes
+                              
                                     <i class="nav-icon fas fa-th"></i>
                                     <p>
                                         Logout
@@ -453,7 +453,7 @@
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="keuangan_category" id="keuangan_category" class="form-control select2">
                                                     @foreach($keuangan_category as $id => $keuangan_category)
-                                                    <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category) ? 'selected' : '' }}>
+                                                    <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_category == $id) ? 'selected' : '' }}>
                                                         {{ $keuangan_category }}
                                                     </option>
                                                     @endforeach
@@ -499,15 +499,15 @@
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
-                                                    @foreach($keuangan_warga_ids as $address_code_name => $keuangan_warga_id)
-                                                    <option value="{{ $keuangan_warga_id->id}}" {{ (in_array($keuangan_warga_id->id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id) ? 'selected' : '' }}>
-                                                        {{ $keuangan_warga_id->address_code_name}}
+                                                    @foreach($master_alamats as $id => $master_alamat)
+                                                    <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_warga_id == $id ) ? 'selected' : '' }}>
+                                                        {{ $master_alamat}}
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                                @if($errors->has('keuangan_warga_id'))
+                                                @if($errors->has('master_alamats'))
                                                 <em class="invalid-feedback">
-                                                    {{ $errors->first('keuangan_warga_id') }}
+                                                    {{ $errors->first('master_alamats') }}
                                                 </em>
                                                 @endif
                                                 <p class="helper-block">
