@@ -500,7 +500,7 @@
                       @method('PUT')
                       <div class="form-group {{ $errors->has('rw_name') ? 'has-error' : '' }}">
                         <label for="rw_name">{{ trans('global.rw.fields.rw_name') }}*</label>
-                        <input type="text" id="rw_name" name="rw_name" class="form-control" value="{{ old('rw_name', isset($rw) ? $rw->rw_name : '') }}">
+                        <input type="text" id="rw_name" name="rw_name" class="form-control" value="{{ old('rw_name', isset($rw) ? $rw->rw_name : '') }}" required>
                         @if($errors->has('rw_name'))
                         <em class="invalid-feedback">
                           {{ $errors->first('rw_name') }}
@@ -513,7 +513,7 @@
 
                       <div class="form-group {{ $errors->has('rw_code') ? 'has-error' : '' }}">
                         <label for="rw_code">{{ trans('global.rw.fields.rw_code') }}*</label>
-                        <input type="number" id="rw_code" name="rw_code" class="form-control" value="{{ old('rw_code', isset($rw) ? $rw->rw_code : '') }}">
+                        <input type="text" id="rw_code" name="rw_code" class="form-control" value="{{ old('rw_code', isset($rw) ? $rw->rw_code : '') }}" required>
                         @if($errors->has('rw_code'))
                         <em class="invalid-feedback">
                           {{ $errors->first('rw_code') }}
@@ -528,7 +528,7 @@
                         <label for="rw_kel_id">{{ trans('global.rw.fields.rw_kel_id') }}*
                           <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                          <select name="rw_kel_id" id="rw_kel_id" class="form-control select2">
+                          <select name="rw_kel_id" id="rw_kel_id" class="form-control select2" required>
                             @foreach($rw_kel_id as $id => $rw_kel_id)
                             <option value="{{ $id }}" {{ (in_array($id, old('rw_kel_id', [])) || isset($rw) && $rw->rw_kel_id) ? 'selected' : '' }}>
                               {{ $rw_kel_id }}
@@ -544,7 +544,7 @@
                             {{ trans('global.rw.fields.rw_kel_id_helper') }}
                           </p>
                       </div>
-                      <div class="form-group {{ $errors->has('rw_status') ? 'has-error' : '' }}">
+                      <div class="form-group {{ $errors->has('rw_status') ? 'has-error' : '' }}" required>
                         <label for="rw_status">{{ trans('global.rw.fields.rw_status') }}*</label><br>
                         @if($rw->rw_status == 1)
                         <input type="radio" id="rw_status" name="rw_status" value="1" checked>

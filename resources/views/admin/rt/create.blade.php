@@ -499,7 +499,7 @@
                       @csrf
                       <div class="form-group {{ $errors->has('rt_name') ? 'has-error' : '' }}">
                         <label for="rt_name">{{ trans('global.rt.fields.rt_name') }}*</label>
-                        <input type="text" id="rt_name" name="rt_name" class="form-control" value="{{ old('rt_name', isset($rt) ? $rt->rt_name : '') }}">
+                        <input type="text" id="rt_name" name="rt_name" class="form-control" value="{{ old('rt_name', isset($rt) ? $rt->rt_name : '') }}" required>
                         @if($errors->has('rt_name'))
                         <em class="invalid-feedback">
                           {{ $errors->first('rt_name') }}
@@ -512,7 +512,7 @@
 
                       <div class="form-group {{ $errors->has('rt_code') ? 'has-error' : '' }}">
                         <label for="rt_code">{{ trans('global.rt.fields.rt_code') }}*</label>
-                        <input type="number" id="rt_code" name="rt_code" class="form-control" value="{{ old('rt_code', isset($rt) ? $rt->rt_code : '') }}">
+                        <input type="text" id="rt_code" name="rt_code" class="form-control" value="{{ old('rt_code', isset($rt) ? $rt->rt_code : '') }}" required>
                         @if($errors->has('rt_code'))
                         <em class="invalid-feedback">
                           {{ $errors->first('rt_code') }}
@@ -527,7 +527,7 @@
                         <label for="rt_rw_id">{{ trans('global.rt.fields.rt_rw_id') }}*
                           <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                          <select name="rt_rw_id" id="rt_rw_id" class="form-control select2">
+                          <select name="rt_rw_id" id="rt_rw_id" class="form-control select2" required>
                             @foreach($rt_rw_id as $id => $rt_rw_id)
                             <option value="{{ $id }}" {{ (in_array($id, old('rt_rw_id', [])) || isset($rt) && $rt->rt_rw_id->contains($id)) ? 'selected' : '' }}>
                               {{ $rt_rw_id }}
@@ -544,12 +544,12 @@
                           </p>
                       </div>
 
-                      <div class="form-group {{ $errors->has('rt_status') ? 'has-error' : '' }}">
+                      <div class="form-group {{ $errors->has('rt_status') ? 'has-error' : '' }}" required>
                         <label for="rt_status">{{ trans('global.rt.fields.rt_status') }}*</label><br>
                         <input type="radio" id="rt_status" name="rt_status" value="1">
-                        <label for="male">Aktif</label><br>
+                        <label for="aktif">Aktif</label><br>
                         <input type="radio" id="rt_status" name="rt_status" value="2">
-                        <label for="female">Tidak Aktif</label><br>
+                        <label for="tidak aktif">Tidak Aktif</label><br>
                       </div>
 
                       <div>
