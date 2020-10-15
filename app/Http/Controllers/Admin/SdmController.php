@@ -85,7 +85,8 @@ class SdmController extends Controller
             $sdm_categorys = Sdm_Category::all()->pluck('category_name', 'id');
            
         }
-        return view('admin.sdm.edit', compact('sdm','user','sdm_rt','sdm_categorys','userLogin'));
+        $joinDate =  date('Y-m-d', strtotime($sdm->sdm_join_date));
+        return view('admin.sdm.edit', compact('joinDate','sdm','user','sdm_rt','sdm_categorys','userLogin'));
     }
 
     public function update(UpdateSdmRequest $request, Sdm $sdm)
