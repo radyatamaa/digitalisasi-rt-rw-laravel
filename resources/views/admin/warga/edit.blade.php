@@ -31,7 +31,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="../../index3.html" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
@@ -574,7 +574,7 @@
                         <label for="warga_religion">{{ trans('global.warga.fields.warga_religion') }}*
                           <select name="warga_religion" id="warga_religion" class="form-control select2" required>
                             @foreach($warga_religion as $id => $warga_religion)
-                            <option value="{{ $id }}" {{ (in_array($id, old('warga_religion', [])) || isset($warga) && $warga->warga_religion) ? 'selected' : '' }}>
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_religion', [])) || isset($warga) && $warga->warga_religion == $id) ? 'selected' : '' }}>
                               {{ $warga_religion }}
                             </option>
                             @endforeach
@@ -608,7 +608,7 @@
                         <label for="warga_address_code">{{ trans('global.warga.fields.warga_address_code') }}*
                           <select name="warga_address_code" id="warga_address_code" class="form-control select2" required>
                             @foreach($warga_address_code as $id => $warga_address_code)
-                            <option value="{{ $id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code) ? 'selected' : '' }}>
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code == $id) ? 'selected' : '' }}>
                               {{ $warga_address_code }}
                             </option>
                             @endforeach
@@ -627,7 +627,7 @@
                         <label for="warga_job">{{ trans('global.warga.fields.warga_job') }}*
                           <select name="warga_job" id="warga_job" class="form-control select2" required>
                             @foreach($warga_job as $id => $warga_job)
-                            <option value="{{ $id }}" {{ (in_array($id, old('warga_job', [])) || isset($warga) && $warga->warga_job) ? 'selected' : '' }}>
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_job', [])) || isset($warga) && $warga->warga_job == $id) ? 'selected' : '' }}>
                               {{ $warga_job }}
                             </option>
                             @endforeach
@@ -647,7 +647,7 @@
                         <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*
                           <select name="warga_salary_range" id="warga_salary_range" class="form-control select2" required>
                             @foreach($warga_salary_range as $address_code_id => $warga_salary_range)
-                            <option value="{{ $warga_salary_range->id }}" {{ (in_array($address_code_id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($address_code_id)) ? 'selected' : '' }}>
+                            <option value="{{ $warga_salary_range->id }}" {{ (isset($warga) && $warga->warga_salary_range == $warga_salary_range->id) ? 'selected' : '' }}>
                               {{ $warga_salary_range->salary_start . ' - '. $warga_salary_range->salary_end}}
                             </option>
                             @endforeach
@@ -690,7 +690,7 @@
 
                       <div class="form-group {{ $errors->has('warga_birth_date') ? 'has-error' : '' }}">
                         <label for="warga_birth_date">{{ trans('global.warga.fields.warga_birth_date') }}*</label>
-                        <input type="date" id="warga_birth_date" name="warga_birth_date" class="form-control" value="{{ old('warga_birth_date', isset($warga) ? $warga->warga_birth_date : '') }}" required>
+                        <input type="date" id="warga_birth_date" name="warga_birth_date" class="form-control" value="{{ old('warga_birth_date', isset($dob) ? $dob : '') }}" required>
                         @if($errors->has('warga_birth_date'))
                         <em class="invalid-feedback">
                           {{ $errors->first('warga_birth_date') }}
@@ -727,7 +727,7 @@
 
                       <div class="form-group {{ $errors->has('warga_join_date') ? 'has-error' : '' }}">
                         <label for="warga_join_date">{{ trans('global.warga.fields.warga_join_date') }}*</label>
-                        <input type="date" id="warga_join_date" name="warga_join_date" class="form-control" value="{{ old('warga_join_date', isset($warga) ? $warga->warga_join_date : '') }}" required>
+                        <input type="date" id="warga_join_date" name="warga_join_date" class="form-control" value="{{ old('warga_join_date', isset($joinDate) ? $joinDate : '') }}" required>
                         @if($errors->has('warga_join_date'))
                         <em class="invalid-feedback">
                           {{ $errors->first('warga_join_date') }}
@@ -744,7 +744,7 @@
                         <label for="warga_pendidikan">{{ trans('global.warga.fields.warga_pendidikan') }}*
                           <select name="warga_pendidikan" id="warga_pendidikan" class="form-control select2" required>
                             @foreach($warga_pendidikan as $id => $warga_pendidikan)
-                            <option value="{{ $id }}" {{ (in_array($id, old('warga_pendidikan', [])) || isset($warga) && $warga->warga_pendidikan) ? 'selected' : '' }}>
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_pendidikan', [])) || isset($warga) && $warga->warga_pendidikan == $id) ? 'selected' : '' }}>
                               {{ $warga_pendidikan }}
                             </option>
                             @endforeach
@@ -764,7 +764,7 @@
                         <label for="warga_rt">{{ trans('global.warga.fields.warga_rt') }}*
                           <select name="warga_rt" id="warga_rt" class="form-control select2" required>
                             @foreach($warga_rt as $id => $warga_rt)
-                            <option value="{{ $id }}" {{ (in_array($id, old('warga_rt', [])) || isset($warga) && $warga->warga_rt) ? 'selected' : '' }}>
+                            <option value="{{ $id }}" {{ (in_array($id, old('warga_rt', [])) || isset($warga) && $warga->warga_rt == $id) ? 'selected' : '' }}>
                               {{ $warga_rt }}
                             </option>
                             @endforeach

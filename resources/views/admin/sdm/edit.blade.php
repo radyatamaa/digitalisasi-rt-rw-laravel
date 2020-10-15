@@ -31,7 +31,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -528,7 +528,7 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('sdm_join_date') ? 'has-error' : '' }}">
                                             <label for="sdm_join_date">{{ trans('global.sdm.fields.sdm_join_date') }}*</label>
-                                            <input type="date" id="sdm_join_date" name="sdm_join_date" class="form-control" value="{{ old('sdm_join_date', isset($sdm) ? $sdm->sdm_join_date : '') }}">
+                                            <input type="date" id="sdm_join_date" name="sdm_join_date" class="form-control" value="{{ old('sdm_join_date', isset($joinDate) ? $joinDate : '') }}">
                                             @if($errors->has('sdm_join_date'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('sdm_join_date') }}
