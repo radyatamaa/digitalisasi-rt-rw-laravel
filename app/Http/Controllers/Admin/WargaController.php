@@ -119,7 +119,8 @@ class WargaController extends Controller
             $warga_salary_range = Master_Gaji::all();
         }
         $warga_pendidikan = Pendidikan::all()->pluck('pendidikan_name', 'id');
-  
+        $joinDate = date('Y-m-d', strtotime($warga->warga_join_date));
+        $dob =  date('Y-m-d', strtotime($warga->warga_birth_date));
 
         return view('admin.warga.edit', compact(
             'warga',
@@ -129,7 +130,9 @@ class WargaController extends Controller
             'warga_pendidikan',
             'warga_address_code',
             'warga_salary_range',
-            'userLogin'
+            'userLogin',
+            'joinDate',
+            'dob'
         ));
     }
 
