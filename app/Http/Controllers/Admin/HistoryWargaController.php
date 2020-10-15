@@ -50,9 +50,42 @@ class HistoryWargaController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_create'), 403);
         if ($rts != null) {
-            $warga_ids = Warga::where('warga_rt', $rts)->get();
+            $warga_ids = Warga::select(
+                'warga.*',
+                'religion.religion_name',
+                'rt.rt_name',
+                'pendidikan.pendidikan_name',
+                'address_code.address_code_name',
+                'job.job_name',
+                'salary.salary_start',
+                'salary.salary_end'
+            )
+                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_rt', $rts)
+                ->get();
         } else {
-            $warga_ids = Warga::all();
+            $warga_ids = Warga::select(
+                'warga.*',
+                'religion.religion_name',
+                'rt.rt_name',
+                'pendidikan.pendidikan_name',
+                'address_code.address_code_name',
+                'job.job_name',
+                'salary.salary_start',
+                'salary.salary_end'
+            )
+                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->get();
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
@@ -75,9 +108,42 @@ class HistoryWargaController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('history_warga_edit'), 403);
         if ($rts != null) {
-            $warga_ids = Warga::where('warga_rt', $rts)->get();
+            $warga_ids = Warga::select(
+                'warga.*',
+                'religion.religion_name',
+                'rt.rt_name',
+                'pendidikan.pendidikan_name',
+                'address_code.address_code_name',
+                'job.job_name',
+                'salary.salary_start',
+                'salary.salary_end'
+            )
+                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_rt', $rts)
+                ->get();
         } else {
-            $warga_ids = Warga::all();
+            $warga_ids = Warga::select(
+                'warga.*',
+                'religion.religion_name',
+                'rt.rt_name',
+                'pendidikan.pendidikan_name',
+                'address_code.address_code_name',
+                'job.job_name',
+                'salary.salary_start',
+                'salary.salary_end'
+            )
+                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->get();
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
