@@ -451,7 +451,7 @@
                                             <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}*
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                <select name="keuangan_category" id="keuangan_category" class="form-control select2">
+                                                <select name="keuangan_category" id="keuangan_category" class="form-control select2" required>
                                                     @foreach($keuangan_category as $id => $keuangan_category)
                                                     <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_category == $id) ? 'selected' : '' }}>
                                                         {{ $keuangan_category }}
@@ -470,7 +470,7 @@
 
                                         <div class="form-group {{ $errors->has('keuangan_periode') ? 'has-error' : '' }}">
                                             <label for="keuangan_periode">{{ trans('global.keuangan.fields.keuangan_periode') }}*</label>
-                                            <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($periodConvert) ? $periodConvert : '') }}">
+                                            <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($periodConvert) ? $periodConvert : '') }}" required>
                                             @if($errors->has('keuangan_periode'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('keuangan_periode') }}
@@ -483,7 +483,7 @@
 
                                         <div class="form-group {{ $errors->has('keuangan_value') ? 'has-error' : '' }}">
                                             <label for="keuangan_value">{{ trans('global.keuangan.fields.keuangan_value') }}*</label>
-                                            <input type="number" id="keuangan_value" name="keuangan_value" class="form-control" value="{{ old('keuangan_value', isset($keuangan) ? $keuangan->keuangan_value : '') }}">
+                                            <input type="number" id="keuangan_value" name="keuangan_value" class="form-control" value="{{ old('keuangan_value', isset($keuangan) ? $keuangan->keuangan_value : '') }}" required>
                                             @if($errors->has('keuangan_value'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('keuangan_value') }}
@@ -498,7 +498,7 @@
                                             <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}*
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
+                                                <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2" required>
                                                     @foreach($master_alamats as $id => $master_alamat)
                                                     <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_warga_id == $id ) ? 'selected' : '' }}>
                                                         {{ $master_alamat}}

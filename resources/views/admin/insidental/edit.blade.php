@@ -473,7 +473,7 @@
                                         @method('PUT')
                                         <div class="form-group {{ $errors->has('ins_name') ? 'has-error' : '' }}">
                                             <label for="ins_name">{{ trans('global.insidental.fields.ins_name') }}*</label>
-                                            <input type="text" id="ins_name" name="ins_name" class="form-control" value="{{ old('ins_name', isset($insidental) ? $insidental->ins_name : '') }}">
+                                            <input type="text" id="ins_name" name="ins_name" class="form-control" value="{{ old('ins_name', isset($insidental) ? $insidental->ins_name : '') }}" required>
                                             @if($errors->has('ins_name'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('ins_name') }}
@@ -487,7 +487,7 @@
                                             <label for="ins_category">{{ trans('global.insidental.fields.ins_category') }}*
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                <select name="ins_category" id="ins_category" class="form-control select2">
+                                                <select name="ins_category" id="ins_category" class="form-control select2" required>
                                                     @foreach($ins_category as $id => $ins_category)
                                                     <option value="{{ $id }}" {{ (isset($insidental) && $insidental->ins_category == $id) ? 'selected' : '' }}>
                                                         {{ $ins_category }}
@@ -517,7 +517,7 @@
             </div> -->
                                         <div class="form-group {{ $errors->has('ins_detail') ? 'has-error' : '' }}">
                                             <label for="ins_detail">{{ trans('global.insidental.fields.ins_detail') }}</label>
-                                            <textarea id="ins_detail" name="ins_detail" class="form-control ">{{ old('ins_detail', isset($insidental) ? $insidental->ins_detail : '') }}</textarea>
+                                            <textarea id="ins_detail" name="ins_detail" class="form-control " required>{{ old('ins_detail', isset($insidental) ? $insidental->ins_detail : '') }}</textarea>
                                             @if($errors->has('ins_detail'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('ins_detail') }}
@@ -530,7 +530,7 @@
 
                                         <div class="form-group {{ $errors->has('ins_date') ? 'has-error' : '' }}">
                                             <label for="ins_date">{{ trans('global.insidental.fields.ins_date') }}*</label>
-                                            <input type="date" id="ins_date" name="ins_date" class="form-control" value="{{ old('ins_date', isset($insidental) ? $insidental->ins_date : '') }}">
+                                            <input type="date" id="ins_date" name="ins_date" class="form-control" value="{{ old('ins_date', isset($insidental) ? $insidental->ins_date : '') }}" required>
                                             @if($errors->has('ins_date'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('ins_date') }}
