@@ -374,10 +374,10 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <<<<<<< Updated upstream <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                                =======
+                  <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                             
                                 <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
-                                    >>>>>>> Stashed changes
+                              
                                     <i class="nav-icon fas fa-th"></i>
                                     <p>
                                         Logout
@@ -453,7 +453,7 @@
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="keuangan_category" id="keuangan_category" class="form-control select2">
                                                     @foreach($keuangan_category as $id => $keuangan_category)
-                                                    <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category) ? 'selected' : '' }}>
+                                                    <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_category == $id) ? 'selected' : '' }}>
                                                         {{ $keuangan_category }}
                                                     </option>
                                                     @endforeach
@@ -500,7 +500,7 @@
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2">
                                                     @foreach($master_alamats as $id => $master_alamat)
-                                                    <option value="{{ $id }}" {{ (in_array($id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id) ? 'selected' : '' }}>
+                                                    <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_warga_id == $id ) ? 'selected' : '' }}>
                                                         {{ $master_alamat}}
                                                     </option>
                                                     @endforeach
