@@ -31,7 +31,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -470,7 +470,7 @@
 
                                         <div class="form-group {{ $errors->has('keuangan_periode') ? 'has-error' : '' }}">
                                             <label for="keuangan_periode">{{ trans('global.keuangan.fields.keuangan_periode') }}*</label>
-                                            <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($keuangan) ? $keuangan->keuangan_periode : '') }}">
+                                            <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($periodConvert) ? $periodConvert : '') }}">
                                             @if($errors->has('keuangan_periode'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('keuangan_periode') }}

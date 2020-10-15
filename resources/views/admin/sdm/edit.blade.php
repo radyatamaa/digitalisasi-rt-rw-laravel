@@ -31,7 +31,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -465,12 +465,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>List Kategori SDM</h1>
+                            <h1>List SDM</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">List Kategori SDM</li>
+                                <li class="breadcrumb-item active">List SDM</li>
                             </ol>
                         </div>
                     </div>
@@ -528,7 +528,7 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('sdm_join_date') ? 'has-error' : '' }}">
                                             <label for="sdm_join_date">{{ trans('global.sdm.fields.sdm_join_date') }}*</label>
-                                            <input type="date" id="sdm_join_date" name="sdm_join_date" class="form-control" value="{{ old('sdm_join_date', isset($sdm) ? $sdm->sdm_join_date : '') }}">
+                                            <input type="date" id="sdm_join_date" name="sdm_join_date" class="form-control" value="{{ old('sdm_join_date', isset($joinDate) ? $joinDate : '') }}">
                                             @if($errors->has('sdm_join_date'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('sdm_join_date') }}
@@ -556,7 +556,7 @@
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="sdm_category" id="sdm_category" class="form-control select2">
                                                     @foreach($sdm_categorys as $id => $sdm_category)
-                                                    <option value="{{ $id }}" {{ (in_array($id, old('sdm_category', [])) || isset($sdm) && $sdm->sdm_category) ? 'selected' : '' }}>
+                                                    <option value="{{ $id }}" {{ (isset($sdm) && $sdm->sdm_category == $id) ? 'selected' : '' }}>
                                                         {{ $sdm_category }}
                                                     </option>
                                                     @endforeach
