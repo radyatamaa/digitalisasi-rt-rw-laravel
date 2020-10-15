@@ -512,7 +512,7 @@
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="event_category" id="event_category" class="form-control select2">
                                                     @foreach($event_category as $id => $event_category)
-                                                    <option value="{{ $id }}" {{ (in_array($id, old('event_category', [])) || isset($event) && $event->event_category) ? 'selected' : '' }}>
+                                                    <option value="{{ $id }}" {{ (isset($event) && $event->event_category == $id) ? 'selected' : '' }}>
                                                         {{ $event_category }}
                                                     </option>
                                                     @endforeach
