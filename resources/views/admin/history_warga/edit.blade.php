@@ -493,7 +493,7 @@
                                             </div>
                                             <div class="form-group {{ $errors->has('history_date') ? 'has-error' : '' }}">
                                                 <label for="history_date">{{ trans('global.history_warga.fields.history_date') }}*</label>
-                                                <input type="text" id="history_date" name="history_date" class="form-control" value="{{ old('history_date', isset($history_warga) ? $history_warga->history_date : '') }}">
+                                                <input type="date" id="history_date" name="history_date" class="form-control" value="{{ old('history_date', isset($history_warga) ? $history_warga->history_date : '') }}">
                                                 @if($errors->has('history_date'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('history_date') }}
@@ -508,7 +508,7 @@
                                                 <label for="history_category">{{ trans('global.history_warga.fields.history_category') }}*
                                                     <select name="history_category" id="history_category" class="form-control select2">
                                                         @foreach($history_category as $id => $history_category)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('history_category', [])) || isset($history_warga) && $history_warga->history_category) ? 'selected' : '' }}>
+                                                        <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->history_category == $id) ? 'selected' : '' }}>
                                                             {{ $history_category }}
                                                         </option>
                                                         @endforeach
