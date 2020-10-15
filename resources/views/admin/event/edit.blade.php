@@ -473,7 +473,7 @@
                                         @method('PUT')
                                         <div class="form-group {{ $errors->has('event_name') ? 'has-error' : '' }}">
                                             <label for="event_name">{{ trans('global.event.fields.event_name') }}*</label>
-                                            <input type="text" id="event_name" name="event_name" class="form-control" value="{{ old('event_name', isset($event) ? $event->event_name : '') }}">
+                                            <input type="text" id="event_name" name="event_name" class="form-control" value="{{ old('event_name', isset($event) ? $event->event_name : '') }}" required>
                                             @if($errors->has('event_name'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('event_name') }}
@@ -510,7 +510,7 @@
                                             <label for="event_category">{{ trans('global.event.fields.event_category') }}*
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                                                <select name="event_category" id="event_category" class="form-control select2">
+                                                <select name="event_category" id="event_category" class="form-control select2" required>
                                                     @foreach($event_category as $id => $event_category)
                                                     <option value="{{ $id }}" {{ (isset($event) && $event->event_category == $id) ? 'selected' : '' }}>
                                                         {{ $event_category }}
@@ -528,7 +528,7 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
                                             <label for="event_date">{{ trans('global.event.fields.event_date') }}*</label>
-                                            <input type="date" id="event_date" name="event_date" class="form-control" value="{{ old('event_date', isset($event) ? $event->event_date : '') }}">
+                                            <input type="date" id="event_date" name="event_date" class="form-control" value="{{ old('event_date', isset($event) ? $event->event_date : '') }}" required>
                                             @if($errors->has('event_date'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('event_date') }}

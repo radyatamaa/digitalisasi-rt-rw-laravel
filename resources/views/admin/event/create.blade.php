@@ -479,7 +479,7 @@
                                             @csrf
                                             <div class="form-group {{ $errors->has('event_name') ? 'has-error' : '' }}">
                                                 <label for="event_name">{{ trans('global.event.fields.event_name') }}*</label>
-                                                <input type="text" id="event_name" name="event_name" class="form-control" value="{{ old('event_name', isset($event) ? $event->event_name : '') }}">
+                                                <input type="text" id="event_name" name="event_name" class="form-control" value="{{ old('event_name', isset($event) ? $event->event_name : '') }}" required>
                                                 @if($errors->has('event_name'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('event_name') }}
@@ -515,7 +515,7 @@
 
                                             <div class="form-group {{ $errors->has('event_category') ? 'has-error' : '' }}">
                                                 <label for="event_category">{{ trans('global.event.fields.event_category') }}*
-                                                    <select name="event_category" id="event_category" class="form-control select2">
+                                                    <select name="event_category" id="event_category" class="form-control select2" required>
                                                         @foreach($event_category as $id => $event_category)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('event_category', [])) || isset($event) && $event->event_category->contains($id)) ? 'selected' : '' }}>
                                                             {{ $event_category }}
@@ -535,7 +535,7 @@
 
                                             <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
                                                 <label for="event_date">{{ trans('global.event.fields.event_date') }}</label>
-                                                <input type="date" id="event_date" name="event_date" class="form-control" value="{{ old('event_date', isset($event) ? $event->event_date : '') }}" step="0.01">
+                                                <input type="date" id="event_date" name="event_date" class="form-control" value="{{ old('event_date', isset($event) ? $event->event_date : '') }}" step="0.01" required>
                                                 @if($errors->has('event_date'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('ins_date') }}
