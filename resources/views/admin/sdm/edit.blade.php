@@ -465,12 +465,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>List Kategori SDM</h1>
+                            <h1>List SDM</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">List Kategori SDM</li>
+                                <li class="breadcrumb-item active">List SDM</li>
                             </ol>
                         </div>
                     </div>
@@ -556,7 +556,7 @@
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="sdm_category" id="sdm_category" class="form-control select2">
                                                     @foreach($sdm_categorys as $id => $sdm_category)
-                                                    <option value="{{ $id }}" {{ (in_array($id, old('sdm_category', [])) || isset($sdm) && $sdm->sdm_category) ? 'selected' : '' }}>
+                                                    <option value="{{ $id }}" {{ (isset($sdm) && $sdm->sdm_category == $id) ? 'selected' : '' }}>
                                                         {{ $sdm_category }}
                                                     </option>
                                                     @endforeach
