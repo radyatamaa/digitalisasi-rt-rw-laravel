@@ -267,13 +267,13 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -500,7 +500,7 @@
                       @method('PUT')
                       <div class="form-group {{ $errors->has('salary_start') ? 'has-error' : '' }}">
                         <label for="salary_start">{{ trans('global.master_gaji.fields.salary_start') }}*</label>
-                        <input type="text" id="salary_start" name="salary_start" class="form-control" value="{{ old('salary_start', isset($master_gaji) ? $master_gaji->salary_start : '') }}">
+                        <input type="number" id="salary_start" name="salary_start" class="form-control" value="{{ old('salary_start', isset($master_gaji) ? $master_gaji->salary_start : '') }}">
                         @if($errors->has('salary_start'))
                         <em class="invalid-feedback">
                           {{ $errors->first('salary_start') }}
@@ -512,7 +512,7 @@
                       </div>
                       <div class="form-group {{ $errors->has('salary_end') ? 'has-error' : '' }}">
                         <label for="salary_end">{{ trans('global.master_gaji.fields.salary_end') }}*</label>
-                        <input type="text" id="salary_end" name="salary_end" class="form-control" value="{{ old('salary_end', isset($master_gaji) ? $master_gaji->salary_end : '') }}">
+                        <input type="number" id="salary_end" name="salary_end" class="form-control" value="{{ old('salary_end', isset($master_gaji) ? $master_gaji->salary_end : '') }}">
                         @if($errors->has('salary_end'))
                         <em class="invalid-feedback">
                           {{ $errors->first('salary_end') }}
