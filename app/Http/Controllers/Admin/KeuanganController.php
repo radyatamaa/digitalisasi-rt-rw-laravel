@@ -83,7 +83,7 @@ class KeuanganController extends Controller
         $user = Auth::user()->rt_id;
         abort_unless(\Gate::allows('keuangan_edit'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
-       
+        $keuangan->keuangan_periode = date('d-m-Y', strtotime($keuangan->keuangan_periode));
         if ($user != null) {
             $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
             $master_alamats = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
