@@ -267,13 +267,13 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -512,7 +512,7 @@
 
                       <div class="form-group {{ $errors->has('rt_code') ? 'has-error' : '' }}">
                         <label for="rt_code">{{ trans('global.rt.fields.rt_code') }}*</label>
-                        <input type="text" id="rt_code" name="rt_code" class="form-control" value="{{ old('rt_code', isset($rt) ? $rt->rt_code : '') }}">
+                        <input type="number" id="rt_code" name="rt_code" class="form-control" value="{{ old('rt_code', isset($rt) ? $rt->rt_code : '') }}">
                         @if($errors->has('rt_code'))
                         <em class="invalid-feedback">
                           {{ $errors->first('rt_code') }}
