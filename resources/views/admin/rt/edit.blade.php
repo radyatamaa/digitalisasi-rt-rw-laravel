@@ -267,13 +267,13 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -513,7 +513,7 @@
 
                       <div class="form-group {{ $errors->has('rt_code') ? 'has-error' : '' }}">
                         <label for="rt_code">{{ trans('global.rt.fields.rt_code') }}*</label>
-                        <input type="text" id="rt_code" name="rt_code" class="form-control" value="{{ old('rt_code', isset($rt) ? $rt->rt_code : '') }}">
+                        <input type="number" id="rt_code" name="rt_code" class="form-control" value="{{ old('rt_code', isset($rt) ? $rt->rt_code : '') }}">
                         @if($errors->has('rt_code'))
                         <em class="invalid-feedback">
                           {{ $errors->first('rt_code') }}
@@ -546,17 +546,25 @@
                       </div>
 
                       <div class="form-group {{ $errors->has('rt_status') ? 'has-error' : '' }}">
-                        <label for="rt_status">{{ trans('global.rt.fields.rt_status') }}*</label>
-                        <input type="text" id="rt_status" name="rt_status" class="form-control" value="{{ old('rt_status', isset($rt) ? $rt->rt_status : '') }}">
-                        @if($errors->has('rt_status'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('rt_status') }}
-                        </em>
+                        <label for="rt_status">{{ trans('global.rt.fields.rt_status') }}*</label><br>
+                        @if($rt->rt_status == 1)
+                        <input type="radio" id="rt_status" name="rt_status" value="1" checked>
+                        <label for="aktif">Aktif</label><br>
+                        <input type="radio" id="rt_status" name="rt_status" value="2">
+                        <label for="tidak aktif">Tidak Aktif</label><br>
+                        @elseif($rt->rt_status == 2)
+                        <input type="radio" id="rt_status" name="rt_status" value="1">
+                        <label for="aktif">Aktif</label><br>
+                        <input type="radio" id="rt_status" name="rt_status" value="2" checked>
+                        <label for="tidak aktif">Tidak Aktif</label><br>
+                        @else
+                        <input type="radio" id="rt_status" name="rt_status" value="1">
+                        <label for="aktif">Aktif</label><br>
+                        <input type="radio" id="rt_status" name="rt_status" value="2">
+                        <label for="tidak aktif">Tidak Aktif</label><br>
                         @endif
-                        <p class="helper-block">
-                          {{ trans('global.rt.fields.rt_status_helper') }}
-                        </p>
                       </div>
+
 
                       <div>
                         <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">

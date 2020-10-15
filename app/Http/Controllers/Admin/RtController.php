@@ -23,7 +23,7 @@ class RtController extends Controller
             $rt = Rt::all();
         }
 
-        return view('admin.rt.index', compact('rt','userLogin'));
+        return view('admin.rt.index', compact('rt', 'userLogin'));
     }
 
     public function create()
@@ -39,7 +39,7 @@ class RtController extends Controller
             $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
         }
 
-        return view('admin.rt.create', compact('rt_rw_id','userLogin'));
+        return view('admin.rt.create', compact('rt_rw_id', 'userLogin'));
     }
 
 
@@ -65,7 +65,7 @@ class RtController extends Controller
             $rt_rw_id = Rw::all()->pluck('rw_name', 'id');
         }
 
-        return view('admin.rt.edit', compact('rt', 'rt_rw_id','userLogin'));
+        return view('admin.rt.edit', compact('rt', 'rt_rw_id', 'userLogin'));
     }
 
     public function update(UpdateRtRequest $request, rt $rt)
