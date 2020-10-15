@@ -267,13 +267,13 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -540,9 +540,23 @@
                           <td>
                             {{ $rws->rw_kel_id ?? '' }}
                           </td>
+                          @if($rws->rw_status == 1)
                           <td>
-                            {{ $rws->rw_status ?? '' }}
+                            Aktif
                           </td>
+                          @elseif($rws->rw_status == 2)
+                          <td>
+                            Tidak Aktif
+                          </td>
+                          @elseif($rws->rw_status == 0)
+                          <td>
+                            Pending
+                          </td>
+                          @else
+                          <td>
+
+                          </td>
+                          @endif
 
                           <td>
                             <!-- @can('rw_show')
