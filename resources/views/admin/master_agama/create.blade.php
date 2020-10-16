@@ -210,9 +210,15 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Import Excel</p>
                   </a>
                 </li>
                 <li class="nav-item">
