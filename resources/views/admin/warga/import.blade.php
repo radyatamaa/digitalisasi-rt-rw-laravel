@@ -19,6 +19,25 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <link href="http://cdn-na.infragistics.com/igniteui/2020.1/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet" />
+    <link href="http://cdn-na.infragistics.com/igniteui/2020.1/latest/css/structure/infragistics.css" rel="stylesheet" />
+    
+    <style>
+        #sampleContainer ol {
+            padding: 0px 0px 0px 15px;
+            margin: 0;
+        }
+
+        #sampleContainer input {
+            margin: 10px 0;
+        }
+        #result {
+            display: none;
+            color: red;
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -210,7 +229,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
@@ -465,12 +484,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>List RT</h1>
+              <h1>Import Warga</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">List RT</li>
+                <li class="breadcrumb-item active">Import Warga</li>
               </ol>
             </div>
           </div>
@@ -484,16 +503,7 @@
             <div class="col-12">
 
               <!-- /.card -->
-              @section('content')
-              @can('warga_create')
-              <div style="margin-bottom: 10px;" class="row">
-                <div class="col-lg-12">
-                  <a class="btn btn-success" href="{{ route("admin.warga.create") }}">
-                    {{ trans('global.add') }} {{ trans('global.warga.title_singular') }}
-                  </a>
-                </div>
-              </div>
-              @endcan
+              
               <div class="card">
                 <div class="card-header">
                   {{ trans('global.warga.title_singular') }} {{ trans('global.list') }}
@@ -502,185 +512,21 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="example1" class="table table-bordered table-striped">
-                      <thead>
-                        <tr>
-                          <th width="10">
-
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_no_ktp') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_no_kk') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_first_name') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_last_name') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_rt') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_sex') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_religion') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_address') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_address_code') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_job') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_salary_range') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_phone') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_email') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_birth_date') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_is_ktp_sama_domisili') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_join_date') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_pendidikan') }}
-                          </th>
-                          
-                          <th>
-                            {{ trans('global.warga.fields.warga_status') }}
-                          </th>
-                          <th>
-                            &nbsp;
-                          </th>
-                        </tr>
-                      </thead>
+                 
                       <tbody>
-                        @foreach($warga as $key => $wargas)
-                        <tr data-entry-id="{{ $wargas->id }}">
-                          <td>
-                            {{$key + 1}}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_no_ktp ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_no_kk ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_first_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_last_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->rt_name ?? '' }}
-                          </td>
-                          @if($wargas->warga_sex == 1)
-                          <td>
-                            Male
-                          </td>
-                          @elseif($wargas->warga_sex == 2)
-                          <td>
-                            Female
-                          </td>
-                          @else
-                          <td>
-
-                          </td>
-                          @endif
-                          <td>
-                            {{ $wargas->religion_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_address ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->address_code_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->job_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->salary_start . ' - ' . $wargas->salary_end ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_phone ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_email ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_birth_date ?? '' }}
-                          </td>
-                          @if($wargas->warga_is_ktp_sama_domisili == 1)
-                          <td>
-                            Ya
-                          </td>
-                          @elseif($wargas->warga_is_ktp_sama_domisili == 2)
-                          <td>
-                            Tidak
-                          </td>
-                          @else
-                          <td>
-
-                          </td>
-                          @endif
-
-                          <td>
-                            {{ $wargas->warga_join_date ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->pendidikan_name ?? '' }}
-                          </td>
-                         
-                          @if($wargas->warga_status == 1)
-                          <td>
-                            Aktif
-                          </td>
-                          @elseif($wargas->warga_status == 2)
-                          <td>
-                           Tidak Aktif
-                          </td>
-                          @elseif($wargas->warga_status == 0)
-                          <td>
-                            Pending
-                          </td>
-                          @else
-                          <td>
-                            
-                          </td>
-                          @endif
-                          <td>
-
-                            @can('warga_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('admin.warga.edit', $wargas->id) }}">
-                              {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-                            @can('warga_delete')
-                            <form action="{{ route('admin.warga.destroy', $wargas->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                              <input type="hidden" name="_method" value="DELETE">
-                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                              <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-                          </td>
-
-                        </tr>
-                        @endforeach
+                      <div>
+                      <form action="{{ route("admin.warga.store") }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+        <!-- <ol>
+            <li>Download this <a href="https://www.igniteui.com/HtmlSamples/javascript-excel-library/report.xlsx" download>sample  Excel file</a></li>
+            <li>Click Choose File/Browse button below and pick the sample Excel file or another excel file.</li>
+        </ol> -->
+        <input type="file" id="input" name="input" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <div id="result"></div>
+        <table id="grid1" class="table table-bordered table-striped"></table>
+        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+        </form>
+    </div>
                       </tbody>
                     </table>
                   </div>
@@ -727,7 +573,108 @@
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
   <!-- page script -->
+  <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.lob.js"></script>
+
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collections.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_text.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_io.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_ui.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_threading.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_web.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.xml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_openxml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
+
   <script>
+
+$(function () {
+            $("#input").on("change", function () {
+                var excelFile,
+                    fileReader = new FileReader();
+                debugger
+                $("#result").hide();
+                debugger
+                fileReader.onload = function (e) {
+                    var buffer = new Uint8Array(fileReader.result);
+
+                    $.ig.excel.Workbook.load(buffer, function (workbook) {
+                        var column, row, newRow, cellValue, columnIndex, i,
+                            worksheet = workbook.worksheets(0),
+                            columnsNumber = 0,
+                            gridColumns = [],
+                            data = [],
+                            worksheetRowsCount;
+
+                        // Both the columns and rows in the worksheet are lazily created and because of this most of the time worksheet.columns().count() will return 0
+                        // So to get the number of columns we read the values in the first row and count. When value is null we stop counting columns:
+                        while (worksheet.rows(0).getCellValue(columnsNumber)) {
+                            columnsNumber++;
+                        }
+
+                        // Iterating through cells in first row and use the cell text as key and header text for the grid columns
+                        for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                            column = worksheet.rows(0).getCellText(columnIndex);
+                            gridColumns.push({ headerText: column, key: column });
+                        }
+
+                        // We start iterating from 1, because we already read the first row to build the gridColumns array above
+                        // We use each cell value and add it to json array, which will be used as dataSource for the grid
+                        for (i = 1, worksheetRowsCount = worksheet.rows().count() ; i < worksheetRowsCount; i++) {
+                            newRow = {};
+                            row = worksheet.rows(i);
+
+                            for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                                cellValue = row.getCellText(columnIndex);
+                                newRow[gridColumns[columnIndex].key] = cellValue;
+                            }
+
+                            data.push(newRow);
+                        }
+
+                        // we can also skip passing the gridColumns use autoGenerateColumns = true, or modify the gridColumns array
+                        createGrid(data, gridColumns);
+                    }, function (error) {
+                        $("#result").text("The excel file is corrupted.");
+                        $("#result").show(1000);
+                    });
+                }
+
+                if (this.files.length > 0) {
+                    excelFile = this.files[0];
+                    if (excelFile.type === "application/vnd.ms-excel" || excelFile.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || (excelFile.type === "" && (excelFile.name.endsWith("xls") || excelFile.name.endsWith("xlsx")))) {
+                        fileReader.readAsArrayBuffer(excelFile);
+                    } else {
+                        $("#result").text("The format of the file you have selected is not supported. Please select a valid Excel file ('.xls, *.xlsx').");
+                        $("#result").show(1000);
+                    }
+                }
+
+            })
+        });
+
+        function createGrid(data, gridColumns) {
+            if ($("#grid1").data("igGrid") !== undefined) {
+                $("#grid1").igGrid("destroy");
+            }
+
+            $("#grid1").igGrid({
+                columns: gridColumns,
+                autoGenerateColumns: true,
+                dataSource: data,
+                width: "100%"
+            });
+        }
+
+
     $(function() {
       $("#example1").DataTable({
         "responsive": true,
