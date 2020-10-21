@@ -9,16 +9,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <link href="http://cdn-na.infragistics.com/igniteui/2020.1/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet" />
+    <link href="http://cdn-na.infragistics.com/igniteui/2020.1/latest/css/structure/infragistics.css" rel="stylesheet" />
+    
+    <style>
+        #sampleContainer ol {
+            padding: 0px 0px 0px 15px;
+            margin: 0;
+        }
+
+        #sampleContainer input {
+            margin: 10px 0;
+        }
+        #result {
+            display: none;
+            color: red;
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -150,7 +169,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link">
-        <img src="{{ asset('dist/img/Logo1b.png')}}" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
+        <img src="../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
         <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
       </a>
       <!-- Sidebar -->
@@ -158,7 +177,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block">{{$userLogin}}</a>
@@ -210,19 +229,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
                 </li>
                 <li class="nav-item">
                 <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Import Excel</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -273,13 +286,13 @@
             </li>
             @endcan
             @can('sdm_access')
-            <li class="nav-item">
-              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>SDM</p>
-              </a>
-            </li>
-            @endcan
+                        <li class="nav-item">
+                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>SDM</p>
+                            </a>
+                        </li>
+                        @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -471,12 +484,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>List RW</h1>
+              <h1>Import Warga</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">List RW</li>
+                <li class="breadcrumb-item active">Import Warga</li>
               </ol>
             </div>
           </div>
@@ -490,93 +503,34 @@
             <div class="col-12">
 
               <!-- /.card -->
-              @section('content')
+              
               <div class="card">
+                <div class="card-header">
+                  {{ trans('global.warga.title_singular') }} {{ trans('global.list') }}
+                </div>
 
-                <!-- /.card-header -->
-                <div class="card card-primary">
-                  <div class="card-header">
-                    <h3 class="card-title">Edit RW</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <div class="card-body">
-                    <form action="{{ route("admin.rw.update", [$rw->id]) }}" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      @method('PUT')
-                      <div class="form-group {{ $errors->has('rw_name') ? 'has-error' : '' }}">
-                        <label for="rw_name">{{ trans('global.rw.fields.rw_name') }}*</label>
-                        <input type="text" id="rw_name" name="rw_name" class="form-control" value="{{ old('rw_name', isset($rw) ? $rw->rw_name : '') }}" required>
-                        @if($errors->has('rw_name'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('rw_name') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.rw.fields.rw_name_helper') }}
-                        </p>
-                      </div>
-
-                      <div class="form-group {{ $errors->has('rw_code') ? 'has-error' : '' }}">
-                        <label for="rw_code">{{ trans('global.rw.fields.rw_code') }}*</label>
-                        <input type="text" id="rw_code" name="rw_code" class="form-control" value="{{ old('rw_code', isset($rw) ? $rw->rw_code : '') }}" required>
-                        @if($errors->has('rw_code'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('rw_code') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.rw.fields.rw_code_helper') }}
-                        </p>
-                      </div>
-
-                      <div class="form-group {{ $errors->has('rw_kel_id') ? 'has-error' : '' }}">
-                        <label for="rw_kel_id">{{ trans('global.rw.fields.rw_kel_id') }}*
-                          <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                          <select name="rw_kel_id" id="rw_kel_id" class="form-control select2" required>
-                            @foreach($rw_kel_id as $id => $rw_kel_id)
-                            <option value="{{ $id }}" {{ (in_array($id, old('rw_kel_id', [])) || isset($rw) && $rw->rw_kel_id) ? 'selected' : '' }}>
-                              {{ $rw_kel_id }}
-                            </option>
-                            @endforeach
-                          </select>
-                          @if($errors->has('rw_kel_id'))
-                          <em class="invalid-feedback">
-                            {{ $errors->first('rw_kel_id') }}
-                          </em>
-                          @endif
-                          <p class="helper-block">
-                            {{ trans('global.rw.fields.rw_kel_id_helper') }}
-                          </p>
-                      </div>
-                      <div class="form-group {{ $errors->has('rw_status') ? 'has-error' : '' }}" required>
-                        <label for="rw_status">{{ trans('global.rw.fields.rw_status') }}*</label><br>
-                        @if($rw->rw_status == 1)
-                        <input type="radio" id="rw_status" name="rw_status" value="1" checked>
-                        <label for="aktif">Aktif</label><br>
-                        <input type="radio" id="rw_status" name="rw_status" value="2">
-                        <label for="tidak aktif">Tidak Aktif</label><br>
-                        @elseif($rw->rw_status == 2)
-                        <input type="radio" id="rw_status" name="rw_status" value="1">
-                        <label for="aktif">Aktif</label><br>
-                        <input type="radio" id="rw_status" name="rw_status" value="2" checked>
-                        <label for="tidak aktif">Tidak Aktif</label><br>
-                        @else
-                        <input type="radio" id="rw_status" name="rw_status" value="1">
-                        <label for="aktif">Aktif</label><br>
-                        <input type="radio" id="rw_status" name="rw_status" value="2">
-                        <label for="tidak aktif">Tidak Aktif</label><br>
-                        @endif
-                      </div>
-
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                 
+                      <tbody>
                       <div>
-                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-                      </div>
-                    </form>
+                      <form action="{{ route("admin.warga.store") }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+        <!-- <ol>
+            <li>Download this <a href="https://www.igniteui.com/HtmlSamples/javascript-excel-library/report.xlsx" download>sample  Excel file</a></li>
+            <li>Click Choose File/Browse button below and pick the sample Excel file or another excel file.</li>
+        </ol> -->
+        <input type="file" id="input" name="input" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+        <div id="result"></div>
+        <table id="grid1" class="table table-bordered table-striped"></table>
+        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+        </form>
+    </div>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-                <!-- /.card-body -->
               </div>
               <!-- /.card -->
             </div>
@@ -606,20 +560,121 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+  <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- DataTables -->
-  <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-  <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-  <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-  <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+  <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
+  <script src="../../dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="{{ asset('dist/js/demo.js')}}"></script>
+  <script src="../../dist/js/demo.js"></script>
   <!-- page script -->
+  <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.lob.js"></script>
+
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collections.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_text.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_io.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_ui.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_threading.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_web.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.xml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_openxml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
+
   <script>
+
+$(function () {
+            $("#input").on("change", function () {
+                var excelFile,
+                    fileReader = new FileReader();
+                debugger
+                $("#result").hide();
+                debugger
+                fileReader.onload = function (e) {
+                    var buffer = new Uint8Array(fileReader.result);
+
+                    $.ig.excel.Workbook.load(buffer, function (workbook) {
+                        var column, row, newRow, cellValue, columnIndex, i,
+                            worksheet = workbook.worksheets(0),
+                            columnsNumber = 0,
+                            gridColumns = [],
+                            data = [],
+                            worksheetRowsCount;
+
+                        // Both the columns and rows in the worksheet are lazily created and because of this most of the time worksheet.columns().count() will return 0
+                        // So to get the number of columns we read the values in the first row and count. When value is null we stop counting columns:
+                        while (worksheet.rows(0).getCellValue(columnsNumber)) {
+                            columnsNumber++;
+                        }
+
+                        // Iterating through cells in first row and use the cell text as key and header text for the grid columns
+                        for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                            column = worksheet.rows(0).getCellText(columnIndex);
+                            gridColumns.push({ headerText: column, key: column });
+                        }
+
+                        // We start iterating from 1, because we already read the first row to build the gridColumns array above
+                        // We use each cell value and add it to json array, which will be used as dataSource for the grid
+                        for (i = 1, worksheetRowsCount = worksheet.rows().count() ; i < worksheetRowsCount; i++) {
+                            newRow = {};
+                            row = worksheet.rows(i);
+
+                            for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                                cellValue = row.getCellText(columnIndex);
+                                newRow[gridColumns[columnIndex].key] = cellValue;
+                            }
+
+                            data.push(newRow);
+                        }
+
+                        // we can also skip passing the gridColumns use autoGenerateColumns = true, or modify the gridColumns array
+                        createGrid(data, gridColumns);
+                    }, function (error) {
+                        $("#result").text("The excel file is corrupted.");
+                        $("#result").show(1000);
+                    });
+                }
+
+                if (this.files.length > 0) {
+                    excelFile = this.files[0];
+                    if (excelFile.type === "application/vnd.ms-excel" || excelFile.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || (excelFile.type === "" && (excelFile.name.endsWith("xls") || excelFile.name.endsWith("xlsx")))) {
+                        fileReader.readAsArrayBuffer(excelFile);
+                    } else {
+                        $("#result").text("The format of the file you have selected is not supported. Please select a valid Excel file ('.xls, *.xlsx').");
+                        $("#result").show(1000);
+                    }
+                }
+
+            })
+        });
+
+        function createGrid(data, gridColumns) {
+            if ($("#grid1").data("igGrid") !== undefined) {
+                $("#grid1").igGrid("destroy");
+            }
+
+            $("#grid1").igGrid({
+                columns: gridColumns,
+                autoGenerateColumns: true,
+                dataSource: data,
+                width: "100%"
+            });
+        }
+
+
     $(function() {
       $("#example1").DataTable({
         "responsive": true,
