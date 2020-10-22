@@ -210,13 +210,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -528,12 +528,15 @@
 
 
                     <div class="form-group">
-                      <label for="address_code_name">Blok</label>
+                      <label for="address_code_name">No Range</label>
                       <div class="row">
-                        <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
-                      </div>
-                      <div class="row">
-                        <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
+                        <div class="col-sm-1">
+                          <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
+                        </div>
+                        <label>S/D</label>
+                        <div class="col-sm-1">
+                          <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
+                        </div>
                       </div>
                       <em class="invalid-feedback">
                       </em>
