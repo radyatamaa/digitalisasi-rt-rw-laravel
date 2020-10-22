@@ -399,7 +399,7 @@ return [
             'sdm_rt_helper'        => '',
             'sdm_category'               => 'SDM Category',
             'sdm_category_helper'        => '',
-            
+
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
@@ -430,7 +430,7 @@ return [
 
 
 
-    
+
     'insidental_category'                              => [
         'title'          => 'Insidental Category',
         'title_singular' => 'Insidental Category',
@@ -550,10 +550,12 @@ return [
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
-            'address_code_name'               => 'Address Code Name',
+            'address_code_name'               => 'Nama Kode Alamat',
             'address_code_name_helper'        => '',
-            'address_code_rt'               => 'Address Code rt',
+            'address_code_rt'               => 'Kode Alamat RT',
             'address_code_rt_helper'        => '',
+            'address_code_blok'               => 'Kode Blok Alamat',
+            'address_code_blok_helper'        => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
