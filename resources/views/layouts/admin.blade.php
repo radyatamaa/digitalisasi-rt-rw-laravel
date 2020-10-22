@@ -478,7 +478,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">ChartJS</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div>
         </div>
@@ -493,7 +493,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>65</h3>
+                    <h3>{{$wargaBerdomisili}}</h3>
     
                     <p>Warga Berdomisili</p>
                   </div>
@@ -508,7 +508,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{$wargaNonBerdomisili}}</h3>
   
                 <p>Warga Bukan Berdomisili</p>
               </div>
@@ -523,7 +523,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$perempuan}}</h3>
   
                 <p>Perempuan</p>
               </div>
@@ -538,7 +538,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$lakiLaki}}</h3>
   
                 <p>Laki-Laki</p>
               </div>
@@ -826,20 +826,43 @@
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: [
-          'PNS', 
-          'BUMN',
-          'TNI', 
-          'Programmer', 
-          'DPR', 
-          'GURU', 
+          // 'PNS', 
+          // 'BUMN',
+          // 'TNI', 
+          // 'Programmer', 
+          // 'DPR', 
+          // 'GURU', 
       ],
       datasets: [
         {
-          data: [700,500,400,600,300,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          data: [
+            // 700,
+            // 500,
+            // 400,
+            // 600,
+            // 300,
+            // 100
+            ],
+          backgroundColor : [
+            // '#f56954', 
+            // '#00a65a', 
+            // '#f39c12',
+            // '#00c0ef', 
+            // '#3c8dbc', 
+            // '#d2d6de'
+            ],
         }
       ]
     }
+
+    @foreach($pekerjaanArray as $key => $pekerjaan)
+    
+    donutData.labels.push("{{$pekerjaan->nama_pekerjaan}}");
+    donutData.datasets[0].data.push("{{$pekerjaan->count}}");
+    donutData.datasets[0].backgroundColor.push("{{$pekerjaan->backgroundColor}}");
+
+    @endforeach
+
     var donutOptions     = {
       maintainAspectRatio : false,
       responsive : true,
@@ -859,20 +882,42 @@
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
     var pieData        = {
       labels: [
-          'Islam', 
-          'Katolik',
-          'Kristen', 
-          'Buddha', 
-          'Hindu', 
-          'Kong Hu Chu', 
+          // 'Islam', 
+          // 'Katolik',
+          // 'Kristen', 
+          // 'Buddha', 
+          // 'Hindu', 
+          // 'Kong Hu Chu', 
       ],
       datasets: [
         {
-          data: [700,500,400,600,300,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          data: [
+            // 700,
+            // 500,
+            // 400,
+            // 600,
+            // 300,
+            // 100
+            ],
+          backgroundColor : [
+            // '#f56954', 
+            // '#00a65a', 
+            // '#f39c12', 
+            // '#00c0ef', 
+            // '#3c8dbc', 
+            // '#d2d6de'
+            ],
         }
       ]
     }
+    @foreach($agamaArray as $key => $agama)
+    
+    pieData.labels.push("{{$agama->nama_agama}}");
+    pieData.datasets[0].data.push("{{$agama->count}}");
+    pieData.datasets[0].backgroundColor.push("{{$agama->backgroundColor}}");
+
+    @endforeach
+    
     var pieOptions     = {
       maintainAspectRatio : false,
       responsive : true,
@@ -884,7 +929,7 @@
       data: pieData,
       options: pieOptions      
     })
-
+   
     //-------------
     //- BAR CHART -
     //-------------
