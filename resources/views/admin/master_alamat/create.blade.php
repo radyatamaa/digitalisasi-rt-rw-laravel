@@ -273,13 +273,13 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -510,6 +510,34 @@
                       @endif
                       <p class="helper-block">
                         {{ trans('global.master_alamat.fields.address_code_name_helper') }}
+                      </p>
+                    </div>
+
+                    <div class="form-group {{ $errors->has('address_code_blok') ? 'has-error' : '' }}">
+                      <label for="address_code_blok">{{ trans('global.master_alamat.fields.address_code_blok') }}*</label>
+                      <input type="text" id="address_code_blok" name="address_code_blok" class="form-control" value="{{ old('address_code_blok', isset($master_alamat) ? $master_alamat->address_code_blok : '') }}">
+                      @if($errors->has('address_code_blok'))
+                      <em class="invalid-feedback">
+                        {{ $errors->first('address_code_blok') }}
+                      </em>
+                      @endif
+                      <p class="helper-block">
+                        {{ trans('global.master_alamat.fields.address_code_blok_helper') }}
+                      </p>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="address_code_name">Blok</label>
+                      <div class="row">
+                        <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
+                      </div>
+                      <div class="row">
+                        <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
+                      </div>
+                      <em class="invalid-feedback">
+                      </em>
+                      <p class="helper-block">
                       </p>
                     </div>
                     <input type="text" id="address_code_rt" name="address_code_rt" class="form-control" value="{{$rts}}" hidden>
