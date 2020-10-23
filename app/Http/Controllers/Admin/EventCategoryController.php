@@ -7,33 +7,45 @@ use App\Http\Requests\MassDestroyEventCategoryRequest;
 use App\Http\Requests\StoreEventCategoryRequest;
 use App\Http\Requests\UpdateEventCategoryRequest;
 use App\Event_Category;
-use App\rt;
+use App\Rt;
 use Illuminate\Support\Facades\Auth;
 
 class EventCategoryController extends Controller
 {
     public function index()
     {
-        $user = Auth::user()->rt_id;
+        $user = Auth::user()->rw_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_category_access'), 403);
-        $event_category = Event_Category::all();
+
         if ($user != null) {
-            $event_category = Event_Category::where('id_rt', $user)->get();
+            $event_category = Event_Category::select(
+                'event_category.*',
+                'rt.rt_name'
+            )
+                ->join('rt', 'rt.id', '=', 'event_category.id_rt')->where('id_rw', $user)->get();
         } else {
-            $event_category = Event_Category::all();
+            $event_category = Event_Category::select(
+                'event_category.*',
+                'rt.rt_name'
+            )
+
+                ->join('rt', 'rt.id', '=', 'event_category.id_rt')->get();
         }
+
 
         return view('admin.event_category.index', compact('event_category', 'user', 'userLogin'));
     }
 
+
     public function create()
     {
-        $rts = Auth::user()->rt_id;
+        $rws = Auth::user()->rw_id;
         $userLogin = Auth::user()->user_fullname;
+        $id_rt = Rt::all()->pluck('rt_name', 'id');
         abort_unless(\Gate::allows('event_category_create'), 403);
 
-        return view('admin.event_category.create', compact('rts', 'userLogin'));
+        return view('admin.event_category.create', compact('rws', 'userLogin', 'id_rt'));
     }
 
     public function store(StoreEventCategoryRequest $request)
@@ -47,11 +59,12 @@ class EventCategoryController extends Controller
 
     public function edit(Event_Category $event_category)
     {
-        $rts = Auth::user()->rt_id;
+        $rws = Auth::user()->rw_id;
         $userLogin = Auth::user()->user_fullname;
+        $id_rt = Rt::all()->pluck('rt_name', 'id');
         abort_unless(\Gate::allows('event_category_edit'), 403);
 
-        return view('admin.event_category.edit', compact('event_category', 'rts', 'userLogin'));
+        return view('admin.event_category.edit', compact('event_category', 'rws', 'userLogin', 'id_rt'));
     }
 
     public function update(UpdateEventCategoryRequest $request, Event_Category $event_category)

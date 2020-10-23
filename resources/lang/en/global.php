@@ -641,6 +641,8 @@ return [
             'id_helper'          => '',
             'event_name'               => 'Event Name',
             'event_name_helper'        => '',
+            'event_desc'               => 'Event Desc',
+            'event_desc_helper'        => '',
             'event_rt'               => 'Event RT',
             'event_rt_helper'        => '',
             'event_category'               => 'Event Category',

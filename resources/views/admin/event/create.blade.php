@@ -489,6 +489,18 @@
                                                     {{ trans('global.event.fields.event_name_helper') }}
                                                 </p>
                                             </div>
+                                            <div class="form-group {{ $errors->has('event_desc') ? 'has-error' : '' }}">
+                                                <label for="event_desc">{{ trans('global.event.fields.event_desc') }}*</label>
+                                                <input type="text" id="event_desc" name="event_desc" class="form-control" value="{{ old('event_desc', isset($event) ? $event->event_desc : '') }}" required>
+                                                @if($errors->has('event_desc'))
+                                                <em class="invalid-feedback">
+                                                    {{ $errors->first('event_desc') }}
+                                                </em>
+                                                @endif
+                                                <p class="helper-block">
+                                                    {{ trans('global.event.fields.event_desc_helper') }}
+                                                </p>
+                                            </div>
 
                                             <!-- <div class="form-group {{ $errors->has('event_rt') ? 'has-error' : '' }}">
                                                 <label for="event_rt">{{ trans('global.event.fields.event_rt') }}* -->
@@ -516,7 +528,7 @@
                                             <div class="form-group {{ $errors->has('event_category') ? 'has-error' : '' }}">
                                                 <label for="event_category">{{ trans('global.event.fields.event_category') }}*
                                                     <select name="event_category" id="event_category" class="form-control select2" required>
-                                                        @foreach($event_category as $id => $event_category)
+                                                        @foreach($event_categorys as $id => $event_category)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('event_category', [])) || isset($event) && $event->event_category->contains($id)) ? 'selected' : '' }}>
                                                             {{ $event_category }}
                                                         </option>

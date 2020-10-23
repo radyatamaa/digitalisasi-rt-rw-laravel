@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Event_Category extends Model
+class Event_Detail extends Model
 {
     use SoftDeletes;
-    protected $table = "event_category";
+    protected $table = "event_detail";
     protected $dates = [
         'created_at',
         'updated_at',
@@ -16,12 +16,15 @@ class Event_Category extends Model
     ];
 
     protected $fillable = [
-        'category_name',
-        'id_rt',
-        'id_rw',
+        'event_id',
+        'event_warga',
+        'event_rt',
+        'event_result',
+        'event_date',
         'created_at',
         'updated_at',
         'deleted_at',
+        'is_active',
     ];
 
     public function permissions()
