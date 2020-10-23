@@ -7,23 +7,26 @@ use App\Http\Requests\MassDestroyMasterPekerjaanRequest;
 use App\Http\Requests\StoreMasterPekerjaanRequest;
 use App\Http\Requests\UpdateMasterPekerjaanRequest;
 use App\master_pekerjaan;
+use Illuminate\Support\Facades\Auth;
 
 class MasterPekerjaanController extends Controller
 {
     public function index()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_pekerjaan_access'), 403);
 
         $master_pekerjaan = Master_Pekerjaan::all();
 
-        return view('admin.master_pekerjaan.index', compact('master_pekerjaan'));
+        return view('admin.master_pekerjaan.index', compact('master_pekerjaan','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_pekerjaan_create'), 403);
 
-        return view('admin.master_pekerjaan.create');
+        return view('admin.master_pekerjaan.create', compact('userLogin'));
     }
 
     public function store(StoreMasterPekerjaanRequest $request)
@@ -37,9 +40,10 @@ class MasterPekerjaanController extends Controller
 
     public function edit(master_pekerjaan $master_pekerjaan)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_pekerjaan_edit'), 403);
 
-        return view('admin.master_pekerjaan.edit', compact('master_pekerjaan'));
+        return view('admin.master_pekerjaan.edit', compact('master_pekerjaan','userLogin'));
     }
 
     public function update(UpdateMasterPekerjaanRequest $request, master_pekerjaan $master_pekerjaan)

@@ -18,6 +18,7 @@ class Master_Alamat extends Model
     protected $fillable = [
         'address_code_name',
         'address_code_rt',
+        'address_code_blok',
         'created_at',
         'updated_at',
         'deleted_at',

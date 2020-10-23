@@ -17,6 +17,8 @@ class Event_Category extends Model
 
     protected $fillable = [
         'category_name',
+        'id_rt',
+        'id_rw',
         'created_at',
         'updated_at',
         'deleted_at',

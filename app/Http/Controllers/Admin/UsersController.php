@@ -8,25 +8,84 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Role;
 use App\User;
+use App\Rt;
+use App\Rw;
+use App\Kelurahan;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
     public function index()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('user_access'), 403);
 
-        $users = User::all();
+        $rw = Auth::user()->rw_id;
 
-        return view('admin.users.index', compact('users'));
+        $rt = Auth::user()->rt_id;
+
+        $kelurahan = Auth::user()->kelurahan_id;
+
+        if($kelurahan != null){
+            $users = User::select(
+                'users.*',
+                'rw.rw_name')
+                ->join('rw', 'rw.id', '=', 'users.rw_id')
+                ->where('rw.rw_kel_id', $kelurahan)
+                ->get();
+        }else if($rw != null){
+            $users = User::select(
+                'users.*',
+                'rt.rt_name')
+                ->join('rt', 'rt.id', '=', 'users.rt_id')
+                ->where('rt.rt_rw_id', $rw)
+                ->get();
+        }else{
+            $users = User::all();
+        }
+
+        return view('admin.users.index', compact('users','userLogin'));
     }
 
     public function create()
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('user_create'), 403);
 
-        $roles = Role::all()->pluck('title', 'id');
+        $rw = Auth::user()->rw_id;
 
-        return view('admin.users.create', compact('roles'));
+        $rt = Auth::user()->rt_id;
+
+        $kelurahan = Auth::user()->kelurahan_id;
+
+        if ($kelurahan != null) {
+            $kelurahan_id = [];
+
+            $rw_id = Rw::where('rw_kel_id', $kelurahan)
+                ->pluck('rw_name', 'id');
+
+            $rt_id = [];
+
+            $roles = Role::where('title', 'RW')
+                ->pluck('title', 'id');
+        } else if ($rw != null) {
+
+            $kelurahan_id = [];
+
+            $rw_id = [];
+
+            $rt_id = Rt::where('rt_rw_id', $rw)
+                ->pluck('rt_name', 'id');
+            $roles = Role::where('title', 'RT')
+                ->pluck('title', 'id');
+        } else {
+            $rt_id = Rt::all()->pluck('rt_name', 'id');
+            $rw_id = Rw::all()->pluck('rw_name', 'id');
+            $kelurahan_id = Kelurahan::all()->pluck('kel_name', 'id');
+            $roles = Role::all()->pluck('title', 'id');
+        }
+
+        return view('admin.users.create', compact('roles', 'rt_id', 'rw_id', 'kelurahan_id','userLogin'));
     }
 
     public function store(StoreUserRequest $request)
@@ -41,13 +100,49 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('user_edit'), 403);
 
-        $roles = Role::all()->pluck('title', 'id');
+        $rw = Auth::user()->rw_id;
+
+        $rt = Auth::user()->rt_id;
+
+        $kelurahan = Auth::user()->kelurahan_id;
+
+        if ($kelurahan != null) {
+            $kelurahan_id = Kelurahan::where('id', $kelurahan)
+                ->pluck('kel_name', 'id');
+
+            $rw_id = Rw::where('rw_kel_id', $kelurahan)
+                ->pluck('rw_name', 'id');
+
+            $rt_id = [];
+
+            $roles = Role::where('title', 'RW')
+                ->pluck('title', 'id');
+        } else if ($rw != null) {
+
+            $kelurahan_id = [];
+
+            $rw_id = Rw::where('id', $rw)
+                ->pluck('rw_name', 'id');
+
+            $rt_id = Rt::where('rt_rw_id', $rw)
+                ->pluck('rt_name', 'id');
+            $roles = Role::where('title', 'RT')
+                ->pluck('title', 'id');
+        } else {
+            $rt_id = Rt::all()->pluck('rt_name', 'id');
+            $rw_id = Rw::all()->pluck('rw_name', 'id');
+            $kelurahan_id = Kelurahan::all()->pluck('kel_name', 'id');
+            $roles = Role::all()->pluck('title', 'id');
+        }
+
+        // $roles = Role::all()->pluck('title', 'id');
 
         $user->load('roles');
 
-        return view('admin.users.edit', compact('roles', 'user'));
+        return view('admin.users.edit', compact('roles', 'user', 'rt_id', 'rw_id', 'kelurahan_id','userLogin'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
