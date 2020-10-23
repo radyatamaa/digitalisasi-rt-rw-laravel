@@ -531,11 +531,11 @@
                       <label for="address_code_name">No Range</label>
                       <div class="row">
                         <div class="col-sm-1">
-                          <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
+                          <input type="text" id="address_code_name_start" name="address_code_name_start" class="form-control" value="">
                         </div>
                         <label>S/D</label>
                         <div class="col-sm-1">
-                          <input type="text" id="address_code_name" name="address_code_name" class="form-control" value="">
+                          <input type="text" id="address_code_name_end" name="address_code_name_end" class="form-control" value="">
                         </div>
                       </div>
                       <em class="invalid-feedback">
@@ -543,6 +543,7 @@
                       <p class="helper-block">
                       </p>
                     </div>
+
                     <input type="text" id="address_code_rt" name="address_code_rt" class="form-control" value="{{$rts}}" hidden>
 
                     <div>
