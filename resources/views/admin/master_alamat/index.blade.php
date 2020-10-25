@@ -273,13 +273,13 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -519,6 +519,9 @@
                           <th>
                             {{ trans('global.master_alamat.fields.address_code_rt') }}
                           </th>
+                          <th>
+                            {{ trans('global.master_alamat.fields.address_code_blok') }}
+                          </th>
                           <!-- <th>
                             {{ trans('global.product.fields.description') }}
                         </th>
@@ -541,6 +544,9 @@
                           </td>
                           <td>
                             {{ $master_alamats->address_code_rt ?? '' }}
+                          </td>
+                          <td>
+                            {{ $master_alamats->address_code_blok ?? '' }}
                           </td>
                           <!-- <td>
                                 {{ $product->description ?? '' }}

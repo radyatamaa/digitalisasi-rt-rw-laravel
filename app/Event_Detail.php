@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Master_Alamat extends Model
+class Event_Detail extends Model
 {
-    // use SoftDeletes;
-    protected $table = "address_code";
+    use SoftDeletes;
+    protected $table = "event_detail";
     protected $dates = [
         'created_at',
         'updated_at',
@@ -16,12 +16,14 @@ class Master_Alamat extends Model
     ];
 
     protected $fillable = [
-        'address_code_name',
-        'address_code_rt',
-        'address_code_blok',
+        'event_id',
+        'event_warga',
+        'event_result',
+        'event_date',
         'created_at',
         'updated_at',
         'deleted_at',
+        'is_active',
     ];
 
     public function permissions()
