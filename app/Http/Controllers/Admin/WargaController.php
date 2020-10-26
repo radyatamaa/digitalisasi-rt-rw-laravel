@@ -165,11 +165,11 @@ class WargaController extends Controller
        
         if ($user != null) {
             $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
-            $master_alamats = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
+            $master_alamats = Master_Alamat::where('address_code_rt', $user)->get();
             $warga_salary_range = Master_Gaji::where('salary_rt', $user)->get();
         } else {
             $rts = Rt::all()->pluck('rt_name', 'id');
-            $master_alamats = Master_Alamat::all()->pluck('address_code_name', 'id');
+            $master_alamats = Master_Alamat::all()->get();
             $warga_salary_range = Master_Gaji::all();
         }
         $pendidikans = Pendidikan::all()->pluck('pendidikan_name', 'id');
@@ -202,11 +202,11 @@ class WargaController extends Controller
         $warga_job = Master_Pekerjaan::all()->pluck('job_name', 'id');
         if ($user != null) {
             $warga_rt = Rt::where('id', $user)->pluck('rt_name', 'id');
-            $warga_address_code = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
+            $warga_address_code = Master_Alamat::where('address_code_rt', $user)->get();
             $warga_salary_range = Master_Gaji::where('salary_rt', $user)->get();
         } else {
             $warga_rt = Rt::all()->pluck('rt_name', 'id');
-            $warga_address_code = Master_Alamat::all()->pluck('address_code_name', 'id');
+            $warga_address_code = Master_Alamat::all()->get();
             $warga_salary_range = Master_Gaji::all();
         }
         $warga_pendidikan = Pendidikan::all()->pluck('pendidikan_name', 'id');

@@ -614,8 +614,8 @@
                         <label for="warga_address_code">{{ trans('global.warga.fields.warga_address_code') }}*
                           <select name="warga_address_code" id="warga_address_code" class="form-control select2" required>
                             @foreach($warga_address_code as $id => $warga_address_code)
-                            <option value="{{ $id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code == $id) ? 'selected' : '' }}>
-                              {{ $warga_address_code }}
+                            <option value="{{ $warga_address_code->id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code == $warga_address_code->id) ? 'selected' : '' }}>
+                            {{ $warga_address_code->address_code_name . ' ' . $warga_address_code->address_code_blok}}
                             </option>
                             @endforeach
                           </select>
