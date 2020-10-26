@@ -23,12 +23,22 @@ class HomeController
             $dataObj = new \stdClass();
             $dataObj->nama_agama = $agama->religion_name;
             if ($rt != null) {
-                $dataObj->count = Warga::where('warga.warga_religion', $agama->id)
+                $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $agama->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
             
             }else{               
-                $dataObj->count = Warga::where('warga.warga_religion', $agama->id)
+                $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $agama->id)
                 ->count();
             }
            
@@ -42,12 +52,22 @@ class HomeController
             $dataObj = new \stdClass();
             $dataObj->nama_pekerjaan = $pekerjaan->job_name;
             if ($rt != null) {
-                $dataObj->count = Warga::where('warga.warga_religion', $pekerjaan->id)
+                $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $pekerjaan->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
             
             }else{
-                $dataObj->count = Warga::where('warga.warga_religion', $pekerjaan->id)
+                $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $pekerjaan->id)
                 ->count();           
             }
             
@@ -58,23 +78,63 @@ class HomeController
         }
 
         if ($rt != null) {
-            $lakiLaki = Warga::where('warga.warga_sex', '1')
+            $lakiLaki = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '1')
             ->where('warga.warga_rt', $rt)
             ->count();
-            $perempuan = Warga::where('warga.warga_sex', '2')
+            $perempuan = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '2')
             ->where('warga.warga_rt', $rt)
             ->count();
-            $wargaBerdomisili = Warga::where('warga.warga_is_ktp_sama_domisili', '1')
+            $wargaBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '1')
             ->where('warga.warga_rt', $rt)
             ->count();
-            $wargaNonBerdomisili = Warga::where('warga.warga_is_ktp_sama_domisili', '2')
+            $wargaNonBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '2')
             ->where('warga.warga_rt', $rt)
             ->count();
         }else{
-            $lakiLaki = Warga::where('warga.warga_sex', '1')->count();
-            $perempuan = Warga::where('warga.warga_sex', '2')->count();
-            $wargaBerdomisili = Warga::where('warga.warga_is_ktp_sama_domisili', '1')->count();
-            $wargaNonBerdomisili = Warga::where('warga.warga_is_ktp_sama_domisili', '2')->count();            
+            $lakiLaki = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '1')->count();
+            $perempuan = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '2')->count();
+            $wargaBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '1')->count();
+            $wargaNonBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->join('job', 'job.id', '=', 'warga.warga_job')
+            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '2')->count();            
         }
 
       
