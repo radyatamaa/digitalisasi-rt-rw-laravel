@@ -550,11 +550,11 @@ return [
         'fields'         => [
             'id'                 => 'ID',
             'id_helper'          => '',
-            'address_code_name'               => 'Nama Kode Alamat',
+            'address_code_name'               => 'Nama Jalan',
             'address_code_name_helper'        => '',
             'address_code_rt'               => 'Kode Alamat RT',
             'address_code_rt_helper'        => '',
-            'address_code_blok'               => 'Kode Blok Alamat',
+            'address_code_blok'               => 'Gang/Blok',
             'address_code_blok_helper'        => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
