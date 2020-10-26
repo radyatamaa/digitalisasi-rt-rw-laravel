@@ -484,7 +484,28 @@
                                                 {{ trans('global.event_category.fields.category_name_helper') }}
                                             </p>
                                         </div>
-                                        <input type="text" id="id_rt" name="id_rt" class="form-control" value="{{$rts}}" hidden>
+
+                                        <div class="form-group {{ $errors->has('id_rt') ? 'has-error' : '' }}">
+                                            <label for="id_rt">{{ trans('global.event_category.fields.id_rt') }}*
+                                                <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                                                <select name="id_rt" id="id_rt" class="form-control select2" required>
+                                                    @foreach($id_rt as $id => $id_rt)
+                                                    <option value="{{ $id }}" {{ (isset($event_category) && $event_category->id_rt == $id) ? 'selected' : '' }}>
+                                                        {{ $id_rt }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                @if($errors->has('id_rt'))
+                                                <em class="invalid-feedback">
+                                                    {{ $errors->first('id_rt') }}
+                                                </em>
+                                                @endif
+                                                <p class="helper-block">
+                                                    {{ trans('global.event_category.fields.id_rt_helper') }}
+                                                </p>
+                                        </div>
+                                        <input type="text" id="id_rw" name="id_rw" class="form-control" value="{{$rws}}" hidden>
                                         <div>
                                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                                         </div>

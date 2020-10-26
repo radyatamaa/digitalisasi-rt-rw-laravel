@@ -18,6 +18,7 @@ class Event_Detail extends Model
     protected $fillable = [
         'event_id',
         'event_warga',
+        'event_rt',
         'event_result',
         'event_date',
         'created_at',
