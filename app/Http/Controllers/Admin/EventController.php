@@ -50,6 +50,7 @@ class EventController extends Controller
         $event_rt = Rt::all()->pluck('rt_name', 'id');
 
         if ($rts != null) {
+
             $warga = Warga::select(
                 'warga.*',
                 'religion.religion_name',
@@ -89,6 +90,15 @@ class EventController extends Controller
             $event_category = Event_Category::all()->pluck('category_name', 'id');
         }
         return view('admin.event.create', compact('event_rt', 'event_category', 'rts', 'userLogin', 'warga'));
+
+
+            $event_categorys = Event_Category::where('id_rt', $rts)->pluck('category_name', 'id');
+        } else {
+
+            $event_categorys = Event_Category::all()->pluck('category_name', 'id');
+        }
+        return view('admin.event.create', compact('event_rt', 'event_categorys', 'rts', 'userLogin'));
+
     }
 
     public function store(StoreEventRequest $request)
@@ -116,6 +126,7 @@ class EventController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('event_edit'), 403);
         $event_rt = Rt::all()->pluck('rt_name', 'id');
+
         $event_detail = Event_Detail::where('event_id', $event->id)->pluck('event_warga');
         if ($rts != null) {
             $warga = Warga::select(
@@ -157,6 +168,17 @@ class EventController extends Controller
             $event_category = Event_Category::all()->pluck('category_name', 'id');
         }
         return view('admin.event.edit', compact('event', 'event_rt', 'event_category', 'rts', 'userLogin', 'warga', 'event_detail'));
+
+
+        if ($rts != null) {
+
+            $event_categorys = Event_Category::where('id_rt', $rts)->pluck('category_name', 'id');
+        } else {
+
+            $event_categorys = Event_Category::all()->pluck('category_name', 'id');
+        }
+        return view('admin.event.edit', compact('event', 'event_rt', 'event_categorys', 'rts', 'userLogin'));
+
     }
 
     public function update(UpdateEventRequest $request, Event $event)

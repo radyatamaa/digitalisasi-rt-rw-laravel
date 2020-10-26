@@ -491,6 +491,9 @@
                                                         {{ trans('global.event.fields.event_name') }}
                                                     </th>
                                                     <th>
+                                                        {{ trans('global.event.fields.event_desc') }}
+                                                    </th>
+                                                    <th>
                                                         {{ trans('global.event.fields.event_rt') }}
                                                     </th>
                                                     <th>
@@ -513,6 +516,9 @@
                                                     </td>
                                                     <td>
                                                         {{ $events->event_name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $events->event_desc ?? '' }}
                                                     </td>
                                                     <td>
                                                         {{ $events->rt_name ?? '' }}

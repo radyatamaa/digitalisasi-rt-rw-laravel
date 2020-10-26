@@ -506,7 +506,7 @@
                                                         {{ $event_categorys->category_name ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $event_categorys->id_rt ?? '' }}
+                                                        {{ $event_categorys->rt_name ?? '' }}
                                                     </td>
                                                     <td>
 
