@@ -38,8 +38,16 @@ class MasterAlamatController extends Controller
     public function store(StoreMasterAlamatRequest $request)
     {
         abort_unless(\Gate::allows('master_alamat_create'), 403);
-
-        $master_alamat = Master_Alamat::create($request->all());
+        if (isset($_POST['address_code_name_start']) && isset($_POST['address_code_name_end'])) {
+            for ($x = $_POST['address_code_name_start']; $x <= $_POST['address_code_name_end']; $x++) {
+                $alamat = array(
+                    'address_code_name' => $request->address_code_name,
+                    'address_code_blok' => $request->address_code_blok . $x,
+                    'address_code_rt' => $request->address_code_rt,
+                );
+                $master_alamat = Master_Alamat::create($alamat);
+            }
+        }
 
         return redirect()->route('admin.master_alamat.index');
     }

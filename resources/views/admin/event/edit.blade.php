@@ -551,6 +551,46 @@
                                                 {{ trans('global.event.fields.event_date_helper') }}
                                             </p>
                                         </div>
+                                        <div class="box">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Event Detail</h3>
+
+                                                <div class="box-tools">
+                                                    <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                                                        <!-- <input type="text" name="table_search" class="form-control pull-right" placeholder="Search"> -->
+
+                                                        <div class="input-group-btn">
+                                                            <!-- <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body table-responsive no-padding">
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Nama Warga</th>
+                                                            <th>Adress</th>
+                                                            <th>No KTP</th>
+
+                                                        </tr>
+                                                        @foreach($warga as $warg)
+                                                        <tr>
+                                                            <td><input type="checkbox" id="warga[]" name="warga[]" value="{{$warg->id}}" {{isset($event_detail) && $event_detail->contains($warg->id) ? 'checked' : '' }}></td>
+                                                            <td>{{$warg->warga_first_name . ' ' . $warg->warga_last_name}}</td>
+                                                            <td>{{$warg->warga_address}}</td>
+                                                            <td><span class="label label-success">{{$warg->warga_no_ktp}}</span></td>
+
+                                                        </tr>
+
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
                                         <input type="text" id="event_rt" name="event_rt" class="form-control" value="{{$rts}}" hidden>
                                         <div>
                                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
