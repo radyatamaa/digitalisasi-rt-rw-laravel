@@ -19,6 +19,7 @@ class HomeController
         $agamas = Master_Agama::all();        
         $pekerjaans = master_pekerjaan::all();
 
+        $indexs = 0;
         foreach($agamas as $index => $agama){
             $dataObj = new \stdClass();
             $dataObj->nama_agama = $agama->religion_name;
@@ -42,12 +43,15 @@ class HomeController
                 ->count();
             }
            
-            if(($dataObj->count != 0) && (count($agamaArray) <= 6)){    
-            $dataObj->backgroundColor = $chartBackground[$index];            
+            if(($dataObj->count != 0) && (count($agamaArray) <= 6)){   
+            
+            $dataObj->backgroundColor = $chartBackground[$indexs];
+            $indexs = $indexs + 1;             
             array_push($agamaArray,$dataObj);
             }
         }
-
+        
+        $indexs2 = 0;
         foreach($pekerjaans as $index => $pekerjaan){
             $dataObj = new \stdClass();
             $dataObj->nama_pekerjaan = $pekerjaan->job_name;
@@ -72,7 +76,8 @@ class HomeController
             }
             
             if(($dataObj->count != 0) && (count($pekerjaanArray) <= 6)){    
-            $dataObj->backgroundColor = $chartBackground[$index]; 
+                $dataObj->backgroundColor = $chartBackground[$indexs2];
+                $indexs2 = $indexs2 + 1;    
             array_push($pekerjaanArray,$dataObj);
             }
         }
