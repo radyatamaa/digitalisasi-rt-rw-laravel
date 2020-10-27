@@ -90,15 +90,6 @@ class EventController extends Controller
             $event_category = Event_Category::all()->pluck('category_name', 'id');
         }
         return view('admin.event.create', compact('event_rt', 'event_category', 'rts', 'userLogin', 'warga'));
-
-
-            $event_categorys = Event_Category::where('id_rt', $rts)->pluck('category_name', 'id');
-        } else {
-
-            $event_categorys = Event_Category::all()->pluck('category_name', 'id');
-        }
-        return view('admin.event.create', compact('event_rt', 'event_categorys', 'rts', 'userLogin'));
-
     }
 
     public function store(StoreEventRequest $request)
@@ -178,7 +169,6 @@ class EventController extends Controller
             $event_categorys = Event_Category::all()->pluck('category_name', 'id');
         }
         return view('admin.event.edit', compact('event', 'event_rt', 'event_categorys', 'rts', 'userLogin'));
-
     }
 
     public function update(UpdateEventRequest $request, Event $event)
