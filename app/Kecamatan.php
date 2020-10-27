@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class History_Warga extends Model
+class Kecamatan extends Model
 {
-    use SoftDeletes;
-    protected $table = "history_warga";
+    // use SoftDeletes;
+    protected $table = "kecamatan";
     protected $dates = [
         'created_at',
         'updated_at',
@@ -16,17 +16,10 @@ class History_Warga extends Model
     ];
 
     protected $fillable = [
-        'history_desc',
-        'history_date',
-        'history_category',
-        'id_rt',
-        'warga_id',
-        'provinsi_id',
-        'kota_id',
-        'kecamatan_id',
-        'kelurahan_id',
-        'rw_id',
-        'rt_id',
+        'kec_name',
+        'kec_code',
+        'kec_kota_id',
+        'kec_status',
         'created_at',
         'updated_at',
         'deleted_at',
