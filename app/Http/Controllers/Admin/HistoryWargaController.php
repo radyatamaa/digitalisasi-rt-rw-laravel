@@ -95,12 +95,12 @@ class HistoryWargaController extends Controller
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-        $rt_id = Rt::all()->pluck('rt_name', 'id');
+        $rt_id = Rt::all();
         $provinsi_id = Provinces::all()->pluck('name', 'id');
-        $kota_id = Kabupaten::all()->pluck('name', 'id');
-        $kecamatan_id = Kecamatan::all()->pluck('kec_name', 'id');
-        $kelurahan_id = Kelurahan::all()->pluck('kel_name', 'id');
-        $rw_id = Rw::all()->pluck('rw_name', 'id');
+        $kota_id = Kabupaten::all();
+        $kecamatan_id = Kecamatan::all();
+        $kelurahan_id = Kelurahan::all();
+        $rw_id = Rw::all();
 
 
         return view('admin.history_warga.create', compact('history_category', 'warga_ids', 'rts', 'userLogin', 'rt_id', 'provinsi_id', 'kota_id', 'kecamatan_id', 'kelurahan_id', 'rw_id'));
@@ -160,20 +160,20 @@ class HistoryWargaController extends Controller
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-
-        $rt_id = Rt::all()->pluck('rt_name', 'id');
+        
+        $rt_id = Rt::all();
         $provinsi_id = Provinces::all()->pluck('name', 'id');
-        $kota_id = Kabupaten::all()->pluck('name', 'id');
-        $kecamatan_id = Kecamatan::all()->pluck('kec_name', 'id');
-        $kelurahan_id = Kelurahan::all()->pluck('kel_name', 'id');
-        $rw_id = Rw::all()->pluck('rw_name', 'id');
+        $kota_id = Kabupaten::all();
+        $kecamatan_id = Kecamatan::all();
+        $kelurahan_id = Kelurahan::all();
+        $rw_id = Rw::all();
 
-        $rt_id1 = Rt::all()->pluck('rt_name', 'id');
+        $rt_id1 = Rt::all();
         $provinsi_id1 = Provinces::all()->pluck('name', 'id');
-        $kota_id1 = Kabupaten::all()->pluck('name', 'id');
-        $kecamatan_id1 = Kecamatan::all()->pluck('kec_name', 'id');
-        $kelurahan_id1 = Kelurahan::all()->pluck('kel_name', 'id');
-        $rw_id1 = Rw::all()->pluck('rw_name', 'id');
+        $kota_id1 = Kabupaten::all();
+        $kecamatan_id1 = Kecamatan::all();
+        $kelurahan_id1 = Kelurahan::all();
+        $rw_id1 = Rw::all();
 
         return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin', 
         'rt_id', 
