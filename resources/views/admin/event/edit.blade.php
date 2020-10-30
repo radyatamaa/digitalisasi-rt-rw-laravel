@@ -541,7 +541,7 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
                                             <label for="event_date">{{ trans('global.event.fields.event_date') }}*</label>
-                                            <input type="date" id="event_date" name="event_date" class="form-control" value="{{ old('event_date', isset($event) ? $event->event_date : '') }}" required>
+                                            <input type="date" id="event_date" name="event_date" class="form-control" value="{{ old('event_date', isset($event) ? date('Y-m-d', strtotime($event->event_date)) : '') }}" required>
                                             @if($errors->has('event_date'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('event_date') }}
