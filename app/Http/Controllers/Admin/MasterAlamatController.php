@@ -42,7 +42,7 @@ class MasterAlamatController extends Controller
             for ($x = $_POST['address_code_name_start']; $x <= $_POST['address_code_name_end']; $x++) {
                 $alamat = array(
                     'address_code_name' => $request->address_code_name,
-                    'address_code_blok' => $request->address_code_blok . $x,
+                    'address_code_blok' => $request->address_code_blok . ' ' . $x,
                     'address_code_rt' => $request->address_code_rt,
                 );
                 $master_alamat = Master_Alamat::create($alamat);
