@@ -530,7 +530,7 @@
 
                                         <div class="form-group {{ $errors->has('ins_date') ? 'has-error' : '' }}">
                                             <label for="ins_date">{{ trans('global.insidental.fields.ins_date') }}*</label>
-                                            <input type="date" id="ins_date" name="ins_date" class="form-control" value="{{ old('ins_date', isset($insidental) ? $insidental->ins_date : '') }}" required>
+                                            <input type="date" id="ins_date" name="ins_date" class="form-control" value="{{ old('ins_date', isset($insidental) ? date('Y-m-d', strtotime($insidental->ins_date)) : '') }}" required>
                                             @if($errors->has('ins_date'))
                                             <em class="invalid-feedback">
                                                 {{ $errors->first('ins_date') }}
