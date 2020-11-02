@@ -115,10 +115,19 @@ class HistoryWargaController extends Controller
 
         if($category == "1"){
             $wargaId = $_POST['warga_id'];
-            $updateWarga = array(
-                'warga_rt' => $_POST['rt_id'],
-                'warga_status' => 0,
-            );
+            if(isset($_POST['rt_id'])){
+                $updateWarga = array(
+                    'warga_rt' => $_POST['rt_id'],
+                    'warga_status' => 0,
+                );
+    
+            }else{
+                $updateWarga = array(
+                    'warga_rt' => null,
+                    'warga_status' => 2,
+                );
+
+            }
             $update = Warga::where('id', $wargaId)->update($updateWarga);
         }
 
@@ -209,10 +218,19 @@ class HistoryWargaController extends Controller
         $category = $_POST['history_category'];
         if($category == "1"){
             $wargaId = $_POST['warga_id'];
-            $updateWarga = array(
-                'warga_rt' => $_POST['rt_id'],
-                'warga_status' => 0,
-            );
+            if(isset($_POST['rt_id'])){
+                $updateWarga = array(
+                    'warga_rt' => $_POST['rt_id'],
+                    'warga_status' => 0,
+                );
+    
+            }else{
+                $updateWarga = array(
+                    'warga_rt' => null,
+                    'warga_status' => 2,
+                );
+
+            }
             $update = Warga::where('id', $wargaId)->update($updateWarga);
         }
 
