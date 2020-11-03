@@ -725,7 +725,7 @@
                                                 <label for="rt_id">{{ trans('global.history_warga.fields.rt_id') }}*
                                                     <select name="rt_id" id="rt_id" class="form-control select2">
                                                         @foreach($rt_id as $id => $rt_id)
-                                                        <option value="{{ $rt_id->id }}" id="{{$rt_id->rt_rw_id}}" {{ (in_array($id, old('rt_id->rt_name', [])) || isset($history_warga) && $history_warga->rt_id->contains($rw_id->id)) ? 'selected' : '' }}>
+                                                        <option value="{{ $rt_id->id }}" id="{{$rt_id->rt_rw_id}}" {{ (in_array($id, old('rt_id->rt_name', [])) || isset($history_warga) && $history_warga->rt_id->contains($rt_id->id)) ? 'selected' : '' }}>
                                                             {{ $rt_id->rt_name }}
                                                         </option>
                                                         @endforeach
