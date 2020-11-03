@@ -171,7 +171,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route("admin.index") }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -179,7 +179,6 @@
                                 </p>
                             </a>
                         </li>
-
                         @can('warga_access')
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -255,8 +254,8 @@
                             </a>
                         </li>
                         @endcan
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Master Data
@@ -614,7 +613,6 @@
     <script src="../../dist/js/demo.js"></script>
     <!-- page script -->
     <script>
-
         function addElementPindah() {
             var historyCategory = document.getElementById('history_category').value;
             if (historyCategory == "1") {
@@ -765,13 +763,14 @@
             // addElement('files', 'p', 'file-' + fileId, html);
         }
 
-      
-       
-      
+
+
+
         //filter Kota dropdown
         var listKota = [];
-        function filterKota(provinceId){
-            if(listKota.length == 0){             
+
+        function filterKota(provinceId) {
+            if (listKota.length == 0) {
                 Array.from(document.querySelector("#kota_id").options).
                 forEach(function(option_element) {
                     let option_text = option_element.text;
@@ -787,59 +786,60 @@
 
                     console.log("\n\r");
                     var kota = {
-                        id : option_value,
-                        name  : option_text,
-                        province_id     : province_id
-                        }; 
+                        id: option_value,
+                        name: option_text,
+                        province_id: province_id
+                    };
 
-                    listKota.push(kota);   
-                
-                    });  
+                    listKota.push(kota);
 
-                    AddOptionKota(provinceId)                 
-            }else{
-               
+                });
+
+                AddOptionKota(provinceId)
+            } else {
+
                 AddOptionKota(provinceId)
             }
 
         }
 
-        function AddOptionKota(provinceId){
+        function AddOptionKota(provinceId) {
             var select = document.getElementById("kota_id");
-                var length = select.options.length;
-                for (i = length-1; i >= 0; i--) {
-                     select.options[i] = null;
-                }
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
 
-                listKota.forEach(function(kota) {
-                    if(kota.province_id == provinceId){
+            listKota.forEach(function(kota) {
+                if (kota.province_id == provinceId) {
                     var option = document.createElement("option");
                     option.text = kota.name;
                     option.id = kota.province_id;
                     option.value = kota.id;
                     select.add(option);
                     console.log(select)
-                    }
-                });
-
-                var length2 = select.options.length;
-                if(length2 > 0){
-                    for (i = length2-1; i >= 0; i--) {
-                     if(select.options[i].selected === true){
-                        filterKecamatan(select.options[i].value)
-                        }
-                    }
-                }else{
-                    filterKecamatan(0)
                 }
+            });
+
+            var length2 = select.options.length;
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
+                        filterKecamatan(select.options[i].value)
+                    }
+                }
+            } else {
+                filterKecamatan(0)
+            }
 
 
         }
 
         //filter kecamatan dropdown
         var listKecamatan = [];
-        function filterKecamatan(kotaId){
-            if(listKecamatan.length == 0){             
+
+        function filterKecamatan(kotaId) {
+            if (listKecamatan.length == 0) {
                 Array.from(document.querySelector("#kecamatan_id").options).
                 forEach(function(option_element) {
                     let option_text = option_element.text;
@@ -855,58 +855,59 @@
 
                     console.log("\n\r");
                     var kecamatan = {
-                        id : option_value,
-                        name  : option_text,
-                        kota_id     : kota_id
-                        }; 
+                        id: option_value,
+                        name: option_text,
+                        kota_id: kota_id
+                    };
 
-                        listKecamatan.push(kecamatan);   
-                
-                    });  
+                    listKecamatan.push(kecamatan);
 
-                    AddOptionKecamatan(kotaId)                 
-            }else{
-               
-                AddOptionKecamatan(kotaId)    
+                });
+
+                AddOptionKecamatan(kotaId)
+            } else {
+
+                AddOptionKecamatan(kotaId)
             }
 
         }
 
-        function AddOptionKecamatan(kotaId){
+        function AddOptionKecamatan(kotaId) {
             var select = document.getElementById("kecamatan_id");
-                var length = select.options.length;
-                for (i = length-1; i >= 0; i--) {
-                     select.options[i] = null;
-                }
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
 
-                listKecamatan.forEach(function(kecamatan) {
-                    if(kecamatan.kota_id == kotaId){
+            listKecamatan.forEach(function(kecamatan) {
+                if (kecamatan.kota_id == kotaId) {
                     var option = document.createElement("option");
                     option.text = kecamatan.name;
                     option.id = kecamatan.kota_id;
                     option.value = kecamatan.id;
                     select.add(option);
 
-                    }
-                });
+                }
+            });
 
-                var length2 = select.options.length;
-                if(length2 > 0){
-                    for (i = length2-1; i >= 0; i--) {
-                     if(select.options[i].selected === true){
+            var length2 = select.options.length;
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
                         filterKelurahan(select.options[i].value)
-                     }
+                    }
                 }
 
-                }else{
-                    filterKelurahan(0)
-                }
+            } else {
+                filterKelurahan(0)
+            }
         }
 
         //filter Kelurahan dropdown
         var listKelurahan = [];
-        function filterKelurahan(kecamatanId){
-            if(listKelurahan.length == 0){             
+
+        function filterKelurahan(kecamatanId) {
+            if (listKelurahan.length == 0) {
                 Array.from(document.querySelector("#kelurahan_id").options).
                 forEach(function(option_element) {
                     let option_text = option_element.text;
@@ -922,59 +923,60 @@
 
                     console.log("\n\r");
                     var kelurahan = {
-                        id : option_value,
-                        name  : option_text,
-                        kecamatan_id     : kecamatan_id
-                        }; 
+                        id: option_value,
+                        name: option_text,
+                        kecamatan_id: kecamatan_id
+                    };
 
-                        listKelurahan.push(kelurahan);   
-                
-                    });  
+                    listKelurahan.push(kelurahan);
 
-                    AddOptionKelurahan(kecamatanId)                 
-            }else{
-               
+                });
+
+                AddOptionKelurahan(kecamatanId)
+            } else {
+
                 AddOptionKelurahan(kecamatanId)
             }
 
         }
 
-        function AddOptionKelurahan(kecamatanId){
+        function AddOptionKelurahan(kecamatanId) {
             var select = document.getElementById("kelurahan_id");
-                var length = select.options.length;
-                for (i = length-1; i >= 0; i--) {
-                     select.options[i] = null;
-                }
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
 
-                listKelurahan.forEach(function(kelurahan) {
-                    if(kelurahan.kecamatan_id == kecamatanId){
+            listKelurahan.forEach(function(kelurahan) {
+                if (kelurahan.kecamatan_id == kecamatanId) {
                     var option = document.createElement("option");
                     option.text = kelurahan.name;
                     option.id = kelurahan.kecamatan_id;
                     option.value = kelurahan.id;
                     select.add(option);
 
-                    }
-                });
+                }
+            });
 
-                var length2 = select.options.length;
+            var length2 = select.options.length;
 
-                if(length2 > 0){
-                    for (i = length2-1; i >= 0; i--) {
-                     if(select.options[i].selected === true){
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
                         filterRW(select.options[i].value)
-                     }
+                    }
                 }
 
-                }else{
-                    filterRW(0)
-                }
+            } else {
+                filterRW(0)
+            }
         }
 
         //filter rw dropdown
         var listRW = [];
-        function filterRW(KelurahanId){
-            if(listRW.length == 0){             
+
+        function filterRW(KelurahanId) {
+            if (listRW.length == 0) {
                 Array.from(document.querySelector("#rw_id").options).
                 forEach(function(option_element) {
                     let option_text = option_element.text;
@@ -990,58 +992,59 @@
 
                     console.log("\n\r");
                     var rw = {
-                        id : option_value,
-                        name  : option_text,
-                        kelurahan_id     : kelurahan_id
-                        }; 
+                        id: option_value,
+                        name: option_text,
+                        kelurahan_id: kelurahan_id
+                    };
 
-                        listRW.push(rw);   
-                
-                    });  
+                    listRW.push(rw);
 
-                    AddOptionRW(KelurahanId)                 
-            }else{
-               
-                AddOptionRW(KelurahanId)  
+                });
+
+                AddOptionRW(KelurahanId)
+            } else {
+
+                AddOptionRW(KelurahanId)
             }
 
         }
 
-        function AddOptionRW(KelurahanId){
+        function AddOptionRW(KelurahanId) {
             var select = document.getElementById("rw_id");
-                var length = select.options.length;
-                for (i = length-1; i >= 0; i--) {
-                     select.options[i] = null;
-                }
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
 
-                listRW.forEach(function(rw) {
-                    if(rw.kelurahan_id == KelurahanId){
+            listRW.forEach(function(rw) {
+                if (rw.kelurahan_id == KelurahanId) {
                     var option = document.createElement("option");
                     option.text = rw.name;
                     option.id = rw.kelurahan_id;
                     option.value = rw.id;
                     select.add(option);
 
-                    }
-                });
+                }
+            });
 
-                var length2 = select.options.length;
-                if(length2 > 0){
-                    for (i = length2-1; i >= 0; i--) {
-                     if(select.options[i].selected === true){
+            var length2 = select.options.length;
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
                         filterRT(select.options[i].value)
-                     }
+                    }
                 }
-                }else{
-                    filterRT(0)
-                }
+            } else {
+                filterRT(0)
+            }
 
         }
 
         //filter rt dropdown
         var listRT = [];
-        function filterRT(rwId){
-            if(listRT.length == 0){             
+
+        function filterRT(rwId) {
+            if (listRT.length == 0) {
                 Array.from(document.querySelector("#rt_id").options).
                 forEach(function(option_element) {
                     let option_text = option_element.text;
@@ -1057,42 +1060,42 @@
 
                     console.log("\n\r");
                     var rt = {
-                        id : option_value,
-                        name  : option_text,
-                        rw_id     : rw_id
-                        }; 
+                        id: option_value,
+                        name: option_text,
+                        rw_id: rw_id
+                    };
 
-                        listRT.push(rt);   
-                
-                    });  
+                    listRT.push(rt);
 
-                    AddOptionRT(rwId)                 
-            }else{
-               
+                });
+
+                AddOptionRT(rwId)
+            } else {
+
                 AddOptionRT(rwId)
             }
 
         }
 
-        function AddOptionRT(rwId){
+        function AddOptionRT(rwId) {
             var select = document.getElementById("rt_id");
-                var length = select.options.length;
-                for (i = length-1; i >= 0; i--) {
-                     select.options[i] = null;
-                }
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
 
-                listRT.forEach(function(rt) {
-                    if(rt.rw_id == rwId){
+            listRT.forEach(function(rt) {
+                if (rt.rw_id == rwId) {
                     var option = document.createElement("option");
                     option.text = rt.name;
                     option.id = rt.rw_id;
                     option.value = rt.id;
                     select.add(option);
 
-                    }
-                });
+                }
+            });
 
-              
+
         }
 
         $(function() {
