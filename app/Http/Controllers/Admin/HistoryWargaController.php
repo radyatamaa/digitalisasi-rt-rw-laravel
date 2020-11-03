@@ -95,12 +95,12 @@ class HistoryWargaController extends Controller
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-        $rt_id = Rt::all()->pluck('rt_name', 'id');
+        $rt_id = Rt::all();
         $provinsi_id = Provinces::all()->pluck('name', 'id');
-        $kota_id = Kabupaten::all()->pluck('name', 'id');
-        $kecamatan_id = Kecamatan::all()->pluck('kec_name', 'id');
-        $kelurahan_id = Kelurahan::all()->pluck('kel_name', 'id');
-        $rw_id = Rw::all()->pluck('rw_name', 'id');
+        $kota_id = Kabupaten::all();
+        $kecamatan_id = Kecamatan::all();
+        $kelurahan_id = Kelurahan::all();
+        $rw_id = Rw::all();
 
 
         return view('admin.history_warga.create', compact('history_category', 'warga_ids', 'rts', 'userLogin', 'rt_id', 'provinsi_id', 'kota_id', 'kecamatan_id', 'kelurahan_id', 'rw_id'));
@@ -109,8 +109,27 @@ class HistoryWargaController extends Controller
     public function store(StoreHistoryWargaRequest $request)
     {
         abort_unless(\Gate::allows('history_warga_create'), 403);
-
+        $category = $_POST['history_category'];
+      
         $history_warga = History_Warga::create($request->all());
+
+        if($category == "1"){
+            $wargaId = $_POST['warga_id'];
+            if(isset($_POST['rt_id'])){
+                $updateWarga = array(
+                    'warga_rt' => $_POST['rt_id'],
+                    'warga_status' => 0,
+                );
+    
+            }else{
+                $updateWarga = array(
+                    'warga_rt' => null,
+                    'warga_status' => 2,
+                );
+
+            }
+            $update = Warga::where('id', $wargaId)->update($updateWarga);
+        }
 
         return redirect()->route('admin.history_warga.index');
     }
@@ -160,14 +179,34 @@ class HistoryWargaController extends Controller
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-        $rt_id = Rt::all()->pluck('rt_name', 'id');
+        
+        $rt_id = Rt::all();
         $provinsi_id = Provinces::all()->pluck('name', 'id');
-        $kota_id = Kabupaten::all()->pluck('name', 'id');
-        $kecamatan_id = Kecamatan::all()->pluck('kec_name', 'id');
-        $kelurahan_id = Kelurahan::all()->pluck('kel_name', 'id');
-        $rw_id = Rw::all()->pluck('rw_name', 'id');
+        $kota_id = Kabupaten::all();
+        $kecamatan_id = Kecamatan::all();
+        $kelurahan_id = Kelurahan::all();
+        $rw_id = Rw::all();
 
-        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin', 'rt_id', 'provinsi_id', 'kota_id', 'kecamatan_id', 'kelurahan_id', 'rw_id'));
+        $rt_id1 = Rt::all();
+        $provinsi_id1 = Provinces::all()->pluck('name', 'id');
+        $kota_id1 = Kabupaten::all();
+        $kecamatan_id1 = Kecamatan::all();
+        $kelurahan_id1 = Kelurahan::all();
+        $rw_id1 = Rw::all();
+
+        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin', 
+        'rt_id', 
+        'provinsi_id', 
+        'kota_id', 
+        'kecamatan_id', 
+        'kelurahan_id', 
+        'rw_id',
+        'rt_id1', 
+        'provinsi_id1', 
+        'kota_id1', 
+        'kecamatan_id1', 
+        'kelurahan_id1', 
+        'rw_id1'));
     }
 
     public function update(UpdateHistoryWargaRequest $request, History_Warga $history_warga)
@@ -176,6 +215,24 @@ class HistoryWargaController extends Controller
         abort_unless(\Gate::allows('history_warga_edit'), 403);
 
         $history_warga->update($request->all());
+        $category = $_POST['history_category'];
+        if($category == "1"){
+            $wargaId = $_POST['warga_id'];
+            if(isset($_POST['rt_id'])){
+                $updateWarga = array(
+                    'warga_rt' => $_POST['rt_id'],
+                    'warga_status' => 0,
+                );
+    
+            }else{
+                $updateWarga = array(
+                    'warga_rt' => null,
+                    'warga_status' => 2,
+                );
+
+            }
+            $update = Warga::where('id', $wargaId)->update($updateWarga);
+        }
 
         return redirect()->route('admin.history_warga.index');
     }

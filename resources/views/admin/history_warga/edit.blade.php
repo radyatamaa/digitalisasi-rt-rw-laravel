@@ -31,7 +31,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="{{ route("admin.index") }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -450,7 +450,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
                                 <li class="breadcrumb-item active">List Histori Warga</li>
                             </ol>
                         </div>
@@ -493,7 +493,7 @@
                                             </div>
                                             <div class="form-group {{ $errors->has('history_date') ? 'has-error' : '' }}">
                                                 <label for="history_date">{{ trans('global.history_warga.fields.history_date') }}*</label>
-                                                <input type="date" id="history_date" name="history_date" class="form-control" value="{{ old('history_date', isset($history_warga) ? $history_warga->history_date : '') }}">
+                                                <input type="date" id="history_date" name="history_date" class="form-control" value="{{ old('history_date', isset($history_warga) ? date('Y-m-d', strtotime($history_warga->history_date)) : '') }}">
                                                 @if($errors->has('history_date'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('history_date') }}
@@ -506,7 +506,7 @@
 
                                             <div class="form-group {{ $errors->has('history_category') ? 'has-error' : '' }}">
                                                 <label for="history_category">{{ trans('global.history_warga.fields.history_category') }}*
-                                                    <select name="history_category" id="history_category" class="form-control select2">
+                                                    <select name="history_category" id="history_category" class="form-control select2" onclick="addElementPindah()">
                                                         @foreach($history_category as $id => $history_category)
                                                         <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->history_category == $id) ? 'selected' : '' }}>
                                                             {{ $history_category }}
@@ -542,12 +542,13 @@
                                                     </p>
                                             </div>
 
+                                            @if($history_warga->history_category == 1)
                                             <div name="pindah" class="form-group {{ $errors->has('provinsi_id') ? 'has-error' : '' }}">
                                                 <label for="provinsi_id">{{ trans('global.history_warga.fields.provinsi_id') }}*
-                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2">
-                                                        @foreach($provinsi_id as $id => $provinsi_id)
+                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2" onChange="filterKota(this.value)" onclick="filterKota(this.value)">
+                                                        @foreach($provinsi_id1 as $id => $provinsi_id1)
                                                         <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->provinsi_id == $id) ? 'selected' : '' }}>
-                                                            {{ $provinsi_id }}
+                                                            {{ $provinsi_id1 }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -563,10 +564,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kota_id') ? 'has-error' : '' }}">
                                                 <label for="kota_id">{{ trans('global.history_warga.fields.kota_id') }}*
-                                                    <select name="kota_id" id="kota_id" class="form-control select2">
-                                                        @foreach($kota_id as $id => $kota_id)
-                                                        <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->kota_id == $id) ? 'selected' : '' }}>
-                                                            {{ $kota_id }}
+                                                    <select name="kota_id" id="kota_id" class="form-control select2" onChange="filterKecamatan(this.value)" onclick="filterKecamatan(this.value)">
+                                                        @foreach($kota_id1 as $id => $kota_id1)
+                                                        <option value="{{ $kota_id1->id }}" id="{{$kota_id1->province_id}}" {{ (isset($history_warga) && $history_warga->kota_id == $kota_id1->id) ? 'selected' : '' }}>
+                                                            {{ $kota_id1->name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -582,10 +583,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kecamatan_id') ? 'has-error' : '' }}">
                                                 <label for="kecamatan_id">{{ trans('global.history_warga.fields.kecamatan_id') }}*
-                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2">
-                                                        @foreach($kecamatan_id as $id => $kecamatan_id)
-                                                        <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->kecamatan_id == $id) ? 'selected' : '' }}>
-                                                            {{ $kecamatan_id }}
+                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2" onChange="filterKelurahan(this.value)" onclick="filterKelurahan(this.value)">
+                                                        @foreach($kecamatan_id1 as $id => $kecamatan_id1)
+                                                        <option value="{{ $kecamatan_id1->id }}" id="{{$kecamatan_id1->kec_kota_id}}" {{ (isset($history_warga) && $history_warga->kecamatan_id == $kecamatan_id1->id) ? 'selected' : '' }}>
+                                                            {{ $kecamatan_id1->kec_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -601,10 +602,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kelurahan_id') ? 'has-error' : '' }}">
                                                 <label for="kelurahan_id">{{ trans('global.history_warga.fields.kelurahan_id') }}*
-                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2">
-                                                        @foreach($kelurahan_id as $id => $kelurahan_id)
-                                                        <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->kelurahan_id == $id) ? 'selected' : '' }}>
-                                                            {{ $kelurahan_id }}
+                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2" onChange="filterRW(this.value)" onclick="filterRW(this.value)">
+                                                        @foreach($kelurahan_id1 as $id => $kelurahan_id1)
+                                                        <option value="{{ $kelurahan_id1->id }}" id="{{$kelurahan_id1->kel_kec_id}}" {{ (isset($history_warga) && $history_warga->kelurahan_id == $kelurahan_id1->id) ? 'selected' : '' }}>
+                                                            {{ $kelurahan_id1->kel_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -620,10 +621,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('rw_id') ? 'has-error' : '' }}">
                                                 <label for="rw_id">{{ trans('global.history_warga.fields.rw_id') }}*
-                                                    <select name="rw_id" id="rw_id" class="form-control select2">
-                                                        @foreach($rw_id as $id => $rw_id)
-                                                        <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->rw_id == $id) ? 'selected' : '' }}>
-                                                            {{ $rw_id }}
+                                                    <select name="rw_id" id="rw_id" class="form-control select2" onChange="filterRT(this.value)" onclick="filterRT(this.value)">
+                                                        @foreach($rw_id1 as $id => $rw_id1)
+                                                        <option value="{{ $rw_id1->id }}" id="{{$rw_id1->rw_kel_id}}" {{ (isset($history_warga) && $history_warga->rw_id == $rw_id1->id) ? 'selected' : '' }}>
+                                                            {{ $rw_id1->rw_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -640,9 +641,9 @@
                                             <div name="pindah" class="form-group {{ $errors->has('rt_id') ? 'has-error' : '' }}">
                                                 <label for="rt_id">{{ trans('global.history_warga.fields.rt_id') }}*
                                                     <select name="rt_id" id="rt_id" class="form-control select2">
-                                                        @foreach($rt_id as $id => $rt_id)
-                                                        <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->rt_id == $id) ? 'selected' : '' }}>
-                                                            {{ $rt_id }}
+                                                        @foreach($rt_id1 as $id => $rt_id1)
+                                                        <option value="{{ $rt_id1->id }}" id="{{$rt_id1->rt_rw_id}}" {{ (isset($history_warga) && $history_warga->rt_id == $rw_id1->id) ? 'selected' : '' }}>
+                                                            {{ $rt_id1->rt_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -656,6 +657,7 @@
                                                     </p>
                                             </div>
 
+                                            @endif
                                             <input type="text" id="id_rt" name="id_rt" class="form-control" value="{{$rts}}" hidden>
                                             <div id="save">
                                                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
@@ -708,7 +710,6 @@
     <!-- page script -->
     <script>
         function addElementPindah() {
-            debugger
             var historyCategory = document.getElementById('history_category').value;
             if (historyCategory == "1") {
                 for (i = 0; i < document.getElementsByName('pindah').length; i++) {
@@ -723,9 +724,9 @@
                 var save = document.getElementById('save').remove();
                 var html = `<div name="pindah" class="form-group {{ $errors->has('provinsi_id') ? 'has-error' : '' }}">
                                                 <label for="provinsi_id">{{ trans('global.history_warga.fields.provinsi_id') }}*
-                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2">
+                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2" onChange="filterKota(this.value)" onclick="filterKota(this.value)">
                                                         @foreach($provinsi_id as $id => $provinsi_id)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('provinsi_id', [])) || isset($history_warga) && $history_warga->provinsi_id->contains($id)) ? 'selected' : '' }}>
+                                                        <option value="{{ $id }}" {{ (isset($history_warga) && $history_warga->provinsi_id == $id) ? 'selected' : '' }}>
                                                             {{ $provinsi_id }}
                                                         </option>
                                                         @endforeach
@@ -742,10 +743,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kota_id') ? 'has-error' : '' }}">
                                                 <label for="kota_id">{{ trans('global.history_warga.fields.kota_id') }}*
-                                                    <select name="kota_id" id="kota_id" class="form-control select2">
+                                                    <select name="kota_id" id="kota_id" class="form-control select2" onChange="filterKecamatan(this.value)" onclick="filterKecamatan(this.value)">
                                                         @foreach($kota_id as $id => $kota_id)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('kota_id', [])) || isset($history_warga) && $history_warga->kota_id->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $kota_id }}
+                                                        <option value="{{ $kota_id->id }}" id="{{$kota_id->province_id}}" {{ (isset($history_warga) && $history_warga->kota_id == $kota_id->id) ? 'selected' : '' }}>
+                                                            {{ $kota_id->name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -761,10 +762,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kecamatan_id') ? 'has-error' : '' }}">
                                                 <label for="kecamatan_id">{{ trans('global.history_warga.fields.kecamatan_id') }}*
-                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2">
+                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2" onChange="filterKelurahan(this.value)" onclick="filterKelurahan(this.value)">
                                                         @foreach($kecamatan_id as $id => $kecamatan_id)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('kecamatan_id', [])) || isset($history_warga) && $history_warga->kecamatan_id->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $kecamatan_id }}
+                                                        <option value="{{ $kecamatan_id->id }}" id="{{$kecamatan_id->kec_kota_id}}" {{ (isset($history_warga) && $history_warga->kecamatan_id == $kecamatan_id->id) ? 'selected' : '' }}>
+                                                            {{ $kecamatan_id->kec_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -780,10 +781,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kelurahan_id') ? 'has-error' : '' }}">
                                                 <label for="kelurahan_id">{{ trans('global.history_warga.fields.kelurahan_id') }}*
-                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2">
+                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2" onChange="filterRW(this.value)" onclick="filterRW(this.value)">
                                                         @foreach($kelurahan_id as $id => $kelurahan_id)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('kelurahan_id', [])) || isset($history_warga) && $history_warga->kelurahan_id->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $kelurahan_id }}
+                                                        <option value="{{ $kelurahan_id->id }}" id="{{$kelurahan_id->kel_kec_id}}"  {{ (isset($history_warga) && $history_warga->kelurahan_id == $kelurahan_id->id) ? 'selected' : '' }}>
+                                                            {{ $kelurahan_id->kel_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -799,10 +800,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('rw_id') ? 'has-error' : '' }}">
                                                 <label for="rw_id">{{ trans('global.history_warga.fields.rw_id') }}*
-                                                    <select name="rw_id" id="rw_id" class="form-control select2">
+                                                    <select name="rw_id" id="rw_id" class="form-control select2" onChange="filterRT(this.value)" onclick="filterRT(this.value)">
                                                         @foreach($rw_id as $id => $rw_id)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('rw_id', [])) || isset($history_warga) && $history_warga->rw_id->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $rw_id }}
+                                                        <option value="{{ $rw_id->id }}" id="{{$rw_id->rw_kel_id}}" {{ (isset($history_warga) && $history_warga->rw_id == $rw_id->id) ? 'selected' : '' }}>
+                                                            {{ $rw_id->rw_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -820,8 +821,8 @@
                                                 <label for="rt_id">{{ trans('global.history_warga.fields.rt_id') }}*
                                                     <select name="rt_id" id="rt_id" class="form-control select2">
                                                         @foreach($rt_id as $id => $rt_id)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('rt_id', [])) || isset($history_warga) && $history_warga->rt_id->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $rt_id }}
+                                                        <option value="{{ $rt_id->id }}" id="{{$rt_id->rt_rw_id}}" {{ (isset($history_warga) && $history_warga->rt_id == $rw_id->id) ? 'selected' : '' }}>
+                                                            {{ $rt_id->rt_name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
@@ -838,6 +839,7 @@
                                             <div id="save">
                                                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                                             </div>`;
+
 
                 var newElement = document.createElement("p");
                 newElement.innerHTML = html;
@@ -857,6 +859,339 @@
             // document.body.appendChild(newElement);
             // addElement('files', 'p', 'file-' + fileId, html);
         }
+
+        //filter Kota dropdown
+        var listKota = [];
+
+        function filterKota(provinceId) {
+            if (listKota.length == 0) {
+                Array.from(document.querySelector("#kota_id").options).
+                forEach(function(option_element) {
+                    let option_text = option_element.text;
+                    let option_value = option_element.value;
+                    let province_id = option_element.id;
+                    let is_option_selected = option_element.selected;
+
+                    console.log('value : ' + provinceId);
+                    console.log('Option Text : ' + option_text);
+                    console.log('Option Value : ' + option_value);
+                    console.log('Option prvince id : ' + province_id);
+                    console.log('Option Selected : ' + (is_option_selected === true ? 'Yes' : 'No'));
+
+                    console.log("\n\r");
+                    var kota = {
+                        id: option_value,
+                        name: option_text,
+                        province_id: province_id
+                    };
+
+                    listKota.push(kota);
+
+                });
+
+                AddOptionKota(provinceId)
+            } else {
+
+                AddOptionKota(provinceId)
+            }
+
+        }
+
+        function AddOptionKota(provinceId) {
+            var select = document.getElementById("kota_id");
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+
+            listKota.forEach(function(kota) {
+                if (kota.province_id == provinceId) {
+                    var option = document.createElement("option");
+                    option.text = kota.name;
+                    option.id = kota.province_id;
+                    option.value = kota.id;
+                    select.add(option);
+                    console.log(select)
+                }
+            });
+
+            var length2 = select.options.length;
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
+                        filterKecamatan(select.options[i].value)
+                    }
+                }
+            } else {
+                filterKecamatan(0)
+            }
+
+
+        }
+
+        //filter kecamatan dropdown
+        var listKecamatan = [];
+
+        function filterKecamatan(kotaId) {
+            if (listKecamatan.length == 0) {
+                Array.from(document.querySelector("#kecamatan_id").options).
+                forEach(function(option_element) {
+                    let option_text = option_element.text;
+                    let option_value = option_element.value;
+                    let kota_id = option_element.id;
+                    let is_option_selected = option_element.selected;
+
+                    console.log('value : ' + kotaId);
+                    console.log('Option Text : ' + option_text);
+                    console.log('Option Value : ' + option_value);
+                    console.log('Option kota_id : ' + kota_id);
+                    console.log('Option Selected : ' + (is_option_selected === true ? 'Yes' : 'No'));
+
+                    console.log("\n\r");
+                    var kecamatan = {
+                        id: option_value,
+                        name: option_text,
+                        kota_id: kota_id
+                    };
+
+                    listKecamatan.push(kecamatan);
+
+                });
+
+                AddOptionKecamatan(kotaId)
+            } else {
+
+                AddOptionKecamatan(kotaId)
+            }
+
+        }
+
+        function AddOptionKecamatan(kotaId) {
+            var select = document.getElementById("kecamatan_id");
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+
+            listKecamatan.forEach(function(kecamatan) {
+                if (kecamatan.kota_id == kotaId) {
+                    var option = document.createElement("option");
+                    option.text = kecamatan.name;
+                    option.id = kecamatan.kota_id;
+                    option.value = kecamatan.id;
+                    select.add(option);
+
+                }
+            });
+
+            var length2 = select.options.length;
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
+                        filterKelurahan(select.options[i].value)
+                    }
+                }
+
+            } else {
+                filterKelurahan(0)
+            }
+        }
+
+        //filter Kelurahan dropdown
+        var listKelurahan = [];
+
+        function filterKelurahan(kecamatanId) {
+            if (listKelurahan.length == 0) {
+                Array.from(document.querySelector("#kelurahan_id").options).
+                forEach(function(option_element) {
+                    let option_text = option_element.text;
+                    let option_value = option_element.value;
+                    let kecamatan_id = option_element.id;
+                    let is_option_selected = option_element.selected;
+
+                    console.log('value : ' + kecamatanId);
+                    console.log('Option Text : ' + option_text);
+                    console.log('Option Value : ' + option_value);
+                    console.log('Option kecamatan_id : ' + kecamatan_id);
+                    console.log('Option Selected : ' + (is_option_selected === true ? 'Yes' : 'No'));
+
+                    console.log("\n\r");
+                    var kelurahan = {
+                        id: option_value,
+                        name: option_text,
+                        kecamatan_id: kecamatan_id
+                    };
+
+                    listKelurahan.push(kelurahan);
+
+                });
+
+                AddOptionKelurahan(kecamatanId)
+            } else {
+
+                AddOptionKelurahan(kecamatanId)
+            }
+
+        }
+
+        function AddOptionKelurahan(kecamatanId) {
+            var select = document.getElementById("kelurahan_id");
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+
+            listKelurahan.forEach(function(kelurahan) {
+                if (kelurahan.kecamatan_id == kecamatanId) {
+                    var option = document.createElement("option");
+                    option.text = kelurahan.name;
+                    option.id = kelurahan.kecamatan_id;
+                    option.value = kelurahan.id;
+                    select.add(option);
+
+                }
+            });
+
+            var length2 = select.options.length;
+
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
+                        filterRW(select.options[i].value)
+                    }
+                }
+
+            } else {
+                filterRW(0)
+            }
+        }
+
+        //filter rw dropdown
+        var listRW = [];
+
+        function filterRW(KelurahanId) {
+            if (listRW.length == 0) {
+                Array.from(document.querySelector("#rw_id").options).
+                forEach(function(option_element) {
+                    let option_text = option_element.text;
+                    let option_value = option_element.value;
+                    let kelurahan_id = option_element.id;
+                    let is_option_selected = option_element.selected;
+
+                    console.log('value : ' + KelurahanId);
+                    console.log('Option Text : ' + option_text);
+                    console.log('Option Value : ' + option_value);
+                    console.log('Option kelurahan_id : ' + kelurahan_id);
+                    console.log('Option Selected : ' + (is_option_selected === true ? 'Yes' : 'No'));
+
+                    console.log("\n\r");
+                    var rw = {
+                        id: option_value,
+                        name: option_text,
+                        kelurahan_id: kelurahan_id
+                    };
+
+                    listRW.push(rw);
+
+                });
+
+                AddOptionRW(KelurahanId)
+            } else {
+
+                AddOptionRW(KelurahanId)
+            }
+
+        }
+
+        function AddOptionRW(KelurahanId) {
+            var select = document.getElementById("rw_id");
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+
+            listRW.forEach(function(rw) {
+                if (rw.kelurahan_id == KelurahanId) {
+                    var option = document.createElement("option");
+                    option.text = rw.name;
+                    option.id = rw.kelurahan_id;
+                    option.value = rw.id;
+                    select.add(option);
+
+                }
+            });
+
+            var length2 = select.options.length;
+            if (length2 > 0) {
+                for (i = length2 - 1; i >= 0; i--) {
+                    if (select.options[i].selected === true) {
+                        filterRT(select.options[i].value)
+                    }
+                }
+            } else {
+                filterRT(0)
+            }
+
+        }
+
+        //filter rt dropdown
+        var listRT = [];
+
+        function filterRT(rwId) {
+            if (listRT.length == 0) {
+                Array.from(document.querySelector("#rt_id").options).
+                forEach(function(option_element) {
+                    let option_text = option_element.text;
+                    let option_value = option_element.value;
+                    let rw_id = option_element.id;
+                    let is_option_selected = option_element.selected;
+
+                    console.log('value : ' + rwId);
+                    console.log('Option Text : ' + option_text);
+                    console.log('Option Value : ' + option_value);
+                    console.log('Option rw_id : ' + rw_id);
+                    console.log('Option Selected : ' + (is_option_selected === true ? 'Yes' : 'No'));
+
+                    console.log("\n\r");
+                    var rt = {
+                        id: option_value,
+                        name: option_text,
+                        rw_id: rw_id
+                    };
+
+                    listRT.push(rt);
+
+                });
+
+                AddOptionRT(rwId)
+            } else {
+
+                AddOptionRT(rwId)
+            }
+
+        }
+
+        function AddOptionRT(rwId) {
+            var select = document.getElementById("rt_id");
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+
+            listRT.forEach(function(rt) {
+                if (rt.rw_id == rwId) {
+                    var option = document.createElement("option");
+                    option.text = rt.name;
+                    option.id = rt.rw_id;
+                    option.value = rt.id;
+                    select.add(option);
+
+                }
+            });
+
+
+        }
+
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,
