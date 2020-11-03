@@ -170,37 +170,17 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route("admin.index") }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
-                  <i class="right fas fa-angle-left"></i>
+                  <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             @can('warga_access')
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -210,14 +190,14 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
                 </li>
-          
+
                 <li class="nav-item">
-                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -268,15 +248,15 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Master Data
@@ -442,6 +422,25 @@
                 @endcan
               </ul>
             </li>
+             <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Reports
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+               
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Keuangan</p>
+                  </a>
+                </li>
+               
+              </ul>
+            </li>
             <li class="nav-item">
               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -559,7 +558,7 @@
                           <th>
                             {{ trans('global.warga.fields.warga_pendidikan') }}
                           </th>
-                          
+
                           <th>
                             {{ trans('global.warga.fields.warga_status') }}
                           </th>
@@ -646,14 +645,14 @@
                           <td>
                             {{ $wargas->pendidikan_name ?? '' }}
                           </td>
-                         
+
                           @if($wargas->warga_status == 1)
                           <td>
                             Aktif
                           </td>
                           @elseif($wargas->warga_status == 2)
                           <td>
-                           Tidak Aktif
+                            Tidak Aktif
                           </td>
                           @elseif($wargas->warga_status == 0)
                           <td>
@@ -661,7 +660,7 @@
                           </td>
                           @else
                           <td>
-                            
+
                           </td>
                           @endif
                           <td>

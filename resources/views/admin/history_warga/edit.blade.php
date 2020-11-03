@@ -171,7 +171,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route("admin.index") }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -218,7 +218,7 @@
                         </li>
                         @endcan
                         @can('event_access')
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
@@ -240,7 +240,7 @@
                         </li>
                         @endcan
                         @can('history_warga_access')
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>History Warga</p>
@@ -255,8 +255,8 @@
                             </a>
                         </li>
                         @endcan
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Master Data
@@ -642,7 +642,7 @@
                                                 <label for="rt_id">{{ trans('global.history_warga.fields.rt_id') }}*
                                                     <select name="rt_id" id="rt_id" class="form-control select2">
                                                         @foreach($rt_id1 as $id => $rt_id1)
-                                                        <option value="{{ $rw_id1->id }}" id="{{$rt_id1->rt_rw_id}}" {{ (isset($history_warga) && $history_warga->rt_id == $rw_id1->id) ? 'selected' : '' }}>
+                                                        <option value="{{ $rt_id1->id }}" id="{{$rt_id1->rt_rw_id}}" {{ (isset($history_warga) && $history_warga->rt_id == $rw_id1->id) ? 'selected' : '' }}>
                                                             {{ $rt_id1->rt_name }}
                                                         </option>
                                                         @endforeach
@@ -821,7 +821,7 @@
                                                 <label for="rt_id">{{ trans('global.history_warga.fields.rt_id') }}*
                                                     <select name="rt_id" id="rt_id" class="form-control select2">
                                                         @foreach($rt_id as $id => $rt_id)
-                                                        <option value="{{ $rw_id->id }}" id="{{$rt_id->rt_rw_id}}" {{ (isset($history_warga) && $history_warga->rt_id == $rw_id->id) ? 'selected' : '' }}>
+                                                        <option value="{{ $rt_id->id }}" id="{{$rt_id->rt_rw_id}}" {{ (isset($history_warga) && $history_warga->rt_id == $rt_id->id) ? 'selected' : '' }}>
                                                             {{ $rt_id->rt_name }}
                                                         </option>
                                                         @endforeach

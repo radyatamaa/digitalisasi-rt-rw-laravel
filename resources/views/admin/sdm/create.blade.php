@@ -170,34 +170,14 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{{ route("admin.index") }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
-                                    <i class="right fas fa-angle-left"></i>
+                                    <!-- <span class="right badge badge-danger">New</span> -->
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v1</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         @can('warga_access')
                         <li class="nav-item has-treeview">
@@ -274,8 +254,8 @@
                             </a>
                         </li>
                         @endcan
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Master Data
@@ -512,7 +492,7 @@
                                             </div>
                                             <div class="form-group {{ $errors->has('sdm_no_ktp') ? 'has-error' : '' }}">
                                                 <label for="sdm_no_ktp">{{ trans('global.sdm.fields.sdm_no_ktp') }}*</label>
-                                                <input type="number" id="sdm_no_ktp" name="sdm_no_ktp" class="form-control" value="{{ old('sdm_no_ktp', isset($sdm) ? $sdm->sdm_no_ktp : '') }}"required>
+                                                <input type="number" id="sdm_no_ktp" name="sdm_no_ktp" class="form-control" value="{{ old('sdm_no_ktp', isset($sdm) ? $sdm->sdm_no_ktp : '') }}" required>
                                                 @if($errors->has('sdm_no_ktp'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('sdm_no_ktp') }}

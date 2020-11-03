@@ -109,8 +109,27 @@ class HistoryWargaController extends Controller
     public function store(StoreHistoryWargaRequest $request)
     {
         abort_unless(\Gate::allows('history_warga_create'), 403);
-
+        $category = $_POST['history_category'];
+      
         $history_warga = History_Warga::create($request->all());
+
+        if($category == "1"){
+            $wargaId = $_POST['warga_id'];
+            if(isset($_POST['rt_id'])){
+                $updateWarga = array(
+                    'warga_rt' => $_POST['rt_id'],
+                    'warga_status' => 0,
+                );
+    
+            }else{
+                $updateWarga = array(
+                    'warga_rt' => null,
+                    'warga_status' => 2,
+                );
+
+            }
+            $update = Warga::where('id', $wargaId)->update($updateWarga);
+        }
 
         return redirect()->route('admin.history_warga.index');
     }
@@ -196,6 +215,24 @@ class HistoryWargaController extends Controller
         abort_unless(\Gate::allows('history_warga_edit'), 403);
 
         $history_warga->update($request->all());
+        $category = $_POST['history_category'];
+        if($category == "1"){
+            $wargaId = $_POST['warga_id'];
+            if(isset($_POST['rt_id'])){
+                $updateWarga = array(
+                    'warga_rt' => $_POST['rt_id'],
+                    'warga_status' => 0,
+                );
+    
+            }else{
+                $updateWarga = array(
+                    'warga_rt' => null,
+                    'warga_status' => 2,
+                );
+
+            }
+            $update = Warga::where('id', $wargaId)->update($updateWarga);
+        }
 
         return redirect()->route('admin.history_warga.index');
     }

@@ -21,22 +21,23 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <link href="http://cdn-na.infragistics.com/igniteui/2020.1/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet" />
-    <link href="http://cdn-na.infragistics.com/igniteui/2020.1/latest/css/structure/infragistics.css" rel="stylesheet" />
-    
-    <style>
-        #sampleContainer ol {
-            padding: 0px 0px 0px 15px;
-            margin: 0;
-        }
+  <link href="http://cdn-na.infragistics.com/igniteui/2020.1/latest/css/structure/infragistics.css" rel="stylesheet" />
 
-        #sampleContainer input {
-            margin: 10px 0;
-        }
-        #result {
-            display: none;
-            color: red;
-        }
-    </style>
+  <style>
+    #sampleContainer ol {
+      padding: 0px 0px 0px 15px;
+      margin: 0;
+    }
+
+    #sampleContainer input {
+      margin: 10px 0;
+    }
+
+    #result {
+      display: none;
+      color: red;
+    }
+  </style>
 
 </head>
 
@@ -189,37 +190,17 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route("admin.index") }}" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
-                  <i class="right fas fa-angle-left"></i>
+                  <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             @can('warga_access')
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -235,7 +216,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -286,14 +267,14 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
-            <li class="nav-item has-treeview menu-open">
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -460,6 +441,25 @@
                 @endcan
               </ul>
             </li>
+             <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Reports
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+               
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Keuangan</p>
+                  </a>
+                </li>
+               
+              </ul>
+            </li>
             <li class="nav-item">
               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -503,7 +503,7 @@
             <div class="col-12">
 
               <!-- /.card -->
-              
+
               <div class="card">
                 <div class="card-header">
                   {{ trans('global.warga.title_singular') }} {{ trans('global.list') }}
@@ -512,21 +512,21 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="example1" class="table table-bordered table-striped">
-                 
+
                       <tbody>
-                      <div>
-                      <form action="{{ route("admin.warga.store") }}" method="POST" enctype="multipart/form-data">
-                      @csrf
-        <!-- <ol>
+                        <div>
+                          <form action="{{ route("admin.warga.store") }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <!-- <ol>
             <li>Download this <a href="https://www.igniteui.com/HtmlSamples/javascript-excel-library/report.xlsx" download>sample  Excel file</a></li>
             <li>Click Choose File/Browse button below and pick the sample Excel file or another excel file.</li>
         </ol> -->
-        <input type="file" id="input" name="input" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
-        <div id="result"></div>
-        <table id="grid1" class="table table-bordered table-striped"></table>
-        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-        </form>
-    </div>
+                            <input type="file" id="input" name="input" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                            <div id="result"></div>
+                            <table id="grid1" class="table table-bordered table-striped"></table>
+                            <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                          </form>
+                        </div>
                       </tbody>
                     </table>
                   </div>
@@ -574,105 +574,107 @@
   <script src="../../dist/js/demo.js"></script>
   <!-- page script -->
   <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.core.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.lob.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.core.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/infragistics.lob.js"></script>
 
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_core.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collections.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_text.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_io.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_ui.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_core.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_core.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_threading.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_web.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.xml.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_openxml.js"></script>
-    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_core.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collections.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_text.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_io.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_ui.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_core.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_core.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_threading.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.ext_web.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.xml.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.documents.core_openxml.js"></script>
+  <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2020.1/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
 
   <script>
+    $(function() {
+      $("#input").on("change", function() {
+        var excelFile,
+          fileReader = new FileReader();
+        debugger
+        $("#result").hide();
+        debugger
+        fileReader.onload = function(e) {
+          var buffer = new Uint8Array(fileReader.result);
 
-$(function () {
-            $("#input").on("change", function () {
-                var excelFile,
-                    fileReader = new FileReader();
-                debugger
-                $("#result").hide();
-                debugger
-                fileReader.onload = function (e) {
-                    var buffer = new Uint8Array(fileReader.result);
+          $.ig.excel.Workbook.load(buffer, function(workbook) {
+            var column, row, newRow, cellValue, columnIndex, i,
+              worksheet = workbook.worksheets(0),
+              columnsNumber = 0,
+              gridColumns = [],
+              data = [],
+              worksheetRowsCount;
 
-                    $.ig.excel.Workbook.load(buffer, function (workbook) {
-                        var column, row, newRow, cellValue, columnIndex, i,
-                            worksheet = workbook.worksheets(0),
-                            columnsNumber = 0,
-                            gridColumns = [],
-                            data = [],
-                            worksheetRowsCount;
-
-                        // Both the columns and rows in the worksheet are lazily created and because of this most of the time worksheet.columns().count() will return 0
-                        // So to get the number of columns we read the values in the first row and count. When value is null we stop counting columns:
-                        while (worksheet.rows(0).getCellValue(columnsNumber)) {
-                            columnsNumber++;
-                        }
-
-                        // Iterating through cells in first row and use the cell text as key and header text for the grid columns
-                        for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
-                            column = worksheet.rows(0).getCellText(columnIndex);
-                            gridColumns.push({ headerText: column, key: column });
-                        }
-
-                        // We start iterating from 1, because we already read the first row to build the gridColumns array above
-                        // We use each cell value and add it to json array, which will be used as dataSource for the grid
-                        for (i = 1, worksheetRowsCount = worksheet.rows().count() ; i < worksheetRowsCount; i++) {
-                            newRow = {};
-                            row = worksheet.rows(i);
-
-                            for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
-                                cellValue = row.getCellText(columnIndex);
-                                newRow[gridColumns[columnIndex].key] = cellValue;
-                            }
-
-                            data.push(newRow);
-                        }
-
-                        // we can also skip passing the gridColumns use autoGenerateColumns = true, or modify the gridColumns array
-                        createGrid(data, gridColumns);
-                    }, function (error) {
-                        $("#result").text("The excel file is corrupted.");
-                        $("#result").show(1000);
-                    });
-                }
-
-                if (this.files.length > 0) {
-                    excelFile = this.files[0];
-                    if (excelFile.type === "application/vnd.ms-excel" || excelFile.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || (excelFile.type === "" && (excelFile.name.endsWith("xls") || excelFile.name.endsWith("xlsx")))) {
-                        fileReader.readAsArrayBuffer(excelFile);
-                    } else {
-                        $("#result").text("The format of the file you have selected is not supported. Please select a valid Excel file ('.xls, *.xlsx').");
-                        $("#result").show(1000);
-                    }
-                }
-
-            })
-        });
-
-        function createGrid(data, gridColumns) {
-            if ($("#grid1").data("igGrid") !== undefined) {
-                $("#grid1").igGrid("destroy");
+            // Both the columns and rows in the worksheet are lazily created and because of this most of the time worksheet.columns().count() will return 0
+            // So to get the number of columns we read the values in the first row and count. When value is null we stop counting columns:
+            while (worksheet.rows(0).getCellValue(columnsNumber)) {
+              columnsNumber++;
             }
 
-            $("#grid1").igGrid({
-                columns: gridColumns,
-                autoGenerateColumns: true,
-                dataSource: data,
-                width: "100%"
-            });
+            // Iterating through cells in first row and use the cell text as key and header text for the grid columns
+            for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+              column = worksheet.rows(0).getCellText(columnIndex);
+              gridColumns.push({
+                headerText: column,
+                key: column
+              });
+            }
+
+            // We start iterating from 1, because we already read the first row to build the gridColumns array above
+            // We use each cell value and add it to json array, which will be used as dataSource for the grid
+            for (i = 1, worksheetRowsCount = worksheet.rows().count(); i < worksheetRowsCount; i++) {
+              newRow = {};
+              row = worksheet.rows(i);
+
+              for (columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+                cellValue = row.getCellText(columnIndex);
+                newRow[gridColumns[columnIndex].key] = cellValue;
+              }
+
+              data.push(newRow);
+            }
+
+            // we can also skip passing the gridColumns use autoGenerateColumns = true, or modify the gridColumns array
+            createGrid(data, gridColumns);
+          }, function(error) {
+            $("#result").text("The excel file is corrupted.");
+            $("#result").show(1000);
+          });
         }
+
+        if (this.files.length > 0) {
+          excelFile = this.files[0];
+          if (excelFile.type === "application/vnd.ms-excel" || excelFile.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || (excelFile.type === "" && (excelFile.name.endsWith("xls") || excelFile.name.endsWith("xlsx")))) {
+            fileReader.readAsArrayBuffer(excelFile);
+          } else {
+            $("#result").text("The format of the file you have selected is not supported. Please select a valid Excel file ('.xls, *.xlsx').");
+            $("#result").show(1000);
+          }
+        }
+
+      })
+    });
+
+    function createGrid(data, gridColumns) {
+      if ($("#grid1").data("igGrid") !== undefined) {
+        $("#grid1").igGrid("destroy");
+      }
+
+      $("#grid1").igGrid({
+        columns: gridColumns,
+        autoGenerateColumns: true,
+        dataSource: data,
+        width: "100%"
+      });
+    }
 
 
     $(function() {
