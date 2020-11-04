@@ -210,13 +210,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -273,13 +273,13 @@
             </li>
             @endcan
             @can('sdm_access')
-                        <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>SDM</p>
-                            </a>
-                        </li>
-                        @endcan
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -456,17 +456,23 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-               
+
                 <li class="nav-item active">
                   <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-               
+                <li class="nav-item active">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Event</p>
+                  </a>
+                </li>
+
               </ul>
             </li>
-        
+
             <li class="nav-item">
               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -506,12 +512,44 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <form action="{{ route("admin.report_data_masyarakat_km.index") .'?report_keuangan' }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group {{ $errors->has('keuangan_category') ? 'has-error' : '' }}">
+              <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}
+                <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                <select name="keuangan_category" id="keuangan_category" class="form-control select2">
+                  <option value="">
+                    Select Category
+                  </option>
+                  @foreach($keuangan_categorys as $id => $keuangan_category)
+                  <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category->contains($id)) ? 'selected' : '' }}>
+                    {{ $keuangan_category }}
+                  </option>
+                  @endforeach
+                </select>
+                @if($errors->has('keuangan_category'))
+                <em class="invalid-feedback">
+                  {{ $errors->first('keuangan_category') }}
+                </em>
+                @endif
+                <p class="helper-block">
+                  {{ trans('global.keuangan.fields.keuangan_category_helper') }}
+                </p>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Search</button>
+
+          </form>
+
           <div class="row">
             <div class="col-12">
 
               <!-- /.card -->
               @section('content')
-   
+
               <div class="card">
                 <div class="card-header">
                   {{ trans('global.master_pekerjaan.title_singular') }} {{ trans('global.list') }}
@@ -526,22 +564,22 @@
 
                           </th>
                           <th>
-                           Address Code
+                            Address Code
                           </th>
                           <th>
-                           Tanggal Input
+                            Tanggal Input
                           </th>
                           <th>
                             Periode
                           </th>
                           <th>
-                           Tipe/kategori
+                            Tipe/kategori
                           </th>
                           <th>
-                          Jumlah
+                            Jumlah
                           </th>
-                   
-                          
+
+
                         </tr>
                       </thead>
                       <tbody>
@@ -565,8 +603,8 @@
                           <td>
                             {{ $keuangan->keuangan_value ?? '' }}
                           </td>
-                        
-                       
+
+
 
                         </tr>
                         @endforeach

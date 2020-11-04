@@ -9,14 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -150,7 +150,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="{{ asset('dist/img/Logo1b.png')}}" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
+                <img src="../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
                 <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
             </a>
             <!-- Sidebar -->
@@ -158,7 +158,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">{{$userLogin}}</a>
@@ -170,16 +170,35 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="{{ route("admin.index") }}" class="nav-link">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
-                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./index.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Dashboard v1</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./index2.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Dashboard v2</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./index3.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Dashboard v3</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-
                         @can('warga_access')
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -194,6 +213,12 @@
                                     <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List Warga</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Import Excel</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -255,8 +280,8 @@
                             </a>
                         </li>
                         @endcan
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Master Data
@@ -422,6 +447,32 @@
                                 @endcan
                             </ul>
                         </li>
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Reports
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item active">
+                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Report Keuangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Report Event</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
                         <li class="nav-item">
                             <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
@@ -446,12 +497,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>List Kategori Keuangan</h1>
+                            <h1>Report Event</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
-                                <li class="breadcrumb-item active">List Kategori Keuangan</li>
+                                <li class="breadcrumb-item active">Report Event</li>
                             </ol>
                         </div>
                     </div>
@@ -461,81 +512,150 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    <form action="{{ route("admin.report_data_masyarakat_km.index") .'?report_event' }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" class="form-control" name="start_date" placeholder="Masukan Tanggal Request " value="">
+                            <label>S/d</label>
+                            <input type="date" class="form-control" name="end_date" placeholder="Masukan Tanggal Request " value="">
+                        </div>
+                        <div class="form-group {{ $errors->has('event_category') ? 'has-error' : '' }}">
+                            <label for="event_category">{{ trans('global.event.fields.event_category') }}
+                                <select name="event_category" id="event_category" class="form-control select2">
+                                    <option value="">
+                                        Select Event
+                                    </option>
+                                    @foreach($event_category as $id => $event_category)
+
+                                    <option value="{{ $id }}" {{ (in_array($id, old('event_category', [])) || isset($event) && $event->event_category->contains($id)) ? 'selected' : '' }}>
+                                        {{ $event_category }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('event_category'))
+                                <em class="invalid-feedback">
+                                    {{ $errors->first('event_category') }}
+                                </em>
+                                @endif
+                                <p class="helper-block">
+                                    {{ trans('global.event.fields.event_category_helper') }}
+                                </p>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Search</button>
+
+                    </form>
                     <div class="row">
                         <div class="col-12">
 
                             <!-- /.card -->
                             @section('content')
+
                             <div class="card">
+                                <div class="card-header">
 
-                                <!-- /.card-header -->
+                                </div>
+
                                 <div class="card-body">
-                                    <form action="{{ route("admin.keuangan_category.update", [$keuangan_category->id]) }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="form-group {{ $errors->has('category_name') ? 'has-error' : '' }}">
-                                            <label for="category_name">{{ trans('global.keuangan_category.fields.category_name') }}*</label>
-                                            <input type="text" id="category_name" name="category_name" class="form-control" value="{{ old('category_name', isset($keuangan_category) ? $keuangan_category->category_name : '') }}">
-                                            @if($errors->has('category_name'))
-                                            <em class="invalid-feedback">
-                                                {{ $errors->first('category_name') }}
-                                            </em>
-                                            @endif
-                                            <p class="helper-block">
-                                                {{ trans('global.keuangan_category.fields.category_name_helper') }}
-                                            </p>
-                                        </div>
-                                        <input type="text" id="id_rt" name="id_rt" class="form-control" value="{{$user}}" hidden>
+                                    <div class="table-responsive">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th width="10">
+
+                                                    </th>
+                                                    <th>
+                                                        Nama Warga
+                                                    </th>
+                                                    <th>
+                                                        Address Code
+                                                    </th>
+                                                    <th>
+                                                        Event Date
+                                                    </th>
+                                                    <th>
+                                                        Event Name
+                                                    </th>
+                                                    <th>
+                                                        Category Name
+                                                    </th>
 
 
-                                        <div>
-                                            <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-                                        </div>
-                                    </form>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($events as $key => $event)
+                                                <tr data-entry-id="{{ $event->id }}">
+                                                    <td>
+                                                        {{ $key + 1}}
+                                                    </td>
+                                                    <td>
+                                                        {{ $event->warga_first_name . ' ' . $event->warga_last_name ?? ''}}
+                                                    </td>
+                                                    <td>
+                                                        {{ $event->address_code_name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $event->event_date ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $event->event_name ?? '' }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $event->category_name ?? '' }}
+                                                    </td>
+
+
+
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
+                            <!-- /.card -->
                         </div>
-                        <!-- /.card -->
+                        <!-- /.col -->
                     </div>
-                    <!-- /.col -->
+                    <!-- /.row -->
                 </div>
-                <!-- /.row -->
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.5
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-        reserved.
-    </footer>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.0.5
+            </div>
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            reserved.
+        </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+    <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables -->
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
+    <script src="../../dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dist/js/demo.js')}}"></script>
+    <script src="../../dist/js/demo.js"></script>
     <!-- page script -->
     <script>
         $(function() {

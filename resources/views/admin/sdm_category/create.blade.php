@@ -171,7 +171,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route("admin.index") }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -247,7 +247,7 @@
                             </a>
                         </li>
                         @endcan
-                          @can('sdm_access')
+                        @can('sdm_access')
                         <li class="nav-item">
                             <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
