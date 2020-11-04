@@ -150,7 +150,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link">
-        <img src="../../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
+        <img src="../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
         <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
       </a>
       <!-- Sidebar -->
@@ -170,14 +170,34 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="{{ route("admin.index") }}" class="nav-link">
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
-                  <!-- <span class="right badge badge-danger">New</span> -->
+                  <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./index.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v1</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index2.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v2</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index3.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v3</p>
+                  </a>
+                </li>
+              </ul>
             </li>
             @can('warga_access')
             <li class="nav-item has-treeview">
@@ -190,13 +210,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -253,13 +273,13 @@
             </li>
             @endcan
             @can('sdm_access')
-            <li class="nav-item">
-              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>SDM</p>
-              </a>
-            </li>
-            @endcan
+                        <li class="nav-item">
+                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>SDM</p>
+                            </a>
+                        </li>
+                        @endcan
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -327,7 +347,7 @@
                 @endcan
                 @can('pendidikan_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Pendidikan</p>
                   </a>
@@ -335,7 +355,7 @@
                 @endcan
                 @can('sekolah_access')
                 <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
+                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Sekolah</p>
                   </a>
@@ -392,8 +412,8 @@
               </ul>
             </li>
 
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Setting
@@ -427,6 +447,26 @@
                 @endcan
               </ul>
             </li>
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Reports
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+               
+                <li class="nav-item active">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Keuangan</p>
+                  </a>
+                </li>
+               
+              </ul>
+            </li>
+        
             <li class="nav-item">
               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -451,12 +491,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>List Role</h1>
+              <h1>Report Keuangan</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
-                <li class="breadcrumb-item active">List Role</li>
+                <li class="breadcrumb-item active">Report Keuangan</li>
               </ol>
             </div>
           </div>
@@ -471,58 +511,69 @@
 
               <!-- /.card -->
               @section('content')
+   
               <div class="card">
+                <div class="card-header">
+                  {{ trans('global.master_pekerjaan.title_singular') }} {{ trans('global.list') }}
+                </div>
 
-                <!-- /.card-header -->
-                <div class="card card-primary">
-                  <div class="card-header">
-                    <h3 class="card-title">Create Role</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th width="10">
 
-                  <div class="card-body">
-                    <form action="{{ route("admin.roles.store") }}" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-                        <label for="title">{{ trans('global.role.fields.title') }}*</label>
-                        <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($role) ? $role->title : '') }}">
-                        @if($errors->has('title'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('title') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.role.fields.title_helper') }}
-                        </p>
-                      </div>
-                      <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
-                        <label for="permissions">{{ trans('global.role.fields.permissions') }}*
-                          <span class="btn btn-info btn-xs select-all">Select all</span>
-                          <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label>
-                        <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple">
-                          @foreach($permissions as $id => $permissions)
-                          <option value="{{ $id }}" {{ (in_array($id, old('permissions', [])) || isset($role) && $role->permissions->contains($id)) ? 'selected' : '' }}>
-                            {{ $permissions }}
-                          </option>
-                          @endforeach
-                        </select>
-                        @if($errors->has('permissions'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('permissions') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.role.fields.permissions_helper') }}
-                        </p>
-                      </div>
-                      <div>
-                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-                      </div>
-                    </form>
+                          </th>
+                          <th>
+                           Address Code
+                          </th>
+                          <th>
+                           Tanggal Input
+                          </th>
+                          <th>
+                            Periode
+                          </th>
+                          <th>
+                           Tipe/kategori
+                          </th>
+                          <th>
+                          Jumlah
+                          </th>
+                   
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($keuangans as $key => $keuangan)
+                        <tr data-entry-id="{{ $keuangan->id }}">
+                          <td>
+                            {{ $key + 1}}
+                          </td>
+                          <td>
+                            {{ $keuangan->address_code_name ?? '' }}
+                          </td>
+                          <td>
+                            {{ $keuangan->created_at ?? '' }}
+                          </td>
+                          <td>
+                            {{ $keuangan->keuangan_periode ?? '' }}
+                          </td>
+                          <td>
+                            {{ $keuangan->category_name ?? '' }}
+                          </td>
+                          <td>
+                            {{ $keuangan->keuangan_value ?? '' }}
+                          </td>
+                        
+                       
+
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-                <!-- /.card-body -->
               </div>
               <!-- /.card -->
             </div>
