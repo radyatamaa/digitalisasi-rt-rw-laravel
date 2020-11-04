@@ -260,8 +260,7 @@
                             </a>
                         </li>
                         @endcan
-
-                        <li class="nav-item has-treeview">
+                 <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
@@ -455,8 +454,8 @@
                                     <!-- <span class="right badge badge-danger">New</span> -->
                                 </p>
                             </a>
-
                         </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

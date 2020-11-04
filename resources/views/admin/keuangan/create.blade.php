@@ -446,6 +446,7 @@
                                 </li>
 
                             </ul>
+
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
@@ -457,6 +458,7 @@
                             </a>
 
                         </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
