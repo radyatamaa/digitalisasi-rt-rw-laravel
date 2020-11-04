@@ -475,12 +475,10 @@
               </p>
             </a>
           </li>
-          =======
 
           </ul>
           </li>
 
-          >>>>>>> e1167a1161c0d0e97a3c625dcbc3ac09135b661e
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
@@ -629,12 +627,11 @@
               </div>
               <!-- /.card -->
 
-
-
               <!-- PIE CHART -->
               <div class="card card-info">
                 <div class="card-header">
                   <h3 class="card-title">Agama</h3>
+
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -929,6 +926,7 @@
         options: donutOptions
       })
 
+
       //-------------
       //- PIE CHART -
       //-------------
@@ -997,6 +995,7 @@
         maintainAspectRatio: false,
         datasetFill: false
       }
+
 
       var barChart = new Chart(barChartCanvas, {
         type: 'bar',

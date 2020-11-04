@@ -205,6 +205,99 @@ class ReportController extends Controller
 
         // $events
         return view('admin.report_event.index', compact('events', 'userLogin', 'event_category', 'user'));
+
+    }
+    public function ReportEvent()
+    {
+        $userLogin = Auth::user()->user_fullname;
+        $user = Auth::user()->rt_id;
+        $events = Event::select(
+            'warga.warga_first_name',
+            'warga.warga_last_name',
+            'address_code.address_code_name',
+            'event.event_date',
+            'event.event_name',
+            'event_category.category_name'
+        )
+            ->join('event_detail', 'event.id', '=', 'event_detail.event_id')
+            ->join('warga', 'event_detail.event_warga', '=', 'warga.id')
+            ->join('address_code', 'warga.warga_address_code', '=', 'address_code.id')
+            ->join('event_category', 'event.event_category', '=', 'event_category.id')
+            ->where('event_detail.deleted_at', '=', null)->get();
+
+        $event_category = Event_Category::where('id_rt', $user)->pluck('category_name', 'id');
+
+        if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
+            if ($_POST['start_date'] != '' && $_POST['end_date'] != '') {
+                $start =  $_POST['start_date'];
+                $end =  $_POST['end_date'];
+
+                $events = Event::select(
+                    'warga.warga_first_name',
+                    'warga.warga_last_name',
+                    'address_code.address_code_name',
+                    'event.event_date',
+                    'event.event_name',
+                    'event_category.category_name'
+                )
+                    ->join('event_detail', 'event.id', '=', 'event_detail.event_id')
+                    ->join('warga', 'event_detail.event_warga', '=', 'warga.id')
+                    ->join('address_code', 'warga.warga_address_code', '=', 'address_code.id')
+                    ->join('event_category', 'event.event_category', '=', 'event_category.id')
+                    ->where('event_detail.deleted_at', '=', null)
+                    ->where('event.event_date', '>=',  $start)
+                    ->where('event.event_date', '<=', $end)
+                    ->get();
+            }
+        }
+
+        if (isset($_POST['event_category'])) {
+            if ($_POST['event_category'] != '') {
+                $events = Event::select(
+                    'warga.warga_first_name',
+                    'warga.warga_last_name',
+                    'address_code.address_code_name',
+                    'event.event_date',
+                    'event.event_name',
+                    'event_category.category_name'
+                )
+                    ->join('event_detail', 'event.id', '=', 'event_detail.event_id')
+                    ->join('warga', 'event_detail.event_warga', '=', 'warga.id')
+                    ->join('address_code', 'warga.warga_address_code', '=', 'address_code.id')
+                    ->join('event_category', 'event.event_category', '=', 'event_category.id')
+                    ->where('event_detail.deleted_at', '=', null)
+                    ->where('event.event_category', '=', $_POST['event_category'])
+                    ->get();
+            }
+        }
+
+        if (isset($_POST['event_category']) && isset($_POST['start_date']) && isset($_POST['end_date'])) {
+            if ($_POST['event_category'] != '' && $_POST['start_date'] != '' && $_POST['end_date'] != '') {
+                $start =  $_POST['start_date'];
+                $end =  $_POST['end_date'];
+
+                $events = Event::select(
+                    'warga.warga_first_name',
+                    'warga.warga_last_name',
+                    'address_code.address_code_name',
+                    'event.event_date',
+                    'event.event_name',
+                    'event_category.category_name'
+                )
+                    ->join('event_detail', 'event.id', '=', 'event_detail.event_id')
+                    ->join('warga', 'event_detail.event_warga', '=', 'warga.id')
+                    ->join('address_code', 'warga.warga_address_code', '=', 'address_code.id')
+                    ->join('event_category', 'event.event_category', '=', 'event_category.id')
+                    ->where('event_detail.deleted_at', '=', null)
+                    ->where('event.event_category', '=', $_POST['event_category'])
+                    ->where('event.event_date', '>=',  $start)
+                    ->where('event.event_date', '<=', $end)
+                    ->get();
+            }
+        }
+
+        // $events
+        return view('admin.report_event.index', compact('events', 'userLogin', 'event_category', 'user'));
     }
 
     public function store()
