@@ -801,6 +801,8 @@ return [
             'warga_rt_helper'        => '',
             'warga_status'               => 'Status',
             'warga_status_helper'        => '',
+            'warga_meninggal_date'               => 'Tanggal Meninggal',
+            'warga_meninggal_date_helper'        => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
