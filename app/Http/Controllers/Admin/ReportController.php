@@ -38,6 +38,7 @@ class ReportController extends Controller
 
     public function reportKeuangan()
     {
+        $tahun = '';
         $userLogin = Auth::user()->user_fullname;
         $user = Auth::user()->rt_id;
         $keuangans = Keuangan::select(
@@ -72,7 +73,7 @@ class ReportController extends Controller
 
         if (isset($_POST['bulan']) && isset($_POST['tahun'])) {
             if ($_POST['bulan'] != '' && $_POST['tahun'] != '') {
-
+                $tahun = $_POST['tahun'];
                 $period =  $_POST['tahun'] . '-' . $_POST['bulan'];
                 $keuangans = Keuangan::select(
                     'address_code.address_code_name',
@@ -112,7 +113,7 @@ class ReportController extends Controller
         }
 
 
-        return view('admin.report_keuangan.index', compact('keuangans', 'userLogin', 'keuangan_categorys', 'user'));
+        return view('admin.report_keuangan.index', compact('keuangans', 'userLogin', 'keuangan_categorys', 'user','tahun'));
     }
     public function ReportEvent()
     {
