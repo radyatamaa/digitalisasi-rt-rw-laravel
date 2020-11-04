@@ -570,7 +570,7 @@
                     <option value="">
                       Select Tahun
                     </option>
-                    <option value="2019">
+                    <option value="2019" {{ (isset($tahun) && $tahun == '2019' ) ? 'selected' : '' }}>
                       2019
                     </option>
                     <option value="2020">
