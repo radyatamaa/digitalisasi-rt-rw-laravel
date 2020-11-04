@@ -170,37 +170,17 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ route("admin.index") }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
-                  <i class="right fas fa-angle-left"></i>
+                  <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             @can('warga_access')
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -210,13 +190,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -280,8 +260,8 @@
               </a>
             </li>
             @endcan
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Master Data
@@ -447,7 +427,7 @@
                 @endcan
               </ul>
             </li>
-             <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -456,14 +436,14 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-               
+
                 <li class="nav-item">
                   <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-               
+
               </ul>
             </li>
             <li class="nav-item">
@@ -634,7 +614,7 @@
                           <select name="warga_address_code" id="warga_address_code" class="form-control select2" required>
                             @foreach($warga_address_code as $id => $warga_address_code)
                             <option value="{{ $warga_address_code->id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code == $warga_address_code->id) ? 'selected' : '' }}>
-                            {{ $warga_address_code->address_code_name . ' ' . $warga_address_code->address_code_blok}}
+                              {{ $warga_address_code->address_code_name . ' ' . $warga_address_code->address_code_blok}}
                             </option>
                             @endforeach
                           </select>
@@ -806,38 +786,68 @@
 
 
 
-                      <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}">
+                      <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}" id="pernahtidakpernah">
                         <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label><br>
                         @if($warga->warga_status == 1)
-                        <input type="radio" id="warga_status" name="warga_status" value="1" checked>
+                        <input type="radio" id="warga_status" name="warga_status" value="1" checked onclick="removeElement('statusmeninggal')">
                         <label for="male">Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="2">
+                        <input type="radio" id="warga_status" name="warga_status" value="2" onclick="removeElement('statusmeninggal')">
                         <label for="female">Tidak Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="0">
+                        <input type="radio" id="warga_status" name="warga_status" value="0" onclick="removeElement('statusmeninggal')">
                         <label for="female">Pending</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()">
+                        <label for="female">Meninggal</label><br>
                         @elseif($warga->warga_status == 2)
-                        <input type="radio" id="warga_status" name="warga_status" value="1">
+                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')">
                         <label for="male">Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="2" checked>
+                        <input type="radio" id="warga_status" name="warga_status" value="2" checked onclick="removeElement('statusmeninggal')">
                         <label for="female">Tidak Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="0">
+                        <input type="radio" id="warga_status" name="warga_status" value="0" onclick="removeElement('statusmeninggal')">
                         <label for="female">Pending</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()">
+                        <label for="female">Meninggal</label><br>
                         @elseif($warga->warga_status == 0)
-                        <input type="radio" id="warga_status" name="warga_status" value="1">
+                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')">
                         <label for="male">Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="2">
+                        <input type="radio" id="warga_status" name="warga_status" value="2" onclick="removeElement('statusmeninggal')">
                         <label for="female">Tidak Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="0" checked>
+                        <input type="radio" id="warga_status" name="warga_status" value="0" checked onclick="removeElement('statusmeninggal')">
                         <label for="female">Pending</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()">
+                        <label for="female">Meninggal</label><br>
+                        @elseif($warga->warga_status == 3)
+                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')">
+                        <label for="male">Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="2" onclick="removeElement('statusmeninggal')">
+                        <label for="female">Tidak Aktif</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="0" onclick="removeElement('statusmeninggal')">
+                        <label for="female">Pending</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="3" checked onclick="statusmeninggal()">
+                        <label for="female">Meninggal</label><br>
                         @else
-                        <input type="radio" id="warga_status" name="warga_status" value="1">
+                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')">
                         <label for="male">Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="2">
+                        <input type="radio" id="warga_status" name="warga_status" value="2" onclick="removeElement('statusmeninggal')">
                         <label for="female">Tidak Aktif</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="0">
+                        <input type="radio" id="warga_status" name="warga_status" value="0" onclick="removeElement('statusmeninggal')">
                         <label for="female">Pending</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()">
+                        <label for="female">Meninggal</label><br>
                         @endif
                       </div>
+
+                      <!-- <div class="form-group {{ $errors->has('warga_meninggal_date') ? 'has-error' : '' }}" name="statusmeninggal">
+                        <label for="warga_meninggal_date">{{ trans('global.warga.fields.warga_meninggal_date') }}*</label>
+                        <input type="date" id="warga_meninggal_date" name="warga_meninggal_date" class="form-control" value="{{ old('warga_meninggal_date', isset($warga) ? $warga->warga_meninggal_date : '') }}" required>
+                        @if($errors->has('warga_meninggal_date'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_meninggal_date') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_meninggal_date_helper') }}
+                        </p>
+                      </div> -->
 
                       <div>
                         <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
@@ -904,6 +914,54 @@
         "responsive": true,
       });
     });
+  </script>
+  <script>
+    function removeElement(elementId) {
+      // Removes an element from the document
+      // document.getElementsByName(elementId);
+
+      for (i = 0; i < document.getElementsByName(elementId).length; i++) {
+        document.getElementsByName(elementId)[i].remove();
+      }
+      for (i = 0; i < document.getElementsByName(elementId).length; i++) {
+        document.getElementsByName(elementId)[i].remove();
+      }
+      for (i = 0; i < document.getElementsByName(elementId).length; i++) {
+        document.getElementsByName(elementId)[i].remove();
+      }
+
+    }
+
+    function statusmeninggal() {
+      var html = `  <div class="form-group {{ $errors->has('warga_meninggal_date') ? 'has-error' : '' }}" name="statusmeninggal">
+                        <label for="warga_meninggal_date">{{ trans('global.warga.fields.warga_meninggal_date') }}*</label>
+                        <input type="date" id="warga_meninggal_date" name="warga_meninggal_date" class="form-control" value="{{ old('warga_meninggal_date', isset($warga) ? $warga->warga_meninggal_date : '') }}" required>
+                        @if($errors->has('warga_meninggal_date'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('warga_meninggal_date') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.warga.fields.warga_meninggal_date_helper') }}
+                        </p>
+                      </div>
+`;
+
+      var newElement = document.createElement("p");
+      newElement.innerHTML = html;
+      document.getElementById('pernahtidakpernah').appendChild(newElement);
+      // document.body.appendChild(newElement);
+      // addElement('files', 'p', 'file-' + fileId, html);
+    }
+
+    function addElement(parentId, elementTag, elementId, html) {
+      // Adds an element to the document
+      var p = document.getElementById(parentId);
+      var newElement = document.createElement(elementTag);
+      newElement.setAttribute('id', elementId);
+      newElement.innerHTML = html;
+      p.appendChild(newElement);
+    }
   </script>
 </body>
 
