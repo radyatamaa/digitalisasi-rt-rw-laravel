@@ -31,7 +31,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="{{ route("admin.index") }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -171,7 +171,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route("admin.index") }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -254,8 +254,8 @@
                             </a>
                         </li>
                         @endcan
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item has-treeview ">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Master Data
@@ -449,7 +449,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
                                 <li class="breadcrumb-item active">List Event</li>
                             </ol>
                         </div>
@@ -528,7 +528,7 @@
                                             <div class="form-group {{ $errors->has('event_category') ? 'has-error' : '' }}">
                                                 <label for="event_category">{{ trans('global.event.fields.event_category') }}*
                                                     <select name="event_category" id="event_category" class="form-control select2" required>
-                                                        @foreach($event_categorys as $id => $event_category)
+                                                        @foreach($event_category as $id => $event_category)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('event_category', [])) || isset($event) && $event->event_category->contains($id)) ? 'selected' : '' }}>
                                                             {{ $event_category }}
                                                         </option>
@@ -556,6 +556,50 @@
                                                 <p class="helper-block">
                                                     {{ trans('global.event.fields.event_date_helper') }}
                                                 </p>
+                                            </div>
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <h3 class="box-title">Event Detail</h3>
+                                                    <div class="row">
+                                                        <div> <button type="button" class="btn btn-block btn-default" name='Check_All' value='Check All' onClick='$(":checkbox").attr("checked",true);'>Select All</button></div>
+
+                                                        <div> <button type="button" class="btn btn-block btn-default" name='Un_CheckAll' value='Un_CheckAll' onClick='$(":checkbox").attr("checked",false);'>Diselect All</button></div>
+                                                    </div>
+                                                    <div class="box-tools">
+                                                        <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                                                            <!-- <input type="text" name="table_search" class="form-control pull-right" placeholder="Search"> -->
+
+                                                            <div class="input-group-btn">
+                                                                <!-- <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.box-header -->
+                                                <div class="box-body table-responsive no-padding">
+                                                    <table class="table table-hover">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Action</th>
+                                                                <th>Nama Warga</th>
+                                                                <th>Adress</th>
+                                                                <th>No KTP</th>
+
+                                                            </tr>
+                                                            @foreach($warga as $warg)
+                                                            <tr>
+                                                                <td><input type="checkbox" id="warga[]" name="warga[]" value="{{$warg->id}}"></td>
+                                                                <td>{{$warg->warga_first_name . ' ' . $warg->warga_last_name}}</td>
+                                                                <td>{{$warg->warga_address}}</td>
+                                                                <td><span class="label label-success">{{$warg->warga_no_ktp}}</span></td>
+
+                                                            </tr>
+
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- /.box-body -->
                                             </div>
                                             <input type="text" id="event_rt" name="event_rt" class="form-control" value="{{$rts}}" hidden>
                                             <div>
@@ -621,6 +665,22 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+            });
+        });
+    </script>
+    <script src='http://code.jquery.com/jquery-1.6.3.min.js' type='text/javascript'></script>
+    <script>
+        $(document).ready(function() {
+            //check all
+            $('input[name="Check_All"]').click(function() {
+                //for all checkboxes where the name begins with "question", check them
+                $('input[name^="warga[]"]').attr('checked', true);
+            });
+
+            //uncheck all
+            $('input[name="Un_CheckAll"]').click(function() {
+                //for all checkboxes where the name begins with "question", uncheck them
+                $('input[name^="warga[]"]').attr('checked', false);
             });
         });
     </script>

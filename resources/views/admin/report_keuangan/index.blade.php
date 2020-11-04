@@ -170,17 +170,37 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="{{ route("admin.index") }}" class="nav-link">
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
-                  <!-- <span class="right badge badge-danger">New</span> -->
+                  <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./index.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v1</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index2.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v2</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index3.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v3</p>
+                  </a>
+                </li>
+              </ul>
             </li>
             @can('warga_access')
-            <li class="nav-item has-treeview menu-open">
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -190,14 +210,19 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                   <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Warga</p>
                   </a>
                 </li>
-
                 <li class="nav-item">
-                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Import Excel</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/charts/flot.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
@@ -248,13 +273,13 @@
             </li>
             @endcan
             @can('sdm_access')
-            <li class="nav-item">
-              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>SDM</p>
-              </a>
-            </li>
-            @endcan
+                        <li class="nav-item">
+                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>SDM</p>
+                            </a>
+                        </li>
+                        @endcan
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -422,8 +447,8 @@
                 @endcan
               </ul>
             </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Reports
@@ -431,16 +456,17 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-
-                <li class="nav-item">
+               
+                <li class="nav-item active">
                   <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-
+               
               </ul>
             </li>
+        
             <li class="nav-item">
               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -465,12 +491,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>List RT</h1>
+              <h1>Report Keuangan</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
-                <li class="breadcrumb-item active">List RT</li>
+                <li class="breadcrumb-item active">Report Keuangan</li>
               </ol>
             </div>
           </div>
@@ -485,18 +511,10 @@
 
               <!-- /.card -->
               @section('content')
-              @can('warga_create')
-              <div style="margin-bottom: 10px;" class="row">
-                <div class="col-lg-12">
-                  <a class="btn btn-success" href="{{ route("admin.warga.create") }}">
-                    {{ trans('global.add') }} {{ trans('global.warga.title_singular') }}
-                  </a>
-                </div>
-              </div>
-              @endcan
+   
               <div class="card">
                 <div class="card-header">
-                  {{ trans('global.warga.title_singular') }} {{ trans('global.list') }}
+                  {{ trans('global.master_pekerjaan.title_singular') }} {{ trans('global.list') }}
                 </div>
 
                 <div class="card-body">
@@ -508,177 +526,47 @@
 
                           </th>
                           <th>
-                            {{ trans('global.warga.fields.warga_no_ktp') }}
+                           Address Code
                           </th>
                           <th>
-                            {{ trans('global.warga.fields.warga_no_kk') }}
+                           Tanggal Input
                           </th>
                           <th>
-                            {{ trans('global.warga.fields.warga_first_name') }}
+                            Periode
                           </th>
                           <th>
-                            {{ trans('global.warga.fields.warga_last_name') }}
+                           Tipe/kategori
                           </th>
                           <th>
-                            {{ trans('global.warga.fields.warga_rt') }}
+                          Jumlah
                           </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_sex') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_religion') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_address') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_address_code') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_job') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_salary_range') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_phone') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_email') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_birth_date') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_is_ktp_sama_domisili') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_join_date') }}
-                          </th>
-                          <th>
-                            {{ trans('global.warga.fields.warga_pendidikan') }}
-                          </th>
-
-                          <th>
-                            {{ trans('global.warga.fields.warga_status') }}
-                          </th>
-
-                          <th>
-                            &nbsp;
-                          </th>
+                   
+                          
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($warga as $key => $wargas)
-                        <tr data-entry-id="{{ $wargas->id }}">
+                        @foreach($keuangans as $key => $keuangan)
+                        <tr data-entry-id="{{ $keuangan->id }}">
                           <td>
-                            {{$key + 1}}
+                            {{ $key + 1}}
                           </td>
                           <td>
-                            {{ $wargas->warga_no_ktp ?? '' }}
+                            {{ $keuangan->address_code_name ?? '' }}
                           </td>
                           <td>
-                            {{ $wargas->warga_no_kk ?? '' }}
+                            {{ $keuangan->created_at ?? '' }}
                           </td>
                           <td>
-                            {{ $wargas->warga_first_name ?? '' }}
+                            {{ $keuangan->keuangan_periode ?? '' }}
                           </td>
                           <td>
-                            {{ $wargas->warga_last_name ?? '' }}
+                            {{ $keuangan->category_name ?? '' }}
                           </td>
                           <td>
-                            {{ $wargas->rt_name ?? '' }}
+                            {{ $keuangan->keuangan_value ?? '' }}
                           </td>
-                          @if($wargas->warga_sex == 1)
-                          <td>
-                            Male
-                          </td>
-                          @elseif($wargas->warga_sex == 2)
-                          <td>
-                            Female
-                          </td>
-                          @else
-                          <td>
-
-                          </td>
-                          @endif
-                          <td>
-                            {{ $wargas->religion_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_address ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->address_code_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->job_name ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->salary_start . ' - ' . $wargas->salary_end ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_phone ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_email ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->warga_birth_date ?? '' }}
-                          </td>
-                          @if($wargas->warga_is_ktp_sama_domisili == 1)
-                          <td>
-                            Ya
-                          </td>
-                          @elseif($wargas->warga_is_ktp_sama_domisili == 2)
-                          <td>
-                            Tidak
-                          </td>
-                          @else
-                          <td>
-
-                          </td>
-                          @endif
-
-                          <td>
-                            {{ $wargas->warga_join_date ?? '' }}
-                          </td>
-                          <td>
-                            {{ $wargas->pendidikan_name ?? '' }}
-                          </td>
-
-                          @if($wargas->warga_status == 1)
-                          <td>
-                            Aktif
-                          </td>
-                          @elseif($wargas->warga_status == 2)
-                          <td>
-                            Tidak Aktif
-                          </td>
-                          @elseif($wargas->warga_status == 0)
-                          <td>
-                            Pending
-                          </td>
-                          @else
-                          <td>
-
-                          </td>
-                          @endif
-                          <td>
-
-                            @can('warga_edit')
-                            <a class="btn btn-xs btn-info" href="{{ route('admin.warga.edit', $wargas->id) }}">
-                              {{ trans('global.edit') }}
-                            </a>
-                            @endcan
-                            @can('warga_delete')
-                            <form action="{{ route('admin.warga.destroy', $wargas->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                              <input type="hidden" name="_method" value="DELETE">
-                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                              <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                            </form>
-                            @endcan
-                          </td>
+                        
+                       
 
                         </tr>
                         @endforeach
