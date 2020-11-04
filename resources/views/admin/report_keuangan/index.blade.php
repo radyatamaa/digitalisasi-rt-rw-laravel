@@ -514,32 +514,132 @@
         <div class="container-fluid">
           <form action="{{ route("admin.report_data_masyarakat_km.index") .'?report_keuangan' }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="form-group {{ $errors->has('keuangan_category') ? 'has-error' : '' }}">
-              <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}
-                <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                <select name="keuangan_category" id="keuangan_category" class="form-control select2">
-                  <option value="">
-                    Select Category
-                  </option>
-                  @foreach($keuangan_categorys as $id => $keuangan_category)
-                  <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category->contains($id)) ? 'selected' : '' }}>
-                    {{ $keuangan_category }}
-                  </option>
-                  @endforeach
-                </select>
-                @if($errors->has('keuangan_category'))
-                <em class="invalid-feedback">
-                  {{ $errors->first('keuangan_category') }}
-                </em>
-                @endif
-                <p class="helper-block">
-                  {{ trans('global.keuangan.fields.keuangan_category_helper') }}
-                </p>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label>Bulan</label>
+                  <select name="bulan" id="bulan" class="form-control select2">
+                    <option value="">
+                      Select Bulan
+                    </option>
+                    <option value="1">
+                      Januari
+                    </option>
+                    <option value="2">
+                      Februari
+                    </option>
+                    <option value="3">
+                      Maret
+                    </option>
+                    <option value="4">
+                      April
+                    </option>
+                    <option value="5">
+                      Mei
+                    </option>
+                    <option value="6">
+                      Juni
+                    </option>
+                    <option value="7">
+                      Juli
+                    </option>
+                    <option value="8">
+                      Agustus
+                    </option>
+                    <option value="9">
+                      September
+                    </option>
+                    <option value="10">
+                      Oktober
+                    </option>
+                    <option value="11">
+                      November
+                    </option>
+                    <option value="12">
+                      Desember
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label>Tahun</label>
+                  <select name="tahun" id="tahun" class="form-control select2">
+                    <option value="">
+                      Select Tahun
+                    </option>
+                    <option value="2019">
+                      2019
+                    </option>
+                    <option value="2020">
+                      2020
+                    </option>
+                    <option value="2021">
+                      2021
+                    </option>
+                    <option value="2022">
+                      2022
+                    </option>
+                    <option value="2023">
+                      2023
+                    </option>
+                    <option value="2024">
+                      2024
+                    </option>
+                    <option value="2025">
+                      2025
+                    </option>
+                    <option value="2026">
+                      2026
+                    </option>
+                    <option value="2027">
+                      2027
+                    </option>
+                    <option value="2028">
+                      2028
+                    </option>
+                    <option value="2029">
+                      2029
+                    </option>
+                    <option value="2030">
+                      2030
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group {{ $errors->has('keuangan_category') ? 'has-error' : '' }}">
+                  <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}
+                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                    <select name="keuangan_category" id="keuangan_category" class="form-control select2">
+                      <option value="">
+                        Select Category
+                      </option>
+                      @foreach($keuangan_categorys as $id => $keuangan_category)
+                      <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category->contains($id)) ? 'selected' : '' }}>
+                        {{ $keuangan_category }}
+                      </option>
+                      @endforeach
+                    </select>
+                    @if($errors->has('keuangan_category'))
+                    <em class="invalid-feedback">
+                      {{ $errors->first('keuangan_category') }}
+                    </em>
+                    @endif
+                    <p class="helper-block">
+                      {{ trans('global.keuangan.fields.keuangan_category_helper') }}
+                    </p>
+                </div>
 
 
 
+              </div>
+            </div>
             <button type="submit" class="btn btn-primary">Search</button>
 
           </form>

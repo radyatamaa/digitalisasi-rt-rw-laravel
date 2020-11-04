@@ -70,6 +70,48 @@ class ReportController extends Controller
             }
         }
 
+        if (isset($_POST['bulan']) && isset($_POST['tahun'])) {
+            if ($_POST['bulan'] != '' && $_POST['tahun'] != '') {
+
+                $period =  $_POST['tahun'] . '-' . $_POST['bulan'];
+                $keuangans = Keuangan::select(
+                    'address_code.address_code_name',
+                    'keuangan.created_at',
+                    'keuangan.keuangan_periode',
+                    'keuangan_category.category_name',
+                    'keuangan.keuangan_value'
+                )
+                    ->join('warga', 'warga.id', '=', 'keuangan.keuangan_warga_id')
+                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->join('keuangan_category', 'keuangan_category.id', '=', 'keuangan.keuangan_category')
+                    ->whereMonth('keuangan.keuangan_periode', '=', $_POST['bulan'])
+                    ->whereYear('keuangan.keuangan_periode', '=',  $_POST['tahun'])
+                    ->get();
+            }
+        }
+
+        if (isset($_POST['bulan']) && isset($_POST['tahun']) && isset($_POST['keuangan_category'])) {
+            if ($_POST['bulan'] != '' && $_POST['tahun'] != '' && $_POST['keuangan_category']) {
+
+                $period =  $_POST['tahun'] . '-' . $_POST['bulan'];
+                $keuangans = Keuangan::select(
+                    'address_code.address_code_name',
+                    'keuangan.created_at',
+                    'keuangan.keuangan_periode',
+                    'keuangan_category.category_name',
+                    'keuangan.keuangan_value'
+                )
+                    ->join('warga', 'warga.id', '=', 'keuangan.keuangan_warga_id')
+                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->join('keuangan_category', 'keuangan_category.id', '=', 'keuangan.keuangan_category')
+                    ->whereMonth('keuangan.keuangan_periode', '=', $_POST['bulan'])
+                    ->whereYear('keuangan.keuangan_periode', '=',  $_POST['tahun'])
+                    ->where('keuangan.keuangan_category', '=', $_POST['keuangan_category'])
+                    ->get();
+            }
+        }
+
+
         return view('admin.report_keuangan.index', compact('keuangans', 'userLogin', 'keuangan_categorys', 'user'));
     }
     public function ReportEvent()
