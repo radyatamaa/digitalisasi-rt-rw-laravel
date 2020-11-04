@@ -427,7 +427,7 @@
                 @endcan
               </ul>
             </li>
-             <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -436,14 +436,14 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-               
+
                 <li class="nav-item">
                   <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-               
+
               </ul>
             </li>
             <li class="nav-item">
@@ -766,6 +766,8 @@
                         <label for="female">Tidak Aktif</label><br>
                         <input type="radio" id="warga_status" name="warga_status" value="0">
                         <label for="female">Pending</label><br>
+                        <input type="radio" id="warga_status" name="warga_status" value="3">
+                        <label for="female">Meninggal</label><br>
                       </div>
 
                       <div>

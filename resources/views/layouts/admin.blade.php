@@ -440,7 +440,7 @@
                 @endcan
               </ul>
             </li>
-             <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -449,26 +449,18 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-               
+
                 <li class="nav-item">
                   <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-               
+
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Logout
-                  <!-- <span class="right badge badge-danger">New</span> -->
-                </p>
-              </a>
-            </li>
-             <li class="nav-item has-treeview">
+
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -477,14 +469,14 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-               
+
                 <li class="nav-item">
                   <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-               
+
               </ul>
             </li>
             <li class="nav-item">
