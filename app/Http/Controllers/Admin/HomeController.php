@@ -23,6 +23,7 @@ class HomeController
         foreach($agamas as $index => $agama){
             $dataObj = new \stdClass();
             $dataObj->nama_agama = $agama->religion_name;
+            $dataObj->backgroundColor = $agama->color;     
             if ($rt != null) {
                 $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
@@ -45,18 +46,19 @@ class HomeController
                 ->count();
             }
            
-            if(($dataObj->count != 0) && (count($agamaArray) <= 6)){   
+           
+            if(($dataObj->count != 0)){   
+                array_push($agamaArray,$dataObj);
+                }
+           
             
-            $dataObj->backgroundColor = $chartBackground[$indexs];
-            $indexs = $indexs + 1;             
-            array_push($agamaArray,$dataObj);
-            }
         }
         
         $indexs2 = 0;
         foreach($pekerjaans as $index => $pekerjaan){
             $dataObj = new \stdClass();
             $dataObj->nama_pekerjaan = $pekerjaan->job_name;
+            $dataObj->backgroundColor = $pekerjaan->color;     
             if ($rt != null) {
                 $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
@@ -79,9 +81,7 @@ class HomeController
                 ->count();           
             }
             
-            if(($dataObj->count != 0) && (count($pekerjaanArray) <= 6)){    
-                $dataObj->backgroundColor = $chartBackground[$indexs2];
-                $indexs2 = $indexs2 + 1;    
+            if(($dataObj->count != 0)){   
             array_push($pekerjaanArray,$dataObj);
             }
         }

@@ -511,30 +511,20 @@
                         {{ trans('global.master_pekerjaan.fields.job_name_helper') }}
                       </p>
                     </div>
-                    <!-- <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                <label for="description">{{ trans('global.master_pekerjaan.fields.description') }}</label>
-                <textarea id="description" name="description" class="form-control ">{{ old('description', isset($master_pekerjaan) ? $master_pekerjaan->description : '') }}</textarea>
-                @if($errors->has('description'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('description') }}
-                    </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_pekerjaan.fields.description_helper') }}
-                </p>
-            </div> -->
-                    <!-- <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
-                <label for="price">{{ trans('global.master_pekerjaan.fields.price') }}</label>
-                <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($master_pekerjaan) ? $master_pekerjaan->price : '') }}" step="0.01">
-                @if($errors->has('price'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('price') }}
-                    </em>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.master_pekerjaan.fields.price_helper') }}
-                </p>
-            </div> -->
+
+                    <div class="form-group {{ $errors->has('color') ? 'has-error' : '' }}">
+                      <label for="color">{{ trans('global.master_pekerjaan.fields.color') }}*</label>
+                      <input type="color" id="color" name="color" class="form-control" value="{{ old('color', isset($master_pekerjaan) ? $master_pekerjaan->color : '') }}">
+                      @if($errors->has('color'))
+                      <em class="invalid-feedback">
+                        {{ $errors->first('color') }}
+                      </em>
+                      @endif
+                      <p class="helper-block">
+                        {{ trans('global.master_pekerjaan.fields.color_helper') }}
+                      </p>
+                    </div>
+                    
                     <div>
                       <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                     </div>
