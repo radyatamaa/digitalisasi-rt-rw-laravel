@@ -47,8 +47,10 @@ class HomeController
             }
            
            
-              
-            array_push($agamaArray,$dataObj);
+            if(($dataObj->count != 0)){   
+                array_push($agamaArray,$dataObj);
+                }
+           
             
         }
         
@@ -79,9 +81,9 @@ class HomeController
                 ->count();           
             }
             
-      
+            if(($dataObj->count != 0)){   
             array_push($pekerjaanArray,$dataObj);
-            
+            }
         }
 
         if ($rt != null) {
