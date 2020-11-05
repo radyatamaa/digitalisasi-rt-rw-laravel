@@ -695,7 +695,7 @@
                             {{ $keuangan->created_at ?? '' }}
                           </td>
                           <td>
-                            {{ $keuangan->keuangan_periode ?? '' }}
+                            {{ date('Y-m', strtotime($keuangan->keuangan_periode))  ?? '' }}
                           </td>
                           <td>
                             {{ $keuangan->category_name ?? '' }}
