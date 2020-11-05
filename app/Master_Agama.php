@@ -17,6 +17,7 @@ class Master_agama extends Model
 
     protected $fillable = [
         'religion_name',
+        'color',
         'created_at',
         'updated_at',
         'deleted_at',
