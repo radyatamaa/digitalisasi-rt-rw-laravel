@@ -659,6 +659,11 @@
                           <td>
                             Pending
                           </td>
+                          @elseif($wargas->warga_status == 3)
+                          <td>
+                            Meninggal
+                          </td>
+
                           @else
                           <td>
 
