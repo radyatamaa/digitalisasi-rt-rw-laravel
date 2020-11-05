@@ -522,40 +522,40 @@
                     <option value="">
                       Select Bulan
                     </option>
-                    <option value="1">
+                    <option value="1" {{ (isset($bulan) && $bulan == '1' ) ? 'selected' : '' }}>
                       Januari
                     </option>
-                    <option value="2">
+                    <option value="2" {{ (isset($bulan) && $bulan == '2' ) ? 'selected' : '' }}>
                       Februari
                     </option>
-                    <option value="3">
+                    <option value="3" {{ (isset($bulan) && $bulan == '3' ) ? 'selected' : '' }}>
                       Maret
                     </option>
-                    <option value="4">
+                    <option value="4" {{ (isset($bulan) && $bulan == '4' ) ? 'selected' : '' }}>
                       April
                     </option>
-                    <option value="5">
+                    <option value="5" {{ (isset($bulan) && $bulan == '5' ) ? 'selected' : '' }}>
                       Mei
                     </option>
-                    <option value="6">
+                    <option value="6" {{ (isset($bulan) && $bulan == '6' ) ? 'selected' : '' }}>
                       Juni
                     </option>
-                    <option value="7">
+                    <option value="7" {{ (isset($bulan) && $bulan == '7' ) ? 'selected' : '' }}>
                       Juli
                     </option>
-                    <option value="8">
+                    <option value="8" {{ (isset($bulan) && $bulan == '8' ) ? 'selected' : '' }}>
                       Agustus
                     </option>
-                    <option value="9">
+                    <option value="9" {{ (isset($bulan) && $bulan == '9' ) ? 'selected' : '' }}>
                       September
                     </option>
-                    <option value="10">
+                    <option value="10" {{ (isset($bulan) && $bulan == '10' ) ? 'selected' : '' }}>
                       Oktober
                     </option>
-                    <option value="11">
+                    <option value="11" {{ (isset($bulan) && $bulan == '11' ) ? 'selected' : '' }}>
                       November
                     </option>
-                    <option value="12">
+                    <option value="12" {{ (isset($bulan) && $bulan == '12' ) ? 'selected' : '' }}>
                       Desember
                     </option>
                   </select>
@@ -573,37 +573,37 @@
                     <option value="2019" {{ (isset($tahun) && $tahun == '2019' ) ? 'selected' : '' }}>
                       2019
                     </option>
-                    <option value="2020">
+                    <option value="2020" {{ (isset($tahun) && $tahun == '2020' ) ? 'selected' : '' }}>
                       2020
                     </option>
-                    <option value="2021">
+                    <option value="2021" {{ (isset($tahun) && $tahun == '2021' ) ? 'selected' : '' }}>
                       2021
                     </option>
-                    <option value="2022">
+                    <option value="2022" {{ (isset($tahun) && $tahun == '2022' ) ? 'selected' : '' }}>
                       2022
                     </option>
-                    <option value="2023">
+                    <option value="2023" {{ (isset($tahun) && $tahun == '2023' ) ? 'selected' : '' }}>
                       2023
                     </option>
-                    <option value="2024">
+                    <option value="2024" {{ (isset($tahun) && $tahun == '2024' ) ? 'selected' : '' }}>
                       2024
                     </option>
-                    <option value="2025">
+                    <option value="2025" {{ (isset($tahun) && $tahun == '2025' ) ? 'selected' : '' }}>
                       2025
                     </option>
-                    <option value="2026">
+                    <option value="2026" {{ (isset($tahun) && $tahun == '2026' ) ? 'selected' : '' }}>
                       2026
                     </option>
-                    <option value="2027">
+                    <option value="2027" {{ (isset($tahun) && $tahun == '2027' ) ? 'selected' : '' }}>
                       2027
                     </option>
-                    <option value="2028">
+                    <option value="2028" {{ (isset($tahun) && $tahun == '2028' ) ? 'selected' : '' }}>
                       2028
                     </option>
-                    <option value="2029">
+                    <option value="2029" {{ (isset($tahun) && $tahun == '2029' ) ? 'selected' : '' }}>
                       2029
                     </option>
-                    <option value="2030">
+                    <option value="2030" {{ (isset($tahun) && $tahun == '2030' ) ? 'selected' : '' }}>
                       2030
                     </option>
                   </select>
@@ -613,15 +613,15 @@
             <div class="row">
               <div class="col-lg-3">
                 <div class="form-group {{ $errors->has('keuangan_category') ? 'has-error' : '' }}">
-                  <label for="keuangan_category">{{ trans('global.keuangan.fields.keuangan_category') }}
+                  <label for="category">{{ trans('global.keuangan.fields.keuangan_category') }}
                     <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                    <select name="keuangan_category" id="keuangan_category" class="form-control select2">
+                    <select name="category" id="category" class="form-control select2">
                       <option value="">
                         Select Category
                       </option>
                       @foreach($keuangan_categorys as $id => $keuangan_category)
-                      <option value="{{ $id }}" {{ (in_array($id, old('keuangan_category', [])) || isset($keuangan) && $keuangan->keuangan_category->contains($id)) ? 'selected' : '' }}>
+                      <option value="{{ $id }}" {{ (isset($category) && $category == $id ) ? 'selected' : '' }}>
                         {{ $keuangan_category }}
                       </option>
                       @endforeach
@@ -773,48 +773,50 @@
     });
 
     function downloadCSV(csv, filename) {
-    var csvFile;
-    var downloadLink;
+      var csvFile;
+      var downloadLink;
 
-    // CSV file
-    csvFile = new Blob([csv], {type: "text/csv"});
+      // CSV file
+      csvFile = new Blob([csv], {
+        type: "text/csv"
+      });
 
-    // Download link
-    downloadLink = document.createElement("a");
+      // Download link
+      downloadLink = document.createElement("a");
 
-    // File name
-    downloadLink.download = filename;
+      // File name
+      downloadLink.download = filename;
 
-    // Create a link to the file
-    downloadLink.href = window.URL.createObjectURL(csvFile);
+      // Create a link to the file
+      downloadLink.href = window.URL.createObjectURL(csvFile);
 
-    // Hide download link
-    downloadLink.style.display = "none";
+      // Hide download link
+      downloadLink.style.display = "none";
 
-    // Add the link to DOM
-    document.body.appendChild(downloadLink);
+      // Add the link to DOM
+      document.body.appendChild(downloadLink);
 
-    // Click download link
-    downloadLink.click();
-}
+      // Click download link
+      downloadLink.click();
+    }
 
-function exportTableToCSV(filename) {
-    var csv = [];
-	var rows = document.querySelectorAll("table tr");
-	
-    for (var i = 0; i < rows.length; i++) {
-		var row = [], cols = rows[i].querySelectorAll("td, th");
-		
-        for (var j = 0; j < cols.length; j++) 
-            row.push(cols[j].innerText);
-        
-		csv.push(row.join(","));		
-	}
+    function exportTableToCSV(filename) {
+      var csv = [];
+      var rows = document.querySelectorAll("table tr");
 
-    // Download CSV file
-    downloadCSV(csv.join("\n"), filename);
-}
+      for (var i = 0; i < rows.length; i++) {
+        var row = [],
+          cols = rows[i].querySelectorAll("td, th");
 
+        for (var j = 0; j < cols.length; j++)
+          row.push(cols[j].innerText);
+
+        csv.push(row.join(","));
+      }
+
+      // Download CSV file
+      downloadCSV(csv.join("\n"), filename);
+    }
   </script>
 </body>
 

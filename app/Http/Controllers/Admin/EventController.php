@@ -174,7 +174,7 @@ class EventController extends Controller
     public function update(UpdateEventRequest $request, Event $event)
     {
 
-        abort_unless(\Gate::allows('event_edit'), 403);
+        abort_unless(Gate::allows('event_edit'), 403);
 
         $event->update($request->all());
         $id = $event->id;
