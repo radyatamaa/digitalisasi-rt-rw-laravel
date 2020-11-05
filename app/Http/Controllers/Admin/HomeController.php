@@ -29,7 +29,8 @@ class HomeController
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $agama->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_religion', $agama->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
             
@@ -39,7 +40,8 @@ class HomeController
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $agama->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_religion', $agama->id)
                 ->count();
             }
            
@@ -61,7 +63,8 @@ class HomeController
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $pekerjaan->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_job', $pekerjaan->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
             
@@ -71,7 +74,8 @@ class HomeController
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $pekerjaan->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_job', $pekerjaan->id)
                 ->count();           
             }
             
