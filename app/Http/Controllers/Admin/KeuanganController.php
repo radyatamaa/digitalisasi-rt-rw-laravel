@@ -72,7 +72,16 @@ class KeuanganController extends Controller
     {
         abort_unless(\Gate::allows('keuangan_create'), 403);
 
-        $keuangan = Keuangan::create($request->all());
+        $period = $_POST['keuangan_periode'] . '-1';
+        $insert = array(
+            'keuangan_tipe' => $_POST['keuangan_tipe'],
+            'keuangan_category' => $_POST['keuangan_category'],
+            'keuangan_periode' => $period,
+            'keuangan_value' => $_POST['keuangan_value'],
+            'keuangan_warga_id' => $_POST['keuangan_warga_id'],
+            'keuangan_rt' => $_POST['keuangan_rt'],
+        );
+        $keuangan = Keuangan::create($insert);
 
         return redirect()->route('admin.keuangan.index');
     }
@@ -83,7 +92,7 @@ class KeuanganController extends Controller
         $user = Auth::user()->rt_id;
         abort_unless(\Gate::allows('keuangan_edit'), 403);
         $keuangan_rt = Rt::all()->pluck('rt_name', 'id');
-        $periodConvert = date('yy-m-d', strtotime($keuangan->keuangan_periode));
+        $periodConvert = date('yy-m', strtotime($keuangan->keuangan_periode));
         if ($user != null) {
             $rts = Rt::where('id', $user)->pluck('rt_name', 'id');
             $master_alamats = Master_Alamat::where('address_code_rt', $user)->pluck('address_code_name', 'id');
@@ -102,7 +111,16 @@ class KeuanganController extends Controller
 
         abort_unless(\Gate::allows('keuangan_edit'), 403);
 
-        $keuangan->update($request->all());
+        $period = $_POST['keuangan_periode'] . '-1';
+        $update = array(
+            'keuangan_tipe' => $_POST['keuangan_tipe'],
+            'keuangan_category' => $_POST['keuangan_category'],
+            'keuangan_periode' => $period,
+            'keuangan_value' => $_POST['keuangan_value'],
+            'keuangan_warga_id' => $_POST['keuangan_warga_id'],
+            'keuangan_rt' => $_POST['keuangan_rt'],
+        );
+        $keuangan->update($update);
 
         return redirect()->route('admin.keuangan.index');
     }
