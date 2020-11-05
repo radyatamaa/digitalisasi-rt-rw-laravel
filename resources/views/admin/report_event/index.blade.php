@@ -516,7 +516,7 @@
                         @csrf
                         <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
                             <label for="start_date">Tanggal</label>
-                            <input type="date" id="start_date" name="start_date" class="form-control" value="{{ old('start_date', isset($event) ? date('Y-m-d', strtotime($event->start_date)) : '') }}">
+                            <input type="date" id="start_date" name="start_date" class="form-control" value="{{ old('start_date', isset($start_date) ? date('Y-m-d', strtotime($start_date)) : '') }}">
                             @if($errors->has('event_date'))
                             <em class="invalid-feedback">
                                 {{ $errors->first('event_date') }}
@@ -528,7 +528,7 @@
                         </div>
                         <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
                             <label for="end_date">S/d</label>
-                            <input type="date" id="end_date" name="end_date" class="form-control" value="{{ old('end_date', isset($event) ? date('Y-m-d', strtotime($event->end_date)) : '') }}">
+                            <input type="date" id="end_date" name="end_date" class="form-control" value="{{ old('end_date', isset($end_date) ? date('Y-m-d', strtotime($end_date)) : '') }}">
                             @if($errors->has('event_date'))
                             <em class="invalid-feedback">
                                 {{ $errors->first('event_date') }}
