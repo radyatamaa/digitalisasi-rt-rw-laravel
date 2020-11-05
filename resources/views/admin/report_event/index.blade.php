@@ -514,21 +514,39 @@
                 <div class="container-fluid">
                     <form action="{{ route("admin.report_data_masyarakat_km.index") .'?report_event' }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
-                            <label>Tanggal</label>
-                            <input type="date" class="form-control" name="start_date" placeholder="Masukan Tanggal Request " value="">
-                            <label>S/d</label>
-                            <input type="date" class="form-control" name="end_date" placeholder="Masukan Tanggal Request " value="">
+                        <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
+                            <label for="start_date">Tanggal</label>
+                            <input type="date" id="start_date" name="start_date" class="form-control" value="{{ old('start_date', isset($start_date) ? date('Y-m-d', strtotime($start_date)) : '') }}">
+                            @if($errors->has('event_date'))
+                            <em class="invalid-feedback">
+                                {{ $errors->first('event_date') }}
+                            </em>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('global.event.fields.event_date_helper') }}
+                            </p>
+                        </div>
+                        <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
+                            <label for="end_date">S/d</label>
+                            <input type="date" id="end_date" name="end_date" class="form-control" value="{{ old('end_date', isset($end_date) ? date('Y-m-d', strtotime($end_date)) : '') }}">
+                            @if($errors->has('event_date'))
+                            <em class="invalid-feedback">
+                                {{ $errors->first('event_date') }}
+                            </em>
+                            @endif
+                            <p class="helper-block">
+                                {{ trans('global.event.fields.event_date_helper') }}
+                            </p>
                         </div>
                         <div class="form-group {{ $errors->has('event_category') ? 'has-error' : '' }}">
                             <label for="event_category">{{ trans('global.event.fields.event_category') }}
-                                <select name="event_category" id="event_category" class="form-control select2">
+                                <select name="category" id="category" class="form-control select2">
                                     <option value="">
                                         Select Event
                                     </option>
                                     @foreach($event_category as $id => $event_category)
 
-                                    <option value="{{ $id }}" {{ (in_array($id, old('event_category', [])) || isset($event) && $event->event_category->contains($id)) ? 'selected' : '' }}>
+                                    <option value="{{ $id }}" {{ (isset($category) && $category == $id ) ? 'selected' : '' }}>
                                         {{ $event_category }}
                                     </option>
                                     @endforeach
@@ -613,6 +631,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+                                        <button class="btn btn-danger" onclick="exportTableToCSV('laporan_event.csv')">Export Excel</button>
                                     </div>
                                 </div>
                             </div>
@@ -673,6 +692,52 @@
                 "responsive": true,
             });
         });
+
+        function downloadCSV(csv, filename) {
+            var csvFile;
+            var downloadLink;
+
+            // CSV file
+            csvFile = new Blob([csv], {
+                type: "text/csv"
+            });
+
+            // Download link
+            downloadLink = document.createElement("a");
+
+            // File name
+            downloadLink.download = filename;
+
+            // Create a link to the file
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+
+            // Hide download link
+            downloadLink.style.display = "none";
+
+            // Add the link to DOM
+            document.body.appendChild(downloadLink);
+
+            // Click download link
+            downloadLink.click();
+        }
+
+        function exportTableToCSV(filename) {
+            var csv = [];
+            var rows = document.querySelectorAll("table tr");
+
+            for (var i = 0; i < rows.length; i++) {
+                var row = [],
+                    cols = rows[i].querySelectorAll("td, th");
+
+                for (var j = 0; j < cols.length; j++)
+                    row.push(cols[j].innerText);
+
+                csv.push(row.join(","));
+            }
+
+            // Download CSV file
+            downloadCSV(csv.join("\n"), filename);
+        }
     </script>
 </body>
 
