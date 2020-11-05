@@ -836,7 +836,7 @@
                         @endif
                       </div>
 
-                      <!-- <div class="form-group {{ $errors->has('warga_meninggal_date') ? 'has-error' : '' }}" name="statusmeninggal">
+                      <div class="form-group {{ $errors->has('warga_meninggal_date') ? 'has-error' : '' }}" name="statusmeninggal">
                         <label for="warga_meninggal_date">{{ trans('global.warga.fields.warga_meninggal_date') }}*</label>
                         <input type="date" id="warga_meninggal_date" name="warga_meninggal_date" class="form-control" value="{{ old('warga_meninggal_date', isset($warga) ? $warga->warga_meninggal_date : '') }}" required>
                         @if($errors->has('warga_meninggal_date'))
@@ -847,7 +847,7 @@
                         <p class="helper-block">
                           {{ trans('global.warga.fields.warga_meninggal_date_helper') }}
                         </p>
-                      </div> -->
+                      </div>
 
                       <div>
                         <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
