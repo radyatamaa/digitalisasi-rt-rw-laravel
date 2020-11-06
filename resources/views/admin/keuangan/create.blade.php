@@ -567,14 +567,13 @@
                                                 </p>
                                             </div>
 
+
                                             <div class="form-group {{ $errors->has('keuangan_warga_id') ? 'has-error' : '' }}">
-                                                <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}*
-                                                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                                                <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}
                                                     <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2" required>
                                                         @foreach($master_alamats as $id => $master_alamat)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($id)) ? 'selected' : '' }}>
-                                                            {{ $master_alamat }}
+                                                        <option value="{{ $master_alamat->id }}" {{ (in_array($id, old('keuangan_warga_id', [])) || isset($keuangan) && $keuangan->keuangan_warga_id->contains($id)) ? 'selected' : '' }}>
+                                                            {{ $master_alamat->address_code_name . ' ' . $master_alamat->address_code_blok}}
                                                         </option>
                                                         @endforeach
                                                     </select>
