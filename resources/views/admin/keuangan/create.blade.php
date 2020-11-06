@@ -437,16 +437,18 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-
                                 <li class="nav-item">
                                     <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Report Keuangan</p>
                                     </a>
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Report Event</p>
+                                    </a>
                                 </li>
-
                             </ul>
-
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
@@ -536,7 +538,7 @@
 
                                             <div class="form-group {{ $errors->has('keuangan_periode') ? 'has-error' : '' }}">
                                                 <label for="keuangan_periode">{{ trans('global.keuangan.fields.keuangan_periode') }}</label>
-                                                <input type="date" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($keuangan) ? $keuangan->keuangan_periode : '') }}" step="0.01" required>
+                                                <input type="month" id="keuangan_periode" name="keuangan_periode" class="form-control" value="{{ old('keuangan_periode', isset($keuangan) ? $keuangan->keuangan_periode : '') }}" step="0.01" required>
                                                 @if($errors->has('keuangan_periode'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('keuangan_periode') }}

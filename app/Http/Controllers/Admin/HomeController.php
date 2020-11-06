@@ -23,13 +23,15 @@ class HomeController
         foreach($agamas as $index => $agama){
             $dataObj = new \stdClass();
             $dataObj->nama_agama = $agama->religion_name;
+            $dataObj->backgroundColor = $agama->color;     
             if ($rt != null) {
                 $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $agama->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_religion', $agama->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
             
@@ -39,29 +41,32 @@ class HomeController
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $agama->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_religion', $agama->id)
                 ->count();
             }
            
-            if(($dataObj->count != 0) && (count($agamaArray) <= 6)){   
+           
+            if(($dataObj->count != 0)){   
+                array_push($agamaArray,$dataObj);
+                }
+           
             
-            $dataObj->backgroundColor = $chartBackground[$indexs];
-            $indexs = $indexs + 1;             
-            array_push($agamaArray,$dataObj);
-            }
         }
         
         $indexs2 = 0;
         foreach($pekerjaans as $index => $pekerjaan){
             $dataObj = new \stdClass();
             $dataObj->nama_pekerjaan = $pekerjaan->job_name;
+            $dataObj->backgroundColor = $pekerjaan->color;     
             if ($rt != null) {
                 $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $pekerjaan->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_job', $pekerjaan->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
             
@@ -71,13 +76,12 @@ class HomeController
                 ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_religion', $pekerjaan->id)
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_job', $pekerjaan->id)
                 ->count();           
             }
             
-            if(($dataObj->count != 0) && (count($pekerjaanArray) <= 6)){    
-                $dataObj->backgroundColor = $chartBackground[$indexs2];
-                $indexs2 = $indexs2 + 1;    
+            if(($dataObj->count != 0)){   
             array_push($pekerjaanArray,$dataObj);
             }
         }
