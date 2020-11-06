@@ -567,7 +567,7 @@
                                                         {{ $keuangans->keuangan_value ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $keuangans->address_code_name ?? '' }}
+                                                        {{ $keuangans->address_code_name . ' ' . $keuangans->address_code_blok ?? ''}}
                                                     </td>
                                                     <td>
                                                         {{ $keuangans->rt_name ?? '' }}
