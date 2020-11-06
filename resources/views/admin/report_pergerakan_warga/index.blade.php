@@ -150,7 +150,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link">
-        <img src="../../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
+        <img src="../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
         <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
       </a>
       <!-- Sidebar -->
@@ -171,7 +171,7 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-              <a href="{{ route("admin.index") }}" class="nav-link">
+              <a href="{{ route("admin.index") }}" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -260,8 +260,8 @@
               </a>
             </li>
             @endcan
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Master Data
@@ -456,6 +456,7 @@
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
@@ -480,12 +481,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>List RT</h1>
+              <h1>Report Keuangan</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
-                <li class="breadcrumb-item active">List RT</li>
+                <li class="breadcrumb-item active">Report Keuangan</li>
               </ol>
             </div>
           </div>
@@ -495,85 +496,205 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <form action="" method="post" enctype="multipart/form-data">
+
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label>Bulan</label>
+                  <select name="bulan" id="bulan" class="form-control select2">
+                    <option value="">
+                      Select Bulan
+                    </option>
+                    <option value="1">
+                      Januari
+                    </option>
+                    <option value="2">
+                      Februari
+                    </option>
+                    <option value="3">
+                      Maret
+                    </option>
+                    <option value="4">
+                      April
+                    </option>
+                    <option value="5">
+                      Mei
+                    </option>
+                    <option value="6">
+                      Juni
+                    </option>
+                    <option value="7">
+                      Juli
+                    </option>
+                    <option value="8">
+                      Agustus
+                    </option>
+                    <option value="9">
+                      September
+                    </option>
+                    <option value="10">
+                      Oktober
+                    </option>
+                    <option value="11">
+                      November
+                    </option>
+                    <option value="12">
+                      Desember
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label>Tahun</label>
+                  <select name="tahun" id="tahun" class="form-control select2">
+                    <option value="">
+                      Select Tahun
+                    </option>
+                    <option value="2019">
+                      2019
+                    </option>
+                    <option value="2020">
+                      2020
+                    </option>
+                    <option value="2021">
+                      2021
+                    </option>
+                    <option value="2022">
+                      2022
+                    </option>
+                    <option value="2023">
+                      2023
+                    </option>
+                    <option value="2024">
+                      2024
+                    </option>
+                    <option value="2025">
+                      2025
+                    </option>
+                    <option value="2026">
+                      2026
+                    </option>
+                    <option value="2027">
+                      2027
+                    </option>
+                    <option value="2028">
+                      2028
+                    </option>
+                    <option value="2029">
+                      2029
+                    </option>
+                    <option value="2030">
+                      2030
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group ">
+                  <label for="category">
+                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                    <select name="category" id="category" class="form-control select2">
+                      <option value="">
+                        Select Category
+                      </option>
+
+                      <option value="">
+
+                      </option>
+
+                    </select>
+
+                    <em class="invalid-feedback">
+
+                    </em>
+
+                    <p class="helper-block">
+
+                    </p>
+                </div>
+
+
+
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+
+          </form>
+
           <div class="row">
             <div class="col-12">
 
               <!-- /.card -->
-              @section('content')
+
               <div class="card">
+                <div class="card-header">
 
-                <!-- /.card-header -->
-                <div class="card card-primary">
-                  <div class="card-header">
-                    <h3 class="card-title">Create RT</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <div class="card-body">
-                    <form action="{{ route("admin.rt.store") }}" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      <div class="form-group {{ $errors->has('rt_name') ? 'has-error' : '' }}">
-                        <label for="rt_name">{{ trans('global.rt.fields.rt_name') }}*</label>
-                        <input type="text" id="rt_name" name="rt_name" class="form-control" value="{{ old('rt_name', isset($rt) ? $rt->rt_name : '') }}" required>
-                        @if($errors->has('rt_name'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('rt_name') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.rt.fields.rt_name_helper') }}
-                        </p>
-                      </div>
+                </div>
 
-                      <div class="form-group {{ $errors->has('rt_code') ? 'has-error' : '' }}">
-                        <label for="rt_code">{{ trans('global.rt.fields.rt_code') }}*</label>
-                        <input type="text" id="rt_code" name="rt_code" class="form-control" value="{{ old('rt_code', isset($rt) ? $rt->rt_code : '') }}" required>
-                        @if($errors->has('rt_code'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('rt_code') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.rt.fields.rt_code_helper') }}
-                        </p>
-                      </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th width="10">
 
-                      <div class="form-group {{ $errors->has('rt_rw_id') ? 'has-error' : '' }}">
-                        <label for="rt_rw_id">{{ trans('global.rt.fields.rt_rw_id') }}*
-                          <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                          <select name="rt_rw_id" id="rt_rw_id" class="form-control select2" required>
-                            @foreach($rt_rw_id as $id => $rt_rw_id)
-                            <option value="{{ $id }}" {{ (in_array($id, old('rt_rw_id', [])) || isset($rt) && $rt->rt_rw_id->contains($id)) ? 'selected' : '' }}>
-                              {{ $rt_rw_id }}
-                            </option>
-                            @endforeach
-                          </select>
-                          @if($errors->has('rt_rw_id'))
-                          <em class="invalid-feedback">
-                            {{ $errors->first('rt_rw_id') }}
-                          </em>
-                          @endif
-                          <p class="helper-block">
-                            {{ trans('global.rt.fields.rt_rw_id_helper') }}
-                          </p>
-                      </div>
+                          </th>
+                          <th>
+                            Address Code
+                          </th>
+                          <th>
+                            Tanggal Input
+                          </th>
+                          <th>
+                            Periode
+                          </th>
+                          <th>
+                            Tipe/kategori
+                          </th>
+                          <th>
+                            Jumlah
+                          </th>
 
-                      <div class="form-group {{ $errors->has('rt_status') ? 'has-error' : '' }}" required>
-                        <label for="rt_status">{{ trans('global.rt.fields.rt_status') }}*</label><br>
-                        <input type="radio" id="rt_status" name="rt_status" value="1">
-                        <label for="aktif">Aktif</label><br>
-                        <input type="radio" id="rt_status" name="rt_status" value="2">
-                        <label for="tidak aktif">Tidak Aktif</label><br>
-                      </div>
 
-                      <div>
-                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-                      </div>
-                    </form>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+
+                          </td>
+                          <td>
+
+                          </td>
+                          <td>
+
+                          </td>
+                          <td>
+
+                          </td>
+                          <td>
+
+                          </td>
+                          <td>
+
+                          </td>
+
+
+
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button class="btn btn-danger" onclick="exportTableToCSV('laporan_keuangan.csv')">Export Excel</button>
                   </div>
                 </div>
-                <!-- /.card-body -->
               </div>
               <!-- /.card -->
             </div>
@@ -632,6 +753,52 @@
         "responsive": true,
       });
     });
+
+    function downloadCSV(csv, filename) {
+      var csvFile;
+      var downloadLink;
+
+      // CSV file
+      csvFile = new Blob([csv], {
+        type: "text/csv"
+      });
+
+      // Download link
+      downloadLink = document.createElement("a");
+
+      // File name
+      downloadLink.download = filename;
+
+      // Create a link to the file
+      downloadLink.href = window.URL.createObjectURL(csvFile);
+
+      // Hide download link
+      downloadLink.style.display = "none";
+
+      // Add the link to DOM
+      document.body.appendChild(downloadLink);
+
+      // Click download link
+      downloadLink.click();
+    }
+
+    function exportTableToCSV(filename) {
+      var csv = [];
+      var rows = document.querySelectorAll("table tr");
+
+      for (var i = 0; i < rows.length; i++) {
+        var row = [],
+          cols = rows[i].querySelectorAll("td, th");
+
+        for (var j = 0; j < cols.length; j++)
+          row.push(cols[j].innerText);
+
+        csv.push(row.join(","));
+      }
+
+      // Download CSV file
+      downloadCSV(csv.join("\n"), filename);
+    }
   </script>
 </body>
 

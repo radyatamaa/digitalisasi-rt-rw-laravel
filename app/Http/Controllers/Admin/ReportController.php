@@ -22,9 +22,10 @@ class ReportController extends Controller
         // abort_unless(\Gate::allows('sdm_category_access'), 403);
         if (isset($_GET['report_event'])) {
             return $this->ReportEvent();
-        }
-        if (isset($_GET['report_keuangan'])) {
+        } else if (isset($_GET['report_keuangan'])) {
             return $this->reportKeuangan();
+        } else if (isset($_GET['report_pergerakan_warga'])) {
+            return $this->reportpergerakanwarga();
         } else {
             $viewWargaSalary = DB::select("SELECT (((warga.warga_first_name)::text || ' '::text) || (warga.warga_last_name)::text) AS nama_warga,
             warga.warga_address,
@@ -360,6 +361,13 @@ class ReportController extends Controller
 
         // $events
         return view('admin.report_event.index', compact('events', 'userLogin', 'event_category', 'user', 'category', 'start_date', 'end_date'));
+    }
+
+    public function reportpergerakanwarga()
+    {
+
+        $userLogin = Auth::user()->user_fullname;
+        return view('admin.report_pergerakan_warga.index', compact('userLogin'));
     }
 
     public function store()
