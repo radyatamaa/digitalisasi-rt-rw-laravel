@@ -519,6 +519,19 @@
                         </p>
                       </div>
 
+                      <div class="form-group {{ $errors->has('color') ? 'has-error' : '' }}">
+                        <label for="color">{{ trans('global.master_agama.fields.color') }}*</label>
+                        <input type="color" id="color" name="color" class="form-control" value="{{ old('color', isset($master_agama) ? $master_agama->color : '') }}">
+                        @if($errors->has('color'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('color') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.master_agama.fields.color_helper') }}
+                        </p>
+                      </div>
+
                       <div>
                         <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                       </div>

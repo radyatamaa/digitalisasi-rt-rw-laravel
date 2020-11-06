@@ -17,6 +17,7 @@ class Master_Pekerjaan extends Model
 
     protected $fillable = [
         'job_name',
+        'color',
         'created_at',
         'updated_at',
         'deleted_at',
