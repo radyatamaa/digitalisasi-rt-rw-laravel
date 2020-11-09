@@ -368,6 +368,24 @@ class ReportController extends Controller
 
         $userLogin = Auth::user()->user_fullname;
         $rt = Auth::user()->rt_id;
+        if($rt == null){
+            $rw = Auth::user()->rw_id;
+            $listRT = RT::where('rt_rw_id', $rw)
+                ->get();
+                foreach($listRT as $index => $rts){
+                    if($index == 0  && (count($listRT) - 1) == $index){
+                        $rt = "'" . $rts['id'] . "'";
+                    }else if ($index != 0 && (count($listRT) - 1) == $index){
+                        $rt = $rt . "'" . $rts['id'] . "'";
+                    }else{
+                        $rt = $rt . "'" . $rts['id'] . "',";
+                    }
+                }
+
+                // str_replace(",","Peter",$rt);
+        }else{
+
+        }
         if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
             if ($_POST['start_date'] != '' && $_POST['end_date'] != '') {
                 $start_date =  date('Y/m/d', strtotime($_POST['start_date']));
@@ -401,7 +419,7 @@ class ReportController extends Controller
      FROM(
          SELECT RT_NAME, COUNT(WARGA_NO_KK) WARGA_NO_KK
          FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
-         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
          GROUP BY RT_NAME, WARGA.WARGA_NO_KK
          ) AS A
      GROUP BY RT_NAME
@@ -419,7 +437,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      
      UNION
@@ -435,7 +453,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_BIRTH_DATE >= '$start_date'::DATE AND WARGA_BIRTH_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_BIRTH_DATE >= '$start_date'::DATE AND WARGA_BIRTH_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      
      UNION
@@ -451,7 +469,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_MENINGGAL_DATE >= '$start_date'::DATE AND WARGA_MENINGGAL_DATE <= '$end_date'::DATE and WARGA_RT = '$rt'
+     WHERE WARGA_MENINGGAL_DATE >= '$start_date'::DATE AND WARGA_MENINGGAL_DATE <= '$end_date'::DATE and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      UNION
      SELECT RT_NAME, 0 AS WARGA_NO_KK, 0 AS LAKI_PENDUDUK_AWAL_BULAN_INI, 
@@ -465,7 +483,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_JOIN_DATE >= '$start_date'::DATE AND WARGA_JOIN_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_JOIN_DATE >= '$start_date'::DATE AND WARGA_JOIN_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      UNION
      SELECT RT_NAME, 0 AS WARGA_NO_KK, 0 AS LAKI_PENDUDUK_AWAL_BULAN_INI, 
@@ -480,7 +498,7 @@ class ReportController extends Controller
              INNER JOIN HISTORY_WARGA ON WARGA.ID = HISTORY_WARGA.WARGA_ID
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE HISTORY_DATE >= '$start_date'::DATE AND HISTORY_DATE <= '$end_date'::DATE AND HISTORY_CATEGORY = '1' and WARGA_RT = '$rt'
+     WHERE HISTORY_DATE >= '$start_date'::DATE AND HISTORY_DATE <= '$end_date'::DATE AND HISTORY_CATEGORY = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      UNION
          SELECT RT_NAME, 0 AS WARGA_NO_KK, 0 AS LAKI_PENDUDUK_AWAL_BULAN_INI, 
@@ -494,7 +512,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      
      UNION
@@ -510,7 +528,7 @@ class ReportController extends Controller
      FROM(
          SELECT RT_NAME, COUNT(WARGA_NO_KK) KK_AKHIR_BULAN_INI
          FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
-         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
          GROUP BY RT_NAME, WARGA.WARGA_NO_KK
          ) AS A
      GROUP BY RT_NAME
@@ -536,7 +554,7 @@ class ReportController extends Controller
      FROM(
          SELECT RT_NAME, COUNT(WARGA_NO_KK) WARGA_NO_KK
          FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
-         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
          GROUP BY RT_NAME, WARGA.WARGA_NO_KK
          ) AS A
      GROUP BY RT_NAME
@@ -554,7 +572,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      
      UNION
@@ -570,7 +588,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_BIRTH_DATE >= '$start_date'::DATE AND WARGA_BIRTH_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_BIRTH_DATE >= '$start_date'::DATE AND WARGA_BIRTH_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      
      UNION
@@ -586,7 +604,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_MENINGGAL_DATE >= '$start_date'::DATE AND WARGA_MENINGGAL_DATE <= '$end_date'::DATE and WARGA_RT = '$rt'
+     WHERE WARGA_MENINGGAL_DATE >= '$start_date'::DATE AND WARGA_MENINGGAL_DATE <= '$end_date'::DATE and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      UNION
      SELECT RT_NAME, 0 AS WARGA_NO_KK, 0 AS LAKI_PENDUDUK_AWAL_BULAN_INI, 
@@ -600,7 +618,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_JOIN_DATE >= '$start_date'::DATE AND WARGA_JOIN_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_JOIN_DATE >= '$start_date'::DATE AND WARGA_JOIN_DATE <= '$end_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      UNION
      SELECT RT_NAME, 0 AS WARGA_NO_KK, 0 AS LAKI_PENDUDUK_AWAL_BULAN_INI, 
@@ -615,7 +633,7 @@ class ReportController extends Controller
              INNER JOIN HISTORY_WARGA ON WARGA.ID = HISTORY_WARGA.WARGA_ID
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE HISTORY_DATE >= '$start_date'::DATE AND HISTORY_DATE <= '$end_date'::DATE AND HISTORY_CATEGORY = '1' and WARGA_RT = '$rt'
+     WHERE HISTORY_DATE >= '$start_date'::DATE AND HISTORY_DATE <= '$end_date'::DATE AND HISTORY_CATEGORY = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      UNION
          SELECT RT_NAME, 0 AS WARGA_NO_KK, 0 AS LAKI_PENDUDUK_AWAL_BULAN_INI, 
@@ -629,7 +647,7 @@ class ReportController extends Controller
      FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '1') B ON WARGA.ID = B.ID 
              LEFT OUTER JOIN (SELECT ID, WARGA_SEX FROM WARGA WHERE WARGA_SEX = '2') C ON WARGA.ID = C.ID 
-     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+     WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
      GROUP BY RT_NAME
      
      UNION
@@ -645,7 +663,7 @@ class ReportController extends Controller
      FROM(
          SELECT RT_NAME, COUNT(WARGA_NO_KK) KK_AKHIR_BULAN_INI
          FROM RT INNER JOIN WARGA ON RT.ID = WARGA.WARGA_RT
-         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT = '$rt'
+         WHERE WARGA_JOIN_DATE <= '$start_date'::DATE AND WARGA.WARGA_STATUS = '1' and WARGA_RT IN ($rt)
          GROUP BY RT_NAME, WARGA.WARGA_NO_KK
          ) AS A
      GROUP BY RT_NAME
