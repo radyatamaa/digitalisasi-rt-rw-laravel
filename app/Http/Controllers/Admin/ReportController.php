@@ -382,9 +382,6 @@ class ReportController extends Controller
                     }
                 }
 
-                // str_replace(",","Peter",$rt);
-        }else{
-
         }
         if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
             if ($_POST['start_date'] != '' && $_POST['end_date'] != '') {
