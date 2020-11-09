@@ -498,132 +498,33 @@
         <div class="container-fluid">
           <form action="" method="post" enctype="multipart/form-data">
 
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="form-group">
-                  <label>Bulan</label>
-                  <select name="bulan" id="bulan" class="form-control select2">
-                    <option value="">
-                      Select Bulan
-                    </option>
-                    <option value="1">
-                      Januari
-                    </option>
-                    <option value="2">
-                      Februari
-                    </option>
-                    <option value="3">
-                      Maret
-                    </option>
-                    <option value="4">
-                      April
-                    </option>
-                    <option value="5">
-                      Mei
-                    </option>
-                    <option value="6">
-                      Juni
-                    </option>
-                    <option value="7">
-                      Juli
-                    </option>
-                    <option value="8">
-                      Agustus
-                    </option>
-                    <option value="9">
-                      September
-                    </option>
-                    <option value="10">
-                      Oktober
-                    </option>
-                    <option value="11">
-                      November
-                    </option>
-                    <option value="12">
-                      Desember
-                    </option>
-                  </select>
-                </div>
-              </div>
+            @csrf
+            <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
+              <label for="start_date">Tanggal</label>
+              <input type="date" id="start_date" name="start_date" class="form-control" value="{{ old('start_date', isset($start_date) ? date('Y-m-d', strtotime($start_date)) : '') }}">
+              @if($errors->has('event_date'))
+              <em class="invalid-feedback">
+                {{ $errors->first('event_date') }}
+              </em>
+              @endif
+              <p class="helper-block">
+                {{ trans('global.event.fields.event_date_helper') }}
+              </p>
             </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="form-group">
-                  <label>Tahun</label>
-                  <select name="tahun" id="tahun" class="form-control select2">
-                    <option value="">
-                      Select Tahun
-                    </option>
-                    <option value="2019">
-                      2019
-                    </option>
-                    <option value="2020">
-                      2020
-                    </option>
-                    <option value="2021">
-                      2021
-                    </option>
-                    <option value="2022">
-                      2022
-                    </option>
-                    <option value="2023">
-                      2023
-                    </option>
-                    <option value="2024">
-                      2024
-                    </option>
-                    <option value="2025">
-                      2025
-                    </option>
-                    <option value="2026">
-                      2026
-                    </option>
-                    <option value="2027">
-                      2027
-                    </option>
-                    <option value="2028">
-                      2028
-                    </option>
-                    <option value="2029">
-                      2029
-                    </option>
-                    <option value="2030">
-                      2030
-                    </option>
-                  </select>
-                </div>
-              </div>
+            <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
+              <label for="end_date">S/d</label>
+              <input type="date" id="end_date" name="end_date" class="form-control" value="{{ old('end_date', isset($end_date) ? date('Y-m-d', strtotime($end_date)) : '') }}">
+              @if($errors->has('event_date'))
+              <em class="invalid-feedback">
+                {{ $errors->first('event_date') }}
+              </em>
+              @endif
+              <p class="helper-block">
+                {{ trans('global.event.fields.event_date_helper') }}
+              </p>
             </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="form-group ">
-                  <label for="category">
-                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
-                    <select name="category" id="category" class="form-control select2">
-                      <option value="">
-                        Select Category
-                      </option>
-
-                      <option value="">
-
-                      </option>
-
-                    </select>
-
-                    <em class="invalid-feedback">
-
-                    </em>
-
-                    <p class="helper-block">
-
-                    </p>
-                </div>
 
 
-
-              </div>
-            </div>
             <button type="submit" class="btn btn-primary">Search</button>
 
           </form>
@@ -647,49 +548,144 @@
 
                           </th>
                           <th>
-                            Address Code
+                            RT
                           </th>
                           <th>
-                            Tanggal Input
+                            KK Awal Bulan Ini
                           </th>
                           <th>
-                            Periode
+                            Penduduk Laki-laki Awal Bulan ini
                           </th>
                           <th>
-                            Tipe/kategori
+                            Penduduk Perempuan Awal Bulan ini
                           </th>
                           <th>
-                            Jumlah
+                            Jumlah Penduduk Awal Bulan Ini
+                          </th>
+                          <th>
+                            Penduduk laki-laki yang lahir
+                          </th>
+                          <th>
+                            Penduduk Perempuan yang lahir
+                          </th>
+                          <th>
+                            Jumlah yang lahir Lahir Bulan Ini
+                          </th>
+                          <th>
+                            Penduduk Laki-laki yang meninggal bulan ini
+                          </th>
+                          <th>
+                            Penduduk Perempuan yang meninggal bulan ini
+                          </th>
+                          <th>
+                            Jumlah Penduduk yang meninggal bulan ini
+                          </th>
+                          <th>
+                            Jumlah Laki-laki Pendatang bulan ini
+                          </th>
+                          <th>
+                            Jumlah Perempuan Pendatang bulan ini
+                          </th>
+                          <th>
+                            Jumlah Pendatang bulan ini
+                          </th>
+                          <th>
+                            Jumlah Penduduk Laki-laki Pindah bulan ini
+                          </th>
+                          <th>
+                            Jumlah Penduduk Perempuan Pindah bulan ini
+                          </th>
+                          <th>
+                            Jumlah Penduduk Pindah bulan ini
+                          </th>
+                          <th>
+                            Jumlah Penduduk Laki-Laki Akhir Bulan
+                          </th>
+                          <th>
+                            Jumlah Penduduk Perempuan Akhir Bulan
+                          </th>
+                          <th>
+                            Jumlah Penduduk Akhir Bulan
+                          </th>
+                          <th>
+                            Jumlah KK Akhir Bulan
                           </th>
 
 
                         </tr>
                       </thead>
                       <tbody>
-
+                        @foreach($ViewPergerakanWarga as $key => $PegerakanWarga)
                         <tr>
                           <td>
-
+                            {{ $key + 1 ?? '' }}
                           </td>
                           <td>
-
+                            {{ $PegerakanWarga->rt ?? '' }}
                           </td>
                           <td>
-
+                            {{ $PegerakanWarga->kk_awal_bulan_ini ?? '' }}
                           </td>
                           <td>
-
+                            {{ $PegerakanWarga->laki_penduduk_awal_bulan_ini ?? '' }}
                           </td>
                           <td>
-
+                            {{ $PegerakanWarga->perempuan_penduduk_awal_bulan_ini ?? '' }}
                           </td>
                           <td>
-
+                            {{ $PegerakanWarga->jumlah_penduduk_awal_bulan_ini ?? '' }}
                           </td>
-
-
+                          <td>
+                            {{ $PegerakanWarga->laki_lahir_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->perempuan_lahir_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->jml_lahir_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->laki_meninggal_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->perempuan_meninggal_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->jml_meninggal_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->laki_pendatang_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->perempuan_pendatang_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->jml_pendatang_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->laki_pindah_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->perempuan_pindah_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->jml_pindah_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->laki_akhir_bulan_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->perempuan_akhir_bulan_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->jml_akhir_bulan_bulan_ini ?? '' }}
+                          </td>
+                          <td>
+                            {{ $PegerakanWarga->kk_akhir_bulan_ini  ?? '' }}
+                          </td>
 
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                     <button class="btn btn-danger" onclick="exportTableToCSV('laporan_keuangan.csv')">Export Excel</button>
@@ -740,8 +736,9 @@
   <script>
     $(function() {
       $("#example1").DataTable({
-        "responsive": true,
+        "responsive": false,
         "autoWidth": false,
+        "scrollX": true,
       });
       $('#example2').DataTable({
         "paging": true,
@@ -750,7 +747,8 @@
         "ordering": true,
         "info": true,
         "autoWidth": false,
-        "responsive": true,
+        "responsive": false,
+        "scrollX": true,
       });
     });
 
