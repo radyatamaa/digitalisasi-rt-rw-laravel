@@ -571,6 +571,7 @@
                                                     <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                     <select name="sdm_category" id="sdm_category" class="form-control select2" required>
+                                                        <option selected disabled>Select Category</option>
                                                         @foreach($sdm_categorys as $id => $sdm_category)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('sdm_categorys', [])) || isset($sdm) && $sdm->sdm_category->contains($id)) ? 'selected' : '' }}>
                                                             {{ $sdm_category }}
