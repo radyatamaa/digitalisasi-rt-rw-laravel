@@ -552,7 +552,7 @@
                         </p>
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="address_code_name">No Range</label>
                         <div class="row">
                           <div class="col-sm-1">
@@ -567,7 +567,7 @@
                         </em>
                         <p class="helper-block">
                         </p>
-                      </div>
+                      </div> -->
 
                       <div>
                         <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">

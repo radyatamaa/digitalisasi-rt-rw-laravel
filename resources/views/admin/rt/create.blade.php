@@ -544,6 +544,7 @@
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                           <select name="rt_rw_id" id="rt_rw_id" class="form-control select2" required>
                             @foreach($rt_rw_id as $id => $rt_rw_id)
+                            <option selected disabled>Select RW </option>
                             <option value="{{ $id }}" {{ (in_array($id, old('rt_rw_id', [])) || isset($rt) && $rt->rt_rw_id->contains($id)) ? 'selected' : '' }}>
                               {{ $rt_rw_id }}
                             </option>

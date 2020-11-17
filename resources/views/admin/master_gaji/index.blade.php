@@ -549,7 +549,7 @@
                             {{ $key + 1}}
                           </td>
                           <td>
-                            {{ $master_gajis->salary_rt ?? '' }}
+                            {{ $master_gajis->rt_name ?? '' }}
                           </td>
                           <td>
                             {{ $master_gajis->salary_start ?? '' }}
