@@ -540,8 +540,6 @@
                                     {{ trans('global.event.fields.event_category_helper') }}
                                 </p>
                         </div>
-
-
                         <button type="submit" class="btn btn-primary">Search</button>
 
                     </form>

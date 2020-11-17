@@ -531,6 +531,7 @@
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="keuangan_category" id="keuangan_category" class="form-control select2" required>
+                                                    <option selected disabled>Select Keuangan Category</option>
                                                     @foreach($keuangan_category as $id => $keuangan_category)
                                                     <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_category == $id) ? 'selected' : '' }}>
                                                         {{ $keuangan_category }}
@@ -573,20 +574,20 @@
                                             </p>
                                         </div>
 
+
                                         <div class="form-group {{ $errors->has('keuangan_warga_id') ? 'has-error' : '' }}">
                                             <label for="keuangan_warga_id">{{ trans('global.keuangan.fields.keuangan_warga_id') }}*
-                                                <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
-                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="keuangan_warga_id" id="keuangan_warga_id" class="form-control select2" required>
+                                                    <option selected disabled>Select Keuangan Warga</option>
                                                     @foreach($master_alamats as $id => $master_alamat)
-                                                    <option value="{{ $id }}" {{ ( isset($keuangan) && $keuangan->keuangan_warga_id == $id ) ? 'selected' : '' }}>
-                                                        {{ $master_alamat}}
+                                                    <option value="{{ $master_alamat->id }}" {{ (in_array($id, old('master_alamat', [])) || isset($keuangan) && $keuangan->keuangan_warga_id == $master_alamat->id) ? 'selected' : '' }}>
+                                                        {{ $master_alamat->address_code_name . ' ' . $master_alamat->address_code_blok}}
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                                @if($errors->has('master_alamats'))
+                                                @if($errors->has('master_alamat'))
                                                 <em class="invalid-feedback">
-                                                    {{ $errors->first('master_alamats') }}
+                                                    {{ $errors->first('master_alamat') }}
                                                 </em>
                                                 @endif
                                                 <p class="helper-block">
