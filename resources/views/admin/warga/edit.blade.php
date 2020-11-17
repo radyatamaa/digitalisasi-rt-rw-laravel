@@ -578,6 +578,7 @@
                       <div class="form-group {{ $errors->has('warga_religion') ? 'has-error' : '' }}">
                         <label for="warga_religion">{{ trans('global.warga.fields.warga_religion') }}*
                           <select name="warga_religion" id="warga_religion" class="form-control select2" required>
+                            <option selected disabled>Select Religion</option>
                             @foreach($warga_religion as $id => $warga_religion)
                             <option value="{{ $id }}" {{ (in_array($id, old('warga_religion', [])) || isset($warga) && $warga->warga_religion == $id) ? 'selected' : '' }}>
                               {{ $warga_religion }}
@@ -612,6 +613,7 @@
                       <div class="form-group {{ $errors->has('warga_address_code') ? 'has-error' : '' }}">
                         <label for="warga_address_code">{{ trans('global.warga.fields.warga_address_code') }}*
                           <select name="warga_address_code" id="warga_address_code" class="form-control select2" required>
+                            <option selected disabled>Select Address</option>
                             @foreach($warga_address_code as $id => $warga_address_code)
                             <option value="{{ $warga_address_code->id }}" {{ (in_array($id, old('warga_address_code', [])) || isset($warga) && $warga->warga_address_code == $warga_address_code->id) ? 'selected' : '' }}>
                               {{ $warga_address_code->address_code_name . ' ' . $warga_address_code->address_code_blok}}
@@ -631,6 +633,7 @@
                       <div class="form-group {{ $errors->has('warga_job') ? 'has-error' : '' }}">
                         <label for="warga_job">{{ trans('global.warga.fields.warga_job') }}*
                           <select name="warga_job" id="warga_job" class="form-control select2" required>
+                            <option selected disabled>Select Job</option>
                             @foreach($warga_job as $id => $warga_job)
                             <option value="{{ $id }}" {{ (in_array($id, old('warga_job', [])) || isset($warga) && $warga->warga_job == $id) ? 'selected' : '' }}>
                               {{ $warga_job }}
@@ -651,6 +654,7 @@
                       <div class="form-group {{ $errors->has('warga_salary_range') ? 'has-error' : '' }}">
                         <label for="warga_salary_range">{{ trans('global.warga.fields.warga_salary_range') }}*
                           <select name="warga_salary_range" id="warga_salary_range" class="form-control select2" required>
+                            <option selected disabled>Select Salary Range</option>
                             @foreach($warga_salary_range as $address_code_id => $warga_salary_range)
                             <option value="{{ $warga_salary_range->id }}" {{ (isset($warga) && $warga->warga_salary_range == $warga_salary_range->id) ? 'selected' : '' }}>
                               {{ $warga_salary_range->salary_start . ' - '. $warga_salary_range->salary_end}}
@@ -748,6 +752,7 @@
                       <div class="form-group {{ $errors->has('warga_pendidikan') ? 'has-error' : '' }}">
                         <label for="warga_pendidikan">{{ trans('global.warga.fields.warga_pendidikan') }}*
                           <select name="warga_pendidikan" id="warga_pendidikan" class="form-control select2" required>
+                            <option selected disabled>Select Pendidikan</option>
                             @foreach($warga_pendidikan as $id => $warga_pendidikan)
                             <option value="{{ $id }}" {{ (in_array($id, old('warga_pendidikan', [])) || isset($warga) && $warga->warga_pendidikan == $id) ? 'selected' : '' }}>
                               {{ $warga_pendidikan }}
@@ -768,6 +773,7 @@
                       <div class="form-group {{ $errors->has('warga_rt') ? 'has-error' : '' }}">
                         <label for="warga_rt">{{ trans('global.warga.fields.warga_rt') }}*
                           <select name="warga_rt" id="warga_rt" class="form-control select2" required>
+                            <option selected disabled>Select RT</option>
                             @foreach($warga_rt as $id => $warga_rt)
                             <option value="{{ $id }}" {{ (in_array($id, old('warga_rt', [])) || isset($warga) && $warga->warga_rt == $id) ? 'selected' : '' }}>
                               {{ $warga_rt }}

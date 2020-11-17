@@ -517,6 +517,7 @@
                                                 <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
                     <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
                                                 <select name="ins_category" id="ins_category" class="form-control select2" required>
+                                                    <option selected disabled>Select Category</option>
                                                     @foreach($ins_category as $id => $ins_category)
                                                     <option value="{{ $id }}" {{ (isset($insidental) && $insidental->ins_category == $id) ? 'selected' : '' }}>
                                                         {{ $ins_category }}
