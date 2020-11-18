@@ -522,11 +522,12 @@
               <p class="helper-block">
                 {{ trans('global.event.fields.event_date_helper') }}
               </p>
+              <button type="submit" class="btn btn-primary">Search</button>
+
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Search</button>
-
+            
           </form>
 
           <div class="row">

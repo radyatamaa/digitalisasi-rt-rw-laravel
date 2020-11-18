@@ -620,13 +620,14 @@
                     <p class="helper-block">
                       {{ trans('global.keuangan.fields.keuangan_category_helper') }}
                     </p>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
 
 
-
+                
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+            
 
           </form>
 

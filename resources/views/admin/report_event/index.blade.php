@@ -449,6 +449,12 @@
                                         <p>Report Event</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Pergerakan Warga</p>
+                  </a>
+                </li>
                             </ul>
                         </li>
 
@@ -539,9 +545,10 @@
                                 <p class="helper-block">
                                     {{ trans('global.event.fields.event_category_helper') }}
                                 </p>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="submit" class="btn btn-primary">Search</button>
 
+                        </div>
+                       
                     </form>
                     <div class="row">
                         <div class="col-12">
