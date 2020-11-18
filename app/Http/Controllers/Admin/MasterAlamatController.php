@@ -49,7 +49,8 @@ class MasterAlamatController extends Controller
             }
         }
 
-        return redirect()->route('admin.master_alamat.index');
+        // return redirect()->route('admin.master_alamat.index');
+        return redirect()->route('admin.master_alamat.index')->with(['success' => 'Pesan Berhasil']);
     }
 
     public function edit(master_alamat $master_alamat)
@@ -67,7 +68,7 @@ class MasterAlamatController extends Controller
 
         $master_alamat->update($request->all());
 
-        return redirect()->route('admin.master_alamat.index');
+        return redirect()->route('admin.master_alamat.index')->with(['edit' => 'Pesan Berhasil']);
     }
 
     public function show(master_alamat $master_alamat)

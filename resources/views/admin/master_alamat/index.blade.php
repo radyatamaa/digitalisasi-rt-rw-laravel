@@ -478,6 +478,26 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <div class="container-fluid">
+          @if ($message = Session::get('success'))
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert" value="Tersimpan">×</button>
+                <strong style="color: white;">Tersimpan</strong>
+              </div>
+            </div>
+          </div>
+          @endif
+          @if ($message = Session::get('edit'))
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert" value="Tersimpan">×</button>
+                <strong class="text-center" style="color: white;">Terupdate!</strong>
+              </div>
+            </div>
+          </div>
+          @endif
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1>List Address Code</h1>
