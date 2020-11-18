@@ -18,9 +18,9 @@ class StoreMasterAlamatRequest extends FormRequest
             'address_code_name' => [
                 'required',
             ],
-            'address_code_rt' => [
-                'required',
-            ],
+            // 'address_code_rt' => [
+            //     'required',
+            // ],
         ];
     }
 }
