@@ -760,29 +760,18 @@
 
                       <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}" id="pernahtidakpernah">
                         <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')">
+                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')" checked>
                         <label for="male">Aktif</label><br>
                         <input type="radio" id="warga_status" name="warga_status" value="2" onclick="removeElement('statusmeninggal')">
                         <label for="female">Tidak Aktif</label><br>
                         <input type="radio" id="warga_status" name="warga_status" value="0" onclick="removeElement('statusmeninggal')">
                         <label for="female">Pending</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()" checked>
+                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()" >
                         <label for="female">Meninggal</label><br>
                       </div>
 
-                      <div class="form-group {{ $errors->has('warga_meninggal_date') ? 'has-error' : '' }}" name="statusmeninggal">
-                        <label for="warga_meninggal_date">{{ trans('global.warga.fields.warga_meninggal_date') }}*</label>
-                        <input type="date" id="warga_meninggal_date" name="warga_meninggal_date" class="form-control" value="{{ old('warga_meninggal_date', isset($warga) ? $warga->warga_meninggal_date : '') }}" required>
-                        @if($errors->has('warga_meninggal_date'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('warga_meninggal_date') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.warga.fields.warga_meninggal_date_helper') }}
-                        </p>
-                      </div>
-                  </div>
+                 
+                
 
                   <div>
                     <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
