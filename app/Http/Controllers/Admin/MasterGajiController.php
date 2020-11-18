@@ -18,11 +18,19 @@ class MasterGajiController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_gaji_access'), 403);
         if ($user != null) {
-            $master_gaji = master_gaji::where('salary_rt', $user)->get();
+            $master_gaji = Master_Gaji::select(
+                'salary.*',
+                'rt.rt_name'
+            )
+                ->join('rt', 'rt.id', '=', 'salary.salary_rt')->where('salary_rt', $user)->get();
         } else {
-            $master_gaji = master_gaji::all();
+            $master_gaji = Master_Gaji::select(
+                'salary.*',
+                'rt.rt_name'
+            )
+                ->join('rt', 'rt.id', '=', 'salary.salary_rt')->get();
         }
-        return view('admin.master_gaji.index', compact('master_gaji', 'userLogin'));
+        return view('admin.master_gaji.index', compact('master_gaji', 'user', 'userLogin'));
     }
 
     public function create()

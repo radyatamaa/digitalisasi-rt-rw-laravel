@@ -556,6 +556,7 @@
                                             <div class="form-group {{ $errors->has('event_category') ? 'has-error' : '' }}">
                                                 <label for="event_category">{{ trans('global.event.fields.event_category') }}*
                                                     <select name="event_category" id="event_category" class="form-control select2" required>
+                                                        <option selected disabled>Select Event Category</option>
                                                         @foreach($event_category as $id => $event_category)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('event_category', [])) || isset($event) && $event->event_category->contains($id)) ? 'selected' : '' }}>
                                                             {{ $event_category }}
