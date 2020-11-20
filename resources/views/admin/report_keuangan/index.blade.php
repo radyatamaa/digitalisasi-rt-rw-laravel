@@ -618,10 +618,10 @@
                 </div>
 
 
-                
+
               </div>
             </div>
-            
+
 
           </form>
 
@@ -645,7 +645,7 @@
 
                           </th>
                           <th>
-                            Address Code
+                            Kode Alamat
                           </th>
                           <th>
                             Tanggal Input
