@@ -450,11 +450,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Report Pergerakan Warga</p>
-                  </a>
-                </li>
+                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Report Pergerakan Warga</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -548,7 +548,7 @@
                                 <button type="submit" class="btn btn-primary">Search</button>
 
                         </div>
-                       
+
                     </form>
                     <div class="row">
                         <div class="col-12">
@@ -573,16 +573,16 @@
                                                         Nama Warga
                                                     </th>
                                                     <th>
-                                                        Address Code
+                                                        Kode Alamat
                                                     </th>
                                                     <th>
-                                                        Event Date
+                                                        Tanggal Event
                                                     </th>
                                                     <th>
-                                                        Event Name
+                                                        Nama Event
                                                     </th>
                                                     <th>
-                                                        Category Name
+                                                        Kategori Nama
                                                     </th>
 
 
