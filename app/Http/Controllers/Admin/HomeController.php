@@ -12,6 +12,7 @@ class HomeController
 {
     public function index()
     {
+        $rw = Auth::user()->rw_id;
         $rt = Auth::user()->rt_id;
         $chartBackground = ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'];
         $agamaArray = [];
