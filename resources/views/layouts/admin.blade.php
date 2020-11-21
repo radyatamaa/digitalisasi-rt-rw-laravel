@@ -583,7 +583,7 @@
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
-
+        
               <!-- PIE CHART -->
               <div class="card card-info">
                 <div class="card-header">
@@ -603,8 +603,30 @@
               </div>
               <!-- /.card -->
 
+                <!-- STACKED BAR CHART -->
+              <div hidden class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">RW 1</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              
             </div>
             <!-- /.col (LEFT) -->
+
+
             <div class="col-md-6">
 
               <!-- DONUT CHART -->
@@ -645,10 +667,18 @@
               </div>
               <!-- /.card -->
 
+            </div>
+            <!-- /.col (RIGHT) -->
+          </div>
+
+          <div class="row">
+          @foreach($rtArray as $index => $rtObj)
+            <div class="col-md-6">
+
               <!-- BAR CHART -->
-              <div hidden class="card card-success">
+              <div class="card card-success">
                 <div class="card-header">
-                  <h3 class="card-title">Bar Chart</h3>
+                  <h3 class="card-title">{{ $rtObj->rt_name}}</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -658,27 +688,7 @@
                 </div>
                 <div class="card-body">
                   <div class="chart">
-                    <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-
-              <!-- STACKED BAR CHART -->
-              <div hidden class="card card-success">
-                <div class="card-header">
-                  <h3 class="card-title">Stacked Bar Chart</h3>
-
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="chart">
-                    <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <canvas id="rtbarChart{{$rtObj->id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -686,8 +696,37 @@
               <!-- /.card -->
 
             </div>
-            <!-- /.col (RIGHT) -->
+          @endforeach
+
+          @foreach($rwArray as $index => $rwObj)
+            <div class="col-md-6">
+
+              <!-- BAR CHART -->
+              <div class="card card-warning">
+                <div class="card-header">
+                  <h3 class="card-title">{{ $rwObj->rw_name}}</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="rwbarChart{{$rwObj->id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+
+            </div>
+          @endforeach
+
           </div>
+
+          
           <!-- /.row -->
         </div><!-- /.container-fluid -->
       </section>
@@ -786,6 +825,7 @@
         ]
       }
 
+
       var areaChartOptions = {
         maintainAspectRatio: false,
         responsive: true,
@@ -836,29 +876,14 @@
       var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
       var donutData = {
         labels: [
-          // 'PNS', 
-          // 'BUMN',
-          // 'TNI', 
-          // 'Programmer', 
-          // 'DPR', 
-          // 'GURU', 
+         
         ],
         datasets: [{
           data: [
-            // 700,
-            // 500,
-            // 400,
-            // 600,
-            // 300,
-            // 100
+          
           ],
           backgroundColor: [
-            // '#f56954', 
-            // '#00a65a', 
-            // '#f39c12',
-            // '#00c0ef', 
-            // '#3c8dbc', 
-            // '#d2d6de'
+           
           ],
         }]
       }
@@ -891,29 +916,14 @@
       var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
       var pieData = {
         labels: [
-          // 'Islam', 
-          // 'Katolik',
-          // 'Kristen', 
-          // 'Buddha', 
-          // 'Hindu', 
-          // 'Kong Hu Chu', 
+         
         ],
         datasets: [{
           data: [
-            // 700,
-            // 500,
-            // 400,
-            // 600,
-            // 300,
-            // 100
+           
           ],
           backgroundColor: [
-            // '#f56954', 
-            // '#00a65a', 
-            // '#f39c12', 
-            // '#00c0ef', 
-            // '#3c8dbc', 
-            // '#d2d6de'
+           
           ],
         }]
       }
@@ -937,15 +947,72 @@
         options: pieOptions
       })
 
+
+
+      @foreach($rtArray as $key => $rtObj)
+
       //-------------
       //- BAR CHART -
       //-------------
-      var barChartCanvas = $('#barChart').get(0).getContext('2d')
-      var barChartData = jQuery.extend(true, {}, areaChartData)
-      var temp0 = areaChartData.datasets[0]
-      var temp1 = areaChartData.datasets[1]
+
+      var areaChartData1 = {
+        labels: [''],
+        datasets: [{
+            label: 'Warga Berdomisili',
+            backgroundColor: '#f56954',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: [{{$rtObj->wargaBerdomisiliCount}}, 48, 40, 19, 86, 27, 90]
+          },
+          {
+            label: 'Warga Bukan Berdomisili',
+            backgroundColor: '#00a65a',
+            borderColor: 'rgba(210, 214, 222, 1)',
+            pointRadius: false,
+            pointColor: 'rgba(210, 214, 222, 1)',
+            pointStrokeColor: '#c1c7d1',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data: [{{$rtObj->wargaNonBerdomisiliCount}}, 59, 80, 81, 56, 55, 40]
+          },
+          {label: 'Laki-Laki ',
+            backgroundColor: '#00c0ef',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: [{{$rtObj->lakiLakiCount}}, 48, 40, 19, 86, 27, 90]
+          },
+          {label: 'Perempuan',
+            backgroundColor: '#f39c12',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: [{{$rtObj->perempuanCount}}, 48, 40, 19, 86, 27, 90]
+          },
+        ]
+      }
+      var barChartCanvas = $('#rtbarChart{{$rtObj->id}}').get(0).getContext('2d')
+      var barChartData = jQuery.extend(true, {}, areaChartData1)
+      var temp0 = areaChartData1.datasets[0]
+      var temp1 = areaChartData1.datasets[1]
+      var temp2 = areaChartData1.datasets[2]
+      var temp3 = areaChartData1.datasets[3]
+
       barChartData.datasets[0] = temp1
       barChartData.datasets[1] = temp0
+      barChartData.datasets[2] = temp2
+      barChartData.datasets[3] = temp3
+
 
       var barChartOptions = {
         responsive: true,
@@ -959,6 +1026,93 @@
         data: barChartData,
         options: barChartOptions
       })
+
+
+      @endforeach
+      
+
+      @foreach($rwArray as $key => $rwObj)
+
+//-------------
+//- BAR CHART -
+//-------------
+
+var areaChartData1 = {
+  labels: [''],
+  datasets: [{
+      label: 'Warga Berdomisili',
+      backgroundColor: '#f56954',
+      borderColor: 'rgba(60,141,188,0.8)',
+      pointRadius: false,
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(60,141,188,1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data: [{{$rwObj->wargaBerdomisiliCount}}, 48, 40, 19, 86, 27, 90]
+    },
+    {
+      label: 'Warga Bukan Berdomisili',
+      backgroundColor: '#00a65a',
+      borderColor: 'rgba(210, 214, 222, 1)',
+      pointRadius: false,
+      pointColor: 'rgba(210, 214, 222, 1)',
+      pointStrokeColor: '#c1c7d1',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(220,220,220,1)',
+      data: [{{$rwObj->wargaNonBerdomisiliCount}}, 59, 80, 81, 56, 55, 40]
+    },
+    {label: 'Laki-Laki ',
+      backgroundColor: '#00c0ef',
+      borderColor: 'rgba(60,141,188,0.8)',
+      pointRadius: false,
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(60,141,188,1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data: [{{$rwObj->lakiLakiCount}}, 48, 40, 19, 86, 27, 90]
+    },
+    {label: 'Perempuan',
+      backgroundColor: '#f39c12',
+      borderColor: 'rgba(60,141,188,0.8)',
+      pointRadius: false,
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(60,141,188,1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data: [{{$rwObj->perempuanCount}}, 48, 40, 19, 86, 27, 90]
+    },
+  ]
+}
+var barChartCanvas = $('#rwbarChart{{$rwObj->id}}').get(0).getContext('2d')
+var barChartData = jQuery.extend(true, {}, areaChartData1)
+var temp0 = areaChartData1.datasets[0]
+var temp1 = areaChartData1.datasets[1]
+var temp2 = areaChartData1.datasets[2]
+var temp3 = areaChartData1.datasets[3]
+
+barChartData.datasets[0] = temp1
+barChartData.datasets[1] = temp0
+barChartData.datasets[2] = temp2
+barChartData.datasets[3] = temp3
+
+
+var barChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  datasetFill: false
+}
+
+
+var barChart = new Chart(barChartCanvas, {
+  type: 'bar',
+  data: barChartData,
+  options: barChartOptions
+})
+
+
+@endforeach
+
+
 
       //---------------------
       //- STACKED BAR CHART -
@@ -986,107 +1140,7 @@
       })
     })
   </script>
-  <script>
-    $(function() {
-      let copyButtonTrans = '{{ trans('
-      global.datatables.copy ') }}'
-      let csvButtonTrans = '{{ trans('
-      global.datatables.csv ') }}'
-      let excelButtonTrans = '{{ trans('
-      global.datatables.excel ') }}'
-      let pdfButtonTrans = '{{ trans('
-      global.datatables.pdf ') }}'
-      let printButtonTrans = '{{ trans('
-      global.datatables.print ') }}'
-      let colvisButtonTrans = '{{ trans('
-      global.datatables.colvis ') }}'
 
-      let languages = {
-        'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
-      };
-
-      $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, {
-        className: 'btn'
-      })
-      $.extend(true, $.fn.dataTable.defaults, {
-        language: {
-          url: languages. {
-            {
-              app() - > getLocale()
-            }
-          }
-        },
-        columnDefs: [{
-          orderable: false,
-          className: 'select-checkbox',
-          targets: 0
-        }, {
-          orderable: false,
-          searchable: false,
-          targets: -1
-        }],
-        select: {
-          style: 'multi+shift',
-          selector: 'td:first-child'
-        },
-        order: [],
-        scrollX: true,
-        pageLength: 100,
-        dom: 'lBfrtip<"actions">',
-        buttons: [{
-            extend: 'copy',
-            className: 'btn-default',
-            text: copyButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          },
-          {
-            extend: 'csv',
-            className: 'btn-default',
-            text: csvButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          },
-          {
-            extend: 'excel',
-            className: 'btn-default',
-            text: excelButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          },
-          {
-            extend: 'pdf',
-            className: 'btn-default',
-            text: pdfButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          },
-          {
-            extend: 'print',
-            className: 'btn-default',
-            text: printButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          },
-          {
-            extend: 'colvis',
-            className: 'btn-default',
-            text: colvisButtonTrans,
-            exportOptions: {
-              columns: ':visible'
-            }
-          }
-        ]
-      });
-
-      $.fn.dataTable.ext.classes.sPageButton = '';
-    });
-  </script>
   @yield('scripts')
 </body>
 
