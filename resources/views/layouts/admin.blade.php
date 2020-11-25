@@ -672,13 +672,13 @@
           </div>
 
           <div class="row">
-          @foreach($rtArray as $index => $rtObj)
-            <div class="col-md-6">
+          @if(count($rtArray) > 0)
+            <div class="col-md-12">
 
               <!-- BAR CHART -->
               <div class="card card-success">
                 <div class="card-header">
-                  <h3 class="card-title">{{ $rtObj->rt_name}}</h3>
+                  <h3 class="card-title">{{ $rtArray[0]->rw_name}}</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -688,7 +688,7 @@
                 </div>
                 <div class="card-body">
                   <div class="chart">
-                    <canvas id="rtbarChart{{$rtObj->id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <canvas id="rtbarChart{{$rtArray[0]->rw_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -696,15 +696,15 @@
               <!-- /.card -->
 
             </div>
-          @endforeach
+          @endif
 
-          @foreach($rwArray as $index => $rwObj)
-            <div class="col-md-6">
+          @if(count($rwArray) > 0)
+            <div class="col-md-12">
 
               <!-- BAR CHART -->
               <div class="card card-warning">
                 <div class="card-header">
-                  <h3 class="card-title">{{ $rwObj->rw_name}}</h3>
+                  <h3 class="card-title">{{ $rwArray[0]->kel_name}}</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -714,7 +714,7 @@
                 </div>
                 <div class="card-body">
                   <div class="chart">
-                    <canvas id="rwbarChart{{$rwObj->id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <canvas id="rwbarChart{{$rwArray[0]->kel_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -722,7 +722,7 @@
               <!-- /.card -->
 
             </div>
-          @endforeach
+          @endif
 
           </div>
 
@@ -949,14 +949,14 @@
 
 
 
-      @foreach($rtArray as $key => $rtObj)
+      @if(count($rtArray) > 0)
 
       //-------------
       //- BAR CHART -
       //-------------
 
       var areaChartData1 = {
-        labels: [''],
+        labels: [],
         datasets: [{
             label: 'Warga Berdomisili',
             backgroundColor: '#f56954',
@@ -966,7 +966,7 @@
             pointStrokeColor: 'rgba(60,141,188,1)',
             pointHighlightFill: '#fff',
             pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: [{{$rtObj->wargaBerdomisiliCount}}, 48, 40, 19, 86, 27, 90]
+            data: []
           },
           {
             label: 'Warga Bukan Berdomisili',
@@ -977,7 +977,7 @@
             pointStrokeColor: '#c1c7d1',
             pointHighlightFill: '#fff',
             pointHighlightStroke: 'rgba(220,220,220,1)',
-            data: [{{$rtObj->wargaNonBerdomisiliCount}}, 59, 80, 81, 56, 55, 40]
+            data: []
           },
           {label: 'Laki-Laki ',
             backgroundColor: '#00c0ef',
@@ -987,7 +987,7 @@
             pointStrokeColor: 'rgba(60,141,188,1)',
             pointHighlightFill: '#fff',
             pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: [{{$rtObj->lakiLakiCount}}, 48, 40, 19, 86, 27, 90]
+            data: []
           },
           {label: 'Perempuan',
             backgroundColor: '#f39c12',
@@ -997,11 +997,28 @@
             pointStrokeColor: 'rgba(60,141,188,1)',
             pointHighlightFill: '#fff',
             pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: [{{$rtObj->perempuanCount}}, 48, 40, 19, 86, 27, 90]
+            data: []
           },
         ]
       }
-      var barChartCanvas = $('#rtbarChart{{$rtObj->id}}').get(0).getContext('2d')
+
+      @foreach($rtArray as $index => $rtObj)
+     
+      @if($rtObj->wargaBerdomisiliCount > 0 || 
+      $rtObj->wargaNonBerdomisiliCount > 0 || 
+      $rtObj->lakiLakiCount > 0 || 
+      $rtObj->perempuanCount > 0)
+
+      areaChartData1.labels.push('{{$rtObj->rt_name}}')
+      areaChartData1.datasets[0].data.push({{$rtObj->wargaBerdomisiliCount}})
+      areaChartData1.datasets[1].data.push({{$rtObj->wargaNonBerdomisiliCount}})
+      areaChartData1.datasets[2].data.push({{$rtObj->lakiLakiCount}})
+      areaChartData1.datasets[3].data.push({{$rtObj->perempuanCount}})
+
+      @endif
+      @endforeach
+
+      var barChartCanvas = $('#rtbarChart{{$rtArray[0]->rw_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartData1)
       var temp0 = areaChartData1.datasets[0]
       var temp1 = areaChartData1.datasets[1]
@@ -1028,17 +1045,17 @@
       })
 
 
-      @endforeach
+      @endif
       
 
-      @foreach($rwArray as $key => $rwObj)
+      @if(count($rwArray) > 0)
 
 //-------------
 //- BAR CHART -
 //-------------
 
 var areaChartData1 = {
-  labels: [''],
+  labels: [],
   datasets: [{
       label: 'Warga Berdomisili',
       backgroundColor: '#f56954',
@@ -1048,7 +1065,7 @@ var areaChartData1 = {
       pointStrokeColor: 'rgba(60,141,188,1)',
       pointHighlightFill: '#fff',
       pointHighlightStroke: 'rgba(60,141,188,1)',
-      data: [{{$rwObj->wargaBerdomisiliCount}}, 48, 40, 19, 86, 27, 90]
+      data: []
     },
     {
       label: 'Warga Bukan Berdomisili',
@@ -1059,7 +1076,7 @@ var areaChartData1 = {
       pointStrokeColor: '#c1c7d1',
       pointHighlightFill: '#fff',
       pointHighlightStroke: 'rgba(220,220,220,1)',
-      data: [{{$rwObj->wargaNonBerdomisiliCount}}, 59, 80, 81, 56, 55, 40]
+      data: []
     },
     {label: 'Laki-Laki ',
       backgroundColor: '#00c0ef',
@@ -1069,7 +1086,7 @@ var areaChartData1 = {
       pointStrokeColor: 'rgba(60,141,188,1)',
       pointHighlightFill: '#fff',
       pointHighlightStroke: 'rgba(60,141,188,1)',
-      data: [{{$rwObj->lakiLakiCount}}, 48, 40, 19, 86, 27, 90]
+      data: []
     },
     {label: 'Perempuan',
       backgroundColor: '#f39c12',
@@ -1079,11 +1096,27 @@ var areaChartData1 = {
       pointStrokeColor: 'rgba(60,141,188,1)',
       pointHighlightFill: '#fff',
       pointHighlightStroke: 'rgba(60,141,188,1)',
-      data: [{{$rwObj->perempuanCount}}, 48, 40, 19, 86, 27, 90]
+      data: []
     },
   ]
 }
-var barChartCanvas = $('#rwbarChart{{$rwObj->id}}').get(0).getContext('2d')
+
+@foreach($rwArray as $index => $rwObj)
+@if($rwObj->wargaBerdomisiliCount > 0 || 
+      $rtObj->wargaNonBerdomisiliCount > 0 || 
+      $rtObj->lakiLakiCount > 0 || 
+      $rtObj->perempuanCount > 0)
+
+      areaChartData1.labels.push('{{$rwObj->rw_name}}')
+      areaChartData1.datasets[0].data.push({{$rwObj->wargaBerdomisiliCount}})
+      areaChartData1.datasets[1].data.push({{$rwObj->wargaNonBerdomisiliCount}})
+      areaChartData1.datasets[2].data.push({{$rwObj->lakiLakiCount}})
+      areaChartData1.datasets[3].data.push({{$rwObj->perempuanCount}})
+
+@endif
+@endforeach
+
+var barChartCanvas = $('#rwbarChart{{$rwArray[0]->kel_id}}').get(0).getContext('2d')
 var barChartData = jQuery.extend(true, {}, areaChartData1)
 var temp0 = areaChartData1.datasets[0]
 var temp1 = areaChartData1.datasets[1]
@@ -1110,7 +1143,7 @@ var barChart = new Chart(barChartCanvas, {
 })
 
 
-@endforeach
+@endif
 
 
 

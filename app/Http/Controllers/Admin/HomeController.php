@@ -8,6 +8,7 @@ use App\Warga;
 use App\master_pekerjaan;
 use App\Rt;
 use App\Rw;
+use App\Kelurahan;
 use \stdClass;
 
 class HomeController
@@ -155,13 +156,14 @@ class HomeController
 
         if($rw != null){
             $rtList = Rt::where('rt_rw_id',$rw)->get();   
-          
+            $rwFirst = Rw::where('id',$rw)->get();
             foreach($rtList as $index => $rtobj){
 
             $datartObj = new \stdClass();
             $datartObj->id = $rtobj->id;
+            $datartObj->rw_id = $rwFirst[0]->id;
             $datartObj->rt_name = $rtobj->rt_name;    
-
+            $datartObj->rw_name = $rwFirst[0]->rw_name;
             $lakiLakiCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
             ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
@@ -212,10 +214,13 @@ class HomeController
 
         if($kelurahan_id != null){
             $rwList = Rw::where('rw_kel_id',$kelurahan_id)->get();
+            $kelurahanFirst = Kelurahan::where('id',$kelurahan_id)->get();
             foreach($rwList as $index => $rwobj){
                 $datarwObj = new \stdClass();
                 $datarwObj->id = $rwobj->id;
                 $datarwObj->rw_name = $rwobj->rw_name;
+                $datarwObj->kel_id = $kelurahanFirst[0]->id;
+                $datarwObj->kel_name = $kelurahanFirst[0]->kel_name;
 
                 $lakiLakiCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
