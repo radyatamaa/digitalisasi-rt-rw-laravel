@@ -566,7 +566,7 @@
                             {{ $master_alamats->address_code_name ?? '' }}
                           </td>
                           <td>
-                            {{ $master_alamats->address_code_rt ?? '' }}
+                            {{ $master_alamats->rt_name ?? '' }}
                           </td>
                           <td>
                             {{ $master_alamats->address_code_blok ?? '' }}

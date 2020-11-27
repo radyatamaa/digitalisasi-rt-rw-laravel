@@ -535,7 +535,7 @@
                                                         {{ $keuangan_categorys->category_name ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $keuangan_categorys->id_rt ?? '' }}
+                                                        {{ $keuangan_categorys->rt_name ?? '' }}
                                                     </td>
                                                     <td>
 

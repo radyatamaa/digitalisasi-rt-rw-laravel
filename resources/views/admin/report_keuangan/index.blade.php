@@ -691,7 +691,7 @@
                         @endforeach
                       </tbody>
                     </table>
-                    <button class="btn btn-danger" onclick="exportTableToCSV('laporan_keuangan.xlsx')">Export Excel</button>
+                    <button class="btn btn-danger" onclick="exportTableToCSV('laporan_keuangan.xls')">Export Excel</button>
                   </div>
                 </div>
               </div>
