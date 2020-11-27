@@ -545,7 +545,7 @@
                                                         {{ $sekolahs->sekolah_name ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $sekolahs->sekolah_rt ?? '' }}
+                                                        {{ $sekolahs->rt_name ?? '' }}
                                                     </td>
                                                     <td>
                                                         {{ $sekolahs->wilayah_name ?? '' }}
