@@ -17,10 +17,22 @@ class RtController extends Controller
         $user = Auth::user()->rw_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('rt_access'), 403);
+
         if ($user != null) {
-            $rt = Rt::where('rt_rw_id', $user)->get();
+            $rt = Rt::select(
+                'rt.*',
+                'rw.rw_name'
+            )
+                ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
+                ->where('rt_rw_id', $user)
+                ->get();
         } else {
-            $rt = Rt::all();
+            $rt = Rt::select(
+                'rt.*',
+                'rw.rw_name'
+            )
+                ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
+                ->get();
         }
 
         return view('admin.rt.index', compact('rt', 'userLogin'));
