@@ -201,12 +201,6 @@
                     <p>Import Excel</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Import Excel</p>
-                  </a>
-                </li>
 
               </ul>
             </li>
@@ -504,7 +498,7 @@
                       @csrf
 
                       <div class="form-group {{ $errors->has('warga_no_ktp') ? 'has-error' : '' }}">
-                        <label for="warga_no_ktp">{{ trans('global.warga.fields.warga_no_ktp') }}*</label>
+                        <label for="warga_no_ktp">{{ trans('global.warga.fields.warga_no_ktp') }}</label>
                         <input type="number" id="warga_no_ktp" name="warga_no_ktp" class="form-control" value="{{ old('warga_no_ktp', isset($warga) ? $warga->warga_no_ktp : '') }}">
                         @if($errors->has('warga_no_ktp'))
                         <em class="invalid-feedback">
@@ -659,7 +653,7 @@
                       </div>
 
                       <div class="form-group {{ $errors->has('warga_phone') ? 'has-error' : '' }}">
-                        <label for="warga_phone">{{ trans('global.warga.fields.warga_phone') }}*</label>
+                        <label for="warga_phone">{{ trans('global.warga.fields.warga_phone') }}</label>
                         <input type="number" id="warga_phone" name="warga_phone" class="form-control" value="{{ old('warga_phone', isset($warga) ? $warga->warga_phone : '') }}">
                         @if($errors->has('warga_phone'))
                         <em class="invalid-feedback">
@@ -672,7 +666,7 @@
                       </div>
 
                       <div class="form-group {{ $errors->has('warga_email') ? 'has-error' : '' }}">
-                        <label for="warga_email">{{ trans('global.warga.fields.warga_email') }}*</label>
+                        <label for="warga_email">{{ trans('global.warga.fields.warga_email') }}</label>
                         <input type="email" id="warga_email" name="warga_email" class="form-control" value="{{ old('warga_email', isset($warga) ? $warga->warga_email : '') }}">
                         @if($errors->has('warga_email'))
                         <em class="invalid-feedback">
@@ -766,29 +760,18 @@
 
                       <div class="form-group {{ $errors->has('warga_status') ? 'has-error' : '' }}" id="pernahtidakpernah">
                         <label for="warga_status">{{ trans('global.warga.fields.warga_status') }}*</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')">
+                        <input type="radio" id="warga_status" name="warga_status" value="1" onclick="removeElement('statusmeninggal')" checked>
                         <label for="male">Aktif</label><br>
                         <input type="radio" id="warga_status" name="warga_status" value="2" onclick="removeElement('statusmeninggal')">
                         <label for="female">Tidak Aktif</label><br>
                         <input type="radio" id="warga_status" name="warga_status" value="0" onclick="removeElement('statusmeninggal')">
                         <label for="female">Pending</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()" checked>
+                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()" >
                         <label for="female">Meninggal</label><br>
                       </div>
 
-                      <div class="form-group {{ $errors->has('warga_meninggal_date') ? 'has-error' : '' }}" name="statusmeninggal">
-                        <label for="warga_meninggal_date">{{ trans('global.warga.fields.warga_meninggal_date') }}*</label>
-                        <input type="date" id="warga_meninggal_date" name="warga_meninggal_date" class="form-control" value="{{ old('warga_meninggal_date', isset($warga) ? $warga->warga_meninggal_date : '') }}" required>
-                        @if($errors->has('warga_meninggal_date'))
-                        <em class="invalid-feedback">
-                          {{ $errors->first('warga_meninggal_date') }}
-                        </em>
-                        @endif
-                        <p class="helper-block">
-                          {{ trans('global.warga.fields.warga_meninggal_date_helper') }}
-                        </p>
-                      </div>
-                  </div>
+                 
+                
 
                   <div>
                     <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">

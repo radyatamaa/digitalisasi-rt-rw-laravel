@@ -201,12 +201,6 @@
                     <p>Import Excel</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="pages/charts/flot.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Import Excel</p>
-                  </a>
-                </li>
 
               </ul>
             </li>
@@ -620,13 +614,14 @@
                     <p class="helper-block">
                       {{ trans('global.keuangan.fields.keuangan_category_helper') }}
                     </p>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
 
 
 
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+
 
           </form>
 
@@ -650,7 +645,7 @@
 
                           </th>
                           <th>
-                            Address Code
+                            Kode Alamat
                           </th>
                           <th>
                             Tanggal Input
@@ -696,7 +691,7 @@
                         @endforeach
                       </tbody>
                     </table>
-                    <button class="btn btn-danger" onclick="exportTableToCSV('laporan_keuangan.csv')">Export Excel</button>
+                    <button class="btn btn-danger" onclick="exportTableToCSV('laporan_keuangan.xlsx')">Export Excel</button>
                   </div>
                 </div>
               </div>
