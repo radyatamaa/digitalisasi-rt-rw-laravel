@@ -534,7 +534,7 @@
                                                         {{ $insidental_categorys->category_name ?? '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $insidental_categorys->id_rt ?? '' }}
+                                                        {{ $insidental_categorys->rt_name ?? '' }}
                                                     </td>
                                                     <td>
                                                         @can('insidental_category_edit')
