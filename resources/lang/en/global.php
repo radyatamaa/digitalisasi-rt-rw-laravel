@@ -417,6 +417,8 @@ return [
             'id_helper'          => '',
             'id_rt'               => 'Kode RT',
             'id_rt_helper'        => '',
+            'is_dashboard'               => 'Is Dashboard',
+            'is_dashboard_helper'        => '',
             'category_name'               => 'Nama Kategori',
             'category_name_helper'        => '',
             'created_at'         => 'Created At',
