@@ -19,6 +19,7 @@ class Event_Category extends Model
         'category_name',
         'id_rt',
         'id_rw',
+        'is_dashboard',
         'created_at',
         'updated_at',
         'deleted_at',

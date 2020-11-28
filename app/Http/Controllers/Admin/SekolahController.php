@@ -24,23 +24,27 @@ class SekolahController extends Controller
             $sekolah = sekolah::select(
                 'sekolah.*',
                 'pendidikan.pendidikan_name',
-                'wilayah.wilayah_name'
+                'wilayah.wilayah_name',
+                'rt.rt_name'
             )
                 ->join('pendidikan', 'pendidikan.id', '=', 'sekolah.sekolah_pendidikan')
                 ->join('wilayah', 'wilayah.id', '=', 'sekolah.sekolah_wilayah')
+                ->join('rt', 'rt.id', '=', 'sekolah.sekolah_rt')
                 ->where('sekolah.sekolah_rt', $user)
                 ->get();
         } else {
             $sekolah = sekolah::select(
                 'sekolah.*',
                 'pendidikan.pendidikan_name',
-                'wilayah.wilayah_name'
+                'wilayah.wilayah_name',
+                'rt.rt_name'
             )
                 ->join('wilayah', 'wilayah.id', '=', 'sekolah.sekolah_wilayah')
+                ->join('rt', 'rt.id', '=', 'sekolah.sekolah_rt')
                 ->join('pendidikan', 'pendidikan.id', '=', 'sekolah.sekolah_pendidikan')->get();
         }
 
-        return view('admin.sekolah.index', compact('sekolah','userLogin'));
+        return view('admin.sekolah.index', compact('sekolah', 'userLogin'));
     }
 
     public function create()
@@ -52,7 +56,7 @@ class SekolahController extends Controller
         $sekolah_wilayah = Wilayah::all()->pluck('wilayah_name', 'id');
 
 
-        return view('admin.sekolah.create', compact('sekolah_pendidikan', 'rts', 'sekolah_wilayah','userLogin'));
+        return view('admin.sekolah.create', compact('sekolah_pendidikan', 'rts', 'sekolah_wilayah', 'userLogin'));
     }
 
     public function store(StoreSekolahRequest $request)
@@ -72,7 +76,7 @@ class SekolahController extends Controller
         $rts = Auth::user()->rt_id;
         $sekolah_pendidikan = Pendidikan::all()->pluck('pendidikan_name', 'id');
         $sekolah_wilayah = Wilayah::all()->pluck('wilayah_name', 'id');
-        return view('admin.sekolah.edit', compact('sekolah', 'rts', 'sekolah_pendidikan', 'sekolah_wilayah','userLogin'));
+        return view('admin.sekolah.edit', compact('sekolah', 'rts', 'sekolah_pendidikan', 'sekolah_wilayah', 'userLogin'));
     }
 
     public function update(UpdateSekolahRequest $request, Sekolah $sekolah)

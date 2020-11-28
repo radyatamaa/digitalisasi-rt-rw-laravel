@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyKeuanganCategoryRequest;
 use App\Http\Requests\StoreKeuanganCategoryRequest;
 use App\Http\Requests\UpdateKeuanganCategoryRequest;
 use App\Keuangan_Category;
+use App\Keuangan;
 use Illuminate\Support\Facades\Auth;
 use App\Rt;
 
@@ -19,9 +20,23 @@ class KeuanganCategoryController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('keuangan_category_access'), 403);
         if ($user != null) {
-            $keuangan_category = Keuangan_Category::where('id_rt', $user)->get();
+            $keuangan_category = Keuangan_Category::select(
+                'keuangan_category.*',
+                'rt.rt_name'
+
+            )
+                ->join('rt', 'rt.id', '=', 'keuangan_category.id_rt')
+
+                ->where('id_rt', $user)
+                ->get();
         } else {
-            $keuangan_category = Keuangan_Category::all();
+            $keuangan_category = Keuangan_Category::select(
+                'keuangan_category.*',
+                'rt.rt_name'
+
+            )
+                ->join('rt', 'rt.id', '=', 'keuangan_category.id_rt')
+                ->get();
         }
         return view('admin.keuangan_category.index', compact('keuangan_category', 'user', 'userLogin'));
     }

@@ -18,9 +18,19 @@ class InsidentalCategoryController extends Controller
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('insidental_category_access'), 403);
         if ($user != null) {
-            $insidental_category = Insidental_Category::where('id_rt', $user)->get();
+            $insidental_category = Insidental_Category::select(
+                'ins_category.*',
+                'rt.rt_name'
+            )
+                ->join('rt', 'rt.id', '=', 'ins_category.id_rt')
+                ->where('ins_category.id_rt', $user)
+                ->get();
         } else {
-            $insidental_category = Insidental_Category::all();
+            $insidental_category = Insidental_Category::select(
+                'ins_category.*',
+                'rt.rt_name'
+            )
+                ->join('rt', 'rt.id', '=', 'ins_category.id_rt')->get();
         }
 
         return view('admin.insidental_category.index', compact('insidental_category', 'user', 'userLogin'));
