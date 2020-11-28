@@ -303,13 +303,53 @@ class HomeController
                 ->where('warga.warga_is_ktp_sama_domisili', '2')
                 ->where('rw.id', $datarwObj->id)
                 ->count();
+                
+                $eventCategoryList = Event_Category::where('id_rw', $datarwObj->id)
+                ->where('is_dashboard', 1)
+                ->get();
+                $eventCategorys = [];
+                foreach($eventCategoryList as $i => $eventCategori){
+                    $eventCategory = new \stdClass();
+                    $eventCategory->categoryName = $eventCategori->category_name;
+                    $eventCategory->category_id = $eventCategori->id;
     
+                    $eventWargaCountikut = Event::select('warga.id')
+                    ->distinct()
+                    ->join('event_detail', 'event_detail.event_id', '=', 'event.id')
+                    ->join('warga', 'warga.id', '=', 'event_detail.event_warga')
+                    ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                    ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                    ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
+                    ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->join('job', 'job.id', '=', 'warga.warga_job')
+                    ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                    ->where('rw.id', $datarwObj->id)
+                    ->where('event.event_category', $eventCategory->category_id)
+                    ->count();
+                    
+                    $totalWarga = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                        ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                        ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
+                        ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                        ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                        ->join('job', 'job.id', '=', 'warga.warga_job')
+                        ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                        ->where('rw.id', $datarwObj->id)
+                        ->count();
+    
+                    $eventWargaCountTidakIkut = $totalWarga - $eventWargaCountikut;
+                    $eventCategory->eventWargaCountTidakIkut = $eventWargaCountTidakIkut;
+                    $eventCategory->eventWargaCountikut = $eventWargaCountikut;
+                    array_push($eventCategorys,$eventCategory);
+                }
                
                 $datarwObj->lakiLakiCount = $lakiLakiCount;
                 $datarwObj->perempuanCount = $perempuanCount;
                 $datarwObj->wargaBerdomisiliCount = $wargaBerdomisiliCount;
                 $datarwObj->wargaNonBerdomisiliCount = $wargaNonBerdomisiliCount;
-    
+                $datarwObj->eventCategorys = $eventCategorys;
+
                 array_push($rwArray,$datarwObj);
         }
     }
