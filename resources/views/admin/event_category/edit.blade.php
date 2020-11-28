@@ -430,6 +430,15 @@
                                                     {{ trans('global.event_category.fields.id_rt_helper') }}
                                                 </p>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="is_dashboard">Is Dashboard
+                                                <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                                                <select name="is_dashboard" id="is_dashboard" class="form-control select2" required>
+                                                    <option value="0" selected>Tidak Dimunculkan</option>
+                                                    <option value="1">Dimunculkan</option>
+                                                </select>
+                                        </div>
                                         <input type="text" id="id_rw" name="id_rw" class="form-control" value="{{$rws}}" hidden>
                                         <div>
                                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
