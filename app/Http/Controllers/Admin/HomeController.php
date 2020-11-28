@@ -10,7 +10,8 @@ use App\Rt;
 use App\Rw;
 use App\Kelurahan;
 use \stdClass;
-
+use App\Event_Category; 
+use App\Event; 
 class HomeController
 {
     public function index()
@@ -154,10 +155,10 @@ class HomeController
         $rtArray = [];
         $rwArray = [];
 
-        if($rw != null){
-            $rtList = Rt::where('rt_rw_id',$rw)->get();   
-            $rwFirst = Rw::where('id',$rw)->get();
-            foreach($rtList as $index => $rtobj){
+    if($rw != null){
+        $rtList = Rt::where('rt_rw_id',$rw)->get();   
+        $rwFirst = Rw::where('id',$rw)->get();
+        foreach($rtList as $index => $rtobj){
 
             $datartObj = new \stdClass();
             $datartObj->id = $rtobj->id;
@@ -201,18 +202,58 @@ class HomeController
             ->where('warga.warga_rt', $datartObj->id)
             ->count();
 
-           
+            $eventCategoryList = Event_Category::where('id_rt', $datartObj->id)
+            ->where('is_dashboard', 1)
+            ->get();
+
+            $eventCategorys = [];
+            foreach($eventCategoryList as $i => $eventCategori){
+                $eventCategory = new \stdClass();
+                $eventCategory->categoryName = $eventCategori->category_name;
+                $eventCategory->category_id = $eventCategori->id;
+
+                $eventWargaCountikut = Event::select('warga.id')
+                ->distinct()
+                ->join('event_detail', 'event_detail.event_id', '=', 'event.id')
+                ->join('warga', 'warga.id', '=', 'event_detail.event_warga')
+                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->join('job', 'job.id', '=', 'warga.warga_job')
+                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->where('warga.warga_rt', $datartObj->id)
+                ->where('event.event_category', $eventCategory->category_id)
+                ->count();
+                
+                $totalWarga = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                    ->join('rt', 'rt.id', '=', 'warga.warga_rt')
+                    ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->join('job', 'job.id', '=', 'warga.warga_job')
+                    ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                    ->where('warga.warga_rt', $datartObj->id)
+                    ->count();
+
+                $eventWargaCountTidakIkut = $totalWarga - $eventWargaCountikut;
+                $eventCategory->eventWargaCountTidakIkut = $eventWargaCountTidakIkut;
+                $eventCategory->eventWargaCountikut = $eventWargaCountikut;
+                array_push($eventCategorys,$eventCategory);
+            }
+
             $datartObj->lakiLakiCount = $lakiLakiCount;
             $datartObj->perempuanCount = $perempuanCount;
             $datartObj->wargaBerdomisiliCount = $wargaBerdomisiliCount;
             $datartObj->wargaNonBerdomisiliCount = $wargaNonBerdomisiliCount;
+            $datartObj->eventCategorys = $eventCategorys;
 
             array_push($rtArray,$datartObj);
 
-            }
         }
 
-        if($kelurahan_id != null){
+    }
+
+    if($kelurahan_id != null){
             $rwList = Rw::where('rw_kel_id',$kelurahan_id)->get();
             $kelurahanFirst = Kelurahan::where('id',$kelurahan_id)->get();
             foreach($rwList as $index => $rwobj){
@@ -270,8 +311,8 @@ class HomeController
                 $datarwObj->wargaNonBerdomisiliCount = $wargaNonBerdomisiliCount;
     
                 array_push($rwArray,$datarwObj);
-            }
         }
+    }
         $user = Auth::user()->user_fullname;
         return view('home',compact('user','lakiLaki',
         'perempuan',
