@@ -909,30 +909,30 @@
 
       @foreach($rtArray as $index => $rtObj)
 
-      @if($rtObj - > wargaBerdomisiliCount > 0 ||
-        $rtObj - > wargaNonBerdomisiliCount > 0 ||
-        $rtObj - > lakiLakiCount > 0 ||
-        $rtObj - > perempuanCount > 0)
+      @if($rtObj -> wargaBerdomisiliCount > 0 ||
+        $rtObj -> wargaNonBerdomisiliCount > 0 ||
+        $rtObj -> lakiLakiCount > 0 ||
+        $rtObj -> perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rtObj->rt_name}}')
       areaChartData1.datasets[0].data.push({
         {
-          $rtObj - > wargaBerdomisiliCount
+          $rtObj -> wargaBerdomisiliCount
         }
       })
       areaChartData1.datasets[1].data.push({
         {
-          $rtObj - > wargaNonBerdomisiliCount
+          $rtObj -> wargaNonBerdomisiliCount
         }
       })
       areaChartData1.datasets[2].data.push({
         {
-          $rtObj - > lakiLakiCount
+          $rtObj -> lakiLakiCount
         }
       })
       areaChartData1.datasets[3].data.push({
         {
-          $rtObj - > perempuanCount
+          $rtObj -> perempuanCount
         }
       })
 
@@ -1025,30 +1025,30 @@
       }
 
       @foreach($rwArray as $index => $rwObj)
-      @if($rwObj - > wargaBerdomisiliCount > 0 ||
-        $rtObj - > wargaNonBerdomisiliCount > 0 ||
-        $rtObj - > lakiLakiCount > 0 ||
-        $rtObj - > perempuanCount > 0)
+      @if($rwObj->wargaBerdomisiliCount > 0 ||
+        $rtObj->wargaNonBerdomisiliCount > 0 ||
+        $rtObj->lakiLakiCount > 0 ||
+        $rtObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rwObj->rw_name}}')
       areaChartData1.datasets[0].data.push({
         {
-          $rwObj - > wargaBerdomisiliCount
+          $rwObj->wargaBerdomisiliCount
         }
       })
       areaChartData1.datasets[1].data.push({
         {
-          $rwObj - > wargaNonBerdomisiliCount
+          $rwObj->wargaNonBerdomisiliCount
         }
       })
       areaChartData1.datasets[2].data.push({
         {
-          $rwObj - > lakiLakiCount
+          $rwObj -> lakiLakiCount
         }
       })
       areaChartData1.datasets[3].data.push({
         {
-          $rwObj - > perempuanCount
+          $rwObj -> perempuanCount
         }
       })
 
