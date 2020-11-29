@@ -970,32 +970,16 @@
 
       @foreach($rtArray as $index => $rtObj)
 
-      @if($rtObj -> wargaBerdomisiliCount > 0 ||
-        $rtObj -> wargaNonBerdomisiliCount > 0 ||
-        $rtObj -> lakiLakiCount > 0 ||
-        $rtObj -> perempuanCount > 0)
+      @if($rtObj->wargaBerdomisiliCount > 0 ||
+        $rtObj->wargaNonBerdomisiliCount > 0 ||
+        $rtObj->lakiLakiCount > 0 ||
+        $rtObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rtObj->rt_name}}')
-      areaChartData1.datasets[0].data.push({
-        {
-          $rtObj -> wargaBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[1].data.push({
-        {
-          $rtObj -> wargaNonBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[2].data.push({
-        {
-          $rtObj -> lakiLakiCount
-        }
-      })
-      areaChartData1.datasets[3].data.push({
-        {
-          $rtObj -> perempuanCount
-        }
-      })
+      areaChartData1.datasets[0].data.push({{$rtObj->wargaBerdomisiliCount}})
+      areaChartData1.datasets[1].data.push({{$rtObj->wargaNonBerdomisiliCount}})
+      areaChartData1.datasets[2].data.push({{$rtObj->lakiLakiCount}})
+      areaChartData1.datasets[3].data.push({{$rtObj->perempuanCount}})
 
       @endif
 
