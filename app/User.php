@@ -23,7 +23,7 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
         'deleted_at',
-        'email_verified_at',
+        'email_verified_at',    
     ];
 
     protected $fillable = [
@@ -35,6 +35,10 @@ class User extends Authenticatable
         'deleted_at',
         'remember_token',
         'email_verified_at',
+        'rt_id',
+        'rw_id',
+        'user_fullname',
+        'kelurahan_id',
     ];
 
     public function getEmailVerifiedAtAttribute($value)

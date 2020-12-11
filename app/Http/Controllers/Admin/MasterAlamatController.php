@@ -6,40 +6,59 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyMasterAlamatRequest;
 use App\Http\Requests\StoreMasterAlamatRequest;
 use App\Http\Requests\UpdateMasterAlamatRequest;
-use App\master_alamat;
+use App\Master_Alamat;
+use Illuminate\Support\Facades\Auth;
+use App\Rt;
 
 class MasterAlamatController extends Controller
 {
     public function index()
     {
+        $user = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_alamat_access'), 403);
+        if ($user != null) {
+            $master_alamat = Master_Alamat::where('address_code_rt', $user)->get();
+        } else {
+            $master_alamat = Master_Alamat::all();
+        }
 
-        $master_alamat = Master_Alamat::all();
-
-        return view('admin.master_alamat.index', compact('master_alamat'));
+        return view('admin.master_alamat.index', compact('master_alamat', 'user', 'userLogin'));
     }
 
     public function create()
     {
+        $rts = Auth::user()->rt_id;
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_alamat_create'), 403);
 
-        return view('admin.master_alamat.create');
+        return view('admin.master_alamat.create', compact('userLogin', 'rts'));
     }
 
     public function store(StoreMasterAlamatRequest $request)
     {
         abort_unless(\Gate::allows('master_alamat_create'), 403);
-
-        $master_alamat = Master_Alamat::create($request->all());
+        if (isset($_POST['address_code_name_start']) && isset($_POST['address_code_name_end'])) {
+            for ($x = $_POST['address_code_name_start']; $x <= $_POST['address_code_name_end']; $x++) {
+                $alamat = array(
+                    'address_code_name' => $request->address_code_name,
+                    'address_code_blok' => $request->address_code_blok . ' ' . $x,
+                    'address_code_rt' => $request->address_code_rt,
+                );
+                $master_alamat = Master_Alamat::create($alamat);
+            }
+        }
 
         return redirect()->route('admin.master_alamat.index');
     }
 
     public function edit(master_alamat $master_alamat)
     {
+
+        $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_alamat_edit'), 403);
 
-        return view('admin.master_alamat.edit', compact('master_alamat'));
+        return view('admin.master_alamat.edit', compact('master_alamat', 'userLogin'));
     }
 
     public function update(UpdateMasterAlamatRequest $request, master_alamat $master_alamat)

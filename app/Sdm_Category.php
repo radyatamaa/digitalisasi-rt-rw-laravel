@@ -16,7 +16,9 @@ class Sdm_Category extends Model
     ];
 
     protected $fillable = [
+        'id_rt',
         'category_name',
+        'id_rt',
         'created_at',
         'updated_at',
         'deleted_at',
