@@ -544,7 +544,7 @@
                           {{ $rts->rt_code ?? '' }}
                         </td>
                         <td>
-                          {{ $rts->rt_rw_id ?? '' }}
+                          {{ $rts->rw_name ?? '' }}
                         </td>
                         @if($rts->rt_status == 1)
                         <td>

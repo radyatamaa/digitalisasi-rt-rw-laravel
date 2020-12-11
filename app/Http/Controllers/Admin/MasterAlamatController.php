@@ -17,10 +17,22 @@ class MasterAlamatController extends Controller
         $user = Auth::user()->rt_id;
         $userLogin = Auth::user()->user_fullname;
         abort_unless(\Gate::allows('master_alamat_access'), 403);
+
         if ($user != null) {
-            $master_alamat = Master_Alamat::where('address_code_rt', $user)->get();
+            $master_alamat = Master_Alamat::select(
+                'address_code.*',
+                'rt.rt_name'
+            )
+                ->join('rt', 'rt.id', '=', 'address_code.id')
+                ->where('address_code_rt', $user)
+                ->get();
         } else {
-            $master_alamat = Master_Alamat::all();
+            $master_alamat = Master_Alamat::select(
+                'address_code.*',
+                'rt.rt_name'
+            )
+                ->join('rt', 'rt.id', '=', 'address_code.id')
+                ->get();
         }
 
         return view('admin.master_alamat.index', compact('master_alamat', 'user', 'userLogin'));

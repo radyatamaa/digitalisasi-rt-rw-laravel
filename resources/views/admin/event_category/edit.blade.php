@@ -430,6 +430,20 @@
                                                     {{ trans('global.event_category.fields.id_rt_helper') }}
                                                 </p>
                                         </div>
+                                        <div class="form-group" {{ $errors->has('is_dashboard') ? 'has-error' : '' }}">
+                                            <label for="is_dashboard">{{ trans('global.event_category.fields.is_dashboard') }}*
+                                                <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                                                <select name="is_dashboard" id="is_dashboard" class="form-control select2" required>
+                                                    @if($event_category->is_dashboard == 0)
+                                                    <option value="0" selected>Tidak Dimunculkan</option>
+                                                    <option value="1">Dimunculkan</option>
+                                                    @elseif($event_category->is_dashboard == 1)
+                                                    <option value="0">Tidak Dimunculkan</option>
+                                                    <option value="1" selected>Dimunculkan</option>
+                                                    @endif
+                                                </select>
+                                        </div>
                                         <input type="text" id="id_rw" name="id_rw" class="form-control" value="{{$rws}}" hidden>
                                         <div>
                                             <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">

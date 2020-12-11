@@ -418,7 +418,8 @@
                                             <div class="form-group {{ $errors->has('id_rt') ? 'has-error' : '' }}">
                                                 <label for="id_rt">{{ trans('global.event_category.fields.id_rt') }}*
                                                     <select name="id_rt" id="id_rt" class="form-control select2" required>
-                                                        @foreach($id_rt as $id => $id_rt)
+                                                    <option selected disabled>Pilih RT</option> 
+                                                    @foreach($id_rt as $id => $id_rt)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('id_rt', [])) || isset($event_category) && $event_category->id_rt->contains($id)) ? 'selected' : '' }}>
                                                             {{ $id_rt }}
                                                         </option>
@@ -434,7 +435,15 @@
                                                     </p>
                                                     <input type="text" id="id_rw" name="id_rw" class="form-control" value="{{$rws}}" hidden>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label for="is_dashboard">Is Dashboard
+                                                    <!-- <span class="btn btn-info btn-xs select-all">Select all</span>
+                    <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label> -->
+                                                    <select name="is_dashboard" id="is_dashboard" class="form-control select2" required>
+                                                        <option value="0" selected>Tidak Dimunculkan</option>
+                                                        <option value="1">Dimunculkan</option>
+                                                    </select>
+                                            </div>
 
                                             <div>
                                                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
