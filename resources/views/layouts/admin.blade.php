@@ -970,37 +970,37 @@
 
       @foreach($rtArray as $index => $rtObj)
 
-      @if($rtObj - > wargaBerdomisiliCount > 0 ||
-        $rtObj - > wargaNonBerdomisiliCount > 0 ||
-        $rtObj - > lakiLakiCount > 0 ||
-        $rtObj - > perempuanCount > 0)
+      @if($rtObj->wargaBerdomisiliCount > 0 ||
+        $rtObj->wargaNonBerdomisiliCount > 0 ||
+        $rtObj->lakiLakiCount > 0 ||
+        $rtObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rtObj->rt_name}}')
       areaChartData1.datasets[0].data.push({
         {
-          $rtObj - > wargaBerdomisiliCount
+          $rtObj->wargaBerdomisiliCount
         }
       })
       areaChartData1.datasets[1].data.push({
         {
-          $rtObj - > wargaNonBerdomisiliCount
+          $rtObj->wargaNonBerdomisiliCount
         }
       })
       areaChartData1.datasets[2].data.push({
         {
-          $rtObj - > lakiLakiCount
+          $rtObj->lakiLakiCount
         }
       })
       areaChartData1.datasets[3].data.push({
         {
-          $rtObj - > perempuanCount
+          $rtObj->perempuanCount
         }
       })
 
       @endif
 
-      @foreach($rtObj - > eventCategorys as $rtEvent)
-      @if($rtEvent - > eventWargaCountikut != 0 || $rtEvent - > eventWargaCountTidakIkut != 0)
+      @foreach($rtObj->eventCategorys as $rtEvent)
+      @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
       var areaChartDataEvent = {
         labels: [],
         datasets: [{
@@ -1030,12 +1030,12 @@
       areaChartDataEvent.labels.push('{{$rtObj->rt_name}}')
       areaChartDataEvent.datasets[0].data.push({
         {
-          $rtEvent - > eventWargaCountikut
+          $rtEvent->eventWargaCountikut
         }
       })
       areaChartDataEvent.datasets[1].data.push({
         {
-          $rtEvent - > eventWargaCountTidakIkut
+          $rtEvent->eventWargaCountTidakIkut
         }
       })
 
@@ -1153,37 +1153,37 @@
       }
 
       @foreach($rwArray as $index => $rwObj)
-      @if($rwObj - > wargaBerdomisiliCount > 0 ||
-        $rwObj - > wargaNonBerdomisiliCount > 0 ||
-        $rwObj - > lakiLakiCount > 0 ||
-        $rwObj - > perempuanCount > 0)
+      @if($rwObj->wargaBerdomisiliCount > 0 ||
+        $rwObj->wargaNonBerdomisiliCount > 0 ||
+        $rwObj->lakiLakiCount > 0 ||
+        $rwObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rwObj->rw_name}}')
       areaChartData1.datasets[0].data.push({
         {
-          $rwObj - > wargaBerdomisiliCount
+          $rwObj->wargaBerdomisiliCount
         }
       })
       areaChartData1.datasets[1].data.push({
         {
-          $rwObj - > wargaNonBerdomisiliCount
+          $rwObj->wargaNonBerdomisiliCount
         }
       })
       areaChartData1.datasets[2].data.push({
         {
-          $rwObj - > lakiLakiCount
+          $rwObj->lakiLakiCount
         }
       })
       areaChartData1.datasets[3].data.push({
         {
-          $rwObj - > perempuanCount
+          $rwObj->perempuanCount
         }
       })
 
       @endif
 
-      @foreach($rwObj - > eventCategorys as $rtEvent)
-      @if($rtEvent - > eventWargaCountikut != 0 || $rtEvent - > eventWargaCountTidakIkut != 0)
+      @foreach($rwObj->eventCategorys as $rtEvent)
+      @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
       var areaChartDataEvent = {
         labels: [],
         datasets: [{
@@ -1213,12 +1213,12 @@
       areaChartDataEvent.labels.push('{{$rwObj->rw_name}}')
       areaChartDataEvent.datasets[0].data.push({
         {
-          $rtEvent - > eventWargaCountikut
+          $rtEvent->eventWargaCountikut
         }
       })
       areaChartDataEvent.datasets[1].data.push({
         {
-          $rtEvent - > eventWargaCountTidakIkut
+          $rtEvent->eventWargaCountTidakIkut
         }
       })
 
