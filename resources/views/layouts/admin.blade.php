@@ -966,7 +966,7 @@
           },
         ]
       }
-      
+
 
       @foreach($rtArray as $index => $rtObj)
 
@@ -1127,9 +1127,9 @@ var areaChartData1 = {
 }
 
 @foreach($rwArray as $index => $rwObj)
-@if($rwObj->wargaBerdomisiliCount > 0 || 
-      $rwObj->wargaNonBerdomisiliCount > 0 || 
-      $rwObj->lakiLakiCount > 0 || 
+@if($rwObj->wargaBerdomisiliCount > 0 ||
+      $rwObj->wargaNonBerdomisiliCount > 0 ||
+      $rwObj->lakiLakiCount > 0 ||
       $rwObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rwObj->rw_name}}')
@@ -1137,7 +1137,7 @@ var areaChartData1 = {
       areaChartData1.datasets[1].data.push({{$rwObj->wargaNonBerdomisiliCount}})
       areaChartData1.datasets[2].data.push({{$rwObj->lakiLakiCount}})
       areaChartData1.datasets[3].data.push({{$rwObj->perempuanCount}})
-      
+
 @endif
 
 @foreach($rwObj->eventCategorys as $rtEvent)
@@ -1263,3 +1263,4 @@ var areaChartData1 = {
 </body>
 
 </html>
+

@@ -41,12 +41,12 @@ class WargaController extends Controller
                     'salary.salary_start',
                     'salary.salary_end'
                 )
-                    ->join('religion', 'religion.id', '=', 'warga.warga_religion')
-                    ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                    ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                    ->join('job', 'job.id', '=', 'warga.warga_job')
-                    ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                    ->leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
+                    ->leftJoin('rt', 'rt.id', '=', 'warga.warga_rt')
+                    ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                    ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                    ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                     ->where('warga.warga_rt', $user)
                     ->get();
             } else {
@@ -60,12 +60,12 @@ class WargaController extends Controller
                     'salary.salary_start',
                     'salary.salary_end'
                 )
-                    ->join('religion', 'religion.id', '=', 'warga.warga_religion')
-                    ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                    ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                    ->join('job', 'job.id', '=', 'warga.warga_job')
-                    ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->get();
+                    ->leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
+                    ->leftJoin('rt', 'rt.id', '=', 'warga.warga_rt')
+                    ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                    ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                    ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->get();
             }
 
             // $warga = Warga::all();
@@ -122,6 +122,8 @@ class WargaController extends Controller
 
     public function importExcel(StoreWargaRequest $request)
     {
+        $rt_id = Auth::user()->rt_id;
+       
         $rows = Excel::toArray(new ImportWargaRequest, $request->file('input'));
         $test = "";
         foreach ($rows[0] as $key => $row) {
@@ -131,20 +133,20 @@ class WargaController extends Controller
                     'warga_no_kk' => $row[1],
                     'warga_first_name' => $row[2],
                     'warga_last_name' => $row[3],
-                    'warga_sex' => $row[4],
-                    'warga_religion' => $row[5],
-                    'warga_address' => $row[6],
-                    'warga_address' => $row[7],
-                    'warga_address_code' => $row[8],
-                    'warga_job' => $row[9],
-                    'warga_salary_range' => 1,
-                    'warga_email' => $row[11],
-                    'warga_birth_date' => $row[12],
-                    'warga_is_ktp_sama_domisili' => $row[13],
-                    'warga_join_date' => $row[14],
-                    'warga_pendidikan' => $row[15],
-                    'warga_rt' => $row[16],
-                    'warga_status' => $row[17],
+                    'warga_sex' => null,
+                    'warga_religion' => null,
+                    'warga_address' => $row[4],
+                    'warga_phone' => $row[5],
+                    'warga_address_code' => null,
+                    'warga_job' => null,
+                    'warga_salary_range' => null,
+                    'warga_email' => $row[6],
+                    'warga_birth_date' => $row[7],
+                    'warga_is_ktp_sama_domisili' => null,
+                    'warga_join_date' => $row[8],
+                    'warga_pendidikan' => null,
+                    'warga_rt' => $rt_id,
+                    'warga_status' => $row[9],
                 );
                 $insert = Warga::create($warga);
             }
