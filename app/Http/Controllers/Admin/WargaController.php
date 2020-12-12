@@ -122,6 +122,8 @@ class WargaController extends Controller
 
     public function importExcel(StoreWargaRequest $request)
     {
+        $rt_id = Auth::user()->rt_id;
+       
         $rows = Excel::toArray(new ImportWargaRequest, $request->file('input'));
         $test = "";
         foreach ($rows[0] as $key => $row) {
@@ -143,8 +145,8 @@ class WargaController extends Controller
                     'warga_is_ktp_sama_domisili' => $row[13],
                     'warga_join_date' => $row[14],
                     'warga_pendidikan' => $row[15],
-                    'warga_rt' => $row[16],
-                    'warga_status' => $row[17],
+                    'warga_rt' => $rt_id,
+                    'warga_status' => $row[16],
                 );
                 $insert = Warga::create($warga);
             }
