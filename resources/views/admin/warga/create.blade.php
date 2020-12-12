@@ -419,6 +419,14 @@
                   </a>
                 </li>
                 @endcan
+                @can('change_password_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Change Password</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -766,27 +774,27 @@
                         <label for="female">Tidak Aktif</label><br>
                         <input type="radio" id="warga_status" name="warga_status" value="0" onclick="removeElement('statusmeninggal')">
                         <label for="female">Pending</label><br>
-                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()" >
+                        <input type="radio" id="warga_status" name="warga_status" value="3" onclick="statusmeninggal()">
                         <label for="female">Meninggal</label><br>
                       </div>
 
-                 
-                
 
-                  <div>
-                    <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+
+
+                      <div>
+                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                      </div>
+                    </form>
                   </div>
-                  </form>
+                  <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card -->
               </div>
-              <!-- /.card -->
+              <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
           </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+          <!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>

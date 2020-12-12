@@ -334,6 +334,14 @@
                   </a>
                 </li>
                 @endcan
+                @can('change_password_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Change Password</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -966,7 +974,7 @@
           },
         ]
       }
-      
+
 
       @foreach($rtArray as $index => $rtObj)
 
@@ -1127,9 +1135,9 @@ var areaChartData1 = {
 }
 
 @foreach($rwArray as $index => $rwObj)
-@if($rwObj->wargaBerdomisiliCount > 0 || 
-      $rwObj->wargaNonBerdomisiliCount > 0 || 
-      $rwObj->lakiLakiCount > 0 || 
+@if($rwObj->wargaBerdomisiliCount > 0 ||
+      $rwObj->wargaNonBerdomisiliCount > 0 ||
+      $rwObj->lakiLakiCount > 0 ||
       $rwObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rwObj->rw_name}}')
@@ -1137,7 +1145,7 @@ var areaChartData1 = {
       areaChartData1.datasets[1].data.push({{$rwObj->wargaNonBerdomisiliCount}})
       areaChartData1.datasets[2].data.push({{$rwObj->lakiLakiCount}})
       areaChartData1.datasets[3].data.push({{$rwObj->perempuanCount}})
-      
+
 @endif
 
 @foreach($rwObj->eventCategorys as $rtEvent)

@@ -439,6 +439,14 @@
                   </a>
                 </li>
                 @endcan
+                @can('change_password_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Change Password</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item has-treeview menu-open">
