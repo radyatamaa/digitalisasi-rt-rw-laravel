@@ -334,18 +334,10 @@
                   </a>
                 </li>
                 @endcan
-                @can('change_password_access')
-                <li class="nav-item">
-                  <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Change Password</p>
-                  </a>
-                </li>
-                @endcan
               </ul>
             </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Reports
@@ -624,20 +616,20 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                   </div>
                 </div>
-                <div class="card-body">
-                  <div class="chart">
-                    <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                  </div>
-                </div>
-                <!-- /.card-body -->
+              <div class="card-body">
+              <div class="chart">
+              <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
-              <!-- /.card -->
-            </div>
-            @endif
-            @endforeach
-            @endforeach
+              </div>
+               <!-- /.card-body -->
+              </div>
+                <!-- /.card -->
+         </div>
+          @endif
+          @endforeach
+          @endforeach
 
-            @endif
+          @endif
 
             @if(count($rwArray) > 0)
             <div class="col-md-12">
@@ -680,20 +672,20 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                   </div>
                 </div>
-                <div class="card-body">
-                  <div class="chart">
-                    <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                  </div>
-                </div>
-                <!-- /.card-body -->
+              <div class="card-body">
+              <div class="chart">
+              <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
-              <!-- /.card -->
-            </div>
-            @endif
-            @endforeach
-            @endforeach
+              </div>
+               <!-- /.card-body -->
+              </div>
+                <!-- /.card -->
+         </div>
+          @endif
+          @endforeach
+          @endforeach
 
-            @endif
+          @endif
 
           </div>
 
@@ -984,26 +976,10 @@
         $rtObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rtObj->rt_name}}')
-      areaChartData1.datasets[0].data.push({
-        {
-          $rtObj->wargaBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[1].data.push({
-        {
-          $rtObj->wargaNonBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[2].data.push({
-        {
-          $rtObj->lakiLakiCount
-        }
-      })
-      areaChartData1.datasets[3].data.push({
-        {
-          $rtObj->perempuanCount
-        }
-      })
+      areaChartData1.datasets[0].data.push({{$rtObj->wargaBerdomisiliCount}})
+      areaChartData1.datasets[1].data.push({{$rtObj->wargaNonBerdomisiliCount}})
+      areaChartData1.datasets[2].data.push({{$rtObj->lakiLakiCount}})
+      areaChartData1.datasets[3].data.push({{$rtObj->perempuanCount}})
 
       @endif
 
@@ -1036,16 +1012,8 @@
         ]
       }
       areaChartDataEvent.labels.push('{{$rtObj->rt_name}}')
-      areaChartDataEvent.datasets[0].data.push({
-        {
-          $rtEvent->eventWargaCountikut
-        }
-      })
-      areaChartDataEvent.datasets[1].data.push({
-        {
-          $rtEvent->eventWargaCountTidakIkut
-        }
-      })
+      areaChartDataEvent.datasets[0].data.push({{$rtEvent->eventWargaCountikut}})
+      areaChartDataEvent.datasets[1].data.push({{$rtEvent->eventWargaCountTidakIkut}})
 
       var barChartCanvasEvent = $('#eventbarChart{{$rtEvent->category_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartDataEvent)
@@ -1106,92 +1074,6 @@
 
 
       @if(count($rwArray) > 0)
-
-
-      //-------------
-      //- BAR CHART -
-      //-------------
-
-      var areaChartData1 = {
-        labels: [],
-        datasets: [{
-            label: 'Warga Berdomisili',
-            backgroundColor: '#f56954',
-            borderColor: 'rgba(60,141,188,0.8)',
-            pointRadius: false,
-            pointColor: '#3b8bba',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: []
-          },
-          {
-            label: 'Warga Bukan Berdomisili',
-            backgroundColor: '#00a65a',
-            borderColor: 'rgba(210, 214, 222, 1)',
-            pointRadius: false,
-            pointColor: 'rgba(210, 214, 222, 1)',
-            pointStrokeColor: '#c1c7d1',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(220,220,220,1)',
-            data: []
-          },
-          {
-            label: 'Laki-Laki ',
-            backgroundColor: '#00c0ef',
-            borderColor: 'rgba(60,141,188,0.8)',
-            pointRadius: false,
-            pointColor: '#3b8bba',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: []
-          },
-          {
-            label: 'Perempuan',
-            backgroundColor: '#f39c12',
-            borderColor: 'rgba(60,141,188,0.8)',
-            pointRadius: false,
-            pointColor: '#3b8bba',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: []
-          },
-        ]
-      }
-
-      @foreach($rwArray as $index => $rwObj)
-      @if($rwObj->wargaBerdomisiliCount > 0 ||
-        $rwObj->wargaNonBerdomisiliCount > 0 ||
-        $rwObj->lakiLakiCount > 0 ||
-        $rwObj->perempuanCount > 0)
-
-      areaChartData1.labels.push('{{$rwObj->rw_name}}')
-      areaChartData1.datasets[0].data.push({
-        {
-          $rwObj->wargaBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[1].data.push({
-        {
-          $rwObj->wargaNonBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[2].data.push({
-        {
-          $rwObj->lakiLakiCount
-        }
-      })
-      areaChartData1.datasets[3].data.push({
-        {
-          $rwObj->perempuanCount
-        }
-      })
-
-      @endif
-
-      @foreach($rwObj->eventCategorys as $rtEvent)
 
 //-------------
 //- BAR CHART -
@@ -1259,7 +1141,6 @@ var areaChartData1 = {
 @endif
 
 @foreach($rwObj->eventCategorys as $rtEvent)
-
       @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
       var areaChartDataEvent = {
         labels: [],
@@ -1288,16 +1169,8 @@ var areaChartData1 = {
         ]
       }
       areaChartDataEvent.labels.push('{{$rwObj->rw_name}}')
-      areaChartDataEvent.datasets[0].data.push({
-        {
-          $rtEvent->eventWargaCountikut
-        }
-      })
-      areaChartDataEvent.datasets[1].data.push({
-        {
-          $rtEvent->eventWargaCountTidakIkut
-        }
-      })
+      areaChartDataEvent.datasets[0].data.push({{$rtEvent->eventWargaCountikut}})
+      areaChartDataEvent.datasets[1].data.push({{$rtEvent->eventWargaCountTidakIkut}})
 
       var barChartCanvasEvent = $('#eventbarChart{{$rtEvent->category_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartDataEvent)
@@ -1326,7 +1199,7 @@ var areaChartData1 = {
       @endforeach
 
 
-      @endforeach
+@endforeach
 
       var barChartCanvas = $('#rwbarChart{{$rwArray[0]->kel_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartData1)
@@ -1390,3 +1263,4 @@ var areaChartData1 = {
 </body>
 
 </html>
+
