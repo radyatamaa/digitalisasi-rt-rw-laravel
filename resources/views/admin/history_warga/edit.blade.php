@@ -317,6 +317,14 @@
                                     </a>
                                 </li>
                                 @endcan
+                                @can('change_password_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Change Password</p>
+                                    </a>
+                                </li>
+                                @endcan
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
@@ -768,7 +776,7 @@
                                                         {{ trans('global.history_warga.fields.rt_id_helper') }}
                                                     </p>
                                             </div>
-                                            
+
                                             <div id="save">
                                                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                                             </div>`;

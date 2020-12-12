@@ -334,6 +334,14 @@
                   </a>
                 </li>
                 @endcan
+                @can('change_password_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Change Password</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -1099,6 +1107,7 @@
 
       @if(count($rwArray) > 0)
 
+
       //-------------
       //- BAR CHART -
       //-------------
@@ -1183,6 +1192,74 @@
       @endif
 
       @foreach($rwObj->eventCategorys as $rtEvent)
+
+//-------------
+//- BAR CHART -
+//-------------
+
+var areaChartData1 = {
+  labels: [],
+  datasets: [{
+      label: 'Warga Berdomisili',
+      backgroundColor: '#f56954',
+      borderColor: 'rgba(60,141,188,0.8)',
+      pointRadius: false,
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(60,141,188,1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data: []
+    },
+    {
+      label: 'Warga Bukan Berdomisili',
+      backgroundColor: '#00a65a',
+      borderColor: 'rgba(210, 214, 222, 1)',
+      pointRadius: false,
+      pointColor: 'rgba(210, 214, 222, 1)',
+      pointStrokeColor: '#c1c7d1',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(220,220,220,1)',
+      data: []
+    },
+    {label: 'Laki-Laki ',
+      backgroundColor: '#00c0ef',
+      borderColor: 'rgba(60,141,188,0.8)',
+      pointRadius: false,
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(60,141,188,1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data: []
+    },
+    {label: 'Perempuan',
+      backgroundColor: '#f39c12',
+      borderColor: 'rgba(60,141,188,0.8)',
+      pointRadius: false,
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(60,141,188,1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data: []
+    },
+  ]
+}
+
+@foreach($rwArray as $index => $rwObj)
+@if($rwObj->wargaBerdomisiliCount > 0 ||
+      $rwObj->wargaNonBerdomisiliCount > 0 ||
+      $rwObj->lakiLakiCount > 0 ||
+      $rwObj->perempuanCount > 0)
+
+      areaChartData1.labels.push('{{$rwObj->rw_name}}')
+      areaChartData1.datasets[0].data.push({{$rwObj->wargaBerdomisiliCount}})
+      areaChartData1.datasets[1].data.push({{$rwObj->wargaNonBerdomisiliCount}})
+      areaChartData1.datasets[2].data.push({{$rwObj->lakiLakiCount}})
+      areaChartData1.datasets[3].data.push({{$rwObj->perempuanCount}})
+
+@endif
+
+@foreach($rwObj->eventCategorys as $rtEvent)
+
       @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
       var areaChartDataEvent = {
         labels: [],
