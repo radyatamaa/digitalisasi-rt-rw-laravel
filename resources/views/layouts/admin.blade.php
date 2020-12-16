@@ -334,6 +334,14 @@
                   </a>
                 </li>
                 @endcan
+                @can('change_password_access')
+                      <li class="nav-item">
+                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Change Password</p>
+                    </a>
+                    </li>
+                    @endcan
               </ul>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -791,11 +799,11 @@
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('dist/js/demo.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
-  
+
 
   <script>
     $(function() {
-    
+
 @if(count($wargaPendudukRec) > 0)
     var ticksStyle = {
     fontColor: '#495057',
@@ -823,7 +831,7 @@
     maxPenduduk.sort(function(a, b) {
        return b - a;
     });
-   
+
 
     var visitorsChart  = new Chart($visitorsChart, {
     data   : {
