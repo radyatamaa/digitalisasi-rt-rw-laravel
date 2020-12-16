@@ -325,9 +325,9 @@
                 </a>
               </li>
               @endcan
-              @can('change_password_access')
+               @can('change_password_access')
                       <li class="nav-item">
-                    <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Change Password</p>
                     </a>
