@@ -96,6 +96,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('sdm', 'SdmController');
     Route::delete('sdm/destroy', 'SdmController@massDestroy')->name('sdm.massDestroy');
-
+    Route::resource('edit_password', 'EditPasswordController');
     Route::resource('logout', 'LogoutController');
 });
