@@ -569,6 +569,50 @@
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
+            @if(count($wargaPendudukRec) > 0)
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Penambahan penduduk 3 bulan terakhir</h3>
+                  <!-- <a href="javascript:void(0);">View Report</a> -->
+                </div>
+              </div>
+              <div class="card-body">
+                <!-- <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">820</span>
+                    <span>Visitors Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                    <span class="text-muted">Since last week</span>
+                  </p>
+                </div> -->
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> Pindah
+                  </span>
+
+                  <span class="mr-2">
+                    <i class="fas fa-square text-danger"></i> Masuk
+                  </span>
+
+                  <span class="mr-2">
+                    <i class="fas fa-square text-info"></i> lahir
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            @endif
 
             </div>
             <!-- /.col (RIGHT) -->
@@ -747,8 +791,116 @@
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('dist/js/demo.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
+  
+
   <script>
     $(function() {
+    
+@if(count($wargaPendudukRec) > 0)
+    var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+    }
+    var mode      = 'index'
+    var intersect = true
+    var $visitorsChart = $('#visitors-chart')
+
+    var monthPenduduk = [];
+    var pindahPenduduk = [];
+    var masukPenduduk = [];
+    var lahirPenduduk = [];
+    var maxPenduduk = [];
+    @foreach($wargaPendudukRec as $key => $penduduk)
+
+    monthPenduduk.push("{{$penduduk->month}}");
+    pindahPenduduk.push("{{$penduduk->pindah}}");
+    masukPenduduk.push("{{$penduduk->masuk}}");
+    lahirPenduduk.push("{{$penduduk->lahir}}");
+    maxPenduduk.push("{{$penduduk->max}}");
+
+    @endforeach
+
+    maxPenduduk.sort(function(a, b) {
+       return b - a;
+    });
+   
+
+    var visitorsChart  = new Chart($visitorsChart, {
+    data   : {
+      labels  : monthPenduduk,
+      datasets: [{
+        type                : 'line',
+        data                : masukPenduduk,
+        backgroundColor     : 'transparent',
+        borderColor         : '#FF0000',
+        pointBorderColor    : '#FF0000',
+        pointBackgroundColor: '#FF0000',
+        fill                : false
+        // pointHoverBackgroundColor: '#007bff',
+        // pointHoverBorderColor    : '#007bff'
+      },
+      {
+        type                : 'line',
+        data                : lahirPenduduk,
+        backgroundColor     : 'transparent',
+        borderColor         : '#00FFFF',
+        pointBorderColor    : '#00FFFF',
+        pointBackgroundColor: '#00FFFF',
+        fill                : false
+        // pointHoverBackgroundColor: '#007bff',
+        // pointHoverBorderColor    : '#007bff'
+      },
+        {
+          type                : 'line',
+          data                : pindahPenduduk,
+          backgroundColor     : 'tansparent',
+          borderColor         : '#0000FF',
+          pointBorderColor    : '#0000FF',
+          pointBackgroundColor: '#0000FF',
+          fill                : false
+          // pointHoverBackgroundColor: '#ced4da',
+          // pointHoverBorderColor    : '#ced4da'
+        }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips           : {
+        mode     : mode,
+        intersect: intersect
+      },
+      hover              : {
+        mode     : mode,
+        intersect: intersect
+      },
+      legend             : {
+        display: false
+      },
+      scales             : {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display      : true,
+            lineWidth    : '4px',
+            color        : 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks    : $.extend({
+            beginAtZero : true,
+            suggestedMax: maxPenduduk[0]
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display  : true,
+          gridLines: {
+            display: false
+          },
+          ticks    : ticksStyle
+        }]
+      }
+    }
+  })
+
+@endif
       /* ChartJS
        * -------
        * Here we will create a few charts using ChartJS
