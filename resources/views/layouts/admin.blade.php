@@ -740,6 +740,42 @@
             </div>
 
             @foreach($rwArray as $rt)
+
+@if(count($rt->wargaPendudukRecRw) > 0)
+<div class="card">
+  <div class="card-header border-0">
+    <div class="d-flex justify-content-between">
+      <h3 class="card-title">Penambahan penduduk {{$rt->rw_name}} 3 bulan terakhir</h3>
+      <!-- <a href="javascript:void(0);">View Report</a> -->
+    </div>
+  </div>
+  <div class="card-body">
+
+    <div class="position-relative mb-4">
+      <canvas id="visitors-chart{{$rt->id}}" height="200"></canvas>
+    </div>
+
+    <div class="d-flex flex-row justify-content-end">
+      <span class="mr-2">
+        <i class="fas fa-square text-primary"></i> Pindah
+      </span>
+
+      <span class="mr-2">
+        <i class="fas fa-square text-danger"></i> Masuk
+      </span>
+
+      <span class="mr-2">
+        <i class="fas fa-square text-info"></i> lahir
+      </span>
+    </div>
+  </div>
+</div>
+
+@endif
+@endforeach
+
+
+            @foreach($rwArray as $rt)
             @foreach($rt->eventCategorys as $rtEvent)
             @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
             <div class="col-md-3">
@@ -1425,6 +1461,114 @@ var areaChartData1 = {
 }
 
 @foreach($rwArray as $index => $rwObj)
+
+@if(count($rwObj->wargaPendudukRecRw) > 0)
+    var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+    }
+    var mode      = 'index'
+    var intersect = true
+    var $visitorsChart = $('#visitors-chart{{$rwObj->id}}')
+
+    var monthPenduduk = [];
+    var pindahPenduduk = [];
+    var masukPenduduk = [];
+    var lahirPenduduk = [];
+    var maxPenduduk = [];
+    @foreach($rwObj->wargaPendudukRecRw as $key => $penduduk)
+
+    monthPenduduk.push("{{$penduduk->month}}");
+    pindahPenduduk.push("{{$penduduk->pindah}}");
+    masukPenduduk.push("{{$penduduk->masuk}}");
+    lahirPenduduk.push("{{$penduduk->lahir}}");
+    maxPenduduk.push("{{$penduduk->max}}");
+
+    @endforeach
+
+    maxPenduduk.sort(function(a, b) {
+       return b - a;
+    });
+   
+
+    var visitorsChart  = new Chart($visitorsChart, {
+    data   : {
+      labels  : monthPenduduk,
+      datasets: [{
+        type                : 'line',
+        data                : masukPenduduk,
+        backgroundColor     : 'transparent',
+        borderColor         : '#FF0000',
+        pointBorderColor    : '#FF0000',
+        pointBackgroundColor: '#FF0000',
+        fill                : false
+        // pointHoverBackgroundColor: '#007bff',
+        // pointHoverBorderColor    : '#007bff'
+      },
+      {
+        type                : 'line',
+        data                : lahirPenduduk,
+        backgroundColor     : 'transparent',
+        borderColor         : '#00FFFF',
+        pointBorderColor    : '#00FFFF',
+        pointBackgroundColor: '#00FFFF',
+        fill                : false
+        // pointHoverBackgroundColor: '#007bff',
+        // pointHoverBorderColor    : '#007bff'
+      },
+        {
+          type                : 'line',
+          data                : pindahPenduduk,
+          backgroundColor     : 'tansparent',
+          borderColor         : '#0000FF',
+          pointBorderColor    : '#0000FF',
+          pointBackgroundColor: '#0000FF',
+          fill                : false
+          // pointHoverBackgroundColor: '#ced4da',
+          // pointHoverBorderColor    : '#ced4da'
+        }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips           : {
+        mode     : mode,
+        intersect: intersect
+      },
+      hover              : {
+        mode     : mode,
+        intersect: intersect
+      },
+      legend             : {
+        display: false
+      },
+      scales             : {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display      : true,
+            lineWidth    : '4px',
+            color        : 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks    : $.extend({
+            beginAtZero : true,
+            suggestedMax: maxPenduduk[0]
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display  : true,
+          gridLines: {
+            display: false
+          },
+          ticks    : ticksStyle
+        }]
+      }
+    }
+  })
+
+@endif
+
+
 @if($rwObj->wargaBerdomisiliCount > 0 ||
       $rwObj->wargaNonBerdomisiliCount > 0 ||
       $rwObj->lakiLakiCount > 0 ||
