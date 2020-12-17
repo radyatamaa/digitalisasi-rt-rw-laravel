@@ -93,7 +93,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Import Excel</p>
                                     </a>
@@ -418,8 +418,8 @@
                                             <div class="form-group {{ $errors->has('id_rt') ? 'has-error' : '' }}">
                                                 <label for="id_rt">{{ trans('global.event_category.fields.id_rt') }}*
                                                     <select name="id_rt" id="id_rt" class="form-control select2" required>
-                                                    <option selected disabled>Pilih RT</option> 
-                                                    @foreach($id_rt as $id => $id_rt)
+                                                        <option selected disabled>Pilih RT</option>
+                                                        @foreach($id_rt as $id => $id_rt)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('id_rt', [])) || isset($event_category) && $event_category->id_rt->contains($id)) ? 'selected' : '' }}>
                                                             {{ $id_rt }}
                                                         </option>
