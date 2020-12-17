@@ -445,7 +445,18 @@
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-
+                <li class="nav-item active">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Event</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Pergerakan Warga</p>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="nav-item">
