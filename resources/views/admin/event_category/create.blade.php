@@ -316,6 +316,14 @@
                                     </a>
                                 </li>
                                 @endcan
+                                  @can('change_password_access')
+                      <li class="nav-item">
+                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Change Password</p>
+                    </a>
+                    </li>
+                    @endcan
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
@@ -418,8 +426,8 @@
                                             <div class="form-group {{ $errors->has('id_rt') ? 'has-error' : '' }}">
                                                 <label for="id_rt">{{ trans('global.event_category.fields.id_rt') }}*
                                                     <select name="id_rt" id="id_rt" class="form-control select2" required>
-                                                    <option selected disabled>Pilih RT</option> 
-                                                    @foreach($id_rt as $id => $id_rt)
+                                                        <option selected disabled>Pilih RT</option>
+                                                        @foreach($id_rt as $id => $id_rt)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('id_rt', [])) || isset($event_category) && $event_category->id_rt->contains($id)) ? 'selected' : '' }}>
                                                             {{ $id_rt }}
                                                         </option>
