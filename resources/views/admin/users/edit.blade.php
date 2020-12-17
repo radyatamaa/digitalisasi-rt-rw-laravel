@@ -46,12 +46,10 @@
     </nav>
     <!-- /.navbar -->
 
-
-    <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link">
-        <img src="{{ asset('dist/img/Logo1b.png')}}" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
+        <img src="../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
         <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
       </a>
       <!-- Sidebar -->
@@ -59,7 +57,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block">{{$userLogin}}</a>
@@ -72,7 +70,7 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-              <a href="{{ route("admin.index") }}" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -80,6 +78,7 @@
                 </p>
               </a>
             </li>
+
             @can('warga_access')
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -102,7 +101,6 @@
                     <p>Import Excel</p>
                   </a>
                 </li>
-
               </ul>
             </li>
             @endcan
@@ -144,6 +142,14 @@
               <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>History Warga</p>
+              </a>
+            </li>
+            @endcan
+            @can('sdm_access')
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
               </a>
             </li>
             @endcan
@@ -279,7 +285,7 @@
               </ul>
             </li>
 
-            <<<<<<< HEAD <li class="nav-item has-treeview menu-open">
+            <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -312,129 +318,53 @@
                   </a>
                 </li>
                 @endcan
+                @can('change_password_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Change Password</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
-              </li>
-              <li class="nav-item has-treeview menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-chart-pie"></i>
-                  <p>
-                    Reports
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item active">
-                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Report Keuangan</p>
-                    </a>
-                  </li>
-                  <li class="nav-item active">
-                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Report Event</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Report Pergerakan Warga</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-th"></i>
-                  <p>
-                    Logout
-                    <!-- <span class="right badge badge-danger">New</span> -->
-                  </p>
-                </a>
-              </li>
-              =======
-              <li class="nav-item has-treeview menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-chart-pie"></i>
-                  <p>
-                    Setting
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  @can('permission_access')
-                  <li class="nav-item">
-                    <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Permissions</p>
-                    </a>
-                  </li>
-                  @endcan
-                  @can('role_access')
-                  <li class="nav-item">
-                    <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Roles</p>
-                    </a>
-                  </li>
-                  @endcan
-                  @can('user_access')
-                  <li class="nav-item">
-                    <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Users</p>
-                    </a>
-                  </li>
-                  @endcan
-                  @can('change_password_access')
-                  <li class="nav-item">
-                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Change Password</p>
-                    </a>
-                  </li>
-                  @endcan
-                </ul>
-              </li>
-              <li class="nav-item has-treeview menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-chart-pie"></i>
-                  <p>
-                    Reports
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item active">
-                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Report Keuangan</p>
-                    </a>
-                  </li>
-                  <li class="nav-item active">
-                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Report Event</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Report Pergerakan Warga</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-th"></i>
-                  <p>
-                    Logout
-                    <!-- <span class="right badge badge-danger">New</span> -->
-                  </p>
-                </a>
-              </li>
-              >>>>>>> baa85cc0bc64b6b615506bbfcb6c8187614dff51
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Reports
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Keuangan</p>
+                  </a>
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Event</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Pergerakan Warga</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Logout
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
 
           </ul>
         </nav>
@@ -442,7 +372,6 @@
       </div>
       <!-- /.sidebar -->
     </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
