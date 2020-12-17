@@ -95,12 +95,14 @@
                     <p>List Warga</p>
                   </a>
                 </li>
+                @can('import_warga_show')
                 <li class="nav-item">
                   <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
             @endcan
@@ -335,13 +337,13 @@
                 </li>
                 @endcan
                 @can('change_password_access')
-                      <li class="nav-item">
-                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
+                <li class="nav-item">
+                  <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Change Password</p>
-                    </a>
-                    </li>
-                    @endcan
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item has-treeview menu-open">
@@ -577,16 +579,16 @@
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
-            @if(count($wargaPendudukRec) > 0)
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Penambahan penduduk 3 bulan terakhir</h3>
-                  <!-- <a href="javascript:void(0);">View Report</a> -->
+              @if(count($wargaPendudukRec) > 0)
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Penambahan penduduk 3 bulan terakhir</h3>
+                    <!-- <a href="javascript:void(0);">View Report</a> -->
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <!-- <div class="d-flex">
+                <div class="card-body">
+                  <!-- <div class="d-flex">
                   <p class="d-flex flex-column">
                     <span class="text-bold text-lg">820</span>
                     <span>Visitors Over Time</span>
@@ -598,29 +600,29 @@
                     <span class="text-muted">Since last week</span>
                   </p>
                 </div> -->
-                <!-- /.d-flex -->
+                  <!-- /.d-flex -->
 
-                <div class="position-relative mb-4">
-                  <canvas id="visitors-chart" height="200"></canvas>
-                </div>
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart" height="200"></canvas>
+                  </div>
 
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> Pindah
-                  </span>
+                  <div class="d-flex flex-row justify-content-end">
+                    <span class="mr-2">
+                      <i class="fas fa-square text-primary"></i> Pindah
+                    </span>
 
-                  <span class="mr-2">
-                    <i class="fas fa-square text-danger"></i> Masuk
-                  </span>
+                    <span class="mr-2">
+                      <i class="fas fa-square text-danger"></i> Masuk
+                    </span>
 
-                  <span class="mr-2">
-                    <i class="fas fa-square text-info"></i> lahir
-                  </span>
+                    <span class="mr-2">
+                      <i class="fas fa-square text-info"></i> lahir
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            @endif
+              @endif
 
             </div>
             <!-- /.col (RIGHT) -->
@@ -655,42 +657,42 @@
 
             @foreach($rtArray as $rt)
 
-@if(count($rt->wargaPendudukRecRt) > 0)
-<div class="card">
-  <div class="card-header border-0">
-    <div class="d-flex justify-content-between">
-      <h3 class="card-title">Penambahan penduduk {{$rt->rt_name}} 3 bulan terakhir</h3>
-      <!-- <a href="javascript:void(0);">View Report</a> -->
-    </div>
-  </div>
-  <div class="card-body">
+            @if(count($rt->wargaPendudukRecRt) > 0)
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Penambahan penduduk {{$rt->rt_name}} 3 bulan terakhir</h3>
+                  <!-- <a href="javascript:void(0);">View Report</a> -->
+                </div>
+              </div>
+              <div class="card-body">
 
-    <div class="position-relative mb-4">
-      <canvas id="visitors-chart{{$rt->id}}" height="200"></canvas>
-    </div>
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart{{$rt->id}}" height="200"></canvas>
+                </div>
 
-    <div class="d-flex flex-row justify-content-end">
-      <span class="mr-2">
-        <i class="fas fa-square text-primary"></i> Pindah
-      </span>
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> Pindah
+                  </span>
 
-      <span class="mr-2">
-        <i class="fas fa-square text-danger"></i> Masuk
-      </span>
+                  <span class="mr-2">
+                    <i class="fas fa-square text-danger"></i> Masuk
+                  </span>
 
-      <span class="mr-2">
-        <i class="fas fa-square text-info"></i> lahir
-      </span>
-    </div>
-  </div>
-</div>
+                  <span class="mr-2">
+                    <i class="fas fa-square text-info"></i> lahir
+                  </span>
+                </div>
+              </div>
+            </div>
 
-@endif
-@endforeach
+            @endif
+            @endforeach
 
             @foreach($rtArray as $rt)
 
-        
+
 
             @foreach($rt->eventCategorys as $rtEvent)
             @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
@@ -707,20 +709,20 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                   </div>
                 </div>
-              <div class="card-body">
-              <div class="chart">
-              <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
               </div>
-              </div>
-               <!-- /.card-body -->
-              </div>
-                <!-- /.card -->
-         </div>
-          @endif
-          @endforeach
-          @endforeach
+              <!-- /.card -->
+            </div>
+            @endif
+            @endforeach
+            @endforeach
 
-          @endif
+            @endif
 
             @if(count($rwArray) > 0)
             <div class="col-md-12">
@@ -749,38 +751,38 @@
 
             @foreach($rwArray as $rt)
 
-@if(count($rt->wargaPendudukRecRw) > 0)
-<div class="card">
-  <div class="card-header border-0">
-    <div class="d-flex justify-content-between">
-      <h3 class="card-title">Penambahan penduduk {{$rt->rw_name}} 3 bulan terakhir</h3>
-      <!-- <a href="javascript:void(0);">View Report</a> -->
-    </div>
-  </div>
-  <div class="card-body">
+            @if(count($rt->wargaPendudukRecRw) > 0)
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Penambahan penduduk {{$rt->rw_name}} 3 bulan terakhir</h3>
+                  <!-- <a href="javascript:void(0);">View Report</a> -->
+                </div>
+              </div>
+              <div class="card-body">
 
-    <div class="position-relative mb-4">
-      <canvas id="visitors-chart{{$rt->id}}" height="200"></canvas>
-    </div>
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart{{$rt->id}}" height="200"></canvas>
+                </div>
 
-    <div class="d-flex flex-row justify-content-end">
-      <span class="mr-2">
-        <i class="fas fa-square text-primary"></i> Pindah
-      </span>
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> Pindah
+                  </span>
 
-      <span class="mr-2">
-        <i class="fas fa-square text-danger"></i> Masuk
-      </span>
+                  <span class="mr-2">
+                    <i class="fas fa-square text-danger"></i> Masuk
+                  </span>
 
-      <span class="mr-2">
-        <i class="fas fa-square text-info"></i> lahir
-      </span>
-    </div>
-  </div>
-</div>
+                  <span class="mr-2">
+                    <i class="fas fa-square text-info"></i> lahir
+                  </span>
+                </div>
+              </div>
+            </div>
 
-@endif
-@endforeach
+            @endif
+            @endforeach
 
 
             @foreach($rwArray as $rt)
@@ -799,20 +801,20 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                   </div>
                 </div>
-              <div class="card-body">
-              <div class="chart">
-              <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <div class="card-body">
+                  <div class="chart">
+                    <canvas id="eventbarChart{{$rtEvent->category_id}}" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>
+                </div>
+                <!-- /.card-body -->
               </div>
-              </div>
-               <!-- /.card-body -->
-              </div>
-                <!-- /.card -->
-         </div>
-          @endif
-          @endforeach
-          @endforeach
+              <!-- /.card -->
+            </div>
+            @endif
+            @endforeach
+            @endforeach
 
-          @endif
+            @endif
 
           </div>
 
@@ -879,111 +881,112 @@
   <script>
     $(function() {
 
-@if(count($wargaPendudukRec) > 0)
-    var ticksStyle = {
-    fontColor: '#495057',
-    fontStyle: 'bold'
-    }
-    var mode      = 'index'
-    var intersect = true
-    var $visitorsChart = $('#visitors-chart')
+      @if(count($wargaPendudukRec) > 0)
+      var ticksStyle = {
+        fontColor: '#495057',
+        fontStyle: 'bold'
+      }
+      var mode = 'index'
+      var intersect = true
+      var $visitorsChart = $('#visitors-chart')
 
-    var monthPenduduk = [];
-    var pindahPenduduk = [];
-    var masukPenduduk = [];
-    var lahirPenduduk = [];
-    var maxPenduduk = [];
-    @foreach($wargaPendudukRec as $key => $penduduk)
+      var monthPenduduk = [];
+      var pindahPenduduk = [];
+      var masukPenduduk = [];
+      var lahirPenduduk = [];
+      var maxPenduduk = [];
+      @foreach($wargaPendudukRec as $key => $penduduk)
 
-    monthPenduduk.push("{{$penduduk->month}}");
-    pindahPenduduk.push("{{$penduduk->pindah}}");
-    masukPenduduk.push("{{$penduduk->masuk}}");
-    lahirPenduduk.push("{{$penduduk->lahir}}");
-    maxPenduduk.push("{{$penduduk->max}}");
+      monthPenduduk.push("{{$penduduk->month}}");
+      pindahPenduduk.push("{{$penduduk->pindah}}");
+      masukPenduduk.push("{{$penduduk->masuk}}");
+      lahirPenduduk.push("{{$penduduk->lahir}}");
+      maxPenduduk.push("{{$penduduk->max}}");
 
-    @endforeach
+      @endforeach
 
-    maxPenduduk.sort(function(a, b) {
-       return b - a;
-    });
+      maxPenduduk.sort(function(a, b) {
+        return b - a;
+      });
 
 
-    var visitorsChart  = new Chart($visitorsChart, {
-    data   : {
-      labels  : monthPenduduk,
-      datasets: [{
-        type                : 'line',
-        data                : masukPenduduk,
-        backgroundColor     : 'transparent',
-        borderColor         : '#FF0000',
-        pointBorderColor    : '#FF0000',
-        pointBackgroundColor: '#FF0000',
-        fill                : false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
-      },
-      {
-        type                : 'line',
-        data                : lahirPenduduk,
-        backgroundColor     : 'transparent',
-        borderColor         : '#00FFFF',
-        pointBorderColor    : '#00FFFF',
-        pointBackgroundColor: '#00FFFF',
-        fill                : false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
-      },
-        {
-          type                : 'line',
-          data                : pindahPenduduk,
-          backgroundColor     : 'tansparent',
-          borderColor         : '#0000FF',
-          pointBorderColor    : '#0000FF',
-          pointBackgroundColor: '#0000FF',
-          fill                : false
-          // pointHoverBackgroundColor: '#ced4da',
-          // pointHoverBorderColor    : '#ced4da'
-        }]
-    },
-    options: {
-      maintainAspectRatio: false,
-      tooltips           : {
-        mode     : mode,
-        intersect: intersect
-      },
-      hover              : {
-        mode     : mode,
-        intersect: intersect
-      },
-      legend             : {
-        display: false
-      },
-      scales             : {
-        yAxes: [{
-          // display: false,
-          gridLines: {
-            display      : true,
-            lineWidth    : '4px',
-            color        : 'rgba(0, 0, 0, .2)',
-            zeroLineColor: 'transparent'
+      var visitorsChart = new Chart($visitorsChart, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: masukPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: lahirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#00FFFF',
+              pointBorderColor: '#00FFFF',
+              pointBackgroundColor: '#00FFFF',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: pindahPenduduk,
+              backgroundColor: 'tansparent',
+              borderColor: '#0000FF',
+              pointBorderColor: '#0000FF',
+              pointBackgroundColor: '#0000FF',
+              fill: false
+              // pointHoverBackgroundColor: '#ced4da',
+              // pointHoverBorderColor    : '#ced4da'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
           },
-          ticks    : $.extend({
-            beginAtZero : true,
-            suggestedMax: maxPenduduk[0]
-          }, ticksStyle)
-        }],
-        xAxes: [{
-          display  : true,
-          gridLines: {
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
             display: false
           },
-          ticks    : ticksStyle
-        }]
-      }
-    }
-  })
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
 
-@endif
+      @endif
       /* ChartJS
        * -------
        * Here we will create a few charts using ChartJS
@@ -1205,128 +1208,145 @@
 
       @foreach($rtArray as $index => $rtObj)
 
-      @if(count($rtObj->wargaPendudukRecRt) > 0)
-    var ticksStyle = {
-    fontColor: '#495057',
-    fontStyle: 'bold'
-    }
-    var mode      = 'index'
-    var intersect = true
-    var $visitorsChart = $('#visitors-chart{{$rtObj->id}}')
+      @if(count($rtObj - > wargaPendudukRecRt) > 0)
+      var ticksStyle = {
+        fontColor: '#495057',
+        fontStyle: 'bold'
+      }
+      var mode = 'index'
+      var intersect = true
+      var $visitorsChart = $('#visitors-chart{{$rtObj->id}}')
 
-    var monthPenduduk = [];
-    var pindahPenduduk = [];
-    var masukPenduduk = [];
-    var lahirPenduduk = [];
-    var maxPenduduk = [];
-    @foreach($rtObj->wargaPendudukRecRt as $key => $penduduk)
+      var monthPenduduk = [];
+      var pindahPenduduk = [];
+      var masukPenduduk = [];
+      var lahirPenduduk = [];
+      var maxPenduduk = [];
+      @foreach($rtObj - > wargaPendudukRecRt as $key => $penduduk)
 
-    monthPenduduk.push("{{$penduduk->month}}");
-    pindahPenduduk.push("{{$penduduk->pindah}}");
-    masukPenduduk.push("{{$penduduk->masuk}}");
-    lahirPenduduk.push("{{$penduduk->lahir}}");
-    maxPenduduk.push("{{$penduduk->max}}");
+      monthPenduduk.push("{{$penduduk->month}}");
+      pindahPenduduk.push("{{$penduduk->pindah}}");
+      masukPenduduk.push("{{$penduduk->masuk}}");
+      lahirPenduduk.push("{{$penduduk->lahir}}");
+      maxPenduduk.push("{{$penduduk->max}}");
 
-    @endforeach
+      @endforeach
 
-    maxPenduduk.sort(function(a, b) {
-       return b - a;
-    });
-   
+      maxPenduduk.sort(function(a, b) {
+        return b - a;
+      });
 
-    var visitorsChart  = new Chart($visitorsChart, {
-    data   : {
-      labels  : monthPenduduk,
-      datasets: [{
-        type                : 'line',
-        data                : masukPenduduk,
-        backgroundColor     : 'transparent',
-        borderColor         : '#FF0000',
-        pointBorderColor    : '#FF0000',
-        pointBackgroundColor: '#FF0000',
-        fill                : false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
-      },
-      {
-        type                : 'line',
-        data                : lahirPenduduk,
-        backgroundColor     : 'transparent',
-        borderColor         : '#00FFFF',
-        pointBorderColor    : '#00FFFF',
-        pointBackgroundColor: '#00FFFF',
-        fill                : false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
-      },
-        {
-          type                : 'line',
-          data                : pindahPenduduk,
-          backgroundColor     : 'tansparent',
-          borderColor         : '#0000FF',
-          pointBorderColor    : '#0000FF',
-          pointBackgroundColor: '#0000FF',
-          fill                : false
-          // pointHoverBackgroundColor: '#ced4da',
-          // pointHoverBorderColor    : '#ced4da'
-        }]
-    },
-    options: {
-      maintainAspectRatio: false,
-      tooltips           : {
-        mode     : mode,
-        intersect: intersect
-      },
-      hover              : {
-        mode     : mode,
-        intersect: intersect
-      },
-      legend             : {
-        display: false
-      },
-      scales             : {
-        yAxes: [{
-          // display: false,
-          gridLines: {
-            display      : true,
-            lineWidth    : '4px',
-            color        : 'rgba(0, 0, 0, .2)',
-            zeroLineColor: 'transparent'
+
+      var visitorsChart = new Chart($visitorsChart, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: masukPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: lahirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#00FFFF',
+              pointBorderColor: '#00FFFF',
+              pointBackgroundColor: '#00FFFF',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: pindahPenduduk,
+              backgroundColor: 'tansparent',
+              borderColor: '#0000FF',
+              pointBorderColor: '#0000FF',
+              pointBackgroundColor: '#0000FF',
+              fill: false
+              // pointHoverBackgroundColor: '#ced4da',
+              // pointHoverBorderColor    : '#ced4da'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
           },
-          ticks    : $.extend({
-            beginAtZero : true,
-            suggestedMax: maxPenduduk[0]
-          }, ticksStyle)
-        }],
-        xAxes: [{
-          display  : true,
-          gridLines: {
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
             display: false
           },
-          ticks    : ticksStyle
-        }]
-      }
-    }
-  })
-
-@endif
-
-
-      @if($rtObj->wargaBerdomisiliCount > 0 ||
-        $rtObj->wargaNonBerdomisiliCount > 0 ||
-        $rtObj->lakiLakiCount > 0 ||
-        $rtObj->perempuanCount > 0)
-
-      areaChartData1.labels.push('{{$rtObj->rt_name}}')
-      areaChartData1.datasets[0].data.push({{$rtObj->wargaBerdomisiliCount}})
-      areaChartData1.datasets[1].data.push({{$rtObj->wargaNonBerdomisiliCount}})
-      areaChartData1.datasets[2].data.push({{$rtObj->lakiLakiCount}})
-      areaChartData1.datasets[3].data.push({{$rtObj->perempuanCount}})
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
 
       @endif
 
-      @foreach($rtObj->eventCategorys as $rtEvent)
-      @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
+
+      @if($rtObj - > wargaBerdomisiliCount > 0 ||
+        $rtObj - > wargaNonBerdomisiliCount > 0 ||
+        $rtObj - > lakiLakiCount > 0 ||
+        $rtObj - > perempuanCount > 0)
+
+      areaChartData1.labels.push('{{$rtObj->rt_name}}')
+      areaChartData1.datasets[0].data.push({
+        {
+          $rtObj - > wargaBerdomisiliCount
+        }
+      })
+      areaChartData1.datasets[1].data.push({
+        {
+          $rtObj - > wargaNonBerdomisiliCount
+        }
+      })
+      areaChartData1.datasets[2].data.push({
+        {
+          $rtObj - > lakiLakiCount
+        }
+      })
+      areaChartData1.datasets[3].data.push({
+        {
+          $rtObj - > perempuanCount
+        }
+      })
+
+      @endif
+
+      @foreach($rtObj - > eventCategorys as $rtEvent)
+      @if($rtEvent - > eventWargaCountikut != 0 || $rtEvent - > eventWargaCountTidakIkut != 0)
       var areaChartDataEvent = {
         labels: [],
         datasets: [{
@@ -1354,8 +1374,16 @@
         ]
       }
       areaChartDataEvent.labels.push('{{$rtObj->rt_name}}')
-      areaChartDataEvent.datasets[0].data.push({{$rtEvent->eventWargaCountikut}})
-      areaChartDataEvent.datasets[1].data.push({{$rtEvent->eventWargaCountTidakIkut}})
+      areaChartDataEvent.datasets[0].data.push({
+        {
+          $rtEvent - > eventWargaCountikut
+        }
+      })
+      areaChartDataEvent.datasets[1].data.push({
+        {
+          $rtEvent - > eventWargaCountTidakIkut
+        }
+      })
 
       var barChartCanvasEvent = $('#eventbarChart{{$rtEvent->category_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartDataEvent)
@@ -1417,181 +1445,200 @@
 
       @if(count($rwArray) > 0)
 
-//-------------
-//- BAR CHART -
-//-------------
+      //-------------
+      //- BAR CHART -
+      //-------------
 
-var areaChartData1 = {
-  labels: [],
-  datasets: [{
-      label: 'Warga Berdomisili',
-      backgroundColor: '#f56954',
-      borderColor: 'rgba(60,141,188,0.8)',
-      pointRadius: false,
-      pointColor: '#3b8bba',
-      pointStrokeColor: 'rgba(60,141,188,1)',
-      pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(60,141,188,1)',
-      data: []
-    },
-    {
-      label: 'Warga Bukan Berdomisili',
-      backgroundColor: '#00a65a',
-      borderColor: 'rgba(210, 214, 222, 1)',
-      pointRadius: false,
-      pointColor: 'rgba(210, 214, 222, 1)',
-      pointStrokeColor: '#c1c7d1',
-      pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(220,220,220,1)',
-      data: []
-    },
-    {label: 'Laki-Laki ',
-      backgroundColor: '#00c0ef',
-      borderColor: 'rgba(60,141,188,0.8)',
-      pointRadius: false,
-      pointColor: '#3b8bba',
-      pointStrokeColor: 'rgba(60,141,188,1)',
-      pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(60,141,188,1)',
-      data: []
-    },
-    {label: 'Perempuan',
-      backgroundColor: '#f39c12',
-      borderColor: 'rgba(60,141,188,0.8)',
-      pointRadius: false,
-      pointColor: '#3b8bba',
-      pointStrokeColor: 'rgba(60,141,188,1)',
-      pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(60,141,188,1)',
-      data: []
-    },
-  ]
-}
-
-@foreach($rwArray as $index => $rwObj)
-
-@if(count($rwObj->wargaPendudukRecRw) > 0)
-    var ticksStyle = {
-    fontColor: '#495057',
-    fontStyle: 'bold'
-    }
-    var mode      = 'index'
-    var intersect = true
-    var $visitorsChart = $('#visitors-chart{{$rwObj->id}}')
-
-    var monthPenduduk = [];
-    var pindahPenduduk = [];
-    var masukPenduduk = [];
-    var lahirPenduduk = [];
-    var maxPenduduk = [];
-    @foreach($rwObj->wargaPendudukRecRw as $key => $penduduk)
-
-    monthPenduduk.push("{{$penduduk->month}}");
-    pindahPenduduk.push("{{$penduduk->pindah}}");
-    masukPenduduk.push("{{$penduduk->masuk}}");
-    lahirPenduduk.push("{{$penduduk->lahir}}");
-    maxPenduduk.push("{{$penduduk->max}}");
-
-    @endforeach
-
-    maxPenduduk.sort(function(a, b) {
-       return b - a;
-    });
-   
-
-    var visitorsChart  = new Chart($visitorsChart, {
-    data   : {
-      labels  : monthPenduduk,
-      datasets: [{
-        type                : 'line',
-        data                : masukPenduduk,
-        backgroundColor     : 'transparent',
-        borderColor         : '#FF0000',
-        pointBorderColor    : '#FF0000',
-        pointBackgroundColor: '#FF0000',
-        fill                : false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
-      },
-      {
-        type                : 'line',
-        data                : lahirPenduduk,
-        backgroundColor     : 'transparent',
-        borderColor         : '#00FFFF',
-        pointBorderColor    : '#00FFFF',
-        pointBackgroundColor: '#00FFFF',
-        fill                : false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
-      },
-        {
-          type                : 'line',
-          data                : pindahPenduduk,
-          backgroundColor     : 'tansparent',
-          borderColor         : '#0000FF',
-          pointBorderColor    : '#0000FF',
-          pointBackgroundColor: '#0000FF',
-          fill                : false
-          // pointHoverBackgroundColor: '#ced4da',
-          // pointHoverBorderColor    : '#ced4da'
-        }]
-    },
-    options: {
-      maintainAspectRatio: false,
-      tooltips           : {
-        mode     : mode,
-        intersect: intersect
-      },
-      hover              : {
-        mode     : mode,
-        intersect: intersect
-      },
-      legend             : {
-        display: false
-      },
-      scales             : {
-        yAxes: [{
-          // display: false,
-          gridLines: {
-            display      : true,
-            lineWidth    : '4px',
-            color        : 'rgba(0, 0, 0, .2)',
-            zeroLineColor: 'transparent'
+      var areaChartData1 = {
+        labels: [],
+        datasets: [{
+            label: 'Warga Berdomisili',
+            backgroundColor: '#f56954',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: []
           },
-          ticks    : $.extend({
-            beginAtZero : true,
-            suggestedMax: maxPenduduk[0]
-          }, ticksStyle)
-        }],
-        xAxes: [{
-          display  : true,
-          gridLines: {
+          {
+            label: 'Warga Bukan Berdomisili',
+            backgroundColor: '#00a65a',
+            borderColor: 'rgba(210, 214, 222, 1)',
+            pointRadius: false,
+            pointColor: 'rgba(210, 214, 222, 1)',
+            pointStrokeColor: '#c1c7d1',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data: []
+          },
+          {
+            label: 'Laki-Laki ',
+            backgroundColor: '#00c0ef',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: []
+          },
+          {
+            label: 'Perempuan',
+            backgroundColor: '#f39c12',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: []
+          },
+        ]
+      }
+
+      @foreach($rwArray as $index => $rwObj)
+
+      @if(count($rwObj - > wargaPendudukRecRw) > 0)
+      var ticksStyle = {
+        fontColor: '#495057',
+        fontStyle: 'bold'
+      }
+      var mode = 'index'
+      var intersect = true
+      var $visitorsChart = $('#visitors-chart{{$rwObj->id}}')
+
+      var monthPenduduk = [];
+      var pindahPenduduk = [];
+      var masukPenduduk = [];
+      var lahirPenduduk = [];
+      var maxPenduduk = [];
+      @foreach($rwObj - > wargaPendudukRecRw as $key => $penduduk)
+
+      monthPenduduk.push("{{$penduduk->month}}");
+      pindahPenduduk.push("{{$penduduk->pindah}}");
+      masukPenduduk.push("{{$penduduk->masuk}}");
+      lahirPenduduk.push("{{$penduduk->lahir}}");
+      maxPenduduk.push("{{$penduduk->max}}");
+
+      @endforeach
+
+      maxPenduduk.sort(function(a, b) {
+        return b - a;
+      });
+
+
+      var visitorsChart = new Chart($visitorsChart, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: masukPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: lahirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#00FFFF',
+              pointBorderColor: '#00FFFF',
+              pointBackgroundColor: '#00FFFF',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: pindahPenduduk,
+              backgroundColor: 'tansparent',
+              borderColor: '#0000FF',
+              pointBorderColor: '#0000FF',
+              pointBackgroundColor: '#0000FF',
+              fill: false
+              // pointHoverBackgroundColor: '#ced4da',
+              // pointHoverBorderColor    : '#ced4da'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
             display: false
           },
-          ticks    : ticksStyle
-        }]
-      }
-    }
-  })
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
 
-@endif
+      @endif
 
 
-@if($rwObj->wargaBerdomisiliCount > 0 ||
-      $rwObj->wargaNonBerdomisiliCount > 0 ||
-      $rwObj->lakiLakiCount > 0 ||
-      $rwObj->perempuanCount > 0)
+      @if($rwObj - > wargaBerdomisiliCount > 0 ||
+        $rwObj - > wargaNonBerdomisiliCount > 0 ||
+        $rwObj - > lakiLakiCount > 0 ||
+        $rwObj - > perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rwObj->rw_name}}')
-      areaChartData1.datasets[0].data.push({{$rwObj->wargaBerdomisiliCount}})
-      areaChartData1.datasets[1].data.push({{$rwObj->wargaNonBerdomisiliCount}})
-      areaChartData1.datasets[2].data.push({{$rwObj->lakiLakiCount}})
-      areaChartData1.datasets[3].data.push({{$rwObj->perempuanCount}})
+      areaChartData1.datasets[0].data.push({
+        {
+          $rwObj - > wargaBerdomisiliCount
+        }
+      })
+      areaChartData1.datasets[1].data.push({
+        {
+          $rwObj - > wargaNonBerdomisiliCount
+        }
+      })
+      areaChartData1.datasets[2].data.push({
+        {
+          $rwObj - > lakiLakiCount
+        }
+      })
+      areaChartData1.datasets[3].data.push({
+        {
+          $rwObj - > perempuanCount
+        }
+      })
 
-@endif
+      @endif
 
-@foreach($rwObj->eventCategorys as $rtEvent)
-      @if($rtEvent->eventWargaCountikut != 0 || $rtEvent->eventWargaCountTidakIkut != 0)
+      @foreach($rwObj - > eventCategorys as $rtEvent)
+      @if($rtEvent - > eventWargaCountikut != 0 || $rtEvent - > eventWargaCountTidakIkut != 0)
       var areaChartDataEvent = {
         labels: [],
         datasets: [{
@@ -1619,8 +1666,16 @@ var areaChartData1 = {
         ]
       }
       areaChartDataEvent.labels.push('{{$rwObj->rw_name}}')
-      areaChartDataEvent.datasets[0].data.push({{$rtEvent->eventWargaCountikut}})
-      areaChartDataEvent.datasets[1].data.push({{$rtEvent->eventWargaCountTidakIkut}})
+      areaChartDataEvent.datasets[0].data.push({
+        {
+          $rtEvent - > eventWargaCountikut
+        }
+      })
+      areaChartDataEvent.datasets[1].data.push({
+        {
+          $rtEvent - > eventWargaCountTidakIkut
+        }
+      })
 
       var barChartCanvasEvent = $('#eventbarChart{{$rtEvent->category_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartDataEvent)
@@ -1649,7 +1704,7 @@ var areaChartData1 = {
       @endforeach
 
 
-@endforeach
+      @endforeach
 
       var barChartCanvas = $('#rwbarChart{{$rwArray[0]->kel_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartData1)
@@ -1713,4 +1768,3 @@ var areaChartData1 = {
 </body>
 
 </html>
-

@@ -95,12 +95,14 @@
                     <p>List Warga</p>
                   </a>
                 </li>
+                @can('import_warga_show')
                 <li class="nav-item">
                   <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
             @endcan
