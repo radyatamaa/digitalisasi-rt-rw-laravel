@@ -39,539 +39,435 @@
         </li> -->
       </ul>
 
-      <!-- SEARCH FORM -->
-      <!-- <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
+
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link">
+        <img src="../../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
+        <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
+      </a>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">{{$userLogin}}</a>
           </div>
         </div>
-      </form> -->
 
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <!-- <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-comments"></i>
-            <span class="badge badge-danger navbar-badge">3</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-          <div class="media">
-            <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                Brad Diesel
-                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-              </h3>
-              <p class="text-sm">Call me whenever you can...</p>
-              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-            </div>
-          </div>
-          <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-  </div>
-  </li>
-  <!-- Notifications Dropdown Menu -->
-  <li class="nav-item dropdown">
-    <a class="nav-link" data-toggle="dropdown" href="#">
-      <i class="far fa-bell"></i>
-      <span class="badge badge-warning navbar-badge">15</span>
-    </a>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-      <span class="dropdown-item dropdown-header">15 Notifications</span>
-      <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item">
-        <i class="fas fa-envelope mr-2"></i> 4 new messages
-        <span class="float-right text-muted text-sm">3 mins</span>
-      </a>
-      <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item">
-        <i class="fas fa-users mr-2"></i> 8 friend requests
-        <span class="float-right text-muted text-sm">12 hours</span>
-      </a>
-      <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item">
-        <i class="fas fa-file mr-2"></i> 3 new reports
-        <span class="float-right text-muted text-sm">2 days</span>
-      </a>
-      <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-    </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-      <i class="fas fa-th-large"></i>
-    </a>
-  </li>
-  </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="../../dist/img/Logo1b.png" alt="AdminLTE Logo" width="200" height="60" style="opacity: .8">
-      <!-- <span class="brand-text font-weight-light">SIDAK CMS</span> -->
-    </a>
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">{{$userLogin}}</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="{{ route("admin.index") }}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          @can('warga_access')
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Warga
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Warga</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Import Excel</p>
-                </a>
-              </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.index") }}" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
+            @can('warga_access')
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Warga
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Warga</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Import Excel</p>
+                  </a>
+                </li>
 
-            </ul>
-          </li>
-          @endcan
-          @can('keuangan_access')
-          <li class="nav-item">
-            <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Keuangan
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          @endcan
-          @can('event_access')
-          <li class="nav-item active">
-            <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Event
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          @endcan
-          @can('insidental_access')
-          <li class="nav-item">
-            <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Insidental
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          @endcan
-          @can('history_warga_access')
-          <li class="nav-item">
-            <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>History Warga</p>
-            </a>
-          </li>
-          @endcan
-          @can('sdm_access')
-          <li class="nav-item">
-            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>SDM</p>
-            </a>
-          </li>
-          @endcan
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Master Data
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              @can('rt_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>RT</p>
-                </a>
-              </li>
-              @endcan
-              @can('rw_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>RW</p>
-                </a>
-              </li>
-              @endcan
-              @can('kelurahan_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kelurahan</p>
-                </a>
-              </li>
-              @endcan
-              @can('master_alamat_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Address Code</p>
-                </a>
-              </li>
-              @endcan
-              @can('master_agama_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Agama</p>
-                </a>
-              </li>
-              @endcan
-              @can('master_pekerjaan_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pekerjaan</p>
-                </a>
-              </li>
-              @endcan
-              @can('master_gaji_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gaji</p>
-                </a>
-              </li>
-              @endcan
-              @can('pendidikan_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pendidikan</p>
-                </a>
-              </li>
-              @endcan
-              @can('sekolah_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sekolah</p>
-                </a>
-              </li>
-              @endcan
-              @can('wilayah_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Wilayah</p>
-                </a>
-              </li>
-              @endcan
-              @can('history_category_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori Histori</p>
-                </a>
-              </li>
-              @endcan
-              @can('keuangan_category_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori Keuangan</p>
-                </a>
-              </li>
-              @endcan
-              @can('event_category_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori Event</p>
-                </a>
-              </li>
-              @endcan
-              @can('insidental_category_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori Insidental</p>
-                </a>
-              </li>
-              @endcan
-              @can('sdm_category_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori SDM</p>
-                </a>
-              </li>
-              @endcan
-            </ul>
-          </li>
+              </ul>
+            </li>
+            @endcan
+            @can('keuangan_access')
+            <li class="nav-item">
+              <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Keuangan
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
+            @endcan
+            @can('event_access')
+            <li class="nav-item active">
+              <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Event
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
+            @endcan
+            @can('insidental_access')
+            <li class="nav-item">
+              <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Insidental
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
+            @endcan
+            @can('history_warga_access')
+            <li class="nav-item">
+              <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>History Warga</p>
+              </a>
+            </li>
+            @endcan
+            @can('sdm_access')
+            <li class="nav-item">
+              <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>SDM</p>
+              </a>
+            </li>
+            @endcan
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Master Data
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @can('rt_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>RT</p>
+                  </a>
+                </li>
+                @endcan
+                @can('rw_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>RW</p>
+                  </a>
+                </li>
+                @endcan
+                @can('kelurahan_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kelurahan</p>
+                  </a>
+                </li>
+                @endcan
+                @can('master_alamat_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Address Code</p>
+                  </a>
+                </li>
+                @endcan
+                @can('master_agama_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Agama</p>
+                  </a>
+                </li>
+                @endcan
+                @can('master_pekerjaan_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pekerjaan</p>
+                  </a>
+                </li>
+                @endcan
+                @can('master_gaji_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Gaji</p>
+                  </a>
+                </li>
+                @endcan
+                @can('pendidikan_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pendidikan</p>
+                  </a>
+                </li>
+                @endcan
+                @can('sekolah_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Sekolah</p>
+                  </a>
+                </li>
+                @endcan
+                @can('wilayah_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Wilayah</p>
+                  </a>
+                </li>
+                @endcan
+                @can('history_category_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kategori Histori</p>
+                  </a>
+                </li>
+                @endcan
+                @can('keuangan_category_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kategori Keuangan</p>
+                  </a>
+                </li>
+                @endcan
+                @can('event_category_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kategori Event</p>
+                  </a>
+                </li>
+                @endcan
+                @can('insidental_category_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kategori Insidental</p>
+                  </a>
+                </li>
+                @endcan
+                @can('sdm_category_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kategori SDM</p>
+                  </a>
+                </li>
+                @endcan
+              </ul>
+            </li>
 
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Setting
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              @can('permission_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Permissions</p>
-                </a>
-              </li>
-              @endcan
-              @can('role_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Roles</p>
-                </a>
-              </li>
-              @endcan
-              @can('user_access')
-              <li class="nav-item">
-                <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Users</p>
-                </a>
-              </li>
-              @endcan
-            </ul>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Reports
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item active">
-                <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Report Keuangan</p>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Report Event</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Report Pergerakan Warga</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Logout
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Setting
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @can('permission_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Permissions</p>
+                  </a>
+                </li>
+                @endcan
+                @can('role_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Roles</p>
+                  </a>
+                </li>
+                @endcan
+                @can('user_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Users</p>
+                  </a>
+                </li>
+                @endcan
+              </ul>
+            </li>
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Reports
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item active">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Keuangan</p>
+                  </a>
+                </li>
+                <li class="nav-item active">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Event</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Pergerakan Warga</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Logout
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
 
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>List Role</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
-              <li class="breadcrumb-item active">List Role</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-
-            <!-- /.card -->
-            @section('content')
-            <div class="card">
-
-              <!-- /.card-header -->
-              <div class="card card-primary">
-                <div class="card-header">
-                  <h3 class="card-title">Create Role</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-
-                <div class="card-body">
-                  <form action="{{ route("admin.roles.store") }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-                      <label for="title">{{ trans('global.role.fields.title') }}*</label>
-                      <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($role) ? $role->title : '') }}">
-                      @if($errors->has('title'))
-                      <em class="invalid-feedback">
-                        {{ $errors->first('title') }}
-                      </em>
-                      @endif
-                      <p class="helper-block">
-                        {{ trans('global.role.fields.title_helper') }}
-                      </p>
-                    </div>
-                    <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
-                      <label for="permissions">{{ trans('global.role.fields.permissions') }}*
-                        <span class="btn btn-info btn-xs select-all">Select all</span>
-                        <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label>
-                      <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple">
-                        @foreach($permissions as $id => $permissions)
-                        <option value="{{ $id }}" {{ (in_array($id, old('permissions', [])) || isset($role) && $role->permissions->contains($id)) ? 'selected' : '' }}>
-                          {{ $permissions }}
-                        </option>
-                        @endforeach
-                      </select>
-                      @if($errors->has('permissions'))
-                      <em class="invalid-feedback">
-                        {{ $errors->first('permissions') }}
-                      </em>
-                      @endif
-                      <p class="helper-block">
-                        {{ trans('global.role.fields.permissions_helper') }}
-                      </p>
-                    </div>
-                    <div>
-                      <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
       </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.5
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
-  </footer>
+      <!-- /.sidebar -->
+    </aside>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>List Role</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
+                <li class="breadcrumb-item active">List Role</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- /.card -->
+              @section('content')
+              <div class="card">
+
+                <!-- /.card-header -->
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Create Role</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+
+                  <div class="card-body">
+                    <form action="{{ route("admin.roles.store") }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                        <label for="title">{{ trans('global.role.fields.title') }}*</label>
+                        <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($role) ? $role->title : '') }}">
+                        @if($errors->has('title'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('title') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.role.fields.title_helper') }}
+                        </p>
+                      </div>
+                      <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
+                        <label for="permissions">{{ trans('global.role.fields.permissions') }}*
+                          <span class="btn btn-info btn-xs select-all">Select all</span>
+                          <span class="btn btn-info btn-xs deselect-all">Deselect all</span></label>
+                        <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple">
+                          @foreach($permissions as $id => $permissions)
+                          <option value="{{ $id }}" {{ (in_array($id, old('permissions', [])) || isset($role) && $role->permissions->contains($id)) ? 'selected' : '' }}>
+                            {{ $permissions }}
+                          </option>
+                          @endforeach
+                        </select>
+                        @if($errors->has('permissions'))
+                        <em class="invalid-feedback">
+                          {{ $errors->first('permissions') }}
+                        </em>
+                        @endif
+                        <p class="helper-block">
+                          {{ trans('global.role.fields.permissions_helper') }}
+                        </p>
+                      </div>
+                      <div>
+                        <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.0.5
+      </div>
+      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+      reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
