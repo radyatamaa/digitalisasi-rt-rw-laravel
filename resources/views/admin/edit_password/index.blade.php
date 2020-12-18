@@ -195,12 +195,14 @@
                   <p>List Warga</p>
                 </a>
               </li>
+              @can('import_warga_show')
               <li class="nav-item">
                 <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Import Excel</p>
                 </a>
               </li>
+              @endcan
 
             </ul>
           </li>
@@ -411,14 +413,14 @@
                 </a>
               </li>
               @endcan
-               @can('change_password_access')
-                      <li class="nav-item">
-                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Change Password</p>
-                    </a>
-                    </li>
-                    @endcan
+              @can('change_password_access')
+              <li class="nav-item">
+                <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Change Password</p>
+                </a>
+              </li>
+              @endcan
             </ul>
           </li>
           <li class="nav-item has-treeview menu-open">
@@ -481,17 +483,17 @@
               <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
               <li class="breadcrumb-item active">List Users</li>
               @if ($message = Session::get('error'))
-      <div class="alert alert-danger alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>{{ $message }}</strong>
-      </div>
-    @endif
-    @if ($message = Session::get('success'))
-      <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-          <strong>{{ $message }}</strong>
-      </div>
-    @endif
+              <div class="alert alert-danger alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+              </div>
+              @endif
+              @if ($message = Session::get('success'))
+              <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+              </div>
+              @endif
             </ol>
           </div>
         </div>
