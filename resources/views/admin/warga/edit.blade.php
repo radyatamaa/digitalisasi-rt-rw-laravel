@@ -89,12 +89,14 @@
                     <p>List Warga</p>
                   </a>
                 </li>
+                @can('import_warga_show')
                 <li class="nav-item">
                   <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
                 </li>
+                @endcan
 
               </ul>
             </li>
@@ -313,14 +315,14 @@
                   </a>
                 </li>
                 @endcan
-                 @can('change_password_access')
-                      <li class="nav-item">
-                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
+                @can('change_password_access')
+                <li class="nav-item">
+                  <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Change Password</p>
-                    </a>
-                    </li>
-                    @endcan
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -339,7 +341,18 @@
                     <p>Report Keuangan</p>
                   </a>
                 </li>
-
+                <li class="nav-item active">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Event</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Report Pergerakan Warga</p>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="nav-item">

@@ -151,7 +151,7 @@ class WargaController extends Controller
                 $insert = Warga::create($warga);
             }
         }
-        return $this->import();
+        return redirect()->route('admin.warga.index' , '?is_import=true')->with(['success' => 'Data Berhasil di Import']);
     }
     public function create()
     {
