@@ -39,7 +39,7 @@ class EditPasswordController extends Controller
         $id = Auth::user()->id;
         $pass = Auth::user()->password;
         $checkPass = Hash::check($_POST['password_lama'], $pass);
-        $passEncrypt = Hash::make($_POST['password_lama']);
+        $passEncrypt = Hash::make($_POST['password']);
         if($checkPass != true){
 
             return redirect()->route('admin.edit_password.index')->with(['error' => 'Password lama tidak sama!!']);
@@ -48,7 +48,7 @@ class EditPasswordController extends Controller
             return redirect()->route('admin.edit_password.index')->with(['error' => 'Password dan confirm password harus sama!!']);
         }else{
         //    $update = $user->update($request->all());
-           DB::table('users')
+          $update = DB::table('users')
            ->where('id', $id)
            ->update(['password' => $passEncrypt]);
 
