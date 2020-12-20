@@ -6,9 +6,9 @@
             <div class="card p-4">
                 <div class="card-body">
                     @if(\Session::has('message'))
-                        <p class="alert alert-info">
-                            {{ \Session::get('message') }}
-                        </p>
+                    <p class="alert alert-info">
+                        {{ \Session::get('message') }}
+                    </p>
                     @endif
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
@@ -26,9 +26,9 @@
                             </div>
                             <input name="email" type="text" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="{{ trans('global.login_email') }}">
                             @if($errors->has('email'))
-                                <em class="invalid-feedback">
-                                    {{ $errors->first('email') }}
-                                </em>
+                            <em class="invalid-feedback">
+                                {{ $errors->first('email') }}
+                            </em>
                             @endif
                         </div>
                         <div class="input-group mb-4">
@@ -37,9 +37,9 @@
                             </div>
                             <input name="password" type="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="{{ trans('global.login_password') }}">
                             @if($errors->has('password'))
-                                <em class="invalid-feedback">
-                                    {{ $errors->first('password') }}
-                                </em>
+                            <em class="invalid-feedback">
+                                {{ $errors->first('password') }}
+                            </em>
                             @endif
                         </div>
                         <div class="row">

@@ -4985,6 +4985,7 @@ input[type="button"].btn-block {
 
 .accordion > .card {
   overflow: hidden;
+  
 }
 
 .accordion > .card:not(:last-of-type) {
