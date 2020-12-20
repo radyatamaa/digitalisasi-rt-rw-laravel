@@ -20,12 +20,11 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 </head>
 
-<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden login-page">
+<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden login-page" style="background-image:url({{ asset('bg_login.png') }}); background-size: cover;" >
     <div class="app flex-row align-items-center">
         <div class="container">
             @yield("content")
         </div>
     </div>
 </body>
-
 </html>
