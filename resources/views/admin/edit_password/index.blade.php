@@ -521,7 +521,7 @@
                   <form action="{{ route("admin.edit_password.update", [$users->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <!-- <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                       <label for="password_lama">Masukan Password Lama</label>
                       <input type="password" id="password_lama" name="password_lama" class="form-control">
                       @if($errors->has('password'))
@@ -532,7 +532,7 @@
                       <p class="helper-block">
                         {{ trans('global.user.fields.password_helper') }}
                       </p>
-                    </div> -->
+                    </div>
                     <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                       <label for="password_baru">Password Baru</label>
                       <input type="password" id="password_baru" name="password_baru" class="form-control">

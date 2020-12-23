@@ -12,13 +12,20 @@ use App\Rt;
 use App\Rw;
 use App\Kelurahan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Contracts\Auth\Authenticatable;
+
 
 class EditPasswordController extends Controller
 {
     public function index()
     {
         $userLogin = Auth::user()->user_fullname;
-        abort_unless(\Gate::allows('user_access'), 403);
+        // abort_unless(\Gate::allows('user_access'), 403);
+
 
         $users = Auth::user();
 
@@ -28,14 +35,22 @@ class EditPasswordController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        abort_unless(\Gate::allows('user_edit'), 403);
+        // abort_unless(\Gate::allows('user_edit'), 403);
+        $id = Auth::user()->id;
+        $pass = Auth::user()->password;
+        $checkPass = Hash::check($_POST['password_lama'], $pass);
+        $passEncrypt = Hash::make($_POST['password']);
+        if($checkPass != true){
 
-        if($_POST['password_baru'] != $_POST['password']){
+            return redirect()->route('admin.edit_password.index')->with(['error' => 'Password lama tidak sama!!']);
+        }else if($_POST['password_baru'] != $_POST['password']){
 
             return redirect()->route('admin.edit_password.index')->with(['error' => 'Password dan confirm password harus sama!!']);
         }else{
-            $user->update($request->all());
-            $user->roles()->sync($request->input('roles', []));
+        //    $update = $user->update($request->all());
+          $update = DB::table('users')
+           ->where('id', $id)
+           ->update(['password' => $passEncrypt]);
 
             return redirect()->route('admin.edit_password.index')->with(['success' => 'Password Telah di ubah']);
         }
