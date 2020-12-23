@@ -372,7 +372,7 @@ class ReportController extends Controller
         $rt = Auth::user()->rt_id;
         $kelurahan = Auth::user()->kelurahan_id;
         $rw = Auth::user()->rw_id;
-        if($rt == null && $rw != null){
+        if($rw == null && $rt != null){
             $listRT = RT::where('rt_rw_id', $rw)
                 ->get();
                 foreach($listRT as $index => $rts){
