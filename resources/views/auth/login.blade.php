@@ -2,9 +2,9 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card-group">
-            <div class="card p-4">
-                <div class="card-body">
+        <div class="card-group" style="background: transparent; border: 0 solid rgba(0,0,0,0);">
+            <div class="card p-4" style="background: transparent; border: 0 solid rgba(0,0,0,0);">
+                <div class="card-body" style="background:transparent; border: 0 solid rgba(0,0,0,0);">
                     @if(\Session::has('message'))
                     <p class="alert alert-info">
                         {{ \Session::get('message') }}
@@ -13,13 +13,11 @@
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <h1>
-                            <div class="login-logo">
-                                <a href="#">
-                                    {{ trans('global.site_title') }}
-                                </a>
-                            </div>
+                        <div class="login-logo">
+                             <img src="{{ asset('dist/img/Logo_Sidak2_WHITE.png') }}" alt="" class="img-fluid">
+                        </div>
                         </h1>
-                        <p class="text-muted">{{ trans('global.login') }}</p>
+                        <!-- <p class="text-muted">{{ trans('global.login') }}</p> -->
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -49,8 +47,8 @@
                                     <input name="remember" type="checkbox" /> {{ trans('global.remember_me') }}
                                 </label>
                             </div>
-                            <div class="col-6 text-right">
-                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                            <div class="col-6 text-right" >
+                                <a class="btn btn-link px-0" href="{{ route('password.request') }}" style="color: black;">
                                     {{ trans('global.forgot_password') }}
                                 </a>
                             </div>
