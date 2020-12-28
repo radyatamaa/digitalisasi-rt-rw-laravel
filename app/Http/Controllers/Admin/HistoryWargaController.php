@@ -95,6 +95,8 @@ class HistoryWargaController extends Controller
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
+        $history_c = History_Category::all();
+        // $test = $history_c[0];
         $rt_id = Rt::all();
         $provinsi_id = Provinces::all()->pluck('name', 'id');
         $kota_id = Kabupaten::all();
@@ -102,15 +104,22 @@ class HistoryWargaController extends Controller
         $kelurahan_id = Kelurahan::all();
         $rw_id = Rw::all();
 
+        $rt_id1 = Rt::all();
+        $provinsi_id1 =  Provinces::all()->pluck('name', 'id');
+        $kota_id1 =Kabupaten::all();
+        $kecamatan_id1 = Kecamatan::all();
+        $kelurahan_id1 =Kelurahan::all();
+        $rw_id1 = Rw::all();
 
-        return view('admin.history_warga.create', compact('history_category', 'warga_ids', 'rts', 'userLogin', 'rt_id', 'provinsi_id', 'kota_id', 'kecamatan_id', 'kelurahan_id', 'rw_id'));
+
+        return view('admin.history_warga.create', compact('rt_id1','rw_id1','kelurahan_id1','kecamatan_id1','kota_id1','provinsi_id1','history_category', 'warga_ids', 'rts', 'userLogin', 'rt_id', 'provinsi_id', 'kota_id', 'kecamatan_id', 'kelurahan_id', 'rw_id','history_c'));
     }
 
     public function store(StoreHistoryWargaRequest $request)
     {
         abort_unless(\Gate::allows('history_warga_create'), 403);
         $category = $_POST['history_category'];
-      
+
         $history_warga = History_Warga::create($request->all());
 
         if($category == "1"){
@@ -120,7 +129,7 @@ class HistoryWargaController extends Controller
                     'warga_rt' => $_POST['rt_id'],
                     'warga_status' => 0,
                 );
-    
+
             }else{
                 $updateWarga = array(
                     'warga_rt' => null,
@@ -179,7 +188,7 @@ class HistoryWargaController extends Controller
         }
 
         $history_category = History_Category::all()->pluck('category_name', 'id');
-        
+
         $rt_id = Rt::all();
         $provinsi_id = Provinces::all()->pluck('name', 'id');
         $kota_id = Kabupaten::all();
@@ -194,18 +203,18 @@ class HistoryWargaController extends Controller
         $kelurahan_id1 = Kelurahan::all();
         $rw_id1 = Rw::all();
 
-        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin', 
-        'rt_id', 
-        'provinsi_id', 
-        'kota_id', 
-        'kecamatan_id', 
-        'kelurahan_id', 
+        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin',
+        'rt_id',
+        'provinsi_id',
+        'kota_id',
+        'kecamatan_id',
+        'kelurahan_id',
         'rw_id',
-        'rt_id1', 
-        'provinsi_id1', 
-        'kota_id1', 
-        'kecamatan_id1', 
-        'kelurahan_id1', 
+        'rt_id1',
+        'provinsi_id1',
+        'kota_id1',
+        'kecamatan_id1',
+        'kelurahan_id1',
         'rw_id1'));
     }
 
@@ -223,7 +232,7 @@ class HistoryWargaController extends Controller
                     'warga_rt' => $_POST['rt_id'],
                     'warga_status' => 0,
                 );
-    
+
             }else{
                 $updateWarga = array(
                     'warga_rt' => null,
