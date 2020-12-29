@@ -1322,26 +1322,10 @@
         $rtObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rtObj->rt_name}}')
-      areaChartData1.datasets[0].data.push({
-        {
-          $rtObj->wargaBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[1].data.push({
-        {
-          $rtObj->wargaNonBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[2].data.push({
-        {
-          $rtObj->lakiLakiCount
-        }
-      })
-      areaChartData1.datasets[3].data.push({
-        {
-          $rtObj->perempuanCount
-        }
-      })
+      areaChartData1.datasets[0].data.push({{$rtObj->wargaBerdomisiliCount}})
+      areaChartData1.datasets[1].data.push({{$rtObj->wargaNonBerdomisiliCount}})
+      areaChartData1.datasets[2].data.push({{$rtObj->lakiLakiCount}})
+      areaChartData1.datasets[3].data.push({{$rtObj->perempuanCount}})
 
       @endif
 
@@ -1374,16 +1358,8 @@
         ]
       }
       areaChartDataEvent.labels.push('{{$rtObj->rt_name}}')
-      areaChartDataEvent.datasets[0].data.push({
-        {
-          $rtEvent->eventWargaCountikut
-        }
-      })
-      areaChartDataEvent.datasets[1].data.push({
-        {
-          $rtEvent->eventWargaCountTidakIkut
-        }
-      })
+      areaChartDataEvent.datasets[0].data.push({{$rtEvent->eventWargaCountikut}})
+      areaChartDataEvent.datasets[1].data.push({{$rtEvent->eventWargaCountTidakIkut}})
 
       var barChartCanvasEvent = $('#eventbarChart{{$rtEvent->category_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartDataEvent)
@@ -1614,26 +1590,10 @@
         $rwObj->perempuanCount > 0)
 
       areaChartData1.labels.push('{{$rwObj->rw_name}}')
-      areaChartData1.datasets[0].data.push({
-        {
-          $rwObj->wargaBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[1].data.push({
-        {
-          $rwObj->wargaNonBerdomisiliCount
-        }
-      })
-      areaChartData1.datasets[2].data.push({
-        {
-          $rwObj->lakiLakiCount
-        }
-      })
-      areaChartData1.datasets[3].data.push({
-        {
-          $rwObj->perempuanCount
-        }
-      })
+      areaChartData1.datasets[0].data.push({{$rwObj->wargaBerdomisiliCount}})
+      areaChartData1.datasets[1].data.push({{$rwObj->wargaNonBerdomisiliCount}})
+      areaChartData1.datasets[2].data.push({{$rwObj->lakiLakiCount}})
+      areaChartData1.datasets[3].data.push({{$rwObj->perempuanCount}})
 
       @endif
 
@@ -1666,16 +1626,8 @@
         ]
       }
       areaChartDataEvent.labels.push('{{$rwObj->rw_name}}')
-      areaChartDataEvent.datasets[0].data.push({
-        {
-          $rtEvent->eventWargaCountikut
-        }
-      })
-      areaChartDataEvent.datasets[1].data.push({
-        {
-          $rtEvent->eventWargaCountTidakIkut
-        }
-      })
+      areaChartDataEvent.datasets[0].data.push({{$rtEvent->eventWargaCountikut}})
+      areaChartDataEvent.datasets[1].data.push({{$rtEvent->eventWargaCountTidakIkut}})
 
       var barChartCanvasEvent = $('#eventbarChart{{$rtEvent->category_id}}').get(0).getContext('2d')
       var barChartData = jQuery.extend(true, {}, areaChartDataEvent)
