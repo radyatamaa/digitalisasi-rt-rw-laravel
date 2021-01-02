@@ -14,7 +14,7 @@
                         {{ csrf_field() }}
                         <h1>
                         <div class="login-logo">
-                             <img src="{{ asset('dist/img/Logo_Sidak2_WHITE.png') }}" alt="" class="img-fluid">
+                             <img src="{{ asset('dist/img/Logo_Sidak2_WHITE.png') }}" alt="" class="img-fluid" style="padding-bottom: 5%;  max-width: 70%; padding-left:25%;" >
                         </div>
                         </h1>
                         <!-- <p class="text-muted">{{ trans('global.login') }}</p> -->
