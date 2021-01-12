@@ -64,11 +64,12 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route("admin.index") }}" class="nav-link active">
+                            <a href="{{ route("admin.index") }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -87,19 +88,22 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.warga.index") }}" class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.warga.index") }}"
+                                        class="nav-link {{ request()->is('admin/warga') || request()->is('admin/warga/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List Warga</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.warga.index") . '?is_import=true'}}"
+                                        class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Import Excel</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.warga.index") . '?is_import=true'}}"
+                                        class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Import Excel</p>
                                     </a>
@@ -110,7 +114,8 @@
                         @endcan
                         @can('keuangan_access')
                         <li class="nav-item">
-                            <a href="{{ route("admin.keuangan.index") }}" class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.keuangan.index") }}"
+                                class="nav-link {{ request()->is('admin/keuangan') || request()->is('admin/keuangan/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Keuangan
@@ -121,7 +126,8 @@
                         @endcan
                         @can('event_access')
                         <li class="nav-item active">
-                            <a href="{{ route("admin.event.index") }}" class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.event.index") }}"
+                                class="nav-link {{ request()->is('admin/event') || request()->is('admin/event/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Event
@@ -132,7 +138,8 @@
                         @endcan
                         @can('insidental_access')
                         <li class="nav-item">
-                            <a href="{{ route("admin.insidental.index") }}" class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.insidental.index") }}"
+                                class="nav-link {{ request()->is('admin/insidental') || request()->is('admin/insidental/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Insidental
@@ -143,7 +150,8 @@
                         @endcan
                         @can('history_warga_access')
                         <li class="nav-item">
-                            <a href="{{ route("admin.history_warga.index") }}" class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.history_warga.index") }}"
+                                class="nav-link {{ request()->is('admin/history_warga') || request()->is('admin/history_warga  /*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>History Warga</p>
                             </a>
@@ -151,7 +159,8 @@
                         @endcan
                         @can('sdm_access')
                         <li class="nav-item">
-                            <a href="{{ route("admin.sdm.index") }}" class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.sdm.index") }}"
+                                class="nav-link {{ request()->is('admin/sdm') || request()->is('admin/sdm  /*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>SDM</p>
                             </a>
@@ -168,7 +177,8 @@
                             <ul class="nav nav-treeview">
                                 @can('rt_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.rt.index") }}" class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.rt.index") }}"
+                                        class="nav-link {{ request()->is('admin/rt') || request()->is('admin/rt/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>RT</p>
                                     </a>
@@ -176,7 +186,8 @@
                                 @endcan
                                 @can('rw_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.rw.index") }}" class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.rw.index") }}"
+                                        class="nav-link {{ request()->is('admin/rw') || request()->is('admin/rw/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>RW</p>
                                     </a>
@@ -184,7 +195,8 @@
                                 @endcan
                                 @can('kelurahan_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.kelurahan.index") }}" class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.kelurahan.index") }}"
+                                        class="nav-link {{ request()->is('admin/kelurahan') || request()->is('admin/kelurahan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kelurahan</p>
                                     </a>
@@ -192,7 +204,8 @@
                                 @endcan
                                 @can('master_alamat_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.master_alamat.index") }}" class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.master_alamat.index") }}"
+                                        class="nav-link {{ request()->is('admin/master_alamat') || request()->is('admin/master_alamat/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Address Code</p>
                                     </a>
@@ -200,7 +213,8 @@
                                 @endcan
                                 @can('master_agama_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.master_agama.index") }}" class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.master_agama.index") }}"
+                                        class="nav-link {{ request()->is('admin/master_agama') || request()->is('admin/master_agama/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Agama</p>
                                     </a>
@@ -208,7 +222,8 @@
                                 @endcan
                                 @can('master_pekerjaan_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.master_pekerjaan.index") }}" class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.master_pekerjaan.index") }}"
+                                        class="nav-link {{ request()->is('admin/master_pekerjaan') || request()->is('admin/master_pekerjaan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pekerjaan</p>
                                     </a>
@@ -216,7 +231,8 @@
                                 @endcan
                                 @can('master_gaji_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.master_gaji.index") }}" class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.master_gaji.index") }}"
+                                        class="nav-link {{ request()->is('admin/master_gaji') || request()->is('admin/master_gaji/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Gaji</p>
                                     </a>
@@ -224,7 +240,8 @@
                                 @endcan
                                 @can('pendidikan_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.pendidikan.index") }}"
+                                        class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pendidikan</p>
                                     </a>
@@ -232,7 +249,8 @@
                                 @endcan
                                 @can('sekolah_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.sekolah.index") }}"
+                                        class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sekolah</p>
                                     </a>
@@ -240,7 +258,8 @@
                                 @endcan
                                 @can('wilayah_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.wilayah.index") }}"
+                                        class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Wilayah</p>
                                     </a>
@@ -248,7 +267,8 @@
                                 @endcan
                                 @can('history_category_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.history_category.index") }}" class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.history_category.index") }}"
+                                        class="nav-link {{ request()->is('admin/history_category') || request()->is('admin/history_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Histori</p>
                                     </a>
@@ -256,7 +276,8 @@
                                 @endcan
                                 @can('keuangan_category_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.keuangan_category.index") }}" class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.keuangan_category.index") }}"
+                                        class="nav-link {{ request()->is('admin/keuangan_category') || request()->is('admin/keuangan_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Keuangan</p>
                                     </a>
@@ -264,7 +285,8 @@
                                 @endcan
                                 @can('event_category_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.event_category.index") }}" class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.event_category.index") }}"
+                                        class="nav-link {{ request()->is('admin/event_category') || request()->is('admin/event_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Event</p>
                                     </a>
@@ -272,7 +294,8 @@
                                 @endcan
                                 @can('insidental_category_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.insidental_category.index") }}" class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.insidental_category.index") }}"
+                                        class="nav-link {{ request()->is('admin/insidental_category') || request()->is('admin/insidental_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori Insidental</p>
                                     </a>
@@ -280,7 +303,8 @@
                                 @endcan
                                 @can('sdm_category_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.sdm_category.index") }}" class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.sdm_category.index") }}"
+                                        class="nav-link {{ request()->is('admin/sdm_category') || request()->is('admin/sdm_category  /*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kategori SDM</p>
                                     </a>
@@ -300,7 +324,8 @@
                             <ul class="nav nav-treeview">
                                 @can('permission_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.permissions.index") }}"
+                                        class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Permissions</p>
                                     </a>
@@ -308,7 +333,8 @@
                                 @endcan
                                 @can('role_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.roles.index") }}"
+                                        class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Roles</p>
                                     </a>
@@ -316,20 +342,22 @@
                                 @endcan
                                 @can('user_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.users.index") }}"
+                                        class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Users</p>
                                     </a>
                                 </li>
                                 @endcan
-                                  @can('change_password_access')
-                      <li class="nav-item">
-                    <a href="{{ route("admin.edit_password.index") }}" class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Change Password</p>
-                    </a>
-                    </li>
-                    @endcan
+                                @can('change_password_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.edit_password.index") }}"
+                                        class="nav-link {{ request()->is('admin/edit_password') || request()->is('admin/edit_password/*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Change Password</p>
+                                    </a>
+                                </li>
+                                @endcan
                             </ul>
                         </li>
                         <li class="nav-item has-treeview menu-open">
@@ -343,19 +371,22 @@
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item active">
-                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_keuangan' }}"
+                                        class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ?  : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Report Keuangan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_event' }}"
+                                        class="nav-link active {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ?  : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Report Event</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                                    <a href="{{ route("admin.report_data_masyarakat_km.index") . '?report_pergerakan_warga' }}"
+                                        class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ?  : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Report Pergerakan Warga</p>
                                     </a>
@@ -365,7 +396,8 @@
 
 
                         <li class="nav-item">
-                            <a href="{{ route("admin.logout.index") }}" class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
+                            <a href="{{ route("admin.logout.index") }}"
+                                class="nav-link {{ request()->is('admin/logout') || request()->is('admin/logout/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Logout
@@ -403,11 +435,13 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <form action="{{ route("admin.report_data_masyarakat_km.index") .'?report_event' }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route("admin.report_data_masyarakat_km.index") .'?report_event' }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
                             <label for="start_date">Tanggal</label>
-                            <input type="date" id="start_date" name="start_date" class="form-control" value="{{ old('start_date', isset($start_date) ? date('Y-m-d', strtotime($start_date)) : '') }}">
+                            <input type="date" id="start_date" name="start_date" class="form-control"
+                                value="{{ old('start_date', isset($start_date) ? date('Y-m-d', strtotime($start_date)) : '') }}">
                             @if($errors->has('event_date'))
                             <em class="invalid-feedback">
                                 {{ $errors->first('event_date') }}
@@ -419,7 +453,8 @@
                         </div>
                         <div class="form-group {{ $errors->has('event_date') ? 'has-error' : '' }}">
                             <label for="end_date">S/d</label>
-                            <input type="date" id="end_date" name="end_date" class="form-control" value="{{ old('end_date', isset($end_date) ? date('Y-m-d', strtotime($end_date)) : '') }}">
+                            <input type="date" id="end_date" name="end_date" class="form-control"
+                                value="{{ old('end_date', isset($end_date) ? date('Y-m-d', strtotime($end_date)) : '') }}">
                             @if($errors->has('event_date'))
                             <em class="invalid-feedback">
                                 {{ $errors->first('event_date') }}
@@ -437,7 +472,8 @@
                                     </option>
                                     @foreach($event_category as $id => $event_category)
 
-                                    <option value="{{ $id }}" {{ (isset($category) && $category == $id ) ? 'selected' : '' }}>
+                                    <option value="{{ $id }}"
+                                        {{ (isset($category) && $category == $id ) ? 'selected' : '' }}>
                                         {{ $event_category }}
                                     </option>
                                     @endforeach
@@ -521,7 +557,8 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        <button class="btn btn-danger" onclick="exportTableToCSV('laporan_event.xlsx')">Export Excel</button>
+                                        <button class="btn btn-danger"
+                                            onclick="exportTableToCSV('laporan_event.xlsx')">Export Excel</button>
                                     </div>
                                 </div>
                             </div>
@@ -567,67 +604,67 @@
     <script src="../../dist/js/demo.js"></script>
     <!-- page script -->
     <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-            });
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {
+            type: "text/csv"
         });
 
-        function downloadCSV(csv, filename) {
-            var csvFile;
-            var downloadLink;
+        // Download link
+        downloadLink = document.createElement("a");
 
-            // CSV file
-            csvFile = new Blob([csv], {
-                type: "text/csv"
-            });
+        // File name
+        downloadLink.download = filename;
 
-            // Download link
-            downloadLink = document.createElement("a");
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
 
-            // File name
-            downloadLink.download = filename;
+        // Hide download link
+        downloadLink.style.display = "none";
 
-            // Create a link to the file
-            downloadLink.href = window.URL.createObjectURL(csvFile);
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
 
-            // Hide download link
-            downloadLink.style.display = "none";
+        // Click download link
+        downloadLink.click();
+    }
 
-            // Add the link to DOM
-            document.body.appendChild(downloadLink);
+    function exportTableToCSV(filename) {
+        var csv = [];
+        var rows = document.querySelectorAll("table tr");
 
-            // Click download link
-            downloadLink.click();
+        for (var i = 0; i < rows.length; i++) {
+            var row = [],
+                cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++)
+                row.push(cols[j].innerText);
+
+            csv.push(row.join(","));
         }
 
-        function exportTableToCSV(filename) {
-            var csv = [];
-            var rows = document.querySelectorAll("table tr");
-
-            for (var i = 0; i < rows.length; i++) {
-                var row = [],
-                    cols = rows[i].querySelectorAll("td, th");
-
-                for (var j = 0; j < cols.length; j++)
-                    row.push(cols[j].innerText);
-
-                csv.push(row.join(","));
-            }
-
-            // Download CSV file
-            downloadCSV(csv.join("\n"), filename);
-        }
+        // Download CSV file
+        downloadCSV(csv.join("\n"), filename);
+    }
     </script>
 </body>
 

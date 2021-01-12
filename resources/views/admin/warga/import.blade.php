@@ -125,8 +125,8 @@
                   </a>
                 </li>
                 @can('import_warga_show')
-                <li class="nav-item">
-                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ? 'active' : '' }}">
+                <li class="nav-item ">
+                  <a href="{{ route("admin.warga.index") . '?is_import=true'}}" class="nav-link active {{ request()->is('admin/warga?is_import=true') || request()->is('admin/warga?is_import=true') ?  : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Import Excel</p>
                   </a>
