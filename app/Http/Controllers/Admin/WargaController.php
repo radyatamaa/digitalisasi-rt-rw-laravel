@@ -123,7 +123,6 @@ class WargaController extends Controller
     public function importExcel(StoreWargaRequest $request)
     {
         $rt_id = Auth::user()->rt_id;
-       
         $rows = Excel::toArray(new ImportWargaRequest, $request->file('input'));
         $test = "";
         foreach ($rows[0] as $key => $row) {
@@ -148,7 +147,13 @@ class WargaController extends Controller
                     'warga_rt' => $rt_id,
                     'warga_status' => $row[9],
                 );
-                $insert = Warga::create($warga);
+                $isNumeric = is_numeric($row[1]);
+                if($isNumeric == true){
+                    $insert = Warga::create($warga);
+                }else{
+                    $rowExcel = $key;
+                    return redirect()->route('admin.warga.index' , '?is_import=true')->with(['error' => 'Kesalahan Data Tidak Valid Pada Row ' . (string)$rowExcel]);
+                }               
             }
         }
         return redirect()->route('admin.warga.index' , '?is_import=true')->with(['success' => 'Data Berhasil di Import']);
