@@ -42,7 +42,7 @@ class WargaController extends Controller
                     'salary.salary_end'
                 )
                     ->leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
-                    ->leftJoin('rt', 'rt.id', '=', 'warga.warga_rt')
+                    ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                     ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                     ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                     ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
@@ -61,7 +61,7 @@ class WargaController extends Controller
                     'salary.salary_end'
                 )
                     ->leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
-                    ->leftJoin('rt', 'rt.id', '=', 'warga.warga_rt')
+                    ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                     ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
                     ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                     ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
