@@ -413,7 +413,7 @@
                                             @csrf
                                             <div class="form-group {{ $errors->has('history_desc') ? 'has-error' : '' }}">
                                                 <label for="history_desc">{{ trans('global.history_warga.fields.history_desc') }}*</label>
-                                                <input type="text" id="history_desc" name="history_desc" class="form-control" value="{{ old('history_desc', isset($history_warga) ? $history_warga->history_desc : '') }}">
+                                                <input type="text" id="history_desc" name="history_desc" class="form-control" value="{{ old('history_desc', isset($history_warga) ? $history_warga->history_desc : '') }}" required>
                                                 @if($errors->has('history_desc'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('history_desc') }}
@@ -426,7 +426,7 @@
 
                                             <div class="form-group {{ $errors->has('history_date') ? 'has-error' : '' }}">
                                                 <label for="history_date">{{ trans('global.history_warga.fields.history_date') }}*</label>
-                                                <input type="date" id="history_date" name="history_date" class="form-control" value="{{ old('history_date', isset($history_warga) ? $history_warga->history_date : '') }}">
+                                                <input type="date" id="history_date" name="history_date" class="form-control" value="{{ old('history_date', isset($history_warga) ? $history_warga->history_date : '') }}" required>
                                                 @if($errors->has('history_date'))
                                                 <em class="invalid-feedback">
                                                     {{ $errors->first('history_date') }}
@@ -439,7 +439,7 @@
 
                                             <div class="form-group {{ $errors->has('history_category') ? 'has-error' : '' }}">
                                                 <label for="history_category">{{ trans('global.history_warga.fields.history_category') }}*
-                                                    <select name="history_category" id="history_category" class="form-control select2" onclick="addElementPindah()">
+                                                    <select name="history_category" id="history_category" class="form-control select2" onclick="addElementPindah()" required>
                                                         <option selected disabled>Select Category</option>
                                                         @if(count($history_c) == 1)
                                                             @if($history_c[0]->category_name == "Pindah")
@@ -476,10 +476,10 @@
 
                                             <div class="form-group {{ $errors->has('warga_id') ? 'has-error' : '' }}">
                                                 <label for="warga_id">{{ trans('global.history_warga.fields.warga_id') }}*
-                                                    <select name="warga_id" id="warga_id" class="form-control select2">
+                                                    <select name="warga_id" id="warga_id" class="form-control select2" required>
                                                         <option selected disabled>Select Warga</option>
                                                         @foreach($warga_ids as $id => $warga_id)
-                                                        <option value="{{ $warga_id->id }}" {{ (in_array($warga_id->id, old('warga_id->id', [])) || isset($history_warga) && $history_warga->warga_id->contains($id)) ? 'selected' : '' }}>
+                                                        <option value="{{ $warga_id->id }}" {{ (in_array($warga_id->id, old('warga_id->id', [])) || isset($history_warga) && $history_warga->warga_id->contains($id)) ? 'selected' : '' }} required>
                                                             {{ $warga_id->warga_first_name . " " . $warga_id->warga_last_name}}
                                                         </option>
                                                         @endforeach
@@ -498,10 +498,10 @@
                                                 @if($history_c[0]->category_name == "Pindah")
                                                 <div name="pindah" class="form-group {{ $errors->has('provinsi_id') ? 'has-error' : '' }}">
                                                 <label for="provinsi_id">{{ trans('global.history_warga.fields.provinsi_id') }}*
-                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2" onChange="filterKota(this.value)" onclick="filterKota(this.value)">
+                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2" onChange="filterKota(this.value)" onclick="filterKota(this.value)" required>
                                                     <option selected disabled>Select Provinsi</option>
                                                         @foreach($provinsi_id1 as $id => $provinsi_id1)
-                                                        <option value="{{ $id }}" {{ (in_array($id, old('provinsi_id1', [])) || isset($history_warga) && $history_warga->provinsi_id1->contains($id)) ? 'selected' : '' }}>
+                                                        <option value="{{ $id }}" {{ (in_array($id, old('provinsi_id1', [])) || isset($history_warga) && $history_warga->provinsi_id1->contains($id)) ? 'selected' : '' }}required>
                                                             {{ $provinsi_id1 }}
                                                         </option>
                                                         @endforeach
@@ -518,10 +518,10 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kota_id') ? 'has-error' : '' }}">
                                                 <label for="kota_id">{{ trans('global.history_warga.fields.kota_id') }}*
-                                                    <select name="kota_id" id="kota_id" class="form-control select2" onChange="filterKecamatan(this.value)" onclick="filterKecamatan(this.value)">
+                                                    <select name="kota_id" id="kota_id" class="form-control select2" onChange="filterKecamatan(this.value)" onclick="filterKecamatan(this.value)" required>
                                                     <option selected disabled>Select Kota</option>
                                                         @foreach($kota_id1 as $id => $kota_id1)
-                                                        <option value="{{ $kota_id1->id }}" id="{{$kota_id1->province_id}}" {{ (in_array($id, old('kota_id1->name', [])) || isset($history_warga) && $history_warga->kota_id1->contains($kota_id1->id)) ? 'selected' : '' }}>
+                                                        <option value="{{ $kota_id1->id }}" id="{{$kota_id1->province_id}}" {{ (in_array($id, old('kota_id1->name', [])) || isset($history_warga) && $history_warga->kota_id1->contains($kota_id1->id)) ? 'selected' : '' }}required>
                                                             {{ $kota_id1->name }}
                                                         </option>
                                                         @endforeach
@@ -538,7 +538,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kecamatan_id') ? 'has-error' : '' }}">
                                                 <label for="kecamatan_id">{{ trans('global.history_warga.fields.kecamatan_id') }}*
-                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2" onChange="filterKelurahan(this.value)" onclick="filterKelurahan(this.value)">
+                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2" onChange="filterKelurahan(this.value)" onclick="filterKelurahan(this.value)"required>
                                                     <option selected disabled>Select Kecamatan</option>
                                                         @foreach($kecamatan_id1 as $id => $kecamatan_id1)
                                                         <option value="{{ $kecamatan_id1->id }}" id="{{$kecamatan_id1->kec_kota_id}}" {{ (in_array($id, old('kecamatan_id1->name', [])) || isset($history_warga) && $history_warga->kecamatan_id1->contains($kecamatan_id1->id)) ? 'selected' : '' }}>
@@ -558,7 +558,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kelurahan_id') ? 'has-error' : '' }}">
                                                 <label for="kelurahan_id">{{ trans('global.history_warga.fields.kelurahan_id') }}*
-                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2" onChange="filterRW(this.value)" onclick="filterRW(this.value)">
+                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2" onChange="filterRW(this.value)" onclick="filterRW(this.value)" required>
                                                     <option selected disabled>Select Kelurahan</option>
                                                         @foreach($kelurahan_id1 as $id => $kelurahan_id1)
                                                         <option value="{{ $kelurahan_id1->id }}" id="{{$kelurahan_id1->kel_kec_id}}"  {{ (in_array($id, old('kelurahan_id1->name', [])) || isset($history_warga) && $history_warga->kelurahan_id1->contains($kelurahan_id1->id)) ? 'selected' : '' }}>
@@ -578,7 +578,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('rw_id') ? 'has-error' : '' }}">
                                                 <label for="rw_id">{{ trans('global.history_warga.fields.rw_id') }}*
-                                                    <select name="rw_id" id="rw_id" class="form-control select2" onChange="filterRT(this.value)" onclick="filterRT(this.value)">
+                                                    <select name="rw_id" id="rw_id" class="form-control select2" onChange="filterRT(this.value)" onclick="filterRT(this.value)" required>
                                                     <option selected disabled>Select RW</option>
                                                         @foreach($rw_id1 as $id => $rw_id1)
                                                         <option value="{{ $rw_id1->id }}" id="{{$rw_id1->rw_kel_id}}" {{ (in_array($id, old('rw_id1', [])) || isset($history_warga) && $history_warga->rw_id1->contains($rw_id1->id)) ? 'selected' : '' }}>
@@ -598,7 +598,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('rt_id') ? 'has-error' : '' }}">
                                                 <label for="rt_id">{{ trans('global.history_warga.fields.rt_id') }}*
-                                                    <select name="rt_id" id="rt_id" class="form-control select2">
+                                                    <select name="rt_id" id="rt_id" class="form-control select2" required>
                                                     <option selected disabled>Select RT</option>
                                                         @foreach($rt_id1 as $id => $rt_id1)
                                                         <option value="{{ $rt_id1->id }}" id="{{$rt_id1->rt_rw_id}}" {{ (in_array($id, old('rt_id1->rt_name', [])) || isset($history_warga) && $history_warga->rt_id1->contains($rt_id1->id)) ? 'selected' : '' }}>
@@ -685,7 +685,7 @@
                 var save = document.getElementById('save').remove();
                 var html = `<div name="pindah" class="form-group {{ $errors->has('provinsi_id') ? 'has-error' : '' }}">
                                                 <label for="provinsi_id">{{ trans('global.history_warga.fields.provinsi_id') }}*
-                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2" onChange="filterKota(this.value)" onclick="filterKota(this.value)">
+                                                    <select name="provinsi_id" id="provinsi_id" class="form-control select2" onChange="filterKota(this.value)" onclick="filterKota(this.value)" required>
                                                     <option selected disabled>Select Provinsi</option>
                                                         @foreach($provinsi_id as $id => $provinsi_id)
                                                         <option value="{{ $id }}" {{ (in_array($id, old('provinsi_id', [])) || isset($history_warga) && $history_warga->provinsi_id->contains($id)) ? 'selected' : '' }}>
@@ -705,7 +705,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kota_id') ? 'has-error' : '' }}">
                                                 <label for="kota_id">{{ trans('global.history_warga.fields.kota_id') }}*
-                                                    <select name="kota_id" id="kota_id" class="form-control select2" onChange="filterKecamatan(this.value)" onclick="filterKecamatan(this.value)">
+                                                    <select name="kota_id" id="kota_id" class="form-control select2" onChange="filterKecamatan(this.value)" onclick="filterKecamatan(this.value)" required>
                                                     <option selected disabled>Select Kota</option>
                                                         @foreach($kota_id as $id => $kota_id)
                                                         <option value="{{ $kota_id->id }}" id="{{$kota_id->province_id}}" {{ (in_array($id, old('kota_id->name', [])) || isset($history_warga) && $history_warga->kota_id->contains($kota_id->id)) ? 'selected' : '' }}>
@@ -725,7 +725,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kecamatan_id') ? 'has-error' : '' }}">
                                                 <label for="kecamatan_id">{{ trans('global.history_warga.fields.kecamatan_id') }}*
-                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2" onChange="filterKelurahan(this.value)" onclick="filterKelurahan(this.value)">
+                                                    <select name="kecamatan_id" id="kecamatan_id" class="form-control select2" onChange="filterKelurahan(this.value)" onclick="filterKelurahan(this.value)" required>
                                                     <option selected disabled>Select Kecamatan</option>
                                                         @foreach($kecamatan_id as $id => $kecamatan_id)
                                                         <option value="{{ $kecamatan_id->id }}" id="{{$kecamatan_id->kec_kota_id}}" {{ (in_array($id, old('kecamatan_id->name', [])) || isset($history_warga) && $history_warga->kecamatan_id->contains($kecamatan_id->id)) ? 'selected' : '' }}>
@@ -745,7 +745,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('kelurahan_id') ? 'has-error' : '' }}">
                                                 <label for="kelurahan_id">{{ trans('global.history_warga.fields.kelurahan_id') }}*
-                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2" onChange="filterRW(this.value)" onclick="filterRW(this.value)">
+                                                    <select name="kelurahan_id" id="kelurahan_id" class="form-control select2" onChange="filterRW(this.value)" onclick="filterRW(this.value)" required>
                                                     <option selected disabled>Select Kelurahan</option>
                                                         @foreach($kelurahan_id as $id => $kelurahan_id)
                                                         <option value="{{ $kelurahan_id->id }}" id="{{$kelurahan_id->kel_kec_id}}"  {{ (in_array($id, old('kelurahan_id->name', [])) || isset($history_warga) && $history_warga->kelurahan_id->contains($kelurahan_id->id)) ? 'selected' : '' }}>
@@ -765,7 +765,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('rw_id') ? 'has-error' : '' }}">
                                                 <label for="rw_id">{{ trans('global.history_warga.fields.rw_id') }}*
-                                                    <select name="rw_id" id="rw_id" class="form-control select2" onChange="filterRT(this.value)" onclick="filterRT(this.value)">
+                                                    <select name="rw_id" id="rw_id" class="form-control select2" onChange="filterRT(this.value)" onclick="filterRT(this.value)" required>
                                                     <option selected disabled>Select RW</option>
                                                         @foreach($rw_id as $id => $rw_id)
                                                         <option value="{{ $rw_id->id }}" id="{{$rw_id->rw_kel_id}}" {{ (in_array($id, old('rw_id', [])) || isset($history_warga) && $history_warga->rw_id->contains($rw_id->id)) ? 'selected' : '' }}>
@@ -785,7 +785,7 @@
 
                                             <div name="pindah" class="form-group {{ $errors->has('rt_id') ? 'has-error' : '' }}">
                                                 <label for="rt_id">{{ trans('global.history_warga.fields.rt_id') }}*
-                                                    <select name="rt_id" id="rt_id" class="form-control select2">
+                                                    <select name="rt_id" id="rt_id" class="form-control select2" required>
                                                     <option selected disabled>Select RT</option>
                                                         @foreach($rt_id as $id => $rt_id)
                                                         <option value="{{ $rt_id->id }}" id="{{$rt_id->rt_rw_id}}" {{ (in_array($id, old('rt_id->rt_name', [])) || isset($history_warga) && $history_warga->rt_id->contains($rt_id->id)) ? 'selected' : '' }}>
