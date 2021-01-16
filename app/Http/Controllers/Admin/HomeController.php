@@ -770,14 +770,35 @@ class HomeController
             array_push($wargaPendudukRecRt,$recPenduduk);
 
 
-            $datartObj->lakiLakiCount = $lakiLakiCount;
-            $datartObj->perempuanCount = $perempuanCount;
-            $datartObj->wargaBerdomisiliCount = $wargaBerdomisiliCount;
-            $datartObj->wargaNonBerdomisiliCount = $wargaNonBerdomisiliCount;
-            $datartObj->eventCategorys = $eventCategorys;
-            $datartObj->wargaPendudukRecRt = $wargaPendudukRecRt;
+            if($index == 0){
+                $datartObj->lakiLakiCount = $lakiLakiCount;
+                $datartObj->perempuanCount = $perempuanCount;
+                $datartObj->wargaBerdomisiliCount = $wargaBerdomisiliCount;
+                $datartObj->wargaNonBerdomisiliCount = $wargaNonBerdomisiliCount;
+                $datartObj->eventCategorys = $eventCategorys;
+                $datartObj->wargaPendudukRecRt = $wargaPendudukRecRt;
+    
+                array_push($rtArray,$datartObj);
+            }else{
+                $rtArray[0]->lakiLakiCount =  $rtArray[0]->lakiLakiCount + $lakiLakiCount;
+                $rtArray[0]->perempuanCount = $rtArray[0]->perempuanCount + $perempuanCount;
+                $rtArray[0]->wargaBerdomisiliCount =  $rtArray[0]->wargaBerdomisiliCount + $wargaBerdomisiliCount;
+                $rtArray[0]->wargaNonBerdomisiliCount = $rtArray[0]->wargaNonBerdomisiliCount + $wargaNonBerdomisiliCount;
+                // $datartObj->eventCategorys = $eventCategorys;
+                $rtArray[0]->wargaPendudukRecRt = $rtArray[0]->wargaPendudukRecRt + $wargaPendudukRecRt;
+    
+                // array_push($rtArray,$datartObj);
 
-            array_push($rtArray,$datartObj);
+                $datartObj->lakiLakiCount = $lakiLakiCount;
+                $datartObj->perempuanCount = $perempuanCount;
+                $datartObj->wargaBerdomisiliCount = $wargaBerdomisiliCount;
+                $datartObj->wargaNonBerdomisiliCount = $wargaNonBerdomisiliCount;
+                $datartObj->eventCategorys = $eventCategorys;
+                $datartObj->wargaPendudukRecRt = $wargaPendudukRecRt;
+    
+                array_push($rtArray,$datartObj);
+            }
+           
 
         }
 
