@@ -468,6 +468,8 @@ class HomeController
             ->where('warga.warga_rt', $datartObj->id)
             ->count();
 
+           
+
             $eventCategoryList = Event_Category::where('id_rt', $datartObj->id)
             ->where('is_dashboard', 1)
             ->get();
@@ -798,7 +800,13 @@ class HomeController
     
                 array_push($rtArray,$datartObj);
             }
-           
+            if(count($rtArray) > 0){
+                $lakiLaki = $rtArray[0]->lakiLakiCount;
+                $perempuan =  $rtArray[0]->perempuanCount;
+                $wargaBerdomisili = $rtArray[0]->wargaBerdomisiliCount;
+                $wargaNonBerdomisili = $rtArray[0]->wargaNonBerdomisiliCount;
+            }
+          
 
         }
 
