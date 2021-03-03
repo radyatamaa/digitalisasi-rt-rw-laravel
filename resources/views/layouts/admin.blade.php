@@ -584,23 +584,9 @@
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
                     <h3 class="card-title">Penambahan penduduk 3 bulan terakhir</h3>
-                    <!-- <a href="javascript:void(0);">View Report</a> -->
                   </div>
                 </div>
                 <div class="card-body">
-                  <!-- <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">820</span>
-                    <span>Visitors Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 12.5%
-                    </span>
-                    <span class="text-muted">Since last week</span>
-                  </p>
-                </div> -->
-                  <!-- /.d-flex -->
 
                   <div class="position-relative mb-4">
                     <canvas id="visitors-chart" height="200"></canvas>
@@ -617,6 +603,31 @@
 
                     <span class="mr-2">
                       <i class="fas fa-square text-info"></i> lahir
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Pengurangan penduduk 3 bulan terakhir</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart2" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                    
+                    <span class="mr-2">
+                      <i class="fas fa-square text-danger"></i> Keluar
+                    </span>
+
+                    <span class="mr-2">
+                      <i class="fas fa-square text-info"></i> Meniggal
                     </span>
                   </div>
                 </div>
@@ -655,20 +666,19 @@
             </div>
 
 
-            @foreach($rtArray as $rt)
-
-            @if(count($rt->wargaPendudukRecRt) > 0)
+         
+            @if(count($rtArray[0]->wargaPendudukRecRt) > 0)
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Penambahan penduduk {{$rt->rt_name}} 3 bulan terakhir</h3>
+                  <h3 class="card-title">Penambahan penduduk {{$rtArray[0]->rw_name}} 3 bulan terakhir</h3>
                   <!-- <a href="javascript:void(0);">View Report</a> -->
                 </div>
               </div>
               <div class="card-body">
 
                 <div class="position-relative mb-4">
-                  <canvas id="visitors-chart{{$rt->id}}" height="200"></canvas>
+                  <canvas id="visitors-chart{{$rtArray[0]->id}}" height="200"></canvas>
                 </div>
 
                 <div class="d-flex flex-row justify-content-end">
@@ -687,8 +697,33 @@
               </div>
             </div>
 
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Pengurangan penduduk {{$rtArray[0]->rw_name}} 3 bulan terakhir</h3>
+                  <!-- <a href="javascript:void(0);">View Report</a> -->
+                </div>
+              </div>
+              <div class="card-body">
+
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart{{$rtArray[0]->id}}2" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+            
+                  <span class="mr-2">
+                    <i class="fas fa-square text-danger"></i> Keluar
+                  </span>
+
+                  <span class="mr-2">
+                    <i class="fas fa-square text-info"></i> Meninggal
+                  </span>
+                </div>
+              </div>
+            </div>
+
             @endif
-            @endforeach
 
             @foreach($rtArray as $rt)
 
@@ -776,6 +811,33 @@
 
                   <span class="mr-2">
                     <i class="fas fa-square text-info"></i> lahir
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Pengurangan penduduk {{$rt->rw_name}} 3 bulan terakhir</h3>
+                  <!-- <a href="javascript:void(0);">View Report</a> -->
+                </div>
+              </div>
+              <div class="card-body">
+
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart{{$rt->id}}2" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+              
+
+                  <span class="mr-2">
+                    <i class="fas fa-square text-danger"></i> Keluar
+                  </span>
+
+                  <span class="mr-2">
+                    <i class="fas fa-square text-info"></i> Meninggal
                   </span>
                 </div>
               </div>
@@ -889,18 +951,23 @@
       var mode = 'index'
       var intersect = true
       var $visitorsChart = $('#visitors-chart')
+      var $visitorsChart2 = $('#visitors-chart2')
 
       var monthPenduduk = [];
       var pindahPenduduk = [];
       var masukPenduduk = [];
       var lahirPenduduk = [];
       var maxPenduduk = [];
+      var meninggalPenduduk = [];
+      var pindahKeluarPenduduk = [];
       @foreach($wargaPendudukRec as $key => $penduduk)
 
       monthPenduduk.push("{{$penduduk->month}}");
       pindahPenduduk.push("{{$penduduk->pindah}}");
       masukPenduduk.push("{{$penduduk->masuk}}");
       lahirPenduduk.push("{{$penduduk->lahir}}");
+      meninggalPenduduk.push("{{$penduduk->meninggal}}");
+      pindahKeluarPenduduk.push("{{$penduduk->pindahKeluar}}");
       maxPenduduk.push("{{$penduduk->max}}");
 
       @endforeach
@@ -945,6 +1012,71 @@
               fill: false
               // pointHoverBackgroundColor: '#ced4da',
               // pointHoverBorderColor    : '#ced4da'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart2 = new Chart($visitorsChart2, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: meninggalPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: pindahKeluarPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#00FFFF',
+              pointBorderColor: '#00FFFF',
+              pointBackgroundColor: '#00FFFF',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
             }
           ]
         },
@@ -1216,11 +1348,14 @@
       var mode = 'index'
       var intersect = true
       var $visitorsChart = $('#visitors-chart{{$rtObj->id}}')
+      var $visitorsChart2 = $('#visitors-chart{{$rtObj->id}}2')
 
       var monthPenduduk = [];
       var pindahPenduduk = [];
       var masukPenduduk = [];
       var lahirPenduduk = [];
+      var meninggalPenduduk = [];
+      var pindahKeluarPenduduk = [];
       var maxPenduduk = [];
       @foreach($rtObj->wargaPendudukRecRt as $key => $penduduk)
 
@@ -1228,6 +1363,8 @@
       pindahPenduduk.push("{{$penduduk->pindah}}");
       masukPenduduk.push("{{$penduduk->masuk}}");
       lahirPenduduk.push("{{$penduduk->lahir}}");
+      meninggalPenduduk.push("{{$penduduk->meninggal}}");
+      pindahKeluarPenduduk.push("{{$penduduk->pindahKeluar}}");
       maxPenduduk.push("{{$penduduk->max}}");
 
       @endforeach
@@ -1272,6 +1409,71 @@
               fill: false
               // pointHoverBackgroundColor: '#ced4da',
               // pointHoverBorderColor    : '#ced4da'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart2 = new Chart($visitorsChart2, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: masukPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: lahirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#00FFFF',
+              pointBorderColor: '#00FFFF',
+              pointBackgroundColor: '#00FFFF',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
             }
           ]
         },
@@ -1389,12 +1591,74 @@
 
       @endforeach
 
+      var areaChartDatarw1 = {
+        labels: [],
+        datasets: [{
+            label: 'Warga Berdomisili',
+            backgroundColor: '#f56954',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: []
+          },
+          {
+            label: 'Warga Bukan Berdomisili',
+            backgroundColor: '#00a65a',
+            borderColor: 'rgba(210, 214, 222, 1)',
+            pointRadius: false,
+            pointColor: 'rgba(210, 214, 222, 1)',
+            pointStrokeColor: '#c1c7d1',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data: []
+          },
+          {
+            label: 'Laki-Laki ',
+            backgroundColor: '#00c0ef',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: []
+          },
+          {
+            label: 'Perempuan',
+            backgroundColor: '#f39c12',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: false,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: []
+          },
+        ]
+      }
+
+      @if($rtArray[0]->wargaBerdomisiliCount > 0 ||
+        $rtArray[0]->wargaNonBerdomisiliCount > 0 ||
+        $rtArray[0]->lakiLakiCount > 0 ||
+        $rtArray[0]->perempuanCount > 0)
+
+        areaChartDatarw1.labels.push('{{$rtArray[0]->rw_name}}')
+        areaChartDatarw1.datasets[0].data.push({{$rtArray[0]->wargaBerdomisiliCount}})
+        areaChartDatarw1.datasets[1].data.push({{$rtArray[0]->wargaNonBerdomisiliCount}})
+        areaChartDatarw1.datasets[2].data.push({{$rtArray[0]->lakiLakiCount}})
+        areaChartDatarw1.datasets[3].data.push({{$rtArray[0]->perempuanCount}})
+
+      @endif
+
       var barChartCanvas = $('#rtbarChart{{$rtArray[0]->rw_id}}').get(0).getContext('2d')
-      var barChartData = jQuery.extend(true, {}, areaChartData1)
-      var temp0 = areaChartData1.datasets[0]
-      var temp1 = areaChartData1.datasets[1]
-      var temp2 = areaChartData1.datasets[2]
-      var temp3 = areaChartData1.datasets[3]
+      var barChartData = jQuery.extend(true, {}, areaChartDatarw1)
+      var temp0 = areaChartDatarw1.datasets[0]
+      var temp1 = areaChartDatarw1.datasets[1]
+      var temp2 = areaChartDatarw1.datasets[2]
+      var temp3 = areaChartDatarw1.datasets[3]
 
       barChartData.datasets[0] = temp1
       barChartData.datasets[1] = temp0
@@ -1484,11 +1748,14 @@
       var mode = 'index'
       var intersect = true
       var $visitorsChart = $('#visitors-chart{{$rwObj->id}}')
+      var $visitorsChart2 = $('#visitors-chart{{$rwObj->id}}2')
 
       var monthPenduduk = [];
       var pindahPenduduk = [];
       var masukPenduduk = [];
       var lahirPenduduk = [];
+      var meninggalPenduduk = [];
+      var pindahKeluarPenduduk = [];
       var maxPenduduk = [];
       @foreach($rwObj->wargaPendudukRecRw as $key => $penduduk)
 
@@ -1496,6 +1763,8 @@
       pindahPenduduk.push("{{$penduduk->pindah}}");
       masukPenduduk.push("{{$penduduk->masuk}}");
       lahirPenduduk.push("{{$penduduk->lahir}}");
+      meninggalPenduduk.push("{{$penduduk->meninggal}}");
+      pindahKeluarPenduduk.push("{{$penduduk->pindahKeluar}}");
       maxPenduduk.push("{{$penduduk->max}}");
 
       @endforeach
@@ -1540,6 +1809,71 @@
               fill: false
               // pointHoverBackgroundColor: '#ced4da',
               // pointHoverBorderColor    : '#ced4da'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart2 = new Chart($visitorsChart2, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: masukPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            },
+            {
+              type: 'line',
+              data: lahirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#00FFFF',
+              pointBorderColor: '#00FFFF',
+              pointBackgroundColor: '#00FFFF',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
             }
           ]
         },
