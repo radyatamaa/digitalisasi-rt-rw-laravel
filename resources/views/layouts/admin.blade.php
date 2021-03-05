@@ -244,14 +244,7 @@
                   </a>
                 </li>
                 @endcan
-                @can('sekolah_access')
-                <li class="nav-item">
-                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Sekolah</p>
-                  </a>
-                </li>
-                @endcan
+               
                 @can('wilayah_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
