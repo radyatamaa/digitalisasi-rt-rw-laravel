@@ -416,13 +416,18 @@
               @section('content')
               @can('warga_create')
               <div style="margin-bottom: 10px;" class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-2">
                   <a class="btn btn-success" href="{{ route("admin.warga.create") }}">
                     {{ trans('global.add') }} {{ trans('global.warga.title_singular') }}
                   </a>
                 </div>
-              </div>
               @endcan
+                <div class="col-lg-1" >
+                  <a class="btn btn-success" href="#">
+                    Download
+                  </a>
+                </div>
+              </div>
               <div class="card">
                 <div class="card-header">
                   {{ trans('global.warga.title_singular') }} {{ trans('global.list') }}
