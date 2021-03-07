@@ -458,10 +458,10 @@
                         <div>
                           <form action="{{ route("admin.warga.store") }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <!-- <ol>
-            <li>Download this <a href="https://www.igniteui.com/HtmlSamples/javascript-excel-library/report.xlsx" download>sample  Excel file</a></li>
+                            <ol>
+            <li>Download this <a href="../../template-cms-sidak.xlsx" download>sample  Excel file</a></li>
             <li>Click Choose File/Browse button below and pick the sample Excel file or another excel file.</li>
-        </ol> -->
+        </ol>
                             <input type="file" id="input" name="input" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
                             <div id="result"></div>
                             <table id="grid1" class="table table-bordered table-striped"></table>
