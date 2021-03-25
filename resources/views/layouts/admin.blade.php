@@ -985,9 +985,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1061,9 +1061,9 @@
               type: 'line',
               data: pindahKeluarPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1387,9 +1387,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1463,9 +1463,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1792,9 +1792,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1868,9 +1868,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
