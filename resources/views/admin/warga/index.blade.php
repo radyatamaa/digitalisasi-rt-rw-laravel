@@ -422,11 +422,7 @@
                   </a>
                 </div>
               @endcan
-                <div class="col-lg-1" >
-                  <a class="btn btn-success" href="#">
-                    Download
-                  </a>
-                </div>
+              
               </div>
               <div class="card">
                 <div class="card-header">

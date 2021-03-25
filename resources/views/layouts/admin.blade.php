@@ -957,11 +957,16 @@
 
       @endforeach
 
-      maxPenduduk.sort(function(a, b) {
+     maxPenduduk.sort(function(a, b) {
         return b - a;
       });
 
 
+      if(maxPenduduk[0] <= 10){
+        
+        maxPenduduk[0] = 10;
+      }
+  
       var visitorsChart = new Chart($visitorsChart, {
         data: {
           labels: monthPenduduk,
@@ -1354,9 +1359,14 @@
 
       @endforeach
 
-      maxPenduduk.sort(function(a, b) {
+     maxPenduduk.sort(function(a, b) {
         return b - a;
       });
+
+      if(maxPenduduk[0] <= 10){
+        
+        maxPenduduk[0] = 10;
+      }
 
 
       var visitorsChart = new Chart($visitorsChart, {
@@ -1754,9 +1764,14 @@
 
       @endforeach
 
-      maxPenduduk.sort(function(a, b) {
+     maxPenduduk.sort(function(a, b) {
         return b - a;
       });
+
+      if(maxPenduduk[0] <= 10){
+        
+        maxPenduduk[0] = 10;
+      }
 
 
       var visitorsChart = new Chart($visitorsChart, {
