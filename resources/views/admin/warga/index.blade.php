@@ -429,8 +429,12 @@
                   {{ trans('global.warga.title_singular') }} {{ trans('global.list') }}
                 </div>
 
-                <div class="card-body table-responsive p-0" style="height: 400px;">
-                <table class="table table-head-fixed text-nowrap">
+                <div class="card-body table-responsive">
+                <table
+                      id="example"
+                      class="table display nowrap"
+                      style="width: 100%"
+                    >
                       <thead>
                         <tr>
                           
@@ -664,21 +668,11 @@
   <script src="../../dist/js/demo.js"></script>
   <!-- page script -->
   <script>
-    $(function() {
-      $("#example1").DataTable({
-        "responsive": true,
-        "autoWidth": false,
+     $(document).ready(function () {
+        $("#example").DataTable({
+          scrollX: true,
+        });
       });
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
   </script>
 </body>
 
