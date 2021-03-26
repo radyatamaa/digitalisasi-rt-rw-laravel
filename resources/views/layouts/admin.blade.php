@@ -220,14 +220,6 @@
                   </a>
                 </li>
                 @endcan
-                @can('pendidikan_access')
-                <li class="nav-item">
-                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pendidikan</p>
-                  </a>
-                </li>
-                @endcan
                 @can('sekolah_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
@@ -244,14 +236,7 @@
                   </a>
                 </li>
                 @endcan
-                @can('sekolah_access')
-                <li class="nav-item">
-                  <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Sekolah</p>
-                  </a>
-                </li>
-                @endcan
+               
                 @can('wilayah_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.wilayah.index") }}" class="nav-link {{ request()->is('admin/wilayah') || request()->is('admin/wilayah  /*') ? 'active' : '' }}">
@@ -972,11 +957,16 @@
 
       @endforeach
 
-      maxPenduduk.sort(function(a, b) {
+     maxPenduduk.sort(function(a, b) {
         return b - a;
       });
 
 
+      if(maxPenduduk[0] <= 10){
+        
+        maxPenduduk[0] = 10;
+      }
+  
       var visitorsChart = new Chart($visitorsChart, {
         data: {
           labels: monthPenduduk,
@@ -995,9 +985,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1071,9 +1061,9 @@
               type: 'line',
               data: pindahKeluarPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1369,9 +1359,14 @@
 
       @endforeach
 
-      maxPenduduk.sort(function(a, b) {
+     maxPenduduk.sort(function(a, b) {
         return b - a;
       });
+
+      if(maxPenduduk[0] <= 10){
+        
+        maxPenduduk[0] = 10;
+      }
 
 
       var visitorsChart = new Chart($visitorsChart, {
@@ -1392,9 +1387,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1468,9 +1463,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1769,9 +1764,14 @@
 
       @endforeach
 
-      maxPenduduk.sort(function(a, b) {
+     maxPenduduk.sort(function(a, b) {
         return b - a;
       });
+
+      if(maxPenduduk[0] <= 10){
+        
+        maxPenduduk[0] = 10;
+      }
 
 
       var visitorsChart = new Chart($visitorsChart, {
@@ -1792,9 +1792,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1868,9 +1868,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'

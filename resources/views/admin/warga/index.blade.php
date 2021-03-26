@@ -394,12 +394,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>List RT</h1>
+              <h1>List Warga</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route("admin.index") }}">Home</a></li>
-                <li class="breadcrumb-item active">List RT</li>
+                <li class="breadcrumb-item active">List Warga</li>
               </ol>
             </div>
           </div>
@@ -416,25 +416,30 @@
               @section('content')
               @can('warga_create')
               <div style="margin-bottom: 10px;" class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-2">
                   <a class="btn btn-success" href="{{ route("admin.warga.create") }}">
                     {{ trans('global.add') }} {{ trans('global.warga.title_singular') }}
                   </a>
                 </div>
-              </div>
               @endcan
+              
+              </div>
               <div class="card">
                 <div class="card-header">
                   {{ trans('global.warga.title_singular') }} {{ trans('global.list') }}
                 </div>
 
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
+                <div class="card-body table-responsive">
+                <table
+                      id="example"
+                      class="table display nowrap"
+                      style="width: 100%"
+                    >
                       <thead>
                         <tr>
-                          <th width="10">
-
+                          
+                          <th>
+                           No
                           </th>
                           <th>
                             {{ trans('global.warga.fields.warga_no_ktp') }}
@@ -620,7 +625,7 @@
                     </table>
                   </div>
                 </div>
-              </div>
+            
               <!-- /.card -->
             </div>
             <!-- /.col -->
@@ -663,21 +668,11 @@
   <script src="../../dist/js/demo.js"></script>
   <!-- page script -->
   <script>
-    $(function() {
-      $("#example1").DataTable({
-        "responsive": true,
-        "autoWidth": false,
+     $(document).ready(function () {
+        $("#example").DataTable({
+          scrollX: true,
+        });
       });
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
   </script>
 </body>
 

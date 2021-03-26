@@ -468,11 +468,11 @@
                                                     </td>
 
                                                     <td>
-                                                        @can('sdm_show')
+                                                        <!-- @can('sdm_show')
                                                         <a class="btn btn-xs btn-primary" href="{{ route('admin.sdm.show', $sdms->id) }}">
                                                             {{ trans('global.view') }}
                                                         </a>
-                                                        @endcan
+                                                        @endcan -->
                                                         @can('sdm_edit')
                                                         <a class="btn btn-xs btn-info" href="{{ route('admin.sdm.edit', $sdms->id) }}">
                                                             {{ trans('global.edit') }}

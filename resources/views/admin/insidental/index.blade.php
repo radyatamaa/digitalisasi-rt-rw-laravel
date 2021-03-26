@@ -412,9 +412,8 @@
                                 <div class="card-header">
                                     {{ trans('global.insidental.title_singular') }} {{ trans('global.list') }}
                                 </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class=" table table-bordered table-striped table-hover datatable">
+                                <div class="card-body table-responsive">   
+                                <table id="example" class="table display nowrap" style="width: 100%">
                                             <thead>
                                                 <tr>
                                                     <th width="10">
@@ -482,7 +481,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -529,21 +528,11 @@
     <script src="../../dist/js/demo.js"></script>
     <!-- page script -->
     <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-            });
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+      $(document).ready(function () {
+        $("#example").DataTable({
+          scrollX: true,
         });
+      });
     </script>
 </body>
 
