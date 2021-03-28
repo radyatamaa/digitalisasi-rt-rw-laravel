@@ -220,14 +220,6 @@
                   </a>
                 </li>
                 @endcan
-                @can('pendidikan_access')
-                <li class="nav-item">
-                  <a href="{{ route("admin.pendidikan.index") }}" class="nav-link {{ request()->is('admin/pendidikan') || request()->is('admin/pendidikan/*') ? 'active' : '' }}">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pendidikan</p>
-                  </a>
-                </li>
-                @endcan
                 @can('sekolah_access')
                 <li class="nav-item">
                   <a href="{{ route("admin.sekolah.index") }}" class="nav-link {{ request()->is('admin/sekolah') || request()->is('admin/sekolah/*') ? 'active' : '' }}">
@@ -626,6 +618,42 @@
                 </div>
               </div>
 
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Jumlah Penduduk Akhir 3 Bulan Terakhir</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart3" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">                    
+            
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Jumlah KK Akhir 3 Bulan Terakhir</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart4" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                             
+                  </div>
+                </div>
+              </div>
+
               @endif
 
             </div>
@@ -715,6 +743,42 @@
                 </div>
               </div>
             </div>
+
+            <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Jumlah Penduduk {{$rtArray[0]->rw_name}} Akhir 3 Bulan Terakhir</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart{{$rtArray[0]->id}}3" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">                    
+            
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Jumlah KK {{$rtArray[0]->rw_name}} Akhir 3 Bulan Terakhir</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart{{$rtArray[0]->id}}4" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                             
+                  </div>
+                </div>
+              </div>
 
             @endif
 
@@ -836,6 +900,42 @@
               </div>
             </div>
 
+            <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Jumlah Penduduk {{$rt->rw_name}} Akhir 3 Bulan Terakhir</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart{{$rt->id}}3" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">                    
+            
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Jumlah KK {{$rt->rw_name}} Akhir 3 Bulan Terakhir</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+
+                  <div class="position-relative mb-4">
+                    <canvas id="visitors-chart{{$rt->id}}4" height="200"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                             
+                  </div>
+                </div>
+              </div>
+
             @endif
             @endforeach
 
@@ -945,6 +1045,8 @@
       var intersect = true
       var $visitorsChart = $('#visitors-chart')
       var $visitorsChart2 = $('#visitors-chart2')
+      var $visitorsChart3 = $('#visitors-chart3')
+      var $visitorsChart4 = $('#visitors-chart4')
 
       var monthPenduduk = [];
       var pindahPenduduk = [];
@@ -953,6 +1055,8 @@
       var maxPenduduk = [];
       var meninggalPenduduk = [];
       var pindahKeluarPenduduk = [];
+      var akhirPenduduk = [];
+      var noKKPenduduk = [];
       @foreach($wargaPendudukRec as $key => $penduduk)
 
       monthPenduduk.push("{{$penduduk->month}}");
@@ -961,6 +1065,8 @@
       lahirPenduduk.push("{{$penduduk->lahir}}");
       meninggalPenduduk.push("{{$penduduk->meninggal}}");
       pindahKeluarPenduduk.push("{{$penduduk->pindahKeluar}}");
+      akhirPenduduk.push("{{$penduduk->pendudukAkhir}}");
+      noKKPenduduk.push("{{$penduduk->noKK}}");
       maxPenduduk.push("{{$penduduk->max}}");
 
       @endforeach
@@ -993,9 +1099,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1069,9 +1175,117 @@
               type: 'line',
               data: pindahKeluarPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart3 = new Chart($visitorsChart3, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: akhirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart4 = new Chart($visitorsChart4, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: noKKPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1347,6 +1561,8 @@
       var intersect = true
       var $visitorsChart = $('#visitors-chart{{$rtObj->id}}')
       var $visitorsChart2 = $('#visitors-chart{{$rtObj->id}}2')
+      var $visitorsChart3 = $('#visitors-chart{{$rtObj->id}}3')
+      var $visitorsChart4 = $('#visitors-chart{{$rtObj->id}}4') 
 
       var monthPenduduk = [];
       var pindahPenduduk = [];
@@ -1355,6 +1571,8 @@
       var meninggalPenduduk = [];
       var pindahKeluarPenduduk = [];
       var maxPenduduk = [];
+      var akhirPenduduk = [];
+      var noKKPenduduk = [];
       @foreach($rtObj->wargaPendudukRecRt as $key => $penduduk)
 
       monthPenduduk.push("{{$penduduk->month}}");
@@ -1363,6 +1581,8 @@
       lahirPenduduk.push("{{$penduduk->lahir}}");
       meninggalPenduduk.push("{{$penduduk->meninggal}}");
       pindahKeluarPenduduk.push("{{$penduduk->pindahKeluar}}");
+      akhirPenduduk.push("{{$penduduk->pendudukAkhir}}");
+      noKKPenduduk.push("{{$penduduk->noKK}}");
       maxPenduduk.push("{{$penduduk->max}}");
 
       @endforeach
@@ -1395,9 +1615,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1458,7 +1678,7 @@
           labels: monthPenduduk,
           datasets: [{
               type: 'line',
-              data: masukPenduduk,
+              data: meninggalPenduduk,
               backgroundColor: 'transparent',
               borderColor: '#FF0000',
               pointBorderColor: '#FF0000',
@@ -1469,11 +1689,119 @@
             },
             {
               type: 'line',
-              data: lahirPenduduk,
+              data: pindahKeluarPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart3 = new Chart($visitorsChart3, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: akhirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart4 = new Chart($visitorsChart4, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: noKKPenduduk ,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1752,6 +2080,8 @@
       var intersect = true
       var $visitorsChart = $('#visitors-chart{{$rwObj->id}}')
       var $visitorsChart2 = $('#visitors-chart{{$rwObj->id}}2')
+      var $visitorsChart3 = $('#visitors-chart{{$rwObj->id}}3')
+      var $visitorsChart4 = $('#visitors-chart{{$rwObj->id}}4') 
 
       var monthPenduduk = [];
       var pindahPenduduk = [];
@@ -1759,7 +2089,9 @@
       var lahirPenduduk = [];
       var meninggalPenduduk = [];
       var pindahKeluarPenduduk = [];
-      var maxPenduduk = [];
+      var maxPenduduk = [];      
+      var akhirPenduduk = [];
+      var noKKPenduduk = [];
       @foreach($rwObj->wargaPendudukRecRw as $key => $penduduk)
 
       monthPenduduk.push("{{$penduduk->month}}");
@@ -1768,6 +2100,8 @@
       lahirPenduduk.push("{{$penduduk->lahir}}");
       meninggalPenduduk.push("{{$penduduk->meninggal}}");
       pindahKeluarPenduduk.push("{{$penduduk->pindahKeluar}}");
+      akhirPenduduk.push("{{$penduduk->pendudukAkhir}}");
+      noKKPenduduk.push("{{$penduduk->noKK}}");
       maxPenduduk.push("{{$penduduk->max}}");
 
       @endforeach
@@ -1800,9 +2134,9 @@
               type: 'line',
               data: lahirPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'
@@ -1863,7 +2197,7 @@
           labels: monthPenduduk,
           datasets: [{
               type: 'line',
-              data: masukPenduduk,
+              data: meninggalPenduduk,
               backgroundColor: 'transparent',
               borderColor: '#FF0000',
               pointBorderColor: '#FF0000',
@@ -1874,11 +2208,119 @@
             },
             {
               type: 'line',
-              data: lahirPenduduk,
+              data: pindahKeluarPenduduk,
               backgroundColor: 'transparent',
-              borderColor: '#00FFFF',
-              pointBorderColor: '#00FFFF',
-              pointBackgroundColor: '#00FFFF',
+              borderColor: '#298fe2',
+              pointBorderColor: '#298fe2',
+              pointBackgroundColor: '#298fe2',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart3 = new Chart($visitorsChart3, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: akhirPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
+              fill: false
+              // pointHoverBackgroundColor: '#007bff',
+              // pointHoverBorderColor    : '#007bff'
+            }
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            mode: mode,
+            intersect: intersect
+          },
+          hover: {
+            mode: mode,
+            intersect: intersect
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              // display: false,
+              gridLines: {
+                display: true,
+                lineWidth: '4px',
+                color: 'rgba(0, 0, 0, .2)',
+                zeroLineColor: 'transparent'
+              },
+              ticks: $.extend({
+                beginAtZero: true,
+                suggestedMax: maxPenduduk[0]
+              }, ticksStyle)
+            }],
+            xAxes: [{
+              display: true,
+              gridLines: {
+                display: false
+              },
+              ticks: ticksStyle
+            }]
+          }
+        }
+      })
+
+      var visitorsChart4 = new Chart($visitorsChart4, {
+        data: {
+          labels: monthPenduduk,
+          datasets: [{
+              type: 'line',
+              data: noKKPenduduk,
+              backgroundColor: 'transparent',
+              borderColor: '#FF0000',
+              pointBorderColor: '#FF0000',
+              pointBackgroundColor: '#FF0000',
               fill: false
               // pointHoverBackgroundColor: '#007bff',
               // pointHoverBorderColor    : '#007bff'

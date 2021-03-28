@@ -123,8 +123,12 @@ class WargaController extends Controller
     public function importExcel(StoreWargaRequest $request)
     {
         $rt_id = Auth::user()->rt_id;
+        if($request->file('input') == null){
+            return redirect()->route('admin.warga.index' , '?is_import=true')->with(['error' => 'Harap Masukan File Import Terlebih dahulu']);
+        }
         $rows = Excel::toArray(new ImportWargaRequest, $request->file('input'));
         $test = "";
+       
         foreach ($rows[0] as $key => $row) {
             if ($key != 0) {
                 //format tanpa id join
