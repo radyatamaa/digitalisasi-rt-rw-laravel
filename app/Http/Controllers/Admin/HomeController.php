@@ -33,10 +33,10 @@ class HomeController
             if ($rt != null) {
                 $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_religion', $agama->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
@@ -44,10 +44,10 @@ class HomeController
             }else{               
                 $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_religion', $agama->id)
                 ->count();
             }
@@ -66,23 +66,23 @@ class HomeController
             $dataObj->nama_pekerjaan = $pekerjaan->job_name;
             $dataObj->backgroundColor = $pekerjaan->color;     
             if ($rt != null) {
-                $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $dataObj->count = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_job', $pekerjaan->id)
                 ->where('warga.warga_rt', $rt)
                 ->count();
             
             }else{
-                $dataObj->count = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $dataObj->count = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_job', $pekerjaan->id)
                 ->count();           
             }
@@ -94,36 +94,36 @@ class HomeController
 
         $wargaPendudukRec = [];
         if ($rt != null) {
-            $lakiLaki = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $lakiLaki = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '1')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '1')
             ->where('warga.warga_rt', $rt)
             ->count();
-            $perempuan = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $perempuan = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '2')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '2')
             ->where('warga.warga_rt', $rt)
             ->count();
-            $wargaBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $wargaBerdomisili = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '1')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '1')
             ->where('warga.warga_rt', $rt)
             ->count();
-            $wargaNonBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $wargaNonBerdomisili = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '2')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '2')
             ->where('warga.warga_rt', $rt)
             ->count();
 
@@ -144,13 +144,13 @@ class HomeController
             //month1
             $recPenduduk = new \stdClass();
             $recPenduduk->month = $month1;
-            $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -160,12 +160,12 @@ class HomeController
             array_push($max1,$recPenduduk->pindah);
 
                      
-            $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
             ->whereMonth('warga.warga_join_date', '=', $monthnum1)
@@ -173,12 +173,12 @@ class HomeController
 
             array_push($max1,$recPenduduk->masuk);
 
-            $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_birth_date', '=', $year)
             ->whereMonth('warga.warga_birth_date', '=', $monthnum1)
@@ -186,13 +186,13 @@ class HomeController
 
             array_push($max1,$recPenduduk->lahir);
 
-            $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('history_warga.id_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -201,13 +201,13 @@ class HomeController
 
             array_push($max1,$recPenduduk->pindahKeluar);           
 
-            $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 2)
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -218,35 +218,29 @@ class HomeController
             array_push($max1,$recPenduduk->meninggal);
 
 
-            $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum1)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum1 .'-04')))->count();
 
             array_push($max1,$recPenduduk->pendudukAkhir);
 
 
 
-            $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-            ->distinct()
-            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum1)
-            ->count();
+            ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum1 .'-04')))->distinct()->count('warga.warga_no_kk');
            
             
             array_push($max1,$recPenduduk->noKK);
@@ -261,13 +255,13 @@ class HomeController
             //month2
             $recPenduduk = new \stdClass();
             $recPenduduk->month = $month2;
-            $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -277,12 +271,12 @@ class HomeController
             array_push($max2,$recPenduduk->pindah);
 
 
-            $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
             ->whereMonth('warga.warga_join_date', '=', $monthnum2)
@@ -290,12 +284,12 @@ class HomeController
 
             array_push($max2,$recPenduduk->masuk);
 
-            $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_birth_date', '=', $year)
             ->whereMonth('warga.warga_birth_date', '=', $monthnum2)
@@ -304,13 +298,13 @@ class HomeController
             array_push($max2,$recPenduduk->lahir);
 
 
-            $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('history_warga.id_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -319,13 +313,13 @@ class HomeController
 
             array_push($max2,$recPenduduk->pindahKeluar);           
 
-            $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 2)
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -336,35 +330,29 @@ class HomeController
             array_push($max2,$recPenduduk->meninggal);
 
 
-            $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum2)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum2 .'-04')))->count();
 
             array_push($max2,$recPenduduk->pendudukAkhir);
 
 
 
-            $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-            ->distinct()
-            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum2)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum2 .'-04')))->distinct()->count('warga.warga_no_kk');
            
             
             array_push($max2,$recPenduduk->noKK);
@@ -381,13 +369,13 @@ class HomeController
             //month3
             $recPenduduk = new \stdClass();
             $recPenduduk->month = $month3;
-            $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -396,12 +384,12 @@ class HomeController
 
             array_push($max3,$recPenduduk->pindah);
 
-            $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
             ->whereMonth('warga.warga_join_date', '=', $monthnum3)
@@ -409,12 +397,12 @@ class HomeController
 
             array_push($max3,$recPenduduk->masuk);
 
-            $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_birth_date', '=', $year)
             ->whereMonth('warga.warga_birth_date', '=', $monthnum3)
@@ -423,13 +411,13 @@ class HomeController
             array_push($max3,$recPenduduk->lahir);
 
             
-            $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('history_warga.id_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -438,13 +426,13 @@ class HomeController
 
             array_push($max3,$recPenduduk->pindahKeluar);           
 
-            $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 2)
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -455,35 +443,29 @@ class HomeController
             array_push($max3,$recPenduduk->meninggal);
 
 
-            $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum3)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum3 .'-04')))->count();
 
             array_push($max3,$recPenduduk->pendudukAkhir);
 
 
 
-            $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-            ->distinct()
-            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $rt)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum3)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum3 .'-04')))->distinct()->count('warga.warga_no_kk');
            
             
             array_push($max3,$recPenduduk->noKK);
@@ -496,30 +478,30 @@ class HomeController
             array_push($wargaPendudukRec,$recPenduduk);
             
         }else{
-            $lakiLaki = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $lakiLaki = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '1')->count();
-            $perempuan = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '1')->count();
+            $perempuan = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '2')->count();
-            $wargaBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_sex', '2')->count();
+            $wargaBerdomisili = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '1')->count();
-            $wargaNonBerdomisili = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '1')->count();
+            $wargaNonBerdomisili = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '2')->count();            
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')->where('warga.warga_is_ktp_sama_domisili', '2')->count();            
         }
 
         $rtArray = [];
@@ -535,39 +517,39 @@ class HomeController
             $datartObj->rw_id = $rwFirst[0]->id;
             $datartObj->rt_name = $rtobj->rt_name;    
             $datartObj->rw_name = $rwFirst[0]->rw_name;
-            $lakiLakiCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $lakiLakiCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_sex', '1')
             ->where('warga.warga_rt', $datartObj->id)
             ->count();
-            $perempuanCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $perempuanCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_sex', '2')
             ->where('warga.warga_rt', $datartObj->id)
             ->count();
-            $wargaBerdomisiliCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $wargaBerdomisiliCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_is_ktp_sama_domisili', '1')
             ->where('warga.warga_rt', $datartObj->id)
             ->count();
-            $wargaNonBerdomisiliCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $wargaNonBerdomisiliCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_is_ktp_sama_domisili', '2')
             ->where('warga.warga_rt', $datartObj->id)
             ->count();
@@ -586,24 +568,24 @@ class HomeController
 
                 $eventWargaCountikut = Event::select('warga.id')
                 ->distinct()
-                ->join('event_detail', 'event_detail.event_id', '=', 'event.id')
-                ->join('warga', 'warga.id', '=', 'event_detail.event_warga')
-                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                ->leftJoin('event_detail', 'event_detail.event_id', '=', 'event.id')
+                ->leftJoin('warga', 'warga.id', '=', 'event_detail.event_warga')
+                ->leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_rt', $datartObj->id)
                 ->where('event.event_category', $eventCategory->category_id)
                 ->count();
                 
-                $totalWarga = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $totalWarga = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                     ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                    ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                    ->join('job', 'job.id', '=', 'warga.warga_job')
-                    ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                    ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                    ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                    ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                     ->where('warga.warga_rt', $datartObj->id)
                     ->count();
 
@@ -632,13 +614,13 @@ class HomeController
             //month1
             $recPenduduk = new \stdClass();
             $recPenduduk->month = $month1;
-            $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -647,12 +629,12 @@ class HomeController
 
             array_push($max1,$recPenduduk->pindah);
 
-            $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
             ->whereMonth('warga.warga_join_date', '=', $monthnum1)
@@ -660,12 +642,12 @@ class HomeController
 
             array_push($max1,$recPenduduk->masuk);
 
-            $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_birth_date', '=', $year)
             ->whereMonth('warga.warga_birth_date', '=', $monthnum1)
@@ -673,13 +655,13 @@ class HomeController
 
             array_push($max1,$recPenduduk->lahir);
 
-            $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('history_warga.id_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -688,13 +670,13 @@ class HomeController
 
             array_push($max1,$recPenduduk->pindahKeluar);           
 
-            $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 2)
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -704,35 +686,29 @@ class HomeController
 
             array_push($max1,$recPenduduk->meninggal);
 
-            $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum1)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum1 .'-04')))->count();
 
             array_push($max1,$recPenduduk->pendudukAkhir);
 
 
 
-            $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-            ->distinct()
-            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum1)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum1 .'-04')))->distinct()->count('warga.warga_no_kk');
            
             
             array_push($max1,$recPenduduk->noKK);
@@ -749,13 +725,13 @@ class HomeController
             //month2
             $recPenduduk = new \stdClass();
             $recPenduduk->month = $month2;
-            $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -765,12 +741,12 @@ class HomeController
             array_push($max2,$recPenduduk->pindah);
 
 
-            $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
             ->whereMonth('warga.warga_join_date', '=', $monthnum2)
@@ -778,12 +754,12 @@ class HomeController
 
             array_push($max2,$recPenduduk->masuk);
 
-            $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_birth_date', '=', $year)
             ->whereMonth('warga.warga_birth_date', '=', $monthnum2)
@@ -791,13 +767,13 @@ class HomeController
 
             array_push($max2,$recPenduduk->lahir);
 
-            $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('history_warga.id_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -806,13 +782,13 @@ class HomeController
 
             array_push($max2,$recPenduduk->pindahKeluar);           
 
-            $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 2)
             ->where('warga.warga_rt', $rt)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -824,35 +800,29 @@ class HomeController
 
 
             
-            $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum2)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum2 .'-04')))->count();
 
             array_push($max2,$recPenduduk->pendudukAkhir);
 
 
 
-            $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-            ->distinct()
-            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum2)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum2 .'-04')))->distinct()->count('warga.warga_no_kk');
            
             
             array_push($max2,$recPenduduk->noKK);
@@ -868,13 +838,13 @@ class HomeController
              //month3
             $recPenduduk = new \stdClass();
             $recPenduduk->month = $month3;
-            $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -883,12 +853,12 @@ class HomeController
 
             array_push($max3,$recPenduduk->pindah);
 
-            $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
             ->whereMonth('warga.warga_join_date', '=', $monthnum3)
@@ -896,12 +866,12 @@ class HomeController
 
             array_push($max3,$recPenduduk->masuk);
 
-            $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_birth_date', '=', $year)
             ->whereMonth('warga.warga_birth_date', '=', $monthnum3)
@@ -909,13 +879,13 @@ class HomeController
 
             array_push($max3,$recPenduduk->lahir);
 
-            $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 1)
             ->where('history_warga.id_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -924,13 +894,13 @@ class HomeController
 
             array_push($max3,$recPenduduk->pindahKeluar);           
 
-            $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-            ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
             ->where('history_warga.history_category', 2)
             ->where('warga.warga_rt', $datartObj->id)
             ->whereYear('warga.warga_join_date', '=', $year)
@@ -942,35 +912,29 @@ class HomeController
 
 
             
-            $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum3)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum3 .'-04')))->count();
 
             array_push($max3,$recPenduduk->pendudukAkhir);
 
 
 
-            $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-            ->distinct()
-            ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+            $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
             ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-            ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-            ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-            ->join('job', 'job.id', '=', 'warga.warga_job')
-            ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+            ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+            ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+            ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+            ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
             ->where('warga.warga_rt', $datartObj->id)
             ->where('warga.warga_status', 1)
-            ->whereYear('warga.warga_join_date', '<=', $year)
-            ->whereMonth('warga.warga_join_date', '<=', $monthnum3)
-            ->count();
+                  ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum3 .'-04')))->distinct()->count('warga.warga_no_kk');
            
             
             array_push($max3,$recPenduduk->noKK);
@@ -1033,43 +997,43 @@ class HomeController
                 $datarwObj->kel_id = $kelurahanFirst[0]->id;
                 $datarwObj->kel_name = $kelurahanFirst[0]->kel_name;
 
-                $lakiLakiCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $lakiLakiCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_sex', '1')
                 ->where('rw.id', $datarwObj->id)
                 ->count();
-                $perempuanCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $perempuanCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_sex', '2')
                 ->where('rw.id', $datarwObj->id)
                 ->count();
-                $wargaBerdomisiliCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $wargaBerdomisiliCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_is_ktp_sama_domisili', '1')
                 ->where('rw.id', $datarwObj->id)
                 ->count();
-                $wargaNonBerdomisiliCount = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $wargaNonBerdomisiliCount = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_is_ktp_sama_domisili', '2')
                 ->where('rw.id', $datarwObj->id)
                 ->count();
@@ -1085,26 +1049,26 @@ class HomeController
     
                     $eventWargaCountikut = Event::select('warga.id')
                     ->distinct()
-                    ->join('event_detail', 'event_detail.event_id', '=', 'event.id')
-                    ->join('warga', 'warga.id', '=', 'event_detail.event_warga')
-                    ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                    ->leftJoin('event_detail', 'event_detail.event_id', '=', 'event.id')
+                    ->leftJoin('warga', 'warga.id', '=', 'event_detail.event_warga')
+                    ->leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                     ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                     ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                    ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                    ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                    ->join('job', 'job.id', '=', 'warga.warga_job')
-                    ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                    ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                    ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                    ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                    ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                     ->where('rw.id', $datarwObj->id)
                     ->where('event.event_category', $eventCategory->category_id)
                     ->count();
                     
-                    $totalWarga = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                    $totalWarga = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                         ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                         ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                        ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                        ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                        ->join('job', 'job.id', '=', 'warga.warga_job')
-                        ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                        ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                        ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                        ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                        ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                         ->where('rw.id', $datarwObj->id)
                         ->count();
     
@@ -1134,14 +1098,14 @@ class HomeController
                 //month1
                 $recPenduduk = new \stdClass();
                 $recPenduduk->month = $month1;
-                $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1150,13 +1114,13 @@ class HomeController
     
                 array_push($max1,$recPenduduk->pindah);
     
-                $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
                 ->whereMonth('warga.warga_join_date', '=', $monthnum1)
@@ -1164,13 +1128,13 @@ class HomeController
     
                 array_push($max1,$recPenduduk->masuk);
     
-                $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_birth_date', '=', $year)
                 ->whereMonth('warga.warga_birth_date', '=', $monthnum1)
@@ -1178,14 +1142,14 @@ class HomeController
     
                 array_push($max1,$recPenduduk->lahir);
                 
-                $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1194,14 +1158,14 @@ class HomeController
     
                 array_push($max1,$recPenduduk->pindahKeluar);           
     
-                $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 2)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1212,13 +1176,13 @@ class HomeController
                 array_push($max1,$recPenduduk->meninggal);
 
 
-                $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->where('warga.warga_status', 1)
                 ->whereYear('warga.warga_join_date', '<=', $year)
@@ -1229,20 +1193,16 @@ class HomeController
     
     
     
-                $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-                ->distinct()
-                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->where('warga.warga_status', 1)
-                ->whereYear('warga.warga_join_date', '<=', $year)
-                ->whereMonth('warga.warga_join_date', '<=', $monthnum1)
-                ->count();
+                ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum1 .'-04')))->distinct()->count('warga.warga_no_kk');
                
                 
                 array_push($max1,$recPenduduk->noKK);
@@ -1259,14 +1219,14 @@ class HomeController
                 //month2                
                 $recPenduduk = new \stdClass();
                 $recPenduduk->month = $month2;
-                $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1276,13 +1236,13 @@ class HomeController
                 array_push($max2,$recPenduduk->pindah);
     
     
-                $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
                 ->whereMonth('warga.warga_join_date', '=', $monthnum2)
@@ -1290,13 +1250,13 @@ class HomeController
     
                 array_push($max2,$recPenduduk->masuk);
     
-                $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_birth_date', '=', $year)
                 ->whereMonth('warga.warga_birth_date', '=', $monthnum2)
@@ -1304,13 +1264,13 @@ class HomeController
     
                 array_push($max2,$recPenduduk->lahir);
                 
-                $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('history_warga.id_rt', $rt)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1319,13 +1279,13 @@ class HomeController
     
                 array_push($max3,$recPenduduk->pindahKeluar);           
     
-                $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 2)
                 ->where('warga.warga_rt', $rt)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1335,14 +1295,14 @@ class HomeController
     
                 array_push($max3,$recPenduduk->meninggal);
 
-                $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1351,14 +1311,14 @@ class HomeController
     
                 array_push($max2,$recPenduduk->pindahKeluar);           
     
-                $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 2)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1369,13 +1329,13 @@ class HomeController
                 array_push($max2,$recPenduduk->meninggal);
 
 
-                $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->where('warga.warga_status', 1)
                 ->whereYear('warga.warga_join_date', '<=', $year)
@@ -1386,20 +1346,16 @@ class HomeController
     
     
     
-                $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-                ->distinct()
-                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->where('warga.warga_status', 1)
-                ->whereYear('warga.warga_join_date', '<=', $year)
-                ->whereMonth('warga.warga_join_date', '<=', $monthnum2)
-                ->count();
+                ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum2 .'-04')))->distinct()->count('warga.warga_no_kk');
                
                 
                 array_push($max2,$recPenduduk->noKK);
@@ -1416,14 +1372,14 @@ class HomeController
                 //month3    
                 $recPenduduk = new \stdClass();
                 $recPenduduk->month = $month3;
-                $recPenduduk->pindah = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindah = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1432,13 +1388,13 @@ class HomeController
     
                 array_push($max3,$recPenduduk->pindah);
     
-                $recPenduduk->masuk = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->masuk = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
                 ->whereMonth('warga.warga_join_date', '=', $monthnum3)
@@ -1446,13 +1402,13 @@ class HomeController
     
                 array_push($max3,$recPenduduk->masuk);
     
-                $recPenduduk->lahir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->lahir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_birth_date', '=', $year)
                 ->whereMonth('warga.warga_birth_date', '=', $monthnum3)
@@ -1460,13 +1416,13 @@ class HomeController
     
                 array_push($max3,$recPenduduk->lahir);
     
-                $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('history_warga.id_rt', $rt)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1475,13 +1431,13 @@ class HomeController
     
                 array_push($max3,$recPenduduk->pindahKeluar);           
     
-                $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 2)
                 ->where('warga.warga_rt', $rt)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1491,14 +1447,14 @@ class HomeController
     
                 array_push($max3,$recPenduduk->meninggal);
 
-                $recPenduduk->pindahKeluar = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pindahKeluar = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 1)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1507,14 +1463,14 @@ class HomeController
     
                 array_push($max3,$recPenduduk->pindahKeluar);           
     
-                $recPenduduk->meninggal = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->meninggal = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
-                ->join('history_warga', 'history_warga.warga_id', '=', 'warga.id')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('history_warga', 'history_warga.warga_id', '=', 'warga.id')
                 ->where('history_warga.history_category', 2)
                 ->where('rw.id', $datarwObj->id)
                 ->whereYear('warga.warga_join_date', '=', $year)
@@ -1525,13 +1481,13 @@ class HomeController
                 array_push($max3,$recPenduduk->meninggal);
 
 
-                $recPenduduk->pendudukAkhir = Warga::join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->pendudukAkhir = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->where('warga.warga_status', 1)
                 ->whereYear('warga.warga_join_date', '<=', $year)
@@ -1542,20 +1498,16 @@ class HomeController
     
     
     
-                $recPenduduk->noKK = Warga::select('warga.warga_no_kk')
-                ->distinct()
-                ->join('religion', 'religion.id', '=', 'warga.warga_religion')
+                $recPenduduk->noKK = Warga::leftJoin('religion', 'religion.id', '=', 'warga.warga_religion')
                 ->join('rt', 'rt.id', '=', 'warga.warga_rt')
                 ->join('rw', 'rw.id', '=', 'rt.rt_rw_id')
-                ->join('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
-                ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
-                ->join('job', 'job.id', '=', 'warga.warga_job')
-                ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->leftJoin('pendidikan', 'pendidikan.id', '=', 'warga.warga_pendidikan')
+                ->leftJoin('address_code', 'address_code.id', '=', 'warga.warga_address_code')
+                ->leftJoin('job', 'job.id', '=', 'warga.warga_job')
+                ->leftJoin('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('rw.id', $datarwObj->id)
                 ->where('warga.warga_status', 1)
-                ->whereYear('warga.warga_join_date', '<=', $year)
-                ->whereMonth('warga.warga_join_date', '<=', $monthnum3)
-                ->count();
+                ->where('warga.warga_join_date', '<=', date("Y-m-t", strtotime($year . '-' . $monthnum3 .'-04')))->distinct()->count('warga.warga_no_kk');
                
                 
                 array_push($max3,$recPenduduk->noKK);
