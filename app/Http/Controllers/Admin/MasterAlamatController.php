@@ -23,15 +23,17 @@ class MasterAlamatController extends Controller
                 'address_code.*',
                 'rt.rt_name'
             )
-                ->join('rt', 'rt.id', '=', 'address_code.id')
+                ->join('rt', 'rt.id', '=', 'address_code.address_code_rt')
                 ->where('address_code_rt', $user)
+                ->orderBy('id', 'desc')
                 ->get();
         } else {
             $master_alamat = Master_Alamat::select(
                 'address_code.*',
                 'rt.rt_name'
             )
-                ->join('rt', 'rt.id', '=', 'address_code.id')
+                ->join('rt', 'rt.id', '=', 'address_code.address_code_rt')
+                ->orderBy('id', 'desc')
                 ->get();
         }
 

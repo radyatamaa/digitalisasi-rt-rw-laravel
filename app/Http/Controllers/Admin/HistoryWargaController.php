@@ -73,6 +73,7 @@ class HistoryWargaController extends Controller
                 ->join('job', 'job.id', '=', 'warga.warga_job')
                 ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
                 ->where('warga.warga_rt', $rts)
+                ->orderBy('warga_first_name', 'asc')
                 ->get();
         } else {
             $warga_ids = Warga::select(
@@ -91,6 +92,7 @@ class HistoryWargaController extends Controller
                 ->join('address_code', 'address_code.id', '=', 'warga.warga_address_code')
                 ->join('job', 'job.id', '=', 'warga.warga_job')
                 ->join('salary', 'salary.id', '=', 'warga.warga_salary_range')
+                ->orderBy('warga_first_name', 'asc')
                 ->get();
         }
 
@@ -106,13 +108,13 @@ class HistoryWargaController extends Controller
 
         $rt_id1 = Rt::all();
         $provinsi_id1 =  Provinces::all()->pluck('name', 'id');
-        $kota_id1 =Kabupaten::all();
+        $kota_id1 = Kabupaten::all();
         $kecamatan_id1 = Kecamatan::all();
-        $kelurahan_id1 =Kelurahan::all();
+        $kelurahan_id1 = Kelurahan::all();
         $rw_id1 = Rw::all();
 
 
-        return view('admin.history_warga.create', compact('rt_id1','rw_id1','kelurahan_id1','kecamatan_id1','kota_id1','provinsi_id1','history_category', 'warga_ids', 'rts', 'userLogin', 'rt_id', 'provinsi_id', 'kota_id', 'kecamatan_id', 'kelurahan_id', 'rw_id','history_c'));
+        return view('admin.history_warga.create', compact('rt_id1', 'rw_id1', 'kelurahan_id1', 'kecamatan_id1', 'kota_id1', 'provinsi_id1', 'history_category', 'warga_ids', 'rts', 'userLogin', 'rt_id', 'provinsi_id', 'kota_id', 'kecamatan_id', 'kelurahan_id', 'rw_id', 'history_c'));
     }
 
     public function store(StoreHistoryWargaRequest $request)
@@ -122,20 +124,18 @@ class HistoryWargaController extends Controller
 
         $history_warga = History_Warga::create($request->all());
 
-        if($category == "1"){
+        if ($category == "1") {
             $wargaId = $_POST['warga_id'];
-            if(isset($_POST['rt_id'])){
+            if (isset($_POST['rt_id'])) {
                 $updateWarga = array(
                     'warga_rt' => $_POST['rt_id'],
                     'warga_status' => 0,
                 );
-
-            }else{
+            } else {
                 $updateWarga = array(
                     'warga_rt' => null,
                     'warga_status' => 2,
                 );
-
             }
             $update = Warga::where('id', $wargaId)->update($updateWarga);
         }
@@ -203,19 +203,25 @@ class HistoryWargaController extends Controller
         $kelurahan_id1 = Kelurahan::all();
         $rw_id1 = Rw::all();
 
-        return view('admin.history_warga.edit', compact('history_warga', 'history_category', 'warga_ids', 'rts', 'userLogin',
-        'rt_id',
-        'provinsi_id',
-        'kota_id',
-        'kecamatan_id',
-        'kelurahan_id',
-        'rw_id',
-        'rt_id1',
-        'provinsi_id1',
-        'kota_id1',
-        'kecamatan_id1',
-        'kelurahan_id1',
-        'rw_id1'));
+        return view('admin.history_warga.edit', compact(
+            'history_warga',
+            'history_category',
+            'warga_ids',
+            'rts',
+            'userLogin',
+            'rt_id',
+            'provinsi_id',
+            'kota_id',
+            'kecamatan_id',
+            'kelurahan_id',
+            'rw_id',
+            'rt_id1',
+            'provinsi_id1',
+            'kota_id1',
+            'kecamatan_id1',
+            'kelurahan_id1',
+            'rw_id1'
+        ));
     }
 
     public function update(UpdateHistoryWargaRequest $request, History_Warga $history_warga)
@@ -225,20 +231,18 @@ class HistoryWargaController extends Controller
 
         $history_warga->update($request->all());
         $category = $_POST['history_category'];
-        if($category == "1"){
+        if ($category == "1") {
             $wargaId = $_POST['warga_id'];
-            if(isset($_POST['rt_id'])){
+            if (isset($_POST['rt_id'])) {
                 $updateWarga = array(
                     'warga_rt' => $_POST['rt_id'],
                     'warga_status' => 0,
                 );
-
-            }else{
+            } else {
                 $updateWarga = array(
                     'warga_rt' => null,
                     'warga_status' => 2,
                 );
-
             }
             $update = Warga::where('id', $wargaId)->update($updateWarga);
         }
