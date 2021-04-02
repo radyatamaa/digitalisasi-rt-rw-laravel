@@ -564,7 +564,12 @@
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
-              @if(count($wargaPendudukRec) > 0)
+            <!-- /.col (RIGHT) -->
+          </div>
+
+          <div class="row">
+          @if(count($wargaPendudukRec) > 0)
+          <div class="col-lg-6">
               <div class="card">
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
@@ -592,7 +597,8 @@
                   </div>
                 </div>
               </div>
-
+              </div>
+              <div class="col-lg-6">
               <div class="card">
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
@@ -617,7 +623,8 @@
                   </div>
                 </div>
               </div>
-
+              </div>
+<div class="col-lg-6">
               <div class="card">
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
@@ -635,14 +642,15 @@
                   </div>
                 </div>
               </div>
-
-              <div class="card">
-                <div class="card-header border-0">
-                  <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Jumlah KK Akhir 3 Bulan Terakhir</h3>
+              </div>
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header border-0">
+                    <div class="d-flex justify-content-between">
+                      <h3 class="card-title">Jumlah KK Akhir 3 Bulan Terakhir</h3>
+                    </div>
                   </div>
-                </div>
-                <div class="card-body">
+                 <div class="card-body">
 
                   <div class="position-relative mb-4">
                     <canvas id="visitors-chart4" height="200"></canvas>
@@ -653,11 +661,11 @@
                   </div>
                 </div>
               </div>
+              </div>
 
               @endif
 
             </div>
-            <!-- /.col (RIGHT) -->
           </div>
 
           <div class="row">
